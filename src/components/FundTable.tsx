@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { FundViewModel } from '../types';
 
@@ -13,6 +13,13 @@ interface FundTableProps {
 export function FundTable({ funds, formatCurrency, formatPercent }: FundTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>('premiumRate');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+  const tableRef = useRef<HTMLTableElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [floatingHeaderState, setFloatingHeaderState] = useState({
+    visible: false,
+    left: 0,
+    width: 0,
+  });
 
   const sortedFunds = useMemo(() => {
     const next = [...funds];
@@ -78,6 +85,50 @@ export function FundTable({ funds, formatCurrency, formatPercent }: FundTablePro
     );
   };
 
+  useEffect(() => {
+    const updateFloatingHeader = () => {
+      if (window.innerWidth <= 720 || !tableRef.current || !scrollRef.current) {
+        setFloatingHeaderState((current) => (current.visible ? { visible: false, left: 0, width: 0 } : current));
+        return;
+      }
+
+      const tableRect = tableRef.current.getBoundingClientRect();
+      const scrollRect = scrollRef.current.getBoundingClientRect();
+      const shouldShow = tableRect.top < 0 && tableRect.bottom > 72;
+
+      setFloatingHeaderState({
+        visible: shouldShow,
+        left: scrollRect.left,
+        width: scrollRect.width,
+      });
+    };
+
+    updateFloatingHeader();
+    window.addEventListener('scroll', updateFloatingHeader, { passive: true });
+    window.addEventListener('resize', updateFloatingHeader);
+
+    return () => {
+      window.removeEventListener('scroll', updateFloatingHeader);
+      window.removeEventListener('resize', updateFloatingHeader);
+    };
+  }, []);
+
+  const renderHeaderCells = () => (
+    <>
+      <div>{renderSortLabel('代码', 'code')}</div>
+      <div>名称</div>
+      <div>{renderSortLabel('现价', 'marketPrice')}</div>
+      <div>{renderSortLabel('涨跌幅', 'changeRate')}</div>
+      <div>{renderSortLabel('估值', 'estimatedNav')}</div>
+      <div>{renderSortLabel('溢价率', 'premiumRate')}</div>
+      <div>{renderSortLabel('净值', 'officialNavT1')}</div>
+      <div>净值日期</div>
+      <div>现价时间</div>
+      <div>{renderSortLabel('模型误差', 'meanAbsError')}</div>
+      <div>限购</div>
+    </>
+  );
+
   return (
     <section className="table-card fund-table-card">
       <div className="table-card__header">
@@ -85,8 +136,28 @@ export function FundTable({ funds, formatCurrency, formatPercent }: FundTablePro
         <p>自动估值口径：以最近官方净值为锚，结合场内当日涨跌幅和该基金自己的历史误差修正。点击表头可排序。</p>
       </div>
 
-      <div className="table-scroll">
-        <table className="fund-table">
+      <div
+        className={`fund-table-floating-header${floatingHeaderState.visible ? ' fund-table-floating-header--visible' : ''}`}
+        style={{ left: `${floatingHeaderState.left}px`, width: `${floatingHeaderState.width}px` }}
+      >
+        {renderHeaderCells()}
+      </div>
+
+      <div className="table-scroll" ref={scrollRef}>
+        <table className="fund-table" ref={tableRef}>
+          <colgroup>
+            <col className="fund-table__col fund-table__col--code" />
+            <col className="fund-table__col fund-table__col--name" />
+            <col className="fund-table__col fund-table__col--market" />
+            <col className="fund-table__col fund-table__col--change" />
+            <col className="fund-table__col fund-table__col--estimate" />
+            <col className="fund-table__col fund-table__col--premium" />
+            <col className="fund-table__col fund-table__col--nav" />
+            <col className="fund-table__col fund-table__col--nav-date" />
+            <col className="fund-table__col fund-table__col--market-time" />
+            <col className="fund-table__col fund-table__col--error" />
+            <col className="fund-table__col fund-table__col--limit" />
+          </colgroup>
           <thead>
             <tr>
               <th>{renderSortLabel('代码', 'code')}</th>

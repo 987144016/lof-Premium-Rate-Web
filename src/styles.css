@@ -365,7 +365,7 @@ label span {
 }
 
 .fund-table-card {
-  --fund-table-columns: 7% 22% 7% 7% 7% 7% 7% 8% 11% 6% 11%;
+  --fund-table-columns: 7% 21% 7% 7% 7% 7% 7% 8% 10% 8% 11%;
 }
 
 .fund-table-floating-header {
@@ -414,7 +414,7 @@ table {
 }
 
 .fund-table__col--name {
-  width: 22%;
+  width: 21%;
 }
 
 .fund-table__col--nav-date {
@@ -422,11 +422,11 @@ table {
 }
 
 .fund-table__col--market-time {
-  width: 11%;
+  width: 10%;
 }
 
 .fund-table__col--error {
-  width: 6%;
+  width: 8%;
 }
 
 .fund-table__col--limit {
@@ -468,6 +468,12 @@ th {
 
 .fund-table tbody tr:hover {
   background: rgba(15, 118, 110, 0.05);
+}
+
+.fund-table th:nth-child(10),
+.fund-table td:nth-child(10),
+.fund-table-floating-header > div:nth-child(10) {
+  white-space: nowrap;
 }
 
 .symbol-cell {

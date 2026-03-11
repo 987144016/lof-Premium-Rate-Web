@@ -1,0 +1,187 @@
+export type Currency = 'USD' | 'CNY';
+export type DetailMode = 'holdings' | 'summary';
+
+export interface HoldingInput {
+  ticker: string;
+  name: string;
+  weight: number;
+  basePrice: number;
+  currentPrice: number;
+  currency: Currency;
+  note?: string;
+}
+
+export interface ProxyBucketInput {
+  key: string;
+  name: string;
+  weight: number;
+  baseLevel: number;
+  currentLevel: number;
+  note?: string;
+}
+
+export interface FxInput {
+  pair: string;
+  baseRate: number;
+  currentRate: number;
+}
+
+export interface FundScenario {
+  code: string;
+  name: string;
+  benchmark: string;
+  reportDate: string;
+  navDate: string;
+  officialNavT1: number;
+  latestMarketPrice: number;
+  stockAllocation: number;
+  cashAllocation: number;
+  annualFeeRate: number;
+  manualBiasBps: number;
+  holdings: HoldingInput[];
+  proxyBuckets: ProxyBucketInput[];
+  fx: FxInput;
+}
+
+export interface CalibrationModel {
+  alpha: number;
+  betaBasket: number;
+  betaFx: number;
+  learningRate: number;
+  sampleCount: number;
+  meanAbsError: number;
+  lastUpdatedAt?: string;
+}
+
+export interface ContributionItem {
+  key: string;
+  label: string;
+  weight: number;
+  localReturn: number;
+  contributionReturn: number;
+}
+
+export interface EstimateResult {
+  rawReturn: number;
+  correctedReturn: number;
+  rawEstimatedNav: number;
+  correctedEstimatedNav: number;
+  premiumRate: number;
+  discountRate: number;
+  stockBasketReturn: number;
+  fxReturn: number;
+  feeDrag: number;
+  manualBiasReturn: number;
+  learnedBiasReturn: number;
+  contributions: ContributionItem[];
+}
+
+export interface NavPoint {
+  date: string;
+  nav: number;
+}
+
+export interface RuntimeFxQuote {
+  pair: string;
+  currentRate: number;
+  previousCloseRate: number;
+  quoteDate: string;
+  quoteTime: string;
+  source: string;
+}
+
+export interface HoldingQuote {
+  ticker: string;
+  name: string;
+  currentPrice: number;
+  previousClose: number;
+  quoteDate: string;
+  quoteTime: string;
+  currency: Currency;
+}
+
+export interface FundRuntimeData {
+  code: string;
+  priority: number;
+  detailMode: DetailMode;
+  name: string;
+  fundType: string;
+  benchmark: string;
+  officialNavT1: number;
+  navDate: string;
+  navHistory: NavPoint[];
+  marketPrice: number;
+  previousClose: number;
+  marketDate: string;
+  marketTime: string;
+  marketSource: string;
+  purchaseStatus?: string;
+  purchaseLimit?: string;
+  fx?: RuntimeFxQuote;
+  holdingQuotes?: HoldingQuote[];
+  holdingsQuoteDate?: string;
+  holdingsQuoteTime?: string;
+  cacheMode?: 'fresh' | 'daily-cache' | 'intraday-cache';
+}
+
+export interface RuntimePayload {
+  syncedAt: string;
+  funds: FundRuntimeData[];
+  stateByCode?: Record<string, PersistedFundState>;
+}
+
+export interface WatchlistModel {
+  alpha: number;
+  betaLead: number;
+  learningRate: number;
+  sampleCount: number;
+  meanAbsError: number;
+  lastUpdatedAt?: string;
+}
+
+export interface FundEstimateSnapshot {
+  estimateDate: string;
+  estimatedNav: number;
+  marketPrice: number;
+  premiumRate: number;
+  anchorNav: number;
+  leadReturn: number;
+  impliedReturn: number;
+  createdAt: string;
+}
+
+export interface FundErrorPoint {
+  date: string;
+  estimatedNav: number;
+  actualNav: number;
+  premiumRate: number;
+  error: number;
+  absError: number;
+}
+
+export interface FundJournal {
+  snapshots: FundEstimateSnapshot[];
+  errors: FundErrorPoint[];
+}
+
+export interface WatchlistEstimateResult {
+  anchorNav: number;
+  leadReturn: number;
+  learnedBiasReturn: number;
+  impliedReturn: number;
+  estimatedNav: number;
+  premiumRate: number;
+}
+
+export interface FundViewModel {
+  runtime: FundRuntimeData;
+  model: WatchlistModel;
+  journal: FundJournal;
+  estimate: WatchlistEstimateResult;
+}
+
+export interface PersistedFundState {
+  modelVersion?: number;
+  model: WatchlistModel;
+  journal: FundJournal;
+}

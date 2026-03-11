@@ -357,7 +357,7 @@ function HomePage({ funds, syncedAt, loading, error }: { funds: FundViewModel[];
             <strong id="busuanzi_value_site_uv">--</strong>
           </div>
           <div>
-            <span>累计访问</span>
+            <span>页面浏览</span>
             <strong id="busuanzi_value_site_pv">--</strong>
           </div>
           <div>
@@ -374,7 +374,7 @@ function HomePage({ funds, syncedAt, loading, error }: { funds: FundViewModel[];
       {error ? <section className="panel notice-panel">{error}</section> : null}
 
       <section className="panel notice-panel">
-        首页展示的累计访客和累计访问是匿名粗略计数，只适合当前免费阶段判断有没有人持续打开，不代表严格口径的日活、留存或付费意愿。
+        首页展示的累计访客和页面浏览是匿名粗略计数。页面浏览会随着刷新增加；如果只是想粗看有没有人持续来用，应优先参考累计访客，而不是页面浏览。严格口径的当日去重访客、留存或付费意愿，当前这套纯静态免费方案并不能准确给出。
       </section>
 
       <section className="panel notice-panel">

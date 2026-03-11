@@ -597,7 +597,7 @@ export default function App() {
       setError('');
 
       try {
-        const response = await fetch(`/generated/funds-runtime.json?ts=${Date.now()}`);
+        const response = await fetch(`generated/funds-runtime.json?ts=${Date.now()}`);
         if (!response.ok) {
           throw new Error(`同步文件读取失败: ${response.status}`);
         }

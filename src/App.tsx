@@ -353,6 +353,14 @@ function HomePage({ funds, syncedAt, loading, error }: { funds: FundViewModel[];
             <strong>{funds.length}</strong>
           </div>
           <div>
+            <span>累计访客</span>
+            <strong id="busuanzi_value_site_uv">--</strong>
+          </div>
+          <div>
+            <span>累计访问</span>
+            <strong id="busuanzi_value_site_pv">--</strong>
+          </div>
+          <div>
             <span>最近同步</span>
             <strong>{syncedAt ? formatDateTime(syncedAt) : '等待同步'}</strong>
           </div>
@@ -364,6 +372,10 @@ function HomePage({ funds, syncedAt, loading, error }: { funds: FundViewModel[];
       </section>
 
       {error ? <section className="panel notice-panel">{error}</section> : null}
+
+      <section className="panel notice-panel">
+        首页展示的累计访客和累计访问是匿名粗略计数，只适合当前免费阶段判断有没有人持续打开，不代表严格口径的日活、留存或付费意愿。
+      </section>
 
       <FundTable funds={funds} formatCurrency={formatCurrency} formatPercent={formatPercent} />
 

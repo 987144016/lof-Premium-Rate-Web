@@ -361,16 +361,17 @@ label span {
 }
 
 .table-scroll {
-  overflow-x: auto;
+  overflow: visible;
 }
 
 .fund-table {
   position: relative;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 table {
   width: 100%;
-  border-collapse: collapse;
 }
 
 th,
@@ -654,6 +655,14 @@ button {
   .page {
     width: min(100vw - 1rem, 100%);
     padding-top: 1rem;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+  }
+
+  .fund-table {
+    min-width: 980px;
   }
 
   .hero,

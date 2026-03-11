@@ -343,43 +343,41 @@ function HomePage({ funds, syncedAt, loading, error }: { funds: FundViewModel[];
         <div className="hero__copy">
           <span className="eyebrow">本地缓存 + 免费行情 + 每基金独立模型</span>
           <h1>溢价率日常看板</h1>
-          <p>
+          <p className="hero__lead">
             自动估值不是 T-1 原值本身，而是“以最近官方净值为锚、叠加场内当日涨跌幅修正”的当日指示估值。日净值与基础资料按天缓存，场内价格与汇率走免费接口；如果你通过主入口启动，后台会每 60 秒重抓一次数据。
           </p>
+          <div className="hero__note">
+            <strong>免责声明</strong>
+            <p>
+              本页面仅用于基金溢价率观察与估值研究，不构成任何投资建议，也不保证数据实时、完整或绝对准确。页面打开后会每 60 秒自动拉取一次最新运行时数据；如果站点刚发布了新功能、新样式或新代码，通常仍需要手动刷新页面一次，浏览器才会拿到最新版本。
+            </p>
+          </div>
         </div>
-        <div className="hero__facts hero__facts--single">
-          <div>
+        <div className="hero__facts hero__facts--compact">
+          <div className="hero__fact hero__fact--accent">
             <span>跟踪基金数</span>
             <strong>{funds.length}</strong>
           </div>
-          <div>
+          <div className="hero__fact">
             <span>累计访客</span>
             <strong id="busuanzi_value_site_uv">--</strong>
           </div>
-          <div>
+          <div className="hero__fact">
             <span>页面浏览</span>
             <strong id="busuanzi_value_site_pv">--</strong>
           </div>
-          <div>
-            <span>最近同步</span>
-            <strong>{syncedAt ? formatDateTime(syncedAt) : '等待同步'}</strong>
-          </div>
-          <div>
+          <div className="hero__fact">
             <span>状态</span>
             <strong>{loading ? '同步中' : error ? '同步异常' : '可用'}</strong>
+          </div>
+          <div className="hero__fact hero__fact--wide">
+            <span>最近同步</span>
+            <strong>{syncedAt ? formatDateTime(syncedAt) : '等待同步'}</strong>
           </div>
         </div>
       </section>
 
       {error ? <section className="panel notice-panel">{error}</section> : null}
-
-      <section className="panel notice-panel">
-        首页展示的累计访客和页面浏览是匿名粗略计数。页面浏览会随着刷新增加；如果只是想粗看有没有人持续来用，应优先参考累计访客，而不是页面浏览。严格口径的当日去重访客、留存或付费意愿，当前这套纯静态免费方案并不能准确给出。
-      </section>
-
-      <section className="panel notice-panel">
-        免责声明：本页面仅用于基金溢价率观察与估值研究，不构成任何投资建议，也不保证数据实时、完整或绝对准确。页面打开后会每 60 秒自动拉取一次最新运行时数据；但如果站点本身刚发布了新功能、新样式或新代码，通常仍需要你手动刷新页面一次，浏览器才会拿到最新版本。
-      </section>
 
       <FundTable funds={funds} formatCurrency={formatCurrency} formatPercent={formatPercent} />
 

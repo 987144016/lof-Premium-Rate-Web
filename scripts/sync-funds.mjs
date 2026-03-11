@@ -521,6 +521,11 @@ async function main() {
   }
 
   funds.sort((left, right) => left.priority - right.priority);
+
+  if (funds.length === 0) {
+    throw new Error('Sync produced 0 funds. Aborting publish to avoid overwriting the site with an empty runtime payload.');
+  }
+
   await writeJson(watchlistStatePath, {
     __meta: {
       version: WATCHLIST_STATE_VERSION,

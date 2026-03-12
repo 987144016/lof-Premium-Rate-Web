@@ -16,7 +16,7 @@ const PUBLISHED_RUNTIME_URLS = [
 const now = new Date();
 const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 const WATCHLIST_STATE_VERSION = 5;
-const DAILY_CACHE_VERSION = 11;
+const DAILY_CACHE_VERSION = 14;
 const MAX_MARKET_MOVE = 0.08;
 const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
@@ -145,7 +145,7 @@ const SUPPLEMENTAL_NOTICE_HOLDINGS = {
     { ticker: 'BNO', aliases: ['United States Brent Oil Fund LP', 'Brent Oil Fund LP'] },
   ],
   '161129': [
-    { ticker: 'DBO', aliases: ['Invesco DB Oil Fund'] },
+    { ticker: 'DBO', aliases: ['Invesco DB Oil Fund', 'Invesco DB Oil'] },
   ],
   '160723': [
     { ticker: 'USO', aliases: ['United States Oil Fund LP', 'United States Oil ETF'] },
@@ -1130,6 +1130,39 @@ function updateDisclosureHistory(historyByCode, runtime) {
   };
 }
 
+function normalizeDisclosureEntry(disclosure) {
+  return {
+    disclosedHoldingsTitle: disclosure?.disclosedHoldingsTitle ?? disclosure?.title ?? '',
+    disclosedHoldingsReportDate: disclosure?.disclosedHoldingsReportDate ?? disclosure?.reportDate ?? '',
+    disclosedHoldings: disclosure?.disclosedHoldings ?? disclosure?.holdings ?? [],
+  };
+}
+
+function compareDisclosureFreshness(left, right) {
+  const leftDate = left?.disclosedHoldingsReportDate ?? '';
+  const rightDate = right?.disclosedHoldingsReportDate ?? '';
+  if (leftDate !== rightDate) {
+    return leftDate.localeCompare(rightDate);
+  }
+
+  return (left?.disclosedHoldings?.length ?? 0) - (right?.disclosedHoldings?.length ?? 0);
+}
+
+function pickPreferredDisclosure(primary, fallback) {
+  const normalizedPrimary = normalizeDisclosureEntry(primary);
+  const normalizedFallback = normalizeDisclosureEntry(fallback);
+
+  if (!(normalizedFallback.disclosedHoldings?.length ?? 0)) {
+    return normalizedPrimary;
+  }
+
+  if (!(normalizedPrimary.disclosedHoldings?.length ?? 0)) {
+    return normalizedFallback;
+  }
+
+  return compareDisclosureFreshness(normalizedPrimary, normalizedFallback) >= 0 ? normalizedPrimary : normalizedFallback;
+}
+
 function formatLocalDate(timestamp) {
   const date = new Date(timestamp);
   const year = date.getFullYear();
@@ -1250,7 +1283,7 @@ async function pruneIntradayCache() {
   }
 }
 
-async function getDailyFundData(entry) {
+async function getDailyFundData(entry, holdingsHistoryByCode = {}) {
   const cachePath = path.join(dailyCacheDir, `${entry.code}.json`);
   const cached = await readJson(cachePath, null);
   if (cached?.fetchedDate === today && cached?.cacheVersion === DAILY_CACHE_VERSION) {
@@ -1282,6 +1315,11 @@ async function getDailyFundData(entry) {
     holdingsDisclosure.disclosedHoldings.length || !relatedEtfCode || relatedEtfCode === entry.code
       ? holdingsDisclosure
       : await fetchHoldingsDisclosure(relatedEtfCode);
+  const historicalHoldingsDisclosure = (holdingsHistoryByCode[entry.code] ?? []).reduce(
+    (best, item) => pickPreferredDisclosure(best, item),
+    normalizeDisclosureEntry(null),
+  );
+  const resolvedHoldingsDisclosure = pickPreferredDisclosure(finalHoldingsDisclosure, historicalHoldingsDisclosure);
   const latestNav = pingzhong.navHistory[0] ?? { date: '', nav: 0 };
   const payload = {
     cacheVersion: DAILY_CACHE_VERSION,
@@ -1295,9 +1333,9 @@ async function getDailyFundData(entry) {
     navHistory: pingzhong.navHistory,
     purchaseStatus: purchase.purchaseStatus,
     purchaseLimit: purchase.purchaseLimit,
-    disclosedHoldingsTitle: finalHoldingsDisclosure.disclosedHoldingsTitle,
-    disclosedHoldingsReportDate: finalHoldingsDisclosure.disclosedHoldingsReportDate,
-    disclosedHoldings: finalHoldingsDisclosure.disclosedHoldings,
+    disclosedHoldingsTitle: resolvedHoldingsDisclosure.disclosedHoldingsTitle,
+    disclosedHoldingsReportDate: resolvedHoldingsDisclosure.disclosedHoldingsReportDate,
+    disclosedHoldings: resolvedHoldingsDisclosure.disclosedHoldings,
   };
 
   await writeJson(cachePath, payload);
@@ -1366,8 +1404,8 @@ async function getIntradayData() {
   return intradayPromise;
 }
 
-async function syncFund(entry) {
-  const [dailyData, intradayData] = await Promise.all([getDailyFundData(entry), getIntradayData()]);
+async function syncFund(entry, holdingsHistoryByCode = {}) {
+  const [dailyData, intradayData] = await Promise.all([getDailyFundData(entry, holdingsHistoryByCode), getIntradayData()]);
   const quote = intradayData.funds?.[entry.code] ?? {
     marketPrice: 0,
     previousClose: 0,
@@ -1450,7 +1488,7 @@ async function main() {
 
   for (const entry of catalog) {
     try {
-      const runtime = await syncFund(entry);
+      const runtime = await syncFund(entry, holdingsHistoryByCode);
       const currentState = normalizePersistedState(persistedStateByCode[entry.code]);
       const reconciled = reconcileJournal(runtime, currentState.model, currentState.journal);
       const estimate = estimateWatchlistFund(runtime, reconciled.model);

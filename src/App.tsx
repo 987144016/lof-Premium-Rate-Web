@@ -18,17 +18,17 @@ const PAGE_OPTIONS: Array<{ key: PageCategory; path: string; label: string; lead
     key: 'qdii-lof',
     path: '/qdii-lof',
     label: 'QDII 的 LOF',
-    lead: 'QDII 官方净值通常会慢一个到两个交易日，具体以净值日期列为准。本页预估净值不再用场内价格驱动，而是按海外代理篮子和 USD/CNY 变化推算，场内价只用来计算溢价率。',
+    lead: 'QDII 官方净值通常会慢一个到两个交易日，具体以净值日期列为准。本页默认按海外代理篮子和 USD/CNY 变化推算；像 501312 这类已接入季度前十大基金/ETF 持仓的品种，会优先按持仓与汇率变化估值。',
     tableTitle: 'QDII LOF 列表',
-    tableDescription: '本页预估口径是 最近官方净值锚点 + 海外代理篮子涨跌幅 + USD/CNY 变化，不再把场内价格当成净值驱动。点击表头可排序。',
+    tableDescription: '本页预估口径默认是 最近官方净值锚点 + 海外代理篮子涨跌幅 + USD/CNY 变化；若该基金已接入可报价的最新海外持仓，则改为持仓优先。点击表头可排序。',
   },
   {
     key: 'domestic-lof',
     path: '/domestic-lof',
     label: '国内 LOF',
-    lead: '这一页放国内 LOF 和联接 LOF。净值锚点一般就是最近交易日官方净值，预估仍主要参考场内日内信号；像白银这类商品 LOF 则改用对应海外代理品种和汇率推算。',
+    lead: '这一页放国内 LOF 和联接 LOF。有前十大持仓报价时，优先按持仓涨跌幅推算当日净值；拿不到持仓报价时，再回退到场内日内信号。像白银这类商品 LOF 则继续改用对应海外代理品种和汇率推算。',
     tableTitle: '国内 LOF 列表',
-    tableDescription: '国内 LOF 默认按最近官方净值锚点加场内日内信号推算；商品类例外会改用对应代理品种。点击表头可排序。',
+    tableDescription: '国内 LOF 当前口径是：优先用前十大持仓涨跌幅估值，拿不到持仓再回退到场内信号；商品类例外继续用代理品种。点击表头可排序。',
   },
   {
     key: 'etf',
@@ -131,9 +131,9 @@ function getEstimateDriverLabels(runtime: FundRuntimeData) {
       }
     : runtime.disclosedHoldings?.length && runtime.holdingQuotes?.length
       ? {
-          summary: '该基金当前优先按最近披露前十大持仓的盘中涨跌幅推算净值，场内价格只用于计算溢价率。',
+          summary: '该基金当前优先按最近披露前十大持仓的盘中涨跌幅推算净值；海外持仓会同步计入 USD/CNY 变化，场内价格只用于计算溢价率。',
           primaryFactor: '前十大持仓涨跌幅',
-          secondaryFactor: '学习修正项',
+          secondaryFactor: runtime.pageCategory === 'qdii-lof' ? 'USD/CNY 变化' : '学习修正项',
         }
     : {
         summary: '该基金当前按最近官方净值锚点、场内日内涨跌幅和误差历史做盘中指示估值。',
@@ -512,7 +512,7 @@ function HomePage({ funds, syncedAt, loading, error, pageCategory }: { funds: Fu
       />
 
       <section className="panel notice-panel">
-        首页显示的是列表主看板。净值列展示最近一次已公布的官方净值，具体是 T-1 还是 T-2 直接看净值日期列；估值列展示的是当前预估净值。QDII 和跨境 ETF 页面已经改成海外代理篮子加汇率驱动，不再拿场内价格去反推净值。点击基金代码进入详情页后，可以看误差折线、独立修正模型；161128 还会额外显示持仓级估值实验室、前十大持仓公告、USD/CNY 时间和夜间美股持仓报价。
+        首页显示的是列表主看板。净值列展示最近一次已公布的官方净值，具体是 T-1 还是 T-2 直接看净值日期列；估值列展示的是当前预估净值。国内 LOF 现在已经切到“前十大持仓优先，拿不到再回退场内信号”，QDII 和跨境 ETF 页面默认按海外代理篮子加汇率驱动；像 501312 这种已经接入季度前十大基金/ETF 持仓的品种，则会优先按持仓与汇率变化估值。点击基金代码进入详情页后，可以看误差折线、净值误差、溢价率误差和历史估值口径；161128 还会额外显示持仓级估值实验室、前十大持仓公告、USD/CNY 时间和夜间美股持仓报价。
       </section>
     </main>
   );
@@ -547,6 +547,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
   const errorSeries = historyPoints.map((item) => ({ label: item.date, value: item.error }));
   const premiumTone = fund.estimate.premiumRate > 0 ? 'positive' : 'negative';
   const actualNavByDate = new Map(fund.runtime.navHistory.map((item) => [item.date, item.nav]));
+  const errorByDate = new Map(fund.journal.errors.map((item) => [item.date, item]));
   const recentSnapshots = [...fund.journal.snapshots].slice(-20).reverse();
   const recentNavHistory = fund.runtime.navHistory.slice(0, 20);
 
@@ -650,7 +651,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
         <div className="split-panel__column">
           <div className="panel__header">
             <h2>误差入口</h2>
-            <p>这里直接看估值相对真实净值的偏差百分比。样本会持续累积，方便你判断模型是否靠谱。</p>
+            <p>这里同时看净值误差和溢价率误差。净值误差口径为 估值 / 真实净值 - 1；已结算日期的场内价会尽量切到该日收盘参考价。</p>
           </div>
           <div className="summary-strip summary-strip--stacked">
             <div>
@@ -729,7 +730,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
         <section className="chart-card">
           <div className="chart-card__header">
             <h3>最近估值记录</h3>
-            <div className="muted-text">先展示已记录的估值快照，真实净值到位后自动结算误差</div>
+            <div className="muted-text">未结算日期显示当时快照价；已结算日期会优先改用该日收盘参考价，并同步计算净值误差与溢价率误差</div>
           </div>
           {recentSnapshots.length > 0 ? (
             <div className="table-scroll">
@@ -738,26 +739,34 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
                   <tr>
                     <th>估值日期</th>
                     <th>估值</th>
-                    <th>场内价</th>
+                    <th>参考场内价</th>
+                    <th>价格口径</th>
                     <th>对应真实净值</th>
-                    <th>误差</th>
+                    <th>净值误差</th>
+                    <th>溢价率误差</th>
                     <th>状态</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentSnapshots.map((item) => {
-                    const actualNav = actualNavByDate.get(item.estimateDate);
+                    const settled = errorByDate.get(item.estimateDate);
+                    const actualNav = settled?.actualNav ?? actualNavByDate.get(item.estimateDate);
                     const hasActual = typeof actualNav === 'number';
-                    const estimateError = hasActual && actualNav > 0 ? item.estimatedNav / actualNav - 1 : undefined;
+                    const estimateError = settled?.error;
+                    const premiumError = settled?.premiumError;
 
                     return (
                       <tr key={item.estimateDate}>
                         <td>{item.estimateDate}</td>
                         <td>{formatCurrency(item.estimatedNav)}</td>
                         <td>{formatCurrency(item.marketPrice)}</td>
+                        <td>{item.marketPriceType === 'close' ? '收盘' : '快照'}</td>
                         <td>{formatOptionalCurrency(actualNav)}</td>
                         <td className={typeof estimateError === 'number' ? (estimateError >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>
                           {typeof estimateError === 'number' ? formatPercent(estimateError) : '--'}
+                        </td>
+                        <td className={typeof premiumError === 'number' ? (premiumError >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>
+                          {typeof premiumError === 'number' ? formatPercent(premiumError) : '--'}
                         </td>
                         <td className={hasActual ? 'tone-positive' : 'muted-text'}>{hasActual ? '已结算' : '待净值'}</td>
                       </tr>
@@ -774,7 +783,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
         <section className="chart-card">
           <div className="chart-card__header">
             <h3>最近误差记录</h3>
-            <div className="muted-text">误差口径为 估值 / 真实净值 - 1，直接用百分比看偏离</div>
+            <div className="muted-text">净值误差口径为 估值 / 真实净值 - 1；溢价率误差口径为 估算溢价率 - 实际收盘溢价率</div>
           </div>
           {recentErrors.length > 0 ? (
             <div className="table-scroll">
@@ -782,18 +791,26 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
                 <thead>
                   <tr>
                     <th>结算日期</th>
+                    <th>参考场内价</th>
                     <th>估值</th>
                     <th>真实净值</th>
-                    <th>误差</th>
+                    <th>净值误差</th>
+                    <th>估算溢价率</th>
+                    <th>实际收盘溢价率</th>
+                    <th>溢价率误差</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentErrors.map((item) => (
                     <tr key={item.date}>
                       <td>{item.date}</td>
+                      <td>{formatOptionalCurrency(item.marketPrice)}</td>
                       <td>{formatCurrency(item.estimatedNav)}</td>
                       <td>{formatCurrency(item.actualNav)}</td>
                       <td className={item.error >= 0 ? 'tone-positive' : 'tone-negative'}>{formatPercent(item.error)}</td>
+                      <td className={item.premiumRate >= 0 ? 'tone-positive' : 'tone-negative'}>{formatPercent(item.premiumRate)}</td>
+                      <td className={(item.actualPremiumRate ?? 0) >= 0 ? 'tone-positive' : 'tone-negative'}>{typeof item.actualPremiumRate === 'number' ? formatPercent(item.actualPremiumRate) : '--'}</td>
+                      <td className={(item.premiumError ?? 0) >= 0 ? 'tone-positive' : 'tone-negative'}>{typeof item.premiumError === 'number' ? formatPercent(item.premiumError) : '--'}</td>
                     </tr>
                   ))}
                 </tbody>

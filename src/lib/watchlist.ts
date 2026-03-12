@@ -1,7 +1,9 @@
 import type {
   FundErrorPoint,
+  FundEstimateSnapshot,
   FundJournal,
   FundRuntimeData,
+  HoldingQuote,
   WatchlistEstimateResult,
   WatchlistModel,
 } from '../types';
@@ -32,6 +34,14 @@ function getWeightedProxyReturn(runtime: FundRuntimeData): number {
   }, 0);
 }
 
+function getHoldingLineReturn(item: HoldingQuote): number {
+  if (!item || item.previousClose <= 0) {
+    return 0;
+  }
+
+  return item.currentPrice / item.previousClose - 1;
+}
+
 function getWeightedHoldingReturn(runtime: FundRuntimeData): number {
   const disclosedHoldings = runtime.disclosedHoldings ?? [];
   const holdingQuotes = runtime.holdingQuotes ?? [];
@@ -45,7 +55,7 @@ function getWeightedHoldingReturn(runtime: FundRuntimeData): number {
 
       return {
         weight: disclosed.weight,
-        localReturn: item.currentPrice / item.previousClose - 1,
+        localReturn: getHoldingLineReturn(item),
       };
     })
     .filter((item): item is { weight: number; localReturn: number } => Boolean(item));
@@ -62,6 +72,10 @@ function hasHoldingsSignal(runtime: FundRuntimeData): boolean {
   return (runtime.disclosedHoldings?.length ?? 0) > 0 && (runtime.holdingQuotes?.length ?? 0) > 0;
 }
 
+function hasUsdHoldingSignal(runtime: FundRuntimeData): boolean {
+  return (runtime.holdingQuotes ?? []).some((item) => item.currency === 'USD');
+}
+
 function getFxReturn(runtime: FundRuntimeData): number {
   const currentRate = runtime.fx?.currentRate ?? 0;
   const previousCloseRate = runtime.fx?.previousCloseRate ?? 0;
@@ -72,6 +86,32 @@ function toIsoDateWithOffset(days: number): string {
   const value = new Date();
   value.setDate(value.getDate() + days);
   return value.toISOString().slice(0, 10);
+}
+
+function getSnapshotPriceType(runtime: FundRuntimeData): 'intraday' | 'close' {
+  return runtime.pageCategory === 'domestic-lof' && runtime.marketTime >= '15:00:00' ? 'close' : 'intraday';
+}
+
+function finalizeSnapshotWithClose(snapshot: FundEstimateSnapshot, runtime: FundRuntimeData): FundEstimateSnapshot {
+  if (
+    runtime.pageCategory !== 'domestic-lof' ||
+    !runtime.marketDate ||
+    !runtime.navDate ||
+    runtime.marketDate <= snapshot.estimateDate ||
+    snapshot.estimateDate !== runtime.navDate ||
+    runtime.previousClose <= 0
+  ) {
+    return snapshot;
+  }
+
+  return {
+    ...snapshot,
+    marketPrice: runtime.previousClose,
+    premiumRate: snapshot.estimatedNav > 0 ? runtime.previousClose / snapshot.estimatedNav - 1 : snapshot.premiumRate,
+    marketPriceDate: snapshot.estimateDate,
+    marketPriceTime: '15:00:00',
+    marketPriceType: 'close',
+  };
 }
 
 function pruneJournal(journal: FundJournal): FundJournal {
@@ -106,8 +146,8 @@ export function estimateWatchlistFund(
   model: WatchlistModel,
 ): WatchlistEstimateResult {
   const anchorNav = runtime.officialNavT1;
-  const useProxyEstimate = runtime.estimateMode === 'proxy';
-  const useHoldingsEstimate = !useProxyEstimate && hasHoldingsSignal(runtime);
+  const useHoldingsEstimate = hasHoldingsSignal(runtime);
+  const useProxyEstimate = runtime.estimateMode === 'proxy' && !useHoldingsEstimate;
   const rawLeadReturn = useProxyEstimate
     ? getWeightedProxyReturn(runtime)
     : useHoldingsEstimate
@@ -116,7 +156,15 @@ export function estimateWatchlistFund(
         ? runtime.marketPrice / runtime.previousClose - 1
         : 0;
   const leadReturn = clamp(rawLeadReturn, useProxyEstimate ? MAX_PROXY_MOVE : MAX_MARKET_MOVE);
-  const rawCloseGapReturn = useProxyEstimate ? getFxReturn(runtime) : useHoldingsEstimate ? 0 : anchorNav > 0 && runtime.previousClose > 0 ? runtime.previousClose / anchorNav - 1 : 0;
+  const rawCloseGapReturn = useProxyEstimate
+    ? getFxReturn(runtime)
+    : useHoldingsEstimate
+      ? hasUsdHoldingSignal(runtime)
+        ? getFxReturn(runtime)
+        : 0
+      : anchorNav > 0 && runtime.previousClose > 0
+        ? runtime.previousClose / anchorNav - 1
+        : 0;
   const closeGapReturn = clamp(rawCloseGapReturn, useProxyEstimate ? MAX_FX_MOVE : MAX_CLOSE_GAP);
   const learnedBiasReturn = model.alpha;
   const impliedReturn = learnedBiasReturn + model.betaLead * leadReturn + model.betaGap * closeGapReturn;
@@ -140,16 +188,16 @@ export function reconcileJournal(
   currentJournal: FundJournal,
 ): { model: WatchlistModel; journal: FundJournal } {
   const actualNavByDate = new Map(runtime.navHistory.map((item) => [item.date, item.nav]));
-  const baseJournal = pruneJournal(currentJournal);
-  const resolvedDates = new Set(baseJournal.errors.map((item) => item.date));
+  const normalizedJournal = pruneJournal({
+    ...currentJournal,
+    snapshots: (currentJournal.snapshots ?? []).map((item) => finalizeSnapshotWithClose(item, runtime)),
+  });
+  const baseJournal = normalizedJournal;
+  const trainedDates = new Set(baseJournal.errors.map((item) => item.date));
+  const errorByDate = new Map(baseJournal.errors.map((item) => [item.date, item]));
   let model = { ...getDefaultWatchlistModel(), ...currentModel };
-  const nextErrors = [...baseJournal.errors];
 
   for (const snapshot of baseJournal.snapshots) {
-    if (resolvedDates.has(snapshot.estimateDate)) {
-      continue;
-    }
-
     const actualNav = actualNavByDate.get(snapshot.estimateDate);
     if (!actualNav) {
       continue;
@@ -159,37 +207,45 @@ export function reconcileJournal(
     const predictedReturn = snapshot.impliedReturn;
     const residualError = targetReturn - predictedReturn;
     const displayError = actualNav > 0 ? snapshot.estimatedNav / actualNav - 1 : 0;
-    const nextSampleCount = model.sampleCount + 1;
-    const adaptiveRate = model.learningRate / Math.sqrt(nextSampleCount);
-    const nextMae =
-      model.sampleCount === 0
-        ? Math.abs(displayError)
-        : (model.meanAbsError * model.sampleCount + Math.abs(displayError)) / nextSampleCount;
+    const actualPremiumRate = actualNav > 0 && snapshot.marketPrice > 0 ? snapshot.marketPrice / actualNav - 1 : 0;
+    const premiumError = snapshot.premiumRate - actualPremiumRate;
+    if (!trainedDates.has(snapshot.estimateDate)) {
+      const nextSampleCount = model.sampleCount + 1;
+      const adaptiveRate = model.learningRate / Math.sqrt(nextSampleCount);
+      const nextMae =
+        model.sampleCount === 0
+          ? Math.abs(displayError)
+          : (model.meanAbsError * model.sampleCount + Math.abs(displayError)) / nextSampleCount;
 
-    model = {
-      ...model,
-      alpha: model.alpha + adaptiveRate * residualError,
-      betaLead: model.betaLead + adaptiveRate * residualError * snapshot.leadReturn,
-      betaGap: model.betaGap + adaptiveRate * residualError * snapshot.closeGapReturn,
-      sampleCount: nextSampleCount,
-      meanAbsError: nextMae,
-      lastUpdatedAt: new Date().toISOString(),
-    };
+      model = {
+        ...model,
+        alpha: model.alpha + adaptiveRate * residualError,
+        betaLead: model.betaLead + adaptiveRate * residualError * snapshot.leadReturn,
+        betaGap: model.betaGap + adaptiveRate * residualError * snapshot.closeGapReturn,
+        sampleCount: nextSampleCount,
+        meanAbsError: nextMae,
+        lastUpdatedAt: new Date().toISOString(),
+      };
+      trainedDates.add(snapshot.estimateDate);
+    }
 
     const errorPoint: FundErrorPoint = {
       date: snapshot.estimateDate,
+      marketPrice: snapshot.marketPrice,
       estimatedNav: snapshot.estimatedNav,
       actualNav,
       premiumRate: snapshot.premiumRate,
+      actualPremiumRate,
+      premiumError,
+      absPremiumError: Math.abs(premiumError),
       error: displayError,
       absError: Math.abs(displayError),
     };
 
-    nextErrors.push(errorPoint);
-    resolvedDates.add(snapshot.estimateDate);
+    errorByDate.set(snapshot.estimateDate, errorPoint);
   }
 
-  nextErrors.sort((left, right) => left.date.localeCompare(right.date));
+  const nextErrors = [...errorByDate.values()].sort((left, right) => left.date.localeCompare(right.date));
 
   return {
     model,
@@ -206,26 +262,23 @@ export function recordEstimateSnapshot(
   estimate: WatchlistEstimateResult,
 ): FundJournal {
   const estimateDate = runtime.marketDate || new Date().toISOString().slice(0, 10);
-  const existing = journal.snapshots.find((item) => item.estimateDate === estimateDate);
-  if (existing) {
-    return journal;
-  }
+  const nextSnapshot: FundEstimateSnapshot = {
+    estimateDate,
+    estimatedNav: estimate.estimatedNav,
+    marketPrice: runtime.marketPrice,
+    premiumRate: estimate.premiumRate,
+    marketPriceDate: runtime.marketDate || estimateDate,
+    marketPriceTime: runtime.marketTime || '',
+    marketPriceType: getSnapshotPriceType(runtime),
+    anchorNav: estimate.anchorNav,
+    leadReturn: estimate.leadReturn,
+    closeGapReturn: estimate.closeGapReturn,
+    impliedReturn: estimate.impliedReturn,
+    createdAt: new Date().toISOString(),
+  };
 
   return pruneJournal({
     ...journal,
-    snapshots: [
-      ...journal.snapshots,
-      {
-        estimateDate,
-        estimatedNav: estimate.estimatedNav,
-        marketPrice: runtime.marketPrice,
-        premiumRate: estimate.premiumRate,
-        anchorNav: estimate.anchorNav,
-        leadReturn: estimate.leadReturn,
-        closeGapReturn: estimate.closeGapReturn,
-        impliedReturn: estimate.impliedReturn,
-        createdAt: new Date().toISOString(),
-      },
-    ].sort((left, right) => left.estimateDate.localeCompare(right.estimateDate)),
+    snapshots: [...(journal.snapshots ?? []).filter((item) => item.estimateDate !== estimateDate), nextSnapshot].sort((left, right) => left.estimateDate.localeCompare(right.estimateDate)),
   });
 }

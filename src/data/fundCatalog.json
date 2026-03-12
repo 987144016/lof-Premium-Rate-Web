@@ -19,7 +19,7 @@
   { "code": "160416", "detailMode": "summary", "priority": 18, "pageCategory": "qdii-lof", "estimateMode": "proxy", "proxyBasketKey": "us-oil-upstream" },
   { "code": "501225", "detailMode": "summary", "priority": 19, "pageCategory": "qdii-lof", "estimateMode": "proxy", "proxyBasketKey": "us-semiconductor" },
   { "code": "161125", "detailMode": "summary", "priority": 20, "pageCategory": "qdii-lof", "estimateMode": "proxy", "proxyBasketKey": "us-sandp500" },
-  { "code": "501312", "detailMode": "summary", "priority": 21, "pageCategory": "qdii-lof", "estimateMode": "proxy", "proxyBasketKey": "us-overseas-tech" },
+  { "code": "501312", "detailMode": "summary", "priority": 21, "pageCategory": "qdii-lof", "estimateMode": "market", "proxyBasketKey": "us-overseas-tech" },
   { "code": "161130", "detailMode": "summary", "priority": 22, "pageCategory": "qdii-lof", "estimateMode": "proxy", "proxyBasketKey": "us-nasdaq100" },
   { "code": "159509", "detailMode": "summary", "priority": 23, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-nasdaq100" },
   { "code": "513310", "detailMode": "summary", "priority": 24, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-semiconductor" }

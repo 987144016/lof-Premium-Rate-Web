@@ -177,6 +177,9 @@ export interface FundEstimateSnapshot {
   estimatedNav: number;
   marketPrice: number;
   premiumRate: number;
+  marketPriceDate?: string;
+  marketPriceTime?: string;
+  marketPriceType?: 'intraday' | 'close';
   anchorNav: number;
   leadReturn: number;
   closeGapReturn: number;
@@ -186,9 +189,13 @@ export interface FundEstimateSnapshot {
 
 export interface FundErrorPoint {
   date: string;
+  marketPrice?: number;
   estimatedNav: number;
   actualNav: number;
   premiumRate: number;
+  actualPremiumRate?: number;
+  premiumError?: number;
+  absPremiumError?: number;
   error: number;
   absError: number;
 }

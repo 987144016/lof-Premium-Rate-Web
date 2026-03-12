@@ -32,6 +32,36 @@ function getWeightedProxyReturn(runtime: FundRuntimeData): number {
   }, 0);
 }
 
+function getWeightedHoldingReturn(runtime: FundRuntimeData): number {
+  const disclosedHoldings = runtime.disclosedHoldings ?? [];
+  const holdingQuotes = runtime.holdingQuotes ?? [];
+  const disclosedByTicker = new Map(disclosedHoldings.map((item) => [item.ticker.toUpperCase(), item]));
+  const weightedQuotes = holdingQuotes
+    .map((item) => {
+      const disclosed = disclosedByTicker.get(item.ticker.toUpperCase());
+      if (!disclosed || !disclosed.weight || item.previousClose <= 0) {
+        return null;
+      }
+
+      return {
+        weight: disclosed.weight,
+        localReturn: item.currentPrice / item.previousClose - 1,
+      };
+    })
+    .filter((item): item is { weight: number; localReturn: number } => Boolean(item));
+
+  const totalWeight = weightedQuotes.reduce((sum, item) => sum + item.weight, 0);
+  if (totalWeight <= 0) {
+    return 0;
+  }
+
+  return weightedQuotes.reduce((sum, item) => sum + item.localReturn * (item.weight / totalWeight), 0);
+}
+
+function hasHoldingsSignal(runtime: FundRuntimeData): boolean {
+  return (runtime.disclosedHoldings?.length ?? 0) > 0 && (runtime.holdingQuotes?.length ?? 0) > 0;
+}
+
 function getFxReturn(runtime: FundRuntimeData): number {
   const currentRate = runtime.fx?.currentRate ?? 0;
   const previousCloseRate = runtime.fx?.previousCloseRate ?? 0;
@@ -76,10 +106,18 @@ export function estimateWatchlistFund(
   model: WatchlistModel,
 ): WatchlistEstimateResult {
   const anchorNav = runtime.officialNavT1;
-  const rawLeadReturn = runtime.estimateMode === 'proxy' ? getWeightedProxyReturn(runtime) : runtime.previousClose > 0 ? runtime.marketPrice / runtime.previousClose - 1 : 0;
-  const leadReturn = clamp(rawLeadReturn, runtime.estimateMode === 'proxy' ? MAX_PROXY_MOVE : MAX_MARKET_MOVE);
-  const rawCloseGapReturn = runtime.estimateMode === 'proxy' ? getFxReturn(runtime) : anchorNav > 0 && runtime.previousClose > 0 ? runtime.previousClose / anchorNav - 1 : 0;
-  const closeGapReturn = clamp(rawCloseGapReturn, runtime.estimateMode === 'proxy' ? MAX_FX_MOVE : MAX_CLOSE_GAP);
+  const useProxyEstimate = runtime.estimateMode === 'proxy';
+  const useHoldingsEstimate = !useProxyEstimate && hasHoldingsSignal(runtime);
+  const rawLeadReturn = useProxyEstimate
+    ? getWeightedProxyReturn(runtime)
+    : useHoldingsEstimate
+      ? getWeightedHoldingReturn(runtime)
+      : runtime.previousClose > 0
+        ? runtime.marketPrice / runtime.previousClose - 1
+        : 0;
+  const leadReturn = clamp(rawLeadReturn, useProxyEstimate ? MAX_PROXY_MOVE : MAX_MARKET_MOVE);
+  const rawCloseGapReturn = useProxyEstimate ? getFxReturn(runtime) : useHoldingsEstimate ? 0 : anchorNav > 0 && runtime.previousClose > 0 ? runtime.previousClose / anchorNav - 1 : 0;
+  const closeGapReturn = clamp(rawCloseGapReturn, useProxyEstimate ? MAX_FX_MOVE : MAX_CLOSE_GAP);
   const learnedBiasReturn = model.alpha;
   const impliedReturn = learnedBiasReturn + model.betaLead * leadReturn + model.betaGap * closeGapReturn;
   const estimatedNav = anchorNav * (1 + impliedReturn);

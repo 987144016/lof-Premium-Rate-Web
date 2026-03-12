@@ -9,9 +9,14 @@ const dailyCacheDir = path.join(projectRoot, '.cache', 'fund-sync', 'daily');
 const intradayCacheDir = path.join(projectRoot, '.cache', 'fund-sync', 'intraday');
 const watchlistStatePath = path.join(projectRoot, '.cache', 'fund-sync', 'watchlist-state.json');
 const holdingsDisclosurePath = path.join(projectRoot, '.cache', 'fund-sync', 'holdings-disclosures.json');
+const PUBLISHED_RUNTIME_URLS = [
+  'https://987144016.github.io/lof-Premium-Rate-Web/generated/funds-runtime.json',
+  'https://987144016.github.io/lof-Premium-Rate-Web/?state-probe=1',
+];
 const now = new Date();
 const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 const WATCHLIST_STATE_VERSION = 5;
+const DAILY_CACHE_VERSION = 2;
 const MAX_MARKET_MOVE = 0.08;
 const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
@@ -149,7 +154,7 @@ function getDefaultJournal() {
   };
 }
 
-function normalizePersistedState(entry, sourceVersion) {
+function normalizePersistedState(entry) {
   if (!entry) {
     return {
       modelVersion: WATCHLIST_STATE_VERSION,
@@ -160,7 +165,7 @@ function normalizePersistedState(entry, sourceVersion) {
 
   return {
     modelVersion: WATCHLIST_STATE_VERSION,
-    model: sourceVersion === WATCHLIST_STATE_VERSION ? { ...getDefaultWatchlistModel(), ...(entry.model ?? {}) } : getDefaultWatchlistModel(),
+    model: entry.modelVersion === WATCHLIST_STATE_VERSION ? { ...getDefaultWatchlistModel(), ...(entry.model ?? {}) } : getDefaultWatchlistModel(),
     journal: pruneJournal({
       snapshots: entry.journal?.snapshots ?? [],
       errors: entry.journal?.errors ?? [],
@@ -170,10 +175,27 @@ function normalizePersistedState(entry, sourceVersion) {
 
 function estimateWatchlistFund(runtime, model) {
   const anchorNav = runtime.officialNavT1;
-  const rawLeadReturn = runtime.estimateMode === 'proxy' ? getWeightedProxyReturn(runtime) : runtime.previousClose > 0 ? runtime.marketPrice / runtime.previousClose - 1 : 0;
-  const leadReturn = clamp(rawLeadReturn, runtime.estimateMode === 'proxy' ? MAX_PROXY_MOVE : MAX_MARKET_MOVE);
-  const rawCloseGapReturn = runtime.estimateMode === 'proxy' ? getFxReturn(runtime) : anchorNav > 0 && runtime.previousClose > 0 ? runtime.previousClose / anchorNav - 1 : 0;
-  const closeGapReturn = clamp(rawCloseGapReturn, runtime.estimateMode === 'proxy' ? MAX_FX_MOVE : MAX_CLOSE_GAP);
+  const useProxyEstimate = runtime.estimateMode === 'proxy';
+  const disclosedByTicker = new Map((runtime.disclosedHoldings ?? []).map((item) => [item.ticker.toUpperCase(), item]));
+  const holdingWeightTotal = (runtime.holdingQuotes ?? []).reduce((sum, item) => {
+    const disclosed = disclosedByTicker.get(item.ticker.toUpperCase());
+    return sum + (disclosed?.weight ?? 0);
+  }, 0);
+  const useHoldingsEstimate = !useProxyEstimate && holdingWeightTotal > 0;
+  const rawHoldingReturn = holdingWeightTotal > 0
+    ? (runtime.holdingQuotes ?? []).reduce((sum, item) => {
+        const disclosed = disclosedByTicker.get(item.ticker.toUpperCase());
+        if (!disclosed || item.previousClose <= 0) {
+          return sum;
+        }
+
+        return sum + (item.currentPrice / item.previousClose - 1) * (disclosed.weight / holdingWeightTotal);
+      }, 0)
+    : 0;
+  const rawLeadReturn = useProxyEstimate ? getWeightedProxyReturn(runtime) : useHoldingsEstimate ? rawHoldingReturn : runtime.previousClose > 0 ? runtime.marketPrice / runtime.previousClose - 1 : 0;
+  const leadReturn = clamp(rawLeadReturn, useProxyEstimate ? MAX_PROXY_MOVE : MAX_MARKET_MOVE);
+  const rawCloseGapReturn = useProxyEstimate ? getFxReturn(runtime) : useHoldingsEstimate ? 0 : anchorNav > 0 && runtime.previousClose > 0 ? runtime.previousClose / anchorNav - 1 : 0;
+  const closeGapReturn = clamp(rawCloseGapReturn, useProxyEstimate ? MAX_FX_MOVE : MAX_CLOSE_GAP);
   const learnedBiasReturn = model.alpha;
   const impliedReturn = learnedBiasReturn + model.betaLead * leadReturn + model.betaGap * closeGapReturn;
   const estimatedNav = anchorNav * (1 + impliedReturn);
@@ -311,6 +333,92 @@ async function writeJson(filePath, payload) {
   await fs.writeFile(filePath, JSON.stringify(payload, null, 2), 'utf8');
 }
 
+async function readPublishedRuntimeState() {
+  const localRuntime = await readJson(outputPath, null);
+  let mergedState = localRuntime?.stateByCode && typeof localRuntime.stateByCode === 'object' ? { ...localRuntime.stateByCode } : {};
+
+  for (const url of PUBLISHED_RUNTIME_URLS) {
+    try {
+      const response = await fetch(`${url}${url.includes('?') ? '&' : '?'}ts=${Date.now()}`, {
+        headers: {
+          'user-agent': 'Mozilla/5.0',
+        },
+      });
+
+      if (!response.ok) {
+        continue;
+      }
+
+      const payload = await response.json();
+      if (payload?.stateByCode && typeof payload.stateByCode === 'object') {
+        mergedState = mergePersistedState(payload.stateByCode, mergedState);
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  return mergedState;
+}
+
+function mergePersistedState(primaryState, fallbackState) {
+  const merged = { ...fallbackState };
+
+  for (const [code, entry] of Object.entries(primaryState ?? {})) {
+    if (!entry || code === '__meta') {
+      continue;
+    }
+
+    const previousEntry = merged[code] ?? {};
+    const previousJournal = previousEntry.journal ?? getDefaultJournal();
+    const nextJournal = entry.journal ?? getDefaultJournal();
+    const snapshotByDate = new Map();
+    const errorByDate = new Map();
+
+    for (const snapshot of previousJournal.snapshots ?? []) {
+      if (snapshot?.estimateDate) {
+        snapshotByDate.set(snapshot.estimateDate, snapshot);
+      }
+    }
+
+    for (const snapshot of nextJournal.snapshots ?? []) {
+      if (snapshot?.estimateDate) {
+        snapshotByDate.set(snapshot.estimateDate, {
+          ...(snapshotByDate.get(snapshot.estimateDate) ?? {}),
+          ...snapshot,
+        });
+      }
+    }
+
+    for (const error of previousJournal.errors ?? []) {
+      if (error?.date) {
+        errorByDate.set(error.date, error);
+      }
+    }
+
+    for (const error of nextJournal.errors ?? []) {
+      if (error?.date) {
+        errorByDate.set(error.date, {
+          ...(errorByDate.get(error.date) ?? {}),
+          ...error,
+        });
+      }
+    }
+
+    merged[code] = {
+      ...previousEntry,
+      ...entry,
+      model: entry.model ?? previousEntry.model,
+      journal: pruneJournal({
+        snapshots: [...snapshotByDate.values()].sort((left, right) => left.estimateDate.localeCompare(right.estimateDate)),
+        errors: [...errorByDate.values()].sort((left, right) => left.date.localeCompare(right.date)),
+      }),
+    };
+  }
+
+  return merged;
+}
+
 function stripHtml(value) {
   return value.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 }
@@ -364,10 +472,10 @@ function parseNumber(value) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-function parseHoldingsDisclosure(html) {
+function parseHoldingsDisclosure(html, quoteByTicker = new Map()) {
   const $ = load(html);
-  const compactText = $.root().text().replace(/\s+/g, ' ').trim();
-  const reportMatch = compactText.match(/(\d{4}年[1-4]季度股票投资明细).*?截止至：\s*(\d{4}-\d{2}-\d{2})/);
+  const reportText = $('h4').first().text().replace(/\s+/g, ' ').trim() || $.root().text().replace(/\s+/g, ' ').trim();
+  const reportMatch = reportText.match(/(\d{4}年[1-4]季度股票投资明细).*?截止至：\s*(\d{4}-\d{2}-\d{2})/);
   const table = $('table').first();
 
   if (!table.length) {
@@ -394,7 +502,8 @@ function parseHoldingsDisclosure(html) {
       return {
         ticker: cells[1],
         name: cells[2],
-        currentPrice: cells.length >= 9 ? parseNumber(cells[3]) : undefined,
+        currentPrice: quoteByTicker.get(cells[1].toUpperCase())?.currentPrice,
+        changeRate: quoteByTicker.get(cells[1].toUpperCase())?.changeRate,
         weight: parseNumber(cells[cells.length - 3]),
         shares: parseNumber(cells[cells.length - 2]),
         marketValue: parseNumber(cells[cells.length - 1]),
@@ -408,6 +517,147 @@ function parseHoldingsDisclosure(html) {
     disclosedHoldingsTitle: reportMatch?.[1] ?? '',
     disclosedHoldingsReportDate: reportMatch?.[2] ?? '',
     disclosedHoldings,
+  };
+}
+
+function parseFundArchivesPayload(content) {
+  try {
+    return Function(`${content}; return typeof apidata !== 'undefined' ? apidata : null;`)();
+  } catch {
+    return null;
+  }
+}
+
+function extractHoldingSecids(html) {
+  const $ = load(html);
+
+  return $('tbody tr')
+    .map((_, row) => {
+      const cells = $(row)
+        .find('td')
+        .map((__, cell) => $(cell).text().replace(/\s+/g, ' ').trim())
+        .get()
+        .filter(Boolean);
+
+      if (cells.length < 7 || !/^\d+$/.test(cells[0]) || !/^[0-9A-Z]{5,6}$/.test(cells[1])) {
+        return null;
+      }
+
+      const href = $(row).find('td').eq(1).find('a').attr('href') ?? '';
+      const secidMatch = href.match(/unify\/r\/([0-9.]+)/i);
+      if (!secidMatch) {
+        return null;
+      }
+
+      return {
+        ticker: cells[1].toUpperCase(),
+        secid: secidMatch[1],
+      };
+    })
+    .get()
+    .filter(Boolean)
+    .slice(0, 10);
+}
+
+async function fetchHoldingQuoteMap(secidEntries) {
+  if (!secidEntries.length) {
+    return new Map();
+  }
+
+  const secids = [...new Set(secidEntries.map((item) => item.secid))].join(',');
+  const response = await fetchText(
+    `https://push2.eastmoney.com/api/qt/ulist.np/get?fltt=2&invt=2&fields=f2,f3,f12,f14,f9&ut=267f9ad526dbe6b0262ab19316f5a25b&secids=${secids}`,
+    { referer: 'https://fundf10.eastmoney.com/' },
+    'utf-8',
+  );
+  const payload = JSON.parse(response);
+
+  return new Map(
+    (payload.data?.diff ?? [])
+      .filter((item) => item?.f12)
+      .map((item) => [
+        String(item.f12).toUpperCase(),
+        {
+          currentPrice: Number(item.f2) || 0,
+          changeRate: Number(item.f3) / 100 || 0,
+        },
+      ]),
+  );
+}
+
+async function fetchHoldingsDisclosure(code) {
+  const yearsToTry = [now.getFullYear(), now.getFullYear() - 1];
+
+  for (const year of yearsToTry) {
+    try {
+      const response = await fetchText(
+        `https://fundf10.eastmoney.com/FundArchivesDatas.aspx?type=jjcc&code=${code}&topline=10&year=${year}&month=&rt=${Date.now()}`,
+        { referer: `https://fundf10.eastmoney.com/ccmx_${code}.html` },
+        'utf-8',
+      );
+      const payload = parseFundArchivesPayload(response);
+      if (!payload?.content) {
+        continue;
+      }
+
+      const secidEntries = extractHoldingSecids(payload.content);
+      const quoteByTicker = await fetchHoldingQuoteMap(secidEntries);
+      const parsed = parseHoldingsDisclosure(payload.content, quoteByTicker);
+      if (parsed.disclosedHoldings.length) {
+        return parsed;
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  return {
+    disclosedHoldingsTitle: '',
+    disclosedHoldingsReportDate: '',
+    disclosedHoldings: [],
+  };
+}
+
+function getHoldingCurrency(ticker) {
+  return /^0\d{4}$/.test(ticker) ? 'HKD' : 'CNY';
+}
+
+function buildHoldingQuotes(runtime) {
+  if (runtime.code === '161128') {
+    return {
+      holdingQuotes: runtime.holdingQuotes ?? [],
+      holdingsQuoteDate: runtime.holdingsQuoteDate || '',
+      holdingsQuoteTime: runtime.holdingsQuoteTime || '',
+    };
+  }
+
+  const holdingQuotes = (runtime.disclosedHoldings ?? [])
+    .map((item) => {
+      if (!item.ticker || !Number.isFinite(item.currentPrice) || item.currentPrice <= 0 || !Number.isFinite(item.changeRate)) {
+        return null;
+      }
+
+      const previousClose = item.currentPrice / (1 + item.changeRate);
+      if (!Number.isFinite(previousClose) || previousClose <= 0) {
+        return null;
+      }
+
+      return {
+        ticker: item.ticker,
+        name: item.name,
+        currentPrice: item.currentPrice,
+        previousClose,
+        quoteDate: runtime.marketDate || today,
+        quoteTime: runtime.marketTime || '',
+        currency: getHoldingCurrency(item.ticker),
+      };
+    })
+    .filter(Boolean);
+
+  return {
+    holdingQuotes,
+    holdingsQuoteDate: holdingQuotes.length ? runtime.marketDate || today : '',
+    holdingsQuoteTime: holdingQuotes.length ? runtime.marketTime || '' : '',
   };
 }
 
@@ -562,25 +812,25 @@ async function pruneIntradayCache() {
 async function getDailyFundData(entry) {
   const cachePath = path.join(dailyCacheDir, `${entry.code}.json`);
   const cached = await readJson(cachePath, null);
-  if (cached?.fetchedDate === today) {
+  if (cached?.fetchedDate === today && cached?.cacheVersion === DAILY_CACHE_VERSION) {
     return { ...cached, cacheMode: 'daily-cache' };
   }
 
-  const [basicHtml, pingzhongData, fundHtml, holdingsHtml] = await Promise.all([
+  const [basicHtml, pingzhongData, fundHtml, holdingsDisclosure] = await Promise.all([
     fetchText(`https://fundf10.eastmoney.com/jbgk_${entry.code}.html`, {}, 'utf-8'),
     fetchText(`https://fund.eastmoney.com/pingzhongdata/${entry.code}.js?v=${Date.now()}`, {
       referer: `https://fund.eastmoney.com/${entry.code}.html`,
     }, 'gb18030'),
     fetchText(`https://fund.eastmoney.com/${entry.code}.html`, {}, 'utf-8'),
-    fetchText(`https://fundf10.eastmoney.com/ccmx_${entry.code}.html`, {}, 'utf-8').catch(() => ''),
+    fetchHoldingsDisclosure(entry.code),
   ]);
 
   const pingzhong = parsePingzhongData(pingzhongData);
   const basic = parseBasicInfo(basicHtml, pingzhong.name);
   const purchase = parsePurchaseStatus(fundHtml);
-  const holdingsDisclosure = parseHoldingsDisclosure(holdingsHtml);
   const latestNav = pingzhong.navHistory[0] ?? { date: '', nav: 0 };
   const payload = {
+    cacheVersion: DAILY_CACHE_VERSION,
     fetchedDate: today,
     name: basic.name || entry.code,
     fundType: basic.fundType,
@@ -670,8 +920,6 @@ async function syncFund(entry) {
     marketTime: '',
     marketSource: '腾讯行情',
   };
-  const holdingQuotes = entry.code === '161128' ? intradayData.holdings161128 ?? [] : [];
-  const holdingsMeta = holdingQuotes[0] ?? null;
   const proxyConfig = entry.proxyBasketKey ? PROXY_BASKETS[entry.proxyBasketKey] : null;
   const proxyQuotes = proxyConfig
     ? proxyConfig.components
@@ -690,6 +938,15 @@ async function syncFund(entry) {
         .filter(Boolean)
     : [];
   const proxyMeta = proxyQuotes[0] ?? null;
+  const holdingQuotePayload = buildHoldingQuotes({
+    code: entry.code,
+    disclosedHoldings: dailyData.disclosedHoldings,
+    marketDate: quote.marketDate,
+    marketTime: quote.marketTime,
+    holdingQuotes: entry.code === '161128' ? intradayData.holdings161128 ?? [] : [],
+    holdingsQuoteDate: (intradayData.holdings161128 ?? [])[0]?.quoteDate || '',
+    holdingsQuoteTime: (intradayData.holdings161128 ?? [])[0]?.quoteTime || '',
+  });
 
   return {
     code: entry.code,
@@ -714,9 +971,9 @@ async function syncFund(entry) {
     disclosedHoldingsReportDate: dailyData.disclosedHoldingsReportDate,
     disclosedHoldings: dailyData.disclosedHoldings,
     fx: intradayData.fx,
-    holdingQuotes,
-    holdingsQuoteDate: holdingsMeta?.quoteDate || '',
-    holdingsQuoteTime: holdingsMeta?.quoteTime || '',
+    holdingQuotes: holdingQuotePayload.holdingQuotes,
+    holdingsQuoteDate: holdingQuotePayload.holdingsQuoteDate,
+    holdingsQuoteTime: holdingQuotePayload.holdingsQuoteTime,
     proxyBasketName: proxyConfig?.name || '',
     proxyQuotes,
     proxyQuoteDate: proxyMeta?.quoteDate || '',
@@ -731,14 +988,15 @@ async function main() {
 
   const funds = [];
   const rawStateCache = await readJson(watchlistStatePath, {});
+  const publishedStateCache = await readPublishedRuntimeState();
   let holdingsHistoryByCode = await readJson(holdingsDisclosurePath, {});
-  const sourceVersion = rawStateCache.__meta?.version ?? 1;
+  const persistedStateByCode = mergePersistedState(rawStateCache, publishedStateCache);
   const stateByCode = {};
 
   for (const entry of catalog) {
     try {
       const runtime = await syncFund(entry);
-      const currentState = normalizePersistedState(rawStateCache[entry.code], sourceVersion);
+      const currentState = normalizePersistedState(persistedStateByCode[entry.code]);
       const reconciled = reconcileJournal(runtime, currentState.model, currentState.journal);
       const estimate = estimateWatchlistFund(runtime, reconciled.model);
       const journal = recordEstimateSnapshot(reconciled.journal, runtime, estimate);

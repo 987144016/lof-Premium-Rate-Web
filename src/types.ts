@@ -1,4 +1,4 @@
-export type Currency = 'USD' | 'CNY';
+export type Currency = 'USD' | 'CNY' | 'HKD';
 export type DetailMode = 'holdings' | 'summary';
 export type PageCategory = 'domestic-lof' | 'qdii-lof' | 'etf';
 export type EstimateMode = 'market' | 'proxy';
@@ -120,6 +120,7 @@ export interface DisclosedHolding {
   shares?: number;
   marketValue?: number;
   currentPrice?: number;
+  changeRate?: number;
 }
 
 export interface FundRuntimeData {

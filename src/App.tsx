@@ -129,6 +129,12 @@ function getEstimateDriverLabels(runtime: FundRuntimeData) {
         primaryFactor: '代理篮子涨跌幅',
         secondaryFactor: 'USD/CNY 变化',
       }
+    : runtime.disclosedHoldings?.length && runtime.holdingQuotes?.length
+      ? {
+          summary: '该基金当前优先按最近披露前十大持仓的盘中涨跌幅推算净值，场内价格只用于计算溢价率。',
+          primaryFactor: '前十大持仓涨跌幅',
+          secondaryFactor: '学习修正项',
+        }
     : {
         summary: '该基金当前按最近官方净值锚点、场内日内涨跌幅和误差历史做盘中指示估值。',
         primaryFactor: '场内涨跌幅',

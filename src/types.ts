@@ -1,5 +1,7 @@
 export type Currency = 'USD' | 'CNY';
 export type DetailMode = 'holdings' | 'summary';
+export type PageCategory = 'domestic-lof' | 'qdii-lof' | 'etf';
+export type EstimateMode = 'market' | 'proxy';
 
 export interface HoldingInput {
   ticker: string;
@@ -100,10 +102,32 @@ export interface HoldingQuote {
   currency: Currency;
 }
 
+export interface ProxyQuote {
+  ticker: string;
+  name: string;
+  weight: number;
+  currentPrice: number;
+  previousClose: number;
+  quoteDate: string;
+  quoteTime: string;
+  currency: Currency;
+}
+
+export interface DisclosedHolding {
+  ticker: string;
+  name: string;
+  weight: number;
+  shares?: number;
+  marketValue?: number;
+  currentPrice?: number;
+}
+
 export interface FundRuntimeData {
   code: string;
   priority: number;
   detailMode: DetailMode;
+  pageCategory: PageCategory;
+  estimateMode: EstimateMode;
   name: string;
   fundType: string;
   benchmark: string;
@@ -121,6 +145,13 @@ export interface FundRuntimeData {
   holdingQuotes?: HoldingQuote[];
   holdingsQuoteDate?: string;
   holdingsQuoteTime?: string;
+  disclosedHoldingsTitle?: string;
+  disclosedHoldingsReportDate?: string;
+  disclosedHoldings?: DisclosedHolding[];
+  proxyBasketName?: string;
+  proxyQuotes?: ProxyQuote[];
+  proxyQuoteDate?: string;
+  proxyQuoteTime?: string;
   cacheMode?: 'fresh' | 'daily-cache' | 'intraday-cache';
 }
 
@@ -133,6 +164,7 @@ export interface RuntimePayload {
 export interface WatchlistModel {
   alpha: number;
   betaLead: number;
+  betaGap: number;
   learningRate: number;
   sampleCount: number;
   meanAbsError: number;
@@ -146,6 +178,7 @@ export interface FundEstimateSnapshot {
   premiumRate: number;
   anchorNav: number;
   leadReturn: number;
+  closeGapReturn: number;
   impliedReturn: number;
   createdAt: string;
 }
@@ -167,6 +200,7 @@ export interface FundJournal {
 export interface WatchlistEstimateResult {
   anchorNav: number;
   leadReturn: number;
+  closeGapReturn: number;
   learnedBiasReturn: number;
   impliedReturn: number;
   estimatedNav: number;

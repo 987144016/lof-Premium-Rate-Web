@@ -512,6 +512,17 @@ th {
   background: rgba(15, 118, 110, 0.05);
 }
 
+.fund-table__link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.fund-table__link:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+
 .fund-table th:nth-child(10),
 .fund-table td:nth-child(10),
 .fund-table th:nth-child(11),

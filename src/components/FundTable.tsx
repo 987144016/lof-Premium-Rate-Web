@@ -72,15 +72,12 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
   }, [funds, sortDirection, sortKey]);
 
   const toggleSort = (nextKey: SortKey) => {
-    setSortKey((currentKey) => {
-      if (currentKey === nextKey) {
-        setSortDirection((currentDirection) => (currentDirection === 'asc' ? 'desc' : 'asc'));
-        return currentKey;
-      }
-
+    if (sortKey === nextKey) {
+      setSortDirection((d) => (d === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortKey(nextKey);
       setSortDirection(nextKey === 'code' ? 'asc' : 'desc');
-      return nextKey;
-    });
+    }
   };
 
   const renderSortLabel = (label: string, key: SortKey) => {
@@ -218,7 +215,9 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
                     {typeof latestError === 'number' ? formatPercent(latestError) : '--'}
                   </td>
                   <td>{typeof avg30dError === 'number' ? formatPercent(avg30dError) : '--'}</td>
-                  <td>{fund.runtime.purchaseLimit || fund.runtime.purchaseStatus || '待校验'}</td>
+                  <td className={fund.runtime.purchaseLimit === '0元' ? 'muted-text' : ''}>
+                    {fund.runtime.purchaseLimit || '待校验'}
+                  </td>
                 </tr>
               );
             })}

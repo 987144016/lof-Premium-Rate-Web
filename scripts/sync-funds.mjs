@@ -17,7 +17,7 @@ const PUBLISHED_RUNTIME_URLS = [
 const now = new Date();
 const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 const WATCHLIST_STATE_VERSION = 5;
-const DAILY_CACHE_VERSION = 24;
+const DAILY_CACHE_VERSION = 32;
 const MAX_MARKET_MOVE = 0.08;
 const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
@@ -144,6 +144,12 @@ const SUPPLEMENTAL_NOTICE_HOLDINGS = {
   '501018': [
     { ticker: 'USO', aliases: ['United States Oil Fund LP', 'United States Oil ETF', 'United States Oil'] },
     { ticker: 'BNO', aliases: ['United States Brent Oil Fund LP', 'Brent Oil Fund LP'] },
+    { ticker: 'DBO', aliases: ['Invesco DB Oil Fund', 'Invesco DB Oil'] },
+    { ticker: 'WTI_ETC', quoteTicker: 'USO', aliases: ['WisdomTree WTI Crude Oil ETF', 'WisdomTree WTI Crude Oil ETC'] },
+    { ticker: 'BRENT_ETC', quoteTicker: 'BNO', aliases: ['WisdomTree Brent Crude Oil ETF', 'WisdomTree Brent Crude Oil ETC'] },
+    { ticker: 'SIMPLEX_WTI', quoteTicker: 'USO', aliases: ['Simplex WTI ETF'] },
+    { ticker: '1699', quoteTicker: 'USO', aliases: ['NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF'] },
+    { ticker: 'UBS_CMCI_OIL', quoteTicker: 'DBO', aliases: ['UBS CMCI Oil SF ETF'] },
   ],
   '501225': [
     { ticker: 'SMH', aliases: ['VanEck Semiconductor ETF'] },
@@ -159,12 +165,12 @@ const SUPPLEMENTAL_NOTICE_HOLDINGS = {
   ],
   '160723': [
     { ticker: 'USO', aliases: ['United States Oil Fund LP', 'United States Oil ETF'] },
-    { ticker: 'WTI_ETC', aliases: ['WisdomTree WTI Crude Oil', 'WisdomTree WTI Crude Oil ETC'] },
-    { ticker: 'SIMPLEX_WTI', aliases: ['Simplex WTI ETF'] },
-    { ticker: 'BRENT_ETC', aliases: ['WisdomTree Brent Crude Oil', 'WisdomTree Brent Crude Oil ETC'] },
+    { ticker: 'WTI_ETC', quoteTicker: 'USO', aliases: ['WisdomTree WTI Crude Oil', 'WisdomTree WTI Crude Oil ETC'] },
+    { ticker: 'SIMPLEX_WTI', quoteTicker: 'USO', aliases: ['Simplex WTI ETF'] },
+    { ticker: 'BRENT_ETC', quoteTicker: 'BNO', aliases: ['WisdomTree Brent Crude Oil', 'WisdomTree Brent Crude Oil ETC'] },
     { ticker: 'BNO', aliases: ['United States Brent Oil Fund LP', 'Brent Oil Fund LP'] },
-    { ticker: '1699', aliases: ['NEXT FUNDS NOMURA Crude Oil Long Index Linked Exchange Traded', 'NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF'] },
-    { ticker: 'BRENT_BBG_ETC', aliases: ['WisdomTree Bloomberg Brent Crude Oil'] },
+    { ticker: '1699', quoteTicker: 'USO', aliases: ['NEXT FUNDS NOMURA Crude Oil Long Index Linked Exchange Traded', 'NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF'] },
+    { ticker: 'BRENT_BBG_ETC', quoteTicker: 'BNO', aliases: ['WisdomTree Bloomberg Brent Crude Oil'] },
   ],
 };
 let intradayPromise = null;
@@ -610,7 +616,7 @@ function extractRelatedEtfCode(html) {
   return linkMatch?.[1] ?? '';
 }
 
-function parsePurchaseStatus(html) {
+function parsePurchaseStatusFromHtml(html) {
   const compact = html.replace(/\s+/g, ' ');
   const match = compact.match(
     /交易状态：<\/span><span class="staticCell">([^<]+?)(?:\s*\(<span>([^<]+)<\/span>\))?<\/span><span class="staticCell">([^<]+)<\/span>/i,
@@ -618,6 +624,8 @@ function parsePurchaseStatus(html) {
 
   if (!match) {
     return {
+      buyStatus: '',
+      redeemStatus: '',
       purchaseStatus: '',
       purchaseLimit: '',
     };
@@ -629,8 +637,307 @@ function parsePurchaseStatus(html) {
   const purchaseStatus = [baseStatus, redeemStatus].filter(Boolean).join(' / ');
 
   return {
+    buyStatus: baseStatus,
+    redeemStatus,
     purchaseStatus,
     purchaseLimit: limitText,
+  };
+}
+
+function mapIsBuyToStatus(value) {
+  const code = String(value ?? '').trim();
+  if (!code) {
+    return '';
+  }
+
+  if (code === '4') {
+    return '暂停申购';
+  }
+
+  return ['1', '2', '3', '8', '9'].includes(code) ? '开放申购' : '';
+}
+
+function mapIsSalesToStatus(value) {
+  const code = String(value ?? '').trim();
+  if (!code) {
+    return '';
+  }
+
+  return code === '1' ? '开放赎回' : '暂停赎回';
+}
+
+async function fetchPurchaseStatusFromApi(code) {
+  try {
+    const response = await fetchText(
+      `https://api.fund.eastmoney.com/Fund/GetSingleFundInfo?callback=x&fcode=${code}&fileds=FCODE,ISBUY,ISSALES,MINDT,DTZT,SHORTNAME`,
+      { referer: `https://fund.eastmoney.com/${code}.html` },
+      'utf-8',
+    );
+    const payload = parseJsonpPayload(response);
+    const data = payload?.Data;
+
+    return {
+      buyStatus: mapIsBuyToStatus(data?.ISBUY),
+      redeemStatus: mapIsSalesToStatus(data?.ISSALES),
+    };
+  } catch {
+    return {
+      buyStatus: '',
+      redeemStatus: '',
+    };
+  }
+}
+
+function mapPortalBuyStatus(value) {
+  const normalized = String(value ?? '').trim();
+  if (!normalized) {
+    return '';
+  }
+
+  if (normalized.includes('暂停')) {
+    return '暂停申购';
+  }
+
+  if (normalized.includes('限')) {
+    return '限大额';
+  }
+
+  if (normalized.includes('开放')) {
+    return '开放申购';
+  }
+
+  return '';
+}
+
+function mapPortalRedeemStatus(value) {
+  const normalized = String(value ?? '').trim();
+  if (!normalized) {
+    return '';
+  }
+
+  if (normalized.includes('暂停')) {
+    return '暂停赎回';
+  }
+
+  if (normalized.includes('开放')) {
+    return '开放赎回';
+  }
+
+  return '';
+}
+
+async function fetchPurchaseStatusFromPortal(code) {
+  try {
+    const html = await fetchText(`https://fund.10jqka.com.cn/${code}/`, {}, 'utf-8');
+    const plainText = stripHtml(html);
+    const buyMatch = plainText.match(/申购状态[:：]\s*([^\s，。；、]{1,12})/);
+    const redeemMatch = plainText.match(/赎回状态[:：]\s*([^\s，。；、]{1,12})/);
+
+    return {
+      buyStatus: mapPortalBuyStatus(buyMatch?.[1] ?? ''),
+      redeemStatus: mapPortalRedeemStatus(redeemMatch?.[1] ?? ''),
+    };
+  } catch {
+    return {
+      buyStatus: '',
+      redeemStatus: '',
+    };
+  }
+}
+
+function mapNoticeBuyStatus(title) {
+  const normalized = String(title ?? '');
+  if (!normalized) {
+    return '';
+  }
+
+  if (/暂停申购/.test(normalized)) {
+    return '暂停申购';
+  }
+
+  if (/调整大额申购|限制大额申购|大额申购/.test(normalized)) {
+    return '限大额';
+  }
+
+  if (/恢复申购|开放申购/.test(normalized)) {
+    return '开放申购';
+  }
+
+  return '';
+}
+
+function mapNoticeRedeemStatus(title) {
+  const normalized = String(title ?? '');
+  if (!normalized) {
+    return '';
+  }
+
+  if (/暂停赎回/.test(normalized)) {
+    return '暂停赎回';
+  }
+
+  if (/恢复赎回|开放赎回/.test(normalized)) {
+    return '开放赎回';
+  }
+
+  return '';
+}
+
+function isTemporaryHolidayNotice(title) {
+  const normalized = String(title ?? '');
+  if (!normalized) {
+    return false;
+  }
+
+  if (!/暂停申购|暂停赎回|暂停申购、赎回|暂停申购和定投|暂停申购及定投/.test(normalized)) {
+    return false;
+  }
+
+  // 单日节假日：如 "2026年1月19日暂停申购"
+  if (/\d{4}年\d{1,2}月\d{1,2}日/.test(normalized)) {
+    return true;
+  }
+
+  // 年度境外市场节假日安排公告：如 "2026年境外主要投资市场节假日暂停申购"
+  if (/境外主要投资市场节假日/.test(normalized)) {
+    return true;
+  }
+
+  // 因节假日暂停：如 "因节假日暂停申购"
+  if (/因.*节假日/.test(normalized)) {
+    return true;
+  }
+
+  return false;
+}
+
+async function fetchPurchaseStatusFromNotices(code) {
+  try {
+    const response = await fetchText(
+      `https://api.fund.eastmoney.com/f10/JJGG?callback=x&fundcode=${code}&pageIndex=1&pageSize=20&type=5`,
+      { referer: `https://fundf10.eastmoney.com/jjgg_${code}_5.html` },
+      'utf-8',
+    );
+    const payload = parseJsonpPayload(response);
+    const notices = (payload?.Data ?? [])
+      .filter((item) => {
+        const title = String(item?.TITLE ?? '');
+        if (!title) {
+          return false;
+        }
+
+        if (!/申购|定投|赎回|大额|暂停|恢复|开放/.test(title)) {
+          return false;
+        }
+
+        if (/费率优惠|销售业务|终止.*销售业务/.test(title)) {
+          return false;
+        }
+
+        return !isTemporaryHolidayNotice(title);
+      });
+    const notice = notices[0];
+    const buyStatus = mapNoticeBuyStatus(notice?.TITLE ?? '');
+    const redeemStatus = mapNoticeRedeemStatus(notice?.TITLE ?? '');
+
+    return {
+      buyStatus,
+      redeemStatus,
+    };
+  } catch {
+    return {
+      buyStatus: '',
+      redeemStatus: '',
+    };
+  }
+}
+
+function pickBuyStatus(statuses) {
+  if (statuses.includes('暂停申购')) {
+    return '暂停申购';
+  }
+
+  if (statuses.includes('限大额')) {
+    return '限大额';
+  }
+
+  return statuses.includes('开放申购') ? '开放申购' : '';
+}
+
+function pickRedeemStatus(statuses) {
+  if (statuses.includes('暂停赎回')) {
+    return '暂停赎回';
+  }
+
+  return statuses.includes('开放赎回') ? '开放赎回' : '';
+}
+
+function normalizeLimitNumber(raw) {
+  const numeric = Number(String(raw ?? '').replace(/,/g, ''));
+  if (!Number.isFinite(numeric)) {
+    return '';
+  }
+
+  return Number.isInteger(numeric) ? String(numeric) : String(numeric).replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+}
+
+function extractLimitAmount(limitText) {
+  const normalized = String(limitText ?? '').replace(/\s+/g, '');
+  const match = normalized.match(/上限([0-9]+(?:\.[0-9]+)?)(万?元)/);
+  if (!match) {
+    return '';
+  }
+
+  const amount = normalizeLimitNumber(match[1]);
+  return amount ? `${amount}${match[2]}` : '';
+}
+
+function formatPurchaseLimit(buyStatus, limitText) {
+  const normalizedBuyStatus = String(buyStatus ?? '').trim();
+
+  // 暂停申购优先：HTML里的残留限额是历史数据，不应覆盖当前暂停状态
+  if (normalizedBuyStatus === '暂停申购') {
+    return '0元';
+  }
+
+  const amount = extractLimitAmount(limitText);
+
+  if (amount) {
+    return amount;
+  }
+
+  if (normalizedBuyStatus === '开放申购') {
+    return '不限购';
+  }
+
+  if (normalizedBuyStatus === '限大额') {
+    return '限购';
+  }
+
+  return '';
+}
+
+function mergePurchaseStatus(htmlStatus, apiStatus, portalStatus, noticeStatus) {
+  const noticeBS = noticeStatus?.buyStatus ?? '';
+  const htmlBS = htmlStatus?.buyStatus ?? '';
+  const apiBS = apiStatus?.buyStatus ?? '';
+  const portalBS = portalStatus?.buyStatus ?? '';
+
+  // 公告和HTML是最可靠的来源。
+  // 东方财富 ISBUY=4 对"暂停申购"和"限大额"都返回同一值，不够可靠，
+  // 因此当公告+HTML已有明确结论时，不让API覆盖结果。
+  const primaryBS = pickBuyStatus([noticeBS, htmlBS].filter(Boolean));
+  const buyStatus = primaryBS || pickBuyStatus([apiBS, portalBS].filter(Boolean));
+
+  const redeemStatus = pickRedeemStatus([
+    htmlStatus?.redeemStatus ?? '',
+    apiStatus?.redeemStatus ?? '',
+    portalStatus?.redeemStatus ?? '',
+  ].filter(Boolean));
+
+  return {
+    purchaseStatus: [buyStatus, redeemStatus].filter(Boolean).join(' / '),
+    purchaseLimit: formatPurchaseLimit(buyStatus, htmlStatus?.purchaseLimit ?? ''),
   };
 }
 
@@ -764,7 +1071,7 @@ async function fetchNoticeHoldingsDisclosure(code) {
     return null;
   }
 
-  const quoteByTicker = await fetchSupplementalHoldingQuoteMap(aliases.map((item) => item.ticker));
+  const quoteByTicker = await fetchSupplementalHoldingQuoteMap(aliases);
 
   for (const report of reports) {
     const artCode = report?.ID;
@@ -1271,13 +1578,28 @@ function parseSupplementalStandardQuoteRow(rawRow) {
   };
 }
 
-async function fetchSupplementalHoldingQuoteMap(tickers) {
-  const normalizedTickers = [...new Set(tickers.map((item) => String(item || '').toUpperCase()).filter(Boolean))];
-  const usTickers = normalizedTickers.filter(isUsHoldingTicker);
-  const nonUsSymbols = [...new Set(normalizedTickers.map((item) => getSupplementalQuoteSymbol(item)).filter((item) => item && !item.startsWith('us')))];
+async function fetchSupplementalHoldingQuoteMap(aliasEntries) {
+  const normalizedEntries = [...new Map(
+    (aliasEntries ?? [])
+      .map((item) => {
+        const ticker = String(item?.ticker ?? '').toUpperCase();
+        const quoteTicker = String(item?.quoteTicker ?? ticker).toUpperCase();
+        return ticker ? [ticker, { ticker, quoteTicker }] : null;
+      })
+      .filter(Boolean),
+  ).values()];
+  const quoteTickers = [...new Set(normalizedEntries.map((item) => item.quoteTicker).filter(Boolean))];
+  const usTickers = quoteTickers.filter(isUsHoldingTicker);
+  const nonUsSymbols = [...new Set(quoteTickers.map((item) => getSupplementalQuoteSymbol(item)).filter((item) => item && !item.startsWith('us')))];
 
   const quoteByTicker = await fetchOverseasHoldingQuoteMap(usTickers);
   if (!nonUsSymbols.length) {
+    for (const entry of normalizedEntries) {
+      if (entry.quoteTicker !== entry.ticker && quoteByTicker.has(entry.quoteTicker) && !quoteByTicker.has(entry.ticker)) {
+        quoteByTicker.set(entry.ticker, quoteByTicker.get(entry.quoteTicker));
+      }
+    }
+
     return quoteByTicker;
   }
 
@@ -1308,6 +1630,12 @@ async function fetchSupplementalHoldingQuoteMap(tickers) {
       currentPrice: item.currentPrice,
       changeRate: item.previousClose > 0 ? item.currentPrice / item.previousClose - 1 : 0,
     });
+  }
+
+  for (const entry of normalizedEntries) {
+    if (entry.quoteTicker !== entry.ticker && quoteByTicker.has(entry.quoteTicker) && !quoteByTicker.has(entry.ticker)) {
+      quoteByTicker.set(entry.ticker, quoteByTicker.get(entry.quoteTicker));
+    }
   }
 
   return quoteByTicker;
@@ -1342,18 +1670,27 @@ async function getDailyFundData(entry, holdingsHistoryByCode = {}) {
       }
     : null;
 
-  const [basicHtml, pingzhongData, fundHtml, holdingsDisclosure] = await Promise.all([
+  const [basicHtml, pingzhongData, fundHtml, holdingsDisclosure, apiPurchaseStatus, portalPurchaseStatus, noticePurchaseStatus] = await Promise.all([
     fetchText(`https://fundf10.eastmoney.com/jbgk_${entry.code}.html`, {}, 'utf-8'),
     fetchText(`https://fund.eastmoney.com/pingzhongdata/${entry.code}.js?v=${Date.now()}`, {
       referer: `https://fund.eastmoney.com/${entry.code}.html`,
     }, 'gb18030'),
     fetchText(`https://fund.eastmoney.com/${entry.code}.html`, {}, 'utf-8'),
     cachedHoldingsDisclosure ? Promise.resolve(cachedHoldingsDisclosure) : fetchHoldingsDisclosure(entry.code),
+    fetchPurchaseStatusFromApi(entry.code),
+    fetchPurchaseStatusFromPortal(entry.code),
+    fetchPurchaseStatusFromNotices(entry.code),
   ]);
 
   const pingzhong = parsePingzhongData(pingzhongData);
   const basic = parseBasicInfo(basicHtml, pingzhong.name);
-  const purchase = parsePurchaseStatus(fundHtml);
+  const purchase = mergePurchaseStatus(parsePurchaseStatusFromHtml(fundHtml), apiPurchaseStatus, portalPurchaseStatus, noticePurchaseStatus);
+  const normalizedPurchase = entry.pageCategory === 'etf'
+    ? {
+        purchaseStatus: '场内交易 / 开放赎回',
+        purchaseLimit: '不限购',
+      }
+    : purchase;
   const relatedEtfCode = extractRelatedEtfCode(fundHtml) || RELATED_ETF_FALLBACKS[entry.code] || '';
   const finalHoldingsDisclosure =
     holdingsDisclosure.disclosedHoldings.length || !relatedEtfCode || relatedEtfCode === entry.code
@@ -1378,8 +1715,8 @@ async function getDailyFundData(entry, holdingsHistoryByCode = {}) {
     officialNavT1: latestNav.nav,
     navDate: latestNav.date,
     navHistory: pingzhong.navHistory,
-    purchaseStatus: purchase.purchaseStatus,
-    purchaseLimit: purchase.purchaseLimit,
+    purchaseStatus: normalizedPurchase.purchaseStatus,
+    purchaseLimit: normalizedPurchase.purchaseLimit,
     disclosedHoldingsTitle: resolvedHoldingsDisclosure.disclosedHoldingsTitle,
     disclosedHoldingsReportDate: resolvedHoldingsDisclosure.disclosedHoldingsReportDate,
     disclosedHoldings: resolvedHoldingsDisclosure.disclosedHoldings,

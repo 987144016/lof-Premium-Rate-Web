@@ -12,11 +12,22 @@ function setupScrollPersistence() {
   }
 
   const saveScroll = () => {
-    window.sessionStorage.setItem(SCROLL_STORAGE_KEY, String(window.scrollY));
+    try {
+      window.sessionStorage.setItem(SCROLL_STORAGE_KEY, String(window.scrollY));
+    } catch {
+      // Ignore storage failures in restricted browser contexts.
+    }
   };
 
   const restoreScroll = () => {
-    const raw = window.sessionStorage.getItem(SCROLL_STORAGE_KEY);
+    let raw: string | null = null;
+
+    try {
+      raw = window.sessionStorage.getItem(SCROLL_STORAGE_KEY);
+    } catch {
+      return;
+    }
+
     if (!raw) {
       return;
     }

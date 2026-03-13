@@ -215,7 +215,7 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
                     {typeof latestError === 'number' ? formatPercent(latestError) : '--'}
                   </td>
                   <td>{typeof avg30dError === 'number' ? formatPercent(avg30dError) : '--'}</td>
-                  <td className={fund.runtime.purchaseLimit === '0元' ? 'muted-text' : ''}>
+                  <td className={getLimitClass(fund.runtime.purchaseLimit)}>
                     {fund.runtime.purchaseLimit || '待校验'}
                   </td>
                 </tr>
@@ -245,4 +245,16 @@ function getRecent30DayAvgAbsError(fund: FundViewModel): number | undefined {
   }
 
   return rows.reduce((sum, item) => sum + Math.abs(item.error), 0) / rows.length;
+}
+
+function getLimitClass(limit: string | undefined): string {
+  if (!limit) return '';
+  if (limit === '0元') return 'muted-text';
+  // 匹配纯元单位的数值，如 10元、1000元；万元不在绿色范围内
+  const m = limit.match(/^([0-9]+(?:\.[0-9]+)?)元$/);
+  if (m) {
+    const val = parseFloat(m[1]);
+    if (val > 0 && val <= 1000) return 'tone-positive';
+  }
+  return '';
 }

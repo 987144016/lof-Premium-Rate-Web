@@ -25,7 +25,7 @@ const parserByFundCode = new Map(
 );
 
 function getNoticeParserConfig(code) {
-  return parserByFundCode.get(code) ?? NOTICE_PARSER_REGISTRY[0] ?? null;
+  return parserByFundCode.get(code) ?? null;
 }
 
 function parseNoticeHoldingsDisclosure(code, payload) {

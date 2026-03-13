@@ -7,8 +7,8 @@ import { MetricCard } from './components/MetricCard';
 import { cloneInitialScenario, defaultCalibration } from './data/funds';
 import { estimateScenario, trainCalibration } from './lib/estimator';
 import { readFundJournal, readWatchlistModel, writeFundJournal, writeWatchlistModel } from './lib/storage';
-import { estimateWatchlistFund, reconcileJournal, recordEstimateSnapshot } from './lib/watchlist';
-import type { CalibrationModel, FundRuntimeData, FundScenario, FundViewModel, PageCategory, RuntimePayload } from './types';
+import { estimateWatchlistFund, getDefaultWatchlistModel, reconcileJournal, recordEstimateSnapshot } from './lib/watchlist';
+import type { CalibrationModel, FundJournal, FundRuntimeData, FundScenario, FundViewModel, PageCategory, RuntimePayload, WatchlistModel } from './types';
 
 const DETAIL_CALIBRATION_PREFIX = 'premium-estimator:detailed-calibration:';
 const FAST_SYNC_INTERVAL = 60_000;
@@ -108,6 +108,33 @@ function formatOptionalCurrency(value?: number): string {
 
 function formatOptionalChangeRate(value?: number): string {
   return typeof value === 'number' && Number.isFinite(value) ? formatPercent(value) : '--';
+}
+
+function formatHoldingWeight(value?: number): string {
+  return typeof value === 'number' && Number.isFinite(value) ? `${value.toFixed(2)}%` : '--';
+}
+
+function normalizeWatchlistModel(input: Partial<WatchlistModel> | undefined): WatchlistModel {
+  const fallback = getDefaultWatchlistModel();
+  const source = input ?? {};
+  const pickNumber = (value: unknown, fallbackValue: number) => (typeof value === 'number' && Number.isFinite(value) ? value : fallbackValue);
+
+  return {
+    alpha: pickNumber(source.alpha, fallback.alpha),
+    betaLead: pickNumber(source.betaLead, fallback.betaLead),
+    betaGap: pickNumber(source.betaGap, fallback.betaGap),
+    learningRate: pickNumber(source.learningRate, fallback.learningRate),
+    sampleCount: pickNumber(source.sampleCount, fallback.sampleCount),
+    meanAbsError: pickNumber(source.meanAbsError, fallback.meanAbsError),
+    lastUpdatedAt: typeof source.lastUpdatedAt === 'string' ? source.lastUpdatedAt : undefined,
+  };
+}
+
+function normalizeFundJournal(input: Partial<FundJournal> | undefined): FundJournal {
+  return {
+    snapshots: Array.isArray(input?.snapshots) ? input.snapshots : [],
+    errors: Array.isArray(input?.errors) ? input.errors : [],
+  };
 }
 
 function formatDateTime(value: string): string {
@@ -966,7 +993,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
                     <tr key={`${item.ticker}-${item.name}`}>
                       <td>{item.ticker}</td>
                       <td>{item.name}</td>
-                      <td>{item.weight.toFixed(2)}%</td>
+                      <td>{formatHoldingWeight(item.weight)}</td>
                       <td>{formatOptionalCurrency(item.currentPrice)}</td>
                       <td className={typeof item.changeRate === 'number' ? (item.changeRate >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{formatOptionalChangeRate(item.changeRate)}</td>
                     </tr>
@@ -1129,8 +1156,8 @@ export default function App() {
         const payload = (await response.json()) as RuntimePayload;
         const nextFunds = payload.funds.map((runtime: FundRuntimeData) => {
           const persistedState = payload.stateByCode?.[runtime.code];
-          const initialModel = persistedState?.model ?? readWatchlistModel(runtime.code);
-          const initialJournal = persistedState?.journal ?? readFundJournal(runtime.code);
+          const initialModel = normalizeWatchlistModel(persistedState?.model ?? readWatchlistModel(runtime.code));
+          const initialJournal = normalizeFundJournal(persistedState?.journal ?? readFundJournal(runtime.code));
           const reconciled = reconcileJournal(runtime, initialModel, initialJournal);
           const estimate = estimateWatchlistFund(runtime, reconciled.model);
           const journal = recordEstimateSnapshot(reconciled.journal, runtime, estimate);

@@ -9,7 +9,14 @@ function readJson<T>(key: string, fallback: T): T {
     return fallback;
   }
 
-  const raw = window.localStorage.getItem(key);
+  let raw: string | null = null;
+
+  try {
+    raw = window.localStorage.getItem(key);
+  } catch {
+    return fallback;
+  }
+
   if (!raw) {
     return fallback;
   }
@@ -30,14 +37,18 @@ export function writeWatchlistModel(code: string, model: WatchlistModel) {
     return;
   }
 
-  window.localStorage.setItem(`${WATCHLIST_MODEL_PREFIX}${code}`, JSON.stringify(model));
+  try {
+    window.localStorage.setItem(`${WATCHLIST_MODEL_PREFIX}${code}`, JSON.stringify(model));
+  } catch {
+    // Ignore storage failures in restricted browser contexts.
+  }
 }
 
 export function readFundJournal(code: string): FundJournal {
   const journal = readJson(`${JOURNAL_PREFIX}${code}`, getDefaultJournal());
   return {
-    snapshots: journal.snapshots ?? [],
-    errors: journal.errors ?? [],
+    snapshots: Array.isArray(journal.snapshots) ? journal.snapshots : [],
+    errors: Array.isArray(journal.errors) ? journal.errors : [],
   };
 }
 
@@ -46,5 +57,9 @@ export function writeFundJournal(code: string, journal: FundJournal) {
     return;
   }
 
-  window.localStorage.setItem(`${JOURNAL_PREFIX}${code}`, JSON.stringify(journal));
+  try {
+    window.localStorage.setItem(`${JOURNAL_PREFIX}${code}`, JSON.stringify(journal));
+  } catch {
+    // Ignore storage failures in restricted browser contexts.
+  }
 }

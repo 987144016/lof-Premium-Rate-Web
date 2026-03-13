@@ -17,7 +17,7 @@ const PUBLISHED_RUNTIME_URLS = [
 const now = new Date();
 const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 const WATCHLIST_STATE_VERSION = 5;
-const DAILY_CACHE_VERSION = 22;
+const DAILY_CACHE_VERSION = 24;
 const MAX_MARKET_MOVE = 0.08;
 const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
@@ -997,15 +997,21 @@ function buildHoldingQuotes(runtime) {
 }
 
 function updateDisclosureHistory(historyByCode, runtime) {
-  if (!runtime.disclosedHoldings?.length || !runtime.disclosedHoldingsReportDate) {
+  const sanitizedRuntimeDisclosure = sanitizeDisclosureForFund(runtime.code, {
+    disclosedHoldingsTitle: runtime.disclosedHoldingsTitle,
+    disclosedHoldingsReportDate: runtime.disclosedHoldingsReportDate,
+    disclosedHoldings: runtime.disclosedHoldings,
+  });
+
+  if (!sanitizedRuntimeDisclosure.disclosedHoldings.length || !sanitizedRuntimeDisclosure.disclosedHoldingsReportDate) {
     return historyByCode;
   }
 
   const current = historyByCode[runtime.code] ?? [];
   const nextEntry = {
-    reportDate: runtime.disclosedHoldingsReportDate,
-    title: runtime.disclosedHoldingsTitle,
-    holdings: runtime.disclosedHoldings,
+    reportDate: sanitizedRuntimeDisclosure.disclosedHoldingsReportDate,
+    title: sanitizedRuntimeDisclosure.disclosedHoldingsTitle,
+    holdings: sanitizedRuntimeDisclosure.disclosedHoldings,
     capturedAt: new Date().toISOString(),
   };
 
@@ -1013,7 +1019,7 @@ function updateDisclosureHistory(historyByCode, runtime) {
     ...historyByCode,
     [runtime.code]: [
       ...current.filter(
-        (item) => item.reportDate !== runtime.disclosedHoldingsReportDate || item.title !== runtime.disclosedHoldingsTitle,
+        (item) => item.reportDate !== sanitizedRuntimeDisclosure.disclosedHoldingsReportDate || item.title !== sanitizedRuntimeDisclosure.disclosedHoldingsTitle,
       ),
       nextEntry,
     ].sort((left, right) => left.reportDate.localeCompare(right.reportDate)).slice(-8),
@@ -1028,8 +1034,48 @@ function normalizeDisclosureEntry(disclosure) {
   };
 }
 
-function patchKnownDisclosureGaps(code, disclosure) {
+function sanitizeDisclosureForFund(code, disclosure) {
   const normalized = normalizeDisclosureEntry(disclosure);
+
+  if (code === '161129') {
+    const invalidTickers = new Set(['159995', '512760', '159560']);
+    const disclosedTickers = normalized.disclosedHoldings
+      .map((item) => String(item?.ticker ?? '').toUpperCase())
+      .filter(Boolean);
+
+    if (disclosedTickers.length && disclosedTickers.every((ticker) => invalidTickers.has(ticker))) {
+      return normalizeDisclosureEntry(null);
+    }
+  }
+
+  return normalized;
+}
+
+function sanitizeDisclosureHistory(historyByCode) {
+  return Object.fromEntries(
+    Object.entries(historyByCode ?? {}).map(([code, entries]) => [
+      code,
+      (entries ?? [])
+        .map((entry) => {
+          const sanitized = sanitizeDisclosureForFund(code, entry);
+          if (!sanitized.disclosedHoldings.length || !sanitized.disclosedHoldingsReportDate) {
+            return null;
+          }
+
+          return {
+            ...entry,
+            reportDate: sanitized.disclosedHoldingsReportDate,
+            title: sanitized.disclosedHoldingsTitle,
+            holdings: sanitized.disclosedHoldings,
+          };
+        })
+        .filter(Boolean),
+    ]).filter(([, entries]) => entries.length),
+  );
+}
+
+function patchKnownDisclosureGaps(code, disclosure) {
+  const normalized = sanitizeDisclosureForFund(code, disclosure);
 
   if (
     code === '160723'
@@ -1314,7 +1360,7 @@ async function getDailyFundData(entry, holdingsHistoryByCode = {}) {
       ? holdingsDisclosure
       : await fetchHoldingsDisclosure(relatedEtfCode);
   const historicalHoldingsDisclosure = (holdingsHistoryByCode[entry.code] ?? []).reduce(
-    (best, item) => pickPreferredDisclosure(best, item),
+    (best, item) => pickPreferredDisclosure(best, sanitizeDisclosureForFund(entry.code, item)),
     normalizeDisclosureEntry(null),
   );
   const resolvedHoldingsDisclosure = patchKnownDisclosureGaps(
@@ -1483,7 +1529,7 @@ async function main() {
   const funds = [];
   const rawStateCache = await readJson(watchlistStatePath, {});
   const publishedStateCache = await readPublishedRuntimeState();
-  let holdingsHistoryByCode = await readJson(holdingsDisclosurePath, {});
+  let holdingsHistoryByCode = sanitizeDisclosureHistory(await readJson(holdingsDisclosurePath, {}));
   const persistedStateByCode = mergePersistedState(rawStateCache, publishedStateCache);
   const stateByCode = {};
 

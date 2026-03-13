@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FundViewModel } from '../types';
 
-type SortKey = 'code' | 'premiumRate' | 'estimatedNav' | 'marketPrice' | 'officialNavT1' | 'meanAbsError' | 'changeRate';
+type SortKey = 'code' | 'premiumRate' | 'estimatedNav' | 'marketPrice' | 'officialNavT1' | 'meanAbsError' | 'latestError' | 'error30d' | 'changeRate';
 
 interface FundTableProps {
   funds: FundViewModel[];
@@ -35,6 +35,10 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
       const leftValue =
         sortKey === 'premiumRate'
           ? left.estimate.premiumRate
+          : sortKey === 'latestError'
+            ? getLatestError(left) ?? Number.NEGATIVE_INFINITY
+            : sortKey === 'error30d'
+              ? getRecent30DayAvgAbsError(left) ?? Number.POSITIVE_INFINITY
           : sortKey === 'changeRate'
             ? getChangeRate(left.runtime.marketPrice, left.runtime.previousClose)
           : sortKey === 'estimatedNav'
@@ -47,6 +51,10 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
       const rightValue =
         sortKey === 'premiumRate'
           ? right.estimate.premiumRate
+          : sortKey === 'latestError'
+            ? getLatestError(right) ?? Number.NEGATIVE_INFINITY
+            : sortKey === 'error30d'
+              ? getRecent30DayAvgAbsError(right) ?? Number.POSITIVE_INFINITY
           : sortKey === 'changeRate'
             ? getChangeRate(right.runtime.marketPrice, right.runtime.previousClose)
           : sortKey === 'estimatedNav'
@@ -127,6 +135,8 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
       <div>净值日期</div>
       <div>现价时间</div>
       <div>{renderSortLabel('模型误差', 'meanAbsError')}</div>
+      <div>{renderSortLabel('最近误差', 'latestError')}</div>
+      <div>{renderSortLabel('30天误差', 'error30d')}</div>
       <div>限购</div>
     </>
   );
@@ -158,6 +168,8 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
             <col className="fund-table__col fund-table__col--nav-date" />
             <col className="fund-table__col fund-table__col--market-time" />
             <col className="fund-table__col fund-table__col--error" />
+            <col className="fund-table__col fund-table__col--recent-error" />
+            <col className="fund-table__col fund-table__col--error-30d" />
             <col className="fund-table__col fund-table__col--limit" />
           </colgroup>
           <thead>
@@ -172,6 +184,8 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
               <th>净值日期</th>
               <th>现价时间</th>
               <th>{renderSortLabel('模型误差', 'meanAbsError')}</th>
+              <th>{renderSortLabel('最近误差', 'latestError')}</th>
+              <th>{renderSortLabel('30天误差', 'error30d')}</th>
               <th>限购</th>
             </tr>
           </thead>
@@ -179,6 +193,8 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
             {sortedFunds.map((fund) => {
               const premiumTone = fund.estimate.premiumRate > 0 ? 'positive' : 'negative';
               const changeRate = getChangeRate(fund.runtime.marketPrice, fund.runtime.previousClose);
+              const latestError = getLatestError(fund);
+              const avg30dError = getRecent30DayAvgAbsError(fund);
 
               return (
                 <tr key={fund.runtime.code}>
@@ -198,6 +214,10 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
                   <td>{fund.runtime.navDate || '--'}</td>
                   <td>{`${fund.runtime.marketDate || '--'} ${fund.runtime.marketTime || ''}`.trim()}</td>
                   <td>{formatPercent(fund.model.meanAbsError)}</td>
+                  <td className={typeof latestError === 'number' ? (latestError >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>
+                    {typeof latestError === 'number' ? formatPercent(latestError) : '--'}
+                  </td>
+                  <td>{typeof avg30dError === 'number' ? formatPercent(avg30dError) : '--'}</td>
                   <td>{fund.runtime.purchaseLimit || fund.runtime.purchaseStatus || '待校验'}</td>
                 </tr>
               );
@@ -211,4 +231,19 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
 
 function getChangeRate(marketPrice: number, previousClose: number) {
   return previousClose > 0 ? marketPrice / previousClose - 1 : 0;
+}
+
+function getLatestError(fund: FundViewModel): number | undefined {
+  const latest = fund.journal.errors[fund.journal.errors.length - 1];
+  return latest?.error;
+}
+
+function getRecent30DayAvgAbsError(fund: FundViewModel): number | undefined {
+  const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  const rows = fund.journal.errors.filter((item) => item.date >= cutoff);
+  if (!rows.length) {
+    return undefined;
+  }
+
+  return rows.reduce((sum, item) => sum + Math.abs(item.error), 0) / rows.length;
 }

@@ -696,7 +696,6 @@ function HomePage({ funds, syncedAt, loading, error, pageCategory }: { funds: Fu
             本页面仅用于基金溢价率观察与估值研究，不构成任何投资建议，也不保证数据实时、完整或绝对准确。
           </p>
           <div className="hero__bulletins">
-            <p>限购状态暂时不准，请忽略，具体以基金公司公告和销售页面为准。</p>
             <p>如需增加基金、增加功能或提供建议，可搜索公众号“利奥的笔记”加群反馈。</p>
           </div>
           <div className="hero__promo">

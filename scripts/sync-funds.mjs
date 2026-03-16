@@ -1,8 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { load } from 'cheerio';
 import catalog from '../src/data/fundCatalog.json' with { type: 'json' };
 import { parseNoticeHoldingsDisclosure } from './notice-parsers/registry.mjs';
+import { computeAdaptiveImpliedReturn as computeAdaptiveImpliedReturnPublic } from './algorithms/watchlist-core.public.mjs';
 
 const projectRoot = process.cwd();
 const outputPath = path.join(projectRoot, 'public', 'generated', 'funds-runtime.json');
@@ -16,13 +18,853 @@ const PUBLISHED_RUNTIME_URLS = [
 ];
 const now = new Date();
 const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-const WATCHLIST_STATE_VERSION = 5;
-const DAILY_CACHE_VERSION = 39;
+const WATCHLIST_STATE_VERSION = 17;
+const DAILY_CACHE_VERSION = 40;
 const MAX_MARKET_MOVE = 0.08;
 const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
 const MAX_FX_MOVE = 0.05;
 const JOURNAL_RETENTION_DAYS = 90;
+const adaptiveAlgoPrivatePath = path.join(projectRoot, '.private', 'adaptive-holdings-algo.private.json');
+const privateWatchlistCorePath = path.join(projectRoot, '.private', 'watchlist-core.private.mjs');
+const ENABLE_PRIVATE_ALGO = process.env.ENABLE_PRIVATE_ALGO === '1';
+const PUBLIC_ADAPTIVE_HOLDINGS_ALGO_BY_CODE = {
+  '160216': {
+    shockThreshold: 0.024082436635498593,
+    tradingShockThreshold: 0.024082436635498593,
+    offShockThreshold: 0.04507091233634843,
+    shockBaseBlend: 0.75,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.2,
+    minReturn: -0.16,
+    maxReturn: 0.16,
+    kLearnRate: 0.12,
+    biasLearnRate: 0.12,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.18,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 1.1,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.01273721098787995,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.25,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'GLD',
+    secondaryProxyTicker: 'COPX',
+    fxGapWeight: 0.38,
+    proxySpreadThreshold: 0.018,
+  },
+  '160719': {
+    shockThreshold: 0.011390810830058155,
+    tradingShockThreshold: 0.011390810830058155,
+    offShockThreshold: 0.02559300766555219,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.2,
+    minReturn: -0.12,
+    maxReturn: 0.12,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.12,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.04,
+    upMoveScale: 1.12,
+    downMoveScale: 1,
+    gapBranch: true,
+    gapCoef: 0.35,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.25,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'GLD',
+    secondaryProxyTicker: 'IAU',
+    fxGapWeight: 0.35,
+    proxySpreadThreshold: 0.01,
+  },
+  '161116': {
+    shockThreshold: 0.01358415893262123,
+    tradingShockThreshold: 0.01358415893262123,
+    offShockThreshold: 0.02964847192821901,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.35,
+    minReturn: -0.14,
+    maxReturn: 0.14,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.14,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 1.1,
+    downMoveScale: 1.12,
+    gapBranch: true,
+    gapCoef: 0.15,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.007733201983035134,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.03,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'GLD',
+    secondaryProxyTicker: 'UGL',
+    fxGapWeight: 0.35,
+    proxySpreadThreshold: 0.014,
+  },
+  '164701': {
+    shockThreshold: 0.01480800898123592,
+    tradingShockThreshold: 0.01480800898123592,
+    offShockThreshold: 0.0318048206207611,
+    shockBaseBlend: 0.45,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.35,
+    minReturn: -0.16,
+    maxReturn: 0.16,
+    kLearnRate: 0.12,
+    biasLearnRate: 0.12,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.16,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.04,
+    upMoveScale: 0.9,
+    downMoveScale: 1,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.25,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'GLD',
+    secondaryProxyTicker: 'UGL',
+    fxGapWeight: 0.35,
+    proxySpreadThreshold: 0.016,
+  },
+  '160723': {
+    shockThreshold: 0.02642017570755296,
+    tradingShockThreshold: 0.02642017570755296,
+    offShockThreshold: 0.03194233127341834,
+    shockBaseBlend: 0.75,
+    normalBaseBlend: 0.81,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.81,
+    shockAmplify: 0.35,
+    minReturn: -0.18,
+    maxReturn: 0.18,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.08,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.18,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 1.1,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.03,
+    weekendAmplify: 0.6,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.45,
+    enableOilSessionGap: true,
+  },
+  '501018': {
+    shockThreshold: 0.02604190526041894,
+    tradingShockThreshold: 0.02604190526041894,
+    offShockThreshold: 0.030657389538365106,
+    shockBaseBlend: 0.45,
+    normalBaseBlend: 0.95,
+    tradingBaseBlend: 0.79,
+    offBaseBlend: 0.95,
+    shockAmplify: 0.2,
+    minReturn: -0.18,
+    maxReturn: 0.18,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.18,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 1.12,
+    downMoveScale: 1.15,
+    gapBranch: true,
+    gapCoef: 0.75,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.02,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.7,
+    enableOilSessionGap: true,
+  },
+  '501225': {
+    shockThreshold: 0.023718380131120053,
+    tradingShockThreshold: 0.023718380131120053,
+    offShockThreshold: 0.0389128378948274,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.2,
+    minReturn: -0.16,
+    maxReturn: 0.16,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.16,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 1.12,
+    downMoveScale: 1.15,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'SOXX',
+    secondaryProxyTicker: 'SMH',
+    fxGapWeight: 0.32,
+    proxySpreadThreshold: 0.018,
+  },
+  '513310': {
+    shockThreshold: 0.03616173678146938,
+    tradingShockThreshold: 0.03616173678146938,
+    offShockThreshold: 0.05211419386147861,
+    shockBaseBlend: 0.6,
+    normalBaseBlend: 0.95,
+    tradingBaseBlend: 0.79,
+    offBaseBlend: 0.95,
+    shockAmplify: 0,
+    minReturn: -0.18,
+    maxReturn: 0.18,
+    kLearnRate: 0.18,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.18,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 1.12,
+    downMoveScale: 1,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.03,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'SOXX',
+    secondaryProxyTicker: 'SMH',
+    fxGapWeight: 0.28,
+    proxySpreadThreshold: 0.02,
+  },
+  '160416': {
+    shockThreshold: 0.016381349309043534,
+    tradingShockThreshold: 0.016381349309043534,
+    offShockThreshold: 0.01713163947362841,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.81,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.81,
+    shockAmplify: 0,
+    minReturn: -0.16,
+    maxReturn: 0.16,
+    kLearnRate: 0.08,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.16,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 0.9,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.45,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'XOP',
+    secondaryProxyTicker: 'XLE',
+    fxGapWeight: 0.35,
+    proxySpreadThreshold: 0.02,
+  },
+  '162719': {
+    shockThreshold: 0.01742935879857148,
+    tradingShockThreshold: 0.01742935879857148,
+    offShockThreshold: 0.01961692535425588,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0,
+    minReturn: -0.16,
+    maxReturn: 0.16,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.16,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 1.12,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.25,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'XOP',
+    secondaryProxyTicker: 'XLE',
+    fxGapWeight: 0.35,
+    proxySpreadThreshold: 0.02,
+  },
+  '162411': {
+    shockThreshold: 0.0177483294713759,
+    tradingShockThreshold: 0.0177483294713759,
+    offShockThreshold: 0.019538923704923904,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.2,
+    minReturn: -0.16,
+    maxReturn: 0.16,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.16,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 1.12,
+    downMoveScale: 1,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.8,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'XOP',
+    secondaryProxyTicker: 'XLE',
+    fxGapWeight: 0.35,
+    proxySpreadThreshold: 0.02,
+  },
+  '161125': {
+    shockThreshold: 0.01618509919616769,
+    tradingShockThreshold: 0.01618509919616769,
+    offShockThreshold: 0.0228231731050641,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.81,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.81,
+    shockAmplify: 0,
+    minReturn: -0.14,
+    maxReturn: 0.14,
+    kLearnRate: 0.18,
+    biasLearnRate: 0.05,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.14,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 1.12,
+    downMoveScale: 1.12,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.007687819971946614,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.8,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'SPY',
+    secondaryProxyTicker: 'QQQ',
+    fxGapWeight: 0.28,
+    proxySpreadThreshold: 0.016,
+  },
+  '159509': {
+    shockThreshold: 0.016489473690217336,
+    tradingShockThreshold: 0.016489473690217336,
+    offShockThreshold: 0.02342453047833562,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.35,
+    minReturn: -0.14,
+    maxReturn: 0.14,
+    kLearnRate: 0.08,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.14,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.04,
+    upMoveScale: 1.12,
+    downMoveScale: 1.15,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'QQQ',
+    secondaryProxyTicker: 'XLK',
+    fxGapWeight: 0.28,
+    proxySpreadThreshold: 0.016,
+  },
+  '501312': {
+    shockThreshold: 0.020286659162121225,
+    tradingShockThreshold: 0.020286659162121225,
+    offShockThreshold: 0.027859430097122218,
+    shockBaseBlend: 0.45,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.35,
+    minReturn: -0.14,
+    maxReturn: 0.14,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.08,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.14,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 0.9,
+    downMoveScale: 1.12,
+    gapBranch: true,
+    gapCoef: 0.75,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006848218833755136,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'ARKK',
+    secondaryProxyTicker: 'QQQ',
+    fxGapWeight: 0.28,
+    proxySpreadThreshold: 0.018,
+  },
+  '501011': {
+    shockThreshold: 0.011772358333040633,
+    tradingShockThreshold: 0.011772358333040633,
+    offShockThreshold: 0.013598689796318753,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.2,
+    minReturn: -0.12,
+    maxReturn: 0.12,
+    kLearnRate: 0.12,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.12,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 1.12,
+    downMoveScale: 1.15,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.007810420600836062,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: '000538',
+    secondaryProxyTicker: '600436',
+    fxGapWeight: 0,
+    proxySpreadThreshold: 0.016,
+  },
+  '501050': {
+    shockThreshold: 0.010085543429446642,
+    tradingShockThreshold: 0.010085543429446642,
+    offShockThreshold: 0.008922406497970404,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.81,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.81,
+    shockAmplify: 0.5,
+    minReturn: -0.12,
+    maxReturn: 0.12,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.05,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.12,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 0.9,
+    downMoveScale: 1.15,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.008088527595399244,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.03,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: '601318',
+    secondaryProxyTicker: '600519',
+    fxGapWeight: 0,
+    proxySpreadThreshold: 0.016,
+  },
+  '160221': {
+    shockThreshold: 0.020140746335505087,
+    tradingShockThreshold: 0.020140746335505087,
+    offShockThreshold: 0.027281558872725032,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.35,
+    minReturn: -0.12,
+    maxReturn: 0.12,
+    kLearnRate: 0.18,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.12,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.04,
+    upMoveScale: 1.12,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.011139245603261108,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.03,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: '601899',
+    secondaryProxyTicker: '603993',
+    fxGapWeight: 0,
+    proxySpreadThreshold: 0.018,
+  },
+  '165520': {
+    shockThreshold: 0.020140746335505087,
+    tradingShockThreshold: 0.020140746335505087,
+    offShockThreshold: 0.027281558872725032,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.35,
+    minReturn: -0.12,
+    maxReturn: 0.12,
+    kLearnRate: 0.18,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.12,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.04,
+    upMoveScale: 1.12,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.011139245603261108,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.02,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: '601899',
+    secondaryProxyTicker: '603993',
+    fxGapWeight: 0,
+    proxySpreadThreshold: 0.018,
+  },
+  '167301': {
+    shockThreshold: 0.01316618590962675,
+    tradingShockThreshold: 0.01316618590962675,
+    offShockThreshold: 0.01211747669176868,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0,
+    minReturn: -0.12,
+    maxReturn: 0.12,
+    kLearnRate: 0.05,
+    biasLearnRate: 0.03,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.12,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.14,
+    upMoveScale: 1.12,
+    downMoveScale: 1.12,
+    gapBranch: true,
+    gapCoef: 0.75,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.00819650631226993,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: '601318',
+    secondaryProxyTicker: '601398',
+    fxGapWeight: 0,
+    proxySpreadThreshold: 0.016,
+  },
+  '161130': {
+    shockThreshold: 0.016951855291243063,
+    tradingShockThreshold: 0.016951855291243063,
+    offShockThreshold: 0.02279163952711097,
+    shockBaseBlend: 0.3,
+    normalBaseBlend: 0.73,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.73,
+    shockAmplify: 0.2,
+    minReturn: -0.14,
+    maxReturn: 0.14,
+    kLearnRate: 0.18,
+    biasLearnRate: 0.12,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.14,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 1.12,
+    downMoveScale: 1.15,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.03,
+    weekendAmplify: 0.35,
+    weekendFxCoef: 0.8,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'QQQ',
+    secondaryProxyTicker: 'XLK',
+    fxGapWeight: 0.3,
+    proxySpreadThreshold: 0.016,
+  },
+  '161129': {
+    shockThreshold: 0.03364875542811923,
+    tradingShockThreshold: 0.03364875542811923,
+    offShockThreshold: 0.03222369110356943,
+    shockBaseBlend: 0.75,
+    normalBaseBlend: 0.81,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.81,
+    shockAmplify: 0.5,
+    minReturn: -0.18,
+    maxReturn: 0.18,
+    kLearnRate: 0.18,
+    biasLearnRate: 0.12,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.18,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 1.04,
+    upMoveScale: 1.12,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.006,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.03,
+    weekendAmplify: 0.6,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0.7,
+    enableOilSessionGap: true,
+  },
+  '161128': {
+    shockThreshold: 0.031667149196750864,
+    tradingShockThreshold: 0.031667149196750864,
+    offShockThreshold: 0.05158157312711261,
+    shockBaseBlend: 0.75,
+    normalBaseBlend: 0.65,
+    tradingBaseBlend: 0.59,
+    offBaseBlend: 0.65,
+    shockAmplify: 0.2,
+    minReturn: -0.18,
+    maxReturn: 0.18,
+    kLearnRate: 0.08,
+    biasLearnRate: 0.08,
+    updateMinMove: 0.001,
+    kMin: 0.25,
+    kMax: 1.8,
+    maxLeadMove: 0.18,
+    sessionSplit: true,
+    tradingLeadScale: 1.08,
+    offLeadScale: 0.94,
+    upMoveScale: 0.9,
+    downMoveScale: 0.9,
+    gapBranch: true,
+    gapCoef: 0.15,
+    gapAmplify: 0.35,
+    gapSignalThreshold: 0.016748868258520854,
+    gapBiasLearnRate: 0.08,
+    weekendThreshold: 0.01,
+    weekendAmplify: 0,
+    weekendFxCoef: 0.4,
+    weekendMomentumCoef: 0,
+    enableOilSessionGap: true,
+    primaryProxyTicker: 'QQQ',
+    secondaryProxyTicker: 'XLK',
+    fxGapWeight: 0.3,
+    proxySpreadThreshold: 0.016,
+  },
+  '161725': {
+    shockThreshold: 0.016159570545573765,
+    shockBaseBlend: 0.35,
+    normalBaseBlend: 0.72,
+    shockAmplify: 0.45,
+    minReturn: -0.18,
+    maxReturn: 0.18,
+    kLearnRate: 0.06,
+    biasLearnRate: 0.05,
+    updateMinMove: 0.001,
+    kMin: 0.35,
+    kMax: 1.55,
+    maxLeadMove: 0.15,
+  },
+};
+const privateAdaptiveOverridesRaw = ENABLE_PRIVATE_ALGO ? await readJson(adaptiveAlgoPrivatePath, {}) : {};
+const privateAdaptiveOverrides = privateAdaptiveOverridesRaw && typeof privateAdaptiveOverridesRaw === 'object' && !Array.isArray(privateAdaptiveOverridesRaw)
+  ? privateAdaptiveOverridesRaw
+  : {};
+const ADAPTIVE_HOLDINGS_ALGO_BY_CODE = {
+  ...PUBLIC_ADAPTIVE_HOLDINGS_ALGO_BY_CODE,
+  ...privateAdaptiveOverrides,
+};
+let computeAdaptiveImpliedReturn = computeAdaptiveImpliedReturnPublic;
+if (ENABLE_PRIVATE_ALGO) {
+  try {
+    const privateModule = await import(pathToFileURL(privateWatchlistCorePath).href);
+    if (typeof privateModule?.computeAdaptiveImpliedReturn === 'function') {
+      computeAdaptiveImpliedReturn = privateModule.computeAdaptiveImpliedReturn;
+    }
+  } catch (error) {
+    console.warn(`[adaptive] private core not loaded: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
 const HOLDINGS_161128 = [
   { ticker: 'NVDA', name: '英伟达', currency: 'USD' },
   { ticker: 'AAPL', name: '苹果', currency: 'USD' },
@@ -117,6 +959,10 @@ const ARCHIVE_HOLDING_TICKER_MAP = {
 const SPECIAL_QUOTE_SYMBOL_MAP = {
   RIGD: 'ukRIGD',
 };
+const HOLDINGS_SIGNAL_MIN_COVERAGE_BY_CODE = {
+  '513310': 0.55,
+  '161128': 0.7,
+};
 const SUPPLEMENTAL_NOTICE_HOLDINGS = {
   '160216': [
     { ticker: 'CPER', aliases: ['United States Copper Index Fund'] },
@@ -210,6 +1056,10 @@ function clamp(value, limit) {
   return Math.max(-limit, Math.min(limit, value));
 }
 
+function clampRange(value, minValue, maxValue) {
+  return Math.max(minValue, Math.min(maxValue, value));
+}
+
 function getWeightedProxyReturn(runtime) {
   const proxyQuotes = runtime.proxyQuotes ?? [];
   const totalWeight = proxyQuotes.reduce((sum, item) => sum + item.weight, 0);
@@ -294,8 +1144,18 @@ function hasHoldingsSignal(runtime) {
   const coveredCount = disclosedHoldings
     .slice(0, requiredCount)
     .filter((item) => quotedTickers.has(String(item.ticker || '').toUpperCase())).length;
+  const strictCoverage = coveredCount >= requiredCount;
+  if (strictCoverage) {
+    return true;
+  }
 
-  return coveredCount >= requiredCount;
+  const minCoverage = HOLDINGS_SIGNAL_MIN_COVERAGE_BY_CODE[runtime.code];
+  if (!Number.isFinite(minCoverage)) {
+    return false;
+  }
+
+  const coverageWeight = getAnnouncedHoldingsCoverageWeight(runtime);
+  return coveredCount >= Math.min(3, requiredCount) && coverageWeight >= minCoverage;
 }
 
 function getBlendedHoldingLeadReturn(runtime) {
@@ -315,6 +1175,64 @@ function getFxReturn(runtime) {
   const currentRate = runtime.fx?.currentRate ?? 0;
   const previousCloseRate = runtime.fx?.previousCloseRate ?? 0;
   return currentRate > 0 && previousCloseRate > 0 ? currentRate / previousCloseRate - 1 : 0;
+}
+
+function getHoldingReturnByTicker(runtime, ticker) {
+  const upper = String(ticker || '').toUpperCase();
+  const quote = (runtime.holdingQuotes ?? []).find((item) => String(item?.ticker || '').toUpperCase() === upper);
+  if (!quote || !(quote.previousClose > 0) || !(quote.currentPrice > 0)) {
+    return null;
+  }
+
+  return quote.currentPrice / quote.previousClose - 1;
+}
+
+function getNavDayGap(runtime) {
+  const navDate = runtime.navDate;
+  if (!navDate || !Array.isArray(runtime.navHistory) || runtime.navHistory.length < 2) {
+    return 1;
+  }
+
+  const dates = [...new Set(runtime.navHistory.map((item) => item?.date).filter(Boolean))].sort();
+  const index = dates.indexOf(navDate);
+  if (index <= 0) {
+    return 1;
+  }
+
+  const prevDate = new Date(`${dates[index - 1]}T00:00:00Z`);
+  const currDate = new Date(`${dates[index]}T00:00:00Z`);
+  if (Number.isNaN(prevDate.getTime()) || Number.isNaN(currDate.getTime())) {
+    return 1;
+  }
+
+  return Math.max(1, Math.round((currDate.getTime() - prevDate.getTime()) / 86400000));
+}
+
+function getOilGapSignal(runtime, adaptiveConfig, leadReturn, closeGapReturn, dayGapDays) {
+  const primaryTicker = adaptiveConfig?.primaryProxyTicker ?? 'USO';
+  const secondaryTicker = adaptiveConfig?.secondaryProxyTicker ?? 'BNO';
+  const primaryReturn = getHoldingReturnByTicker(runtime, primaryTicker);
+  const secondaryReturn = getHoldingReturnByTicker(runtime, secondaryTicker);
+  const hasPrimary = Number.isFinite(primaryReturn);
+  const hasSecondary = Number.isFinite(secondaryReturn);
+  const proxyWeight = hasPrimary && hasSecondary ? 0.7 : 1;
+  const blendedProxyReturn = hasPrimary && hasSecondary
+    ? primaryReturn * proxyWeight + secondaryReturn * (1 - proxyWeight)
+    : hasPrimary
+      ? primaryReturn
+      : hasSecondary
+        ? secondaryReturn
+        : leadReturn;
+  const proxySpread = hasPrimary && hasSecondary ? primaryReturn - secondaryReturn : 0;
+  const gapSignal = 0.7 * (leadReturn - blendedProxyReturn) + 0.3 * proxySpread + (adaptiveConfig?.fxGapWeight ?? 0.45) * closeGapReturn;
+  const isGapDayHint = dayGapDays > 1 || Math.abs(proxySpread) >= (adaptiveConfig?.proxySpreadThreshold ?? 0.018) || Math.abs(gapSignal) >= 0.02;
+
+  return {
+    oilProxyReturn: blendedProxyReturn,
+    oilSpread: proxySpread,
+    gapSignal,
+    isGapDayHint,
+  };
 }
 
 function toIsoDateWithOffset(days) {
@@ -363,6 +1281,9 @@ function getDefaultWatchlistModel() {
     alpha: 0,
     betaLead: 0.38,
     betaGap: 0,
+    adaptiveK: 1,
+    adaptiveBias: 0,
+    lastTargetReturn: 0,
     learningRate: 0.24,
     sampleCount: 0,
     meanAbsError: 0,
@@ -395,10 +1316,15 @@ function normalizePersistedState(entry) {
   };
 }
 
+function getAdaptiveAlgoConfig(runtime) {
+  return ADAPTIVE_HOLDINGS_ALGO_BY_CODE[runtime.code] ?? null;
+}
+
 function estimateWatchlistFund(runtime, model) {
   const anchorNav = runtime.officialNavT1;
   const useHoldingsEstimate = hasHoldingsSignal(runtime);
   const useProxyEstimate = runtime.estimateMode === 'proxy' && !useHoldingsEstimate;
+  const adaptiveConfig = getAdaptiveAlgoConfig(runtime);
   const rawLeadReturn = useProxyEstimate
     ? getWeightedProxyReturn(runtime)
     : useHoldingsEstimate
@@ -406,7 +1332,8 @@ function estimateWatchlistFund(runtime, model) {
       : runtime.previousClose > 0
         ? runtime.marketPrice / runtime.previousClose - 1
         : 0;
-  const leadReturn = clamp(rawLeadReturn, useProxyEstimate ? MAX_PROXY_MOVE : MAX_MARKET_MOVE);
+  const leadMoveCap = useProxyEstimate ? MAX_PROXY_MOVE : (adaptiveConfig?.maxLeadMove ?? MAX_MARKET_MOVE);
+  const leadReturn = clamp(rawLeadReturn, leadMoveCap);
   const rawCloseGapReturn = useProxyEstimate
     ? getFxReturn(runtime)
     : useHoldingsEstimate
@@ -418,7 +1345,30 @@ function estimateWatchlistFund(runtime, model) {
         : 0;
   const closeGapReturn = clamp(rawCloseGapReturn, useProxyEstimate ? MAX_FX_MOVE : MAX_CLOSE_GAP);
   const learnedBiasReturn = model.alpha;
-  const impliedReturn = learnedBiasReturn + model.betaLead * leadReturn + model.betaGap * closeGapReturn;
+  const baseImpliedReturn = learnedBiasReturn + model.betaLead * leadReturn + model.betaGap * closeGapReturn;
+  let impliedReturn = baseImpliedReturn;
+  let adaptiveUsed = false;
+  let adaptiveShockTriggered = false;
+
+  if (adaptiveConfig && useHoldingsEstimate && !useProxyEstimate) {
+    const dayGapDays = getNavDayGap(runtime);
+    const gapInfo = adaptiveConfig.enableOilSessionGap
+      ? getOilGapSignal(runtime, adaptiveConfig, leadReturn, closeGapReturn, dayGapDays)
+      : { gapSignal: 0, isGapDayHint: false };
+    const adaptiveResult = computeAdaptiveImpliedReturn({
+      adaptiveConfig,
+      model,
+      leadReturn,
+      closeGapReturn,
+      baseImpliedReturn,
+      dayGapDays,
+      gapInfo,
+    });
+    impliedReturn = adaptiveResult.impliedReturn;
+    adaptiveUsed = Boolean(adaptiveResult.adaptiveUsed);
+    adaptiveShockTriggered = Boolean(adaptiveResult.adaptiveShockTriggered);
+  }
+
   const estimatedNav = anchorNav * (1 + impliedReturn);
   const premiumRate = estimatedNav > 0 ? runtime.marketPrice / estimatedNav - 1 : 0;
 
@@ -430,10 +1380,13 @@ function estimateWatchlistFund(runtime, model) {
     impliedReturn,
     estimatedNav,
     premiumRate,
+    adaptiveUsed,
+    adaptiveShockTriggered,
   };
 }
 
 function reconcileJournal(runtime, currentModel, currentJournal) {
+  const adaptiveConfig = getAdaptiveAlgoConfig(runtime);
   const actualNavByDate = new Map(runtime.navHistory.map((item) => [item.date, item.nav]));
   const normalizedJournal = pruneJournal({
     ...currentJournal,
@@ -443,6 +1396,7 @@ function reconcileJournal(runtime, currentModel, currentJournal) {
   const trainedDates = new Set(baseJournal.errors.map((item) => item.date));
   const errorByDate = new Map(baseJournal.errors.map((item) => [item.date, item]));
   let model = { ...getDefaultWatchlistModel(), ...currentModel };
+  let latestTargetReturn = Number.isFinite(model.lastTargetReturn) ? model.lastTargetReturn : 0;
 
   for (const snapshot of baseJournal.snapshots) {
     const actualNav = actualNavByDate.get(snapshot.estimateDate);
@@ -451,6 +1405,7 @@ function reconcileJournal(runtime, currentModel, currentJournal) {
     }
 
     const targetReturn = snapshot.anchorNav > 0 ? actualNav / snapshot.anchorNav - 1 : 0;
+    latestTargetReturn = targetReturn;
     const predictedReturn = snapshot.impliedReturn;
     const residualError = targetReturn - predictedReturn;
     const displayError = actualNav > 0 ? snapshot.estimatedNav / actualNav - 1 : 0;
@@ -469,6 +1424,18 @@ function reconcileJournal(runtime, currentModel, currentJournal) {
         alpha: model.alpha + adaptiveRate * residualError,
         betaLead: model.betaLead + adaptiveRate * residualError * snapshot.leadReturn,
         betaGap: model.betaGap + adaptiveRate * residualError * snapshot.closeGapReturn,
+        adaptiveBias: adaptiveConfig && snapshot.adaptiveUsed
+          ? (Number.isFinite(model.adaptiveBias) ? model.adaptiveBias : 0) + adaptiveConfig.biasLearnRate * residualError
+          : (Number.isFinite(model.adaptiveBias) ? model.adaptiveBias : 0),
+        adaptiveK: (() => {
+          const currentAdaptiveK = Number.isFinite(model.adaptiveK) ? model.adaptiveK : 1;
+          if (!adaptiveConfig || !snapshot.adaptiveUsed || Math.abs(snapshot.leadReturn) < adaptiveConfig.updateMinMove) {
+            return currentAdaptiveK;
+          }
+
+          const ratio = clampRange(targetReturn / snapshot.leadReturn, adaptiveConfig.kMin, adaptiveConfig.kMax);
+          return (1 - adaptiveConfig.kLearnRate) * currentAdaptiveK + adaptiveConfig.kLearnRate * ratio;
+        })(),
         sampleCount: nextSampleCount,
         meanAbsError: nextMae,
         lastUpdatedAt: new Date().toISOString(),
@@ -491,6 +1458,10 @@ function reconcileJournal(runtime, currentModel, currentJournal) {
   }
 
   const nextErrors = [...errorByDate.values()].sort((left, right) => left.date.localeCompare(right.date));
+  model = {
+    ...model,
+    lastTargetReturn: latestTargetReturn,
+  };
 
   return {
     model,
@@ -516,6 +1487,8 @@ function recordEstimateSnapshot(journal, runtime, estimate) {
     leadReturn: estimate.leadReturn,
     closeGapReturn: estimate.closeGapReturn,
     impliedReturn: estimate.impliedReturn,
+    adaptiveUsed: Boolean(estimate.adaptiveUsed),
+    adaptiveShockTriggered: Boolean(estimate.adaptiveShockTriggered),
     createdAt: new Date().toISOString(),
   };
 
@@ -1703,10 +2676,55 @@ function parsePingzhongData(content) {
       nav: Number(item.y) || 0,
     }))
     .filter((item) => item.date && item.nav > 0)
-    .slice(-60)
+    .slice(-420)
     .reverse();
 
   return { name, navHistory };
+}
+
+async function fetchExtendedNavHistory(code) {
+  const pageSize = 20;
+  const startDate = '2025-01-01';
+  const endDate = today;
+  const rows = [];
+  let pageIndex = 1;
+  let totalPages = 1;
+
+  while (pageIndex <= totalPages && pageIndex <= 40) {
+    const response = await fetchText(
+      `https://api.fund.eastmoney.com/f10/lsjz?callback=x&fundCode=${code}&pageIndex=${pageIndex}&pageSize=${pageSize}&startDate=${startDate}&endDate=${endDate}`,
+      { referer: 'https://fundf10.eastmoney.com/' },
+      'utf-8',
+    );
+    const payload = parseJsonpPayload(response);
+    const list = payload?.Data?.LSJZList ?? [];
+    rows.push(...list);
+
+    const totalCount = Number(payload?.TotalCount) || rows.length;
+    totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+    if (!list.length) {
+      break;
+    }
+
+    pageIndex += 1;
+  }
+
+  const byDate = new Map();
+  for (const item of rows) {
+    const date = String(item?.FSRQ ?? '').slice(0, 10);
+    const nav = Number(item?.DWJZ) || 0;
+    if (!date || nav <= 0) {
+      continue;
+    }
+
+    byDate.set(date, nav);
+  }
+
+  return [...byDate.entries()]
+    .sort((left, right) => left[0].localeCompare(right[0]))
+    .map(([date, nav]) => ({ date, nav }))
+    .slice(-420)
+    .reverse();
 }
 
 function parseQuote(raw) {
@@ -1999,6 +3017,8 @@ async function getDailyFundData(entry, holdingsHistoryByCode = {}) {
   ]);
 
   const pingzhong = parsePingzhongData(pingzhongData);
+  const extendedNavHistory = await fetchExtendedNavHistory(entry.code).catch(() => []);
+  const resolvedNavHistory = extendedNavHistory.length >= pingzhong.navHistory.length ? extendedNavHistory : pingzhong.navHistory;
   const basic = parseBasicInfo(basicHtml, pingzhong.name);
   const purchase = mergePurchaseStatus(parsePurchaseStatusFromHtml(fundHtml), apiPurchaseStatus, portalPurchaseStatus, noticePurchaseStatus);
   const normalizedPurchase = entry.pageCategory === 'etf'
@@ -2022,7 +3042,7 @@ async function getDailyFundData(entry, holdingsHistoryByCode = {}) {
   );
   const directlyHydratedHoldingsDisclosure = await hydrateDirectDisclosureQuotes(resolvedHoldingsDisclosure);
   const hydratedHoldingsDisclosure = await hydrateSupplementalDisclosureQuotes(entry.code, directlyHydratedHoldingsDisclosure);
-  const latestNav = pingzhong.navHistory[0] ?? { date: '', nav: 0 };
+  const latestNav = resolvedNavHistory[0] ?? { date: '', nav: 0 };
   const payload = {
     cacheVersion: DAILY_CACHE_VERSION,
     fetchedDate: today,
@@ -2032,7 +3052,7 @@ async function getDailyFundData(entry, holdingsHistoryByCode = {}) {
     benchmark: basic.benchmark,
     officialNavT1: latestNav.nav,
     navDate: latestNav.date,
-    navHistory: pingzhong.navHistory,
+    navHistory: resolvedNavHistory,
     purchaseStatus: normalizedPurchase.purchaseStatus,
     purchaseLimit: normalizedPurchase.purchaseLimit,
     disclosedHoldingsTitle: hydratedHoldingsDisclosure.disclosedHoldingsTitle,

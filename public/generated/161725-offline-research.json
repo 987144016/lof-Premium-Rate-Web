@@ -1,0 +1,282 @@
+{
+  "code": "161725",
+  "generatedAt": "2026-03-15T03:44:16.473Z",
+  "splitMode": "year-split+adaptive",
+  "method": "history-holdings-daily-return",
+  "explanation": "该版本按历史前十大持仓逐日收益估值，使用A股日线收盘价同日对齐净值；并引入鲁棒回归与滚动自适应修正因子处理极端波动日。",
+  "fallbackMode": "none",
+  "disclosureCount": 42,
+  "usedQuoteTickers": [
+    "600519",
+    "600809",
+    "000858",
+    "000568",
+    "002304",
+    "000596",
+    "603369",
+    "603198",
+    "600702",
+    "603589"
+  ],
+  "avgHoldingCoverage": 0.9952267303102625,
+  "trainRange": "2025-01-02 ~ 2025-12-31",
+  "validationRange": "2026-01-05 ~ 2026-03-13",
+  "segmented": {
+    "maeTrain": 0.0034814498613352307,
+    "maeValidation": 0.003861685951415407,
+    "maeValidation30": 0.003495488047601817
+  },
+  "dualObjective": {
+    "mode": "holdings-return-a-share",
+    "lambda": 0.1,
+    "maeValidation": 0.010895753882923293,
+    "maeValidation30": 0.0121391632110724,
+    "premiumProxyValidation": 0.012080681425109142
+  },
+  "chartPath": "generated/161725-offline-research.svg",
+  "adaptiveModel": {
+    "kLearnRate": 0.06,
+    "biasLearnRate": 0.05,
+    "shockThreshold": 0.016159570545573765,
+    "shockBaseBlend": 0.35,
+    "normalBaseBlend": 0.72,
+    "shockAmplify": 0.45,
+    "tuningMae": 0.0032319681732368003,
+    "tuningMae30": 0.0034613691983311954
+  },
+  "topErrorDays": [
+    {
+      "date": "2026-01-12",
+      "navError": 0.009401174138986113,
+      "targetReturn": 0.012850628713555245,
+      "holdingReturn": 0.01340245289714308,
+      "predictedReturn": 0.003328643576237699,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "000596",
+          "weight": 10,
+          "returnRate": 0.029631255487269303,
+          "weightedContribution": 0.0029631255487269307
+        },
+        {
+          "ticker": "000568",
+          "weight": 10,
+          "returnRate": 0.02103896103896119,
+          "weightedContribution": 0.002103896103896119
+        },
+        {
+          "ticker": "600809",
+          "weight": 10,
+          "returnRate": 0.018578306428773672,
+          "weightedContribution": 0.0018578306428773672
+        }
+      ]
+    },
+    {
+      "date": "2026-02-26",
+      "navError": 0.00903625447505818,
+      "targetReturn": -0.014777618364418932,
+      "holdingReturn": -0.015347223159447443,
+      "predictedReturn": -0.005874898209436827,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "603198",
+          "weight": 10,
+          "returnRate": -0.021566110397946203,
+          "weightedContribution": -0.0021566110397946204
+        },
+        {
+          "ticker": "000596",
+          "weight": 10,
+          "returnRate": -0.019560100641181744,
+          "weightedContribution": -0.0019560100641181745
+        },
+        {
+          "ticker": "603369",
+          "weight": 10,
+          "returnRate": -0.018709073900841977,
+          "weightedContribution": -0.0018709073900841978
+        }
+      ]
+    },
+    {
+      "date": "2026-02-24",
+      "navError": 0.008871002441189324,
+      "targetReturn": -0.014636919141679638,
+      "holdingReturn": -0.01588501632815187,
+      "predictedReturn": -0.005895760845927659,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "000596",
+          "weight": 10,
+          "returnRate": -0.04112772054836977,
+          "weightedContribution": -0.004112772054836978
+        },
+        {
+          "ticker": "000568",
+          "weight": 10,
+          "returnRate": -0.032258064516129004,
+          "weightedContribution": -0.0032258064516129006
+        },
+        {
+          "ticker": "603198",
+          "weight": 10,
+          "returnRate": -0.015255530129672068,
+          "weightedContribution": -0.001525553012967207
+        }
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "navError": 0.008530356473667067,
+      "targetReturn": 0.010633449794926308,
+      "holdingReturn": 0.009368854285571238,
+      "predictedReturn": 0.0020123862039635202,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "000568",
+          "weight": 10,
+          "returnRate": 0.025480129302148713,
+          "weightedContribution": 0.0025480129302148714
+        },
+        {
+          "ticker": "600519",
+          "weight": 10,
+          "returnRate": 0.015545977011494294,
+          "weightedContribution": 0.0015545977011494295
+        },
+        {
+          "ticker": "000596",
+          "weight": 10,
+          "returnRate": 0.01291874554526018,
+          "weightedContribution": 0.0012918745545260181
+        }
+      ]
+    },
+    {
+      "date": "2026-01-05",
+      "navError": 0.008380671077189428,
+      "targetReturn": 0.01929849274545714,
+      "holdingReturn": 0.018001610018907342,
+      "predictedReturn": 0.010756087348282563,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "600519",
+          "weight": 10,
+          "returnRate": 0.035449251368739,
+          "weightedContribution": 0.0035449251368739002
+        },
+        {
+          "ticker": "600809",
+          "weight": 10,
+          "returnRate": 0.030809551543389713,
+          "weightedContribution": 0.0030809551543389715
+        },
+        {
+          "ticker": "000596",
+          "weight": 10,
+          "returnRate": 0.020440729483282682,
+          "weightedContribution": 0.0020440729483282684
+        }
+      ]
+    },
+    {
+      "date": "2026-01-30",
+      "navError": 0.008048926768874032,
+      "targetReturn": -0.03587868941240191,
+      "holdingReturn": -0.04691526014259868,
+      "predictedReturn": -0.04363883123763229,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "002304",
+          "weight": 10,
+          "returnRate": -0.07522567703109329,
+          "weightedContribution": -0.0075225677031093285
+        },
+        {
+          "ticker": "603589",
+          "weight": 10,
+          "returnRate": -0.061901723037651624,
+          "weightedContribution": -0.006190172303765163
+        },
+        {
+          "ticker": "603369",
+          "weight": 10,
+          "returnRate": -0.05474040632054167,
+          "weightedContribution": -0.005474040632054167
+        }
+      ]
+    },
+    {
+      "date": "2026-02-02",
+      "navError": 0.0075386715741968535,
+      "targetReturn": 0.01713242522117686,
+      "holdingReturn": 0.01631570647562197,
+      "predictedReturn": 0.009464597919968119,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "603198",
+          "weight": 10,
+          "returnRate": 0.024612355402412023,
+          "weightedContribution": 0.0024612355402412025
+        },
+        {
+          "ticker": "000858",
+          "weight": 10,
+          "returnRate": 0.021809523809523945,
+          "weightedContribution": 0.0021809523809523945
+        },
+        {
+          "ticker": "600702",
+          "weight": 10,
+          "returnRate": 0.02042628774422739,
+          "weightedContribution": 0.002042628774422739
+        }
+      ]
+    },
+    {
+      "date": "2026-01-20",
+      "navError": 0.00673927863287116,
+      "targetReturn": 0.008788093550673226,
+      "holdingReturn": 0.009224814027279937,
+      "predictedReturn": 0.0019895895067123743,
+      "coverageRatio": 1,
+      "missingWeight": 0,
+      "topContributors": [
+        {
+          "ticker": "002304",
+          "weight": 10,
+          "returnRate": 0.03548959509598326,
+          "weightedContribution": 0.003548959509598326
+        },
+        {
+          "ticker": "000568",
+          "weight": 10,
+          "returnRate": 0.0237904303662122,
+          "weightedContribution": 0.0023790430366212203
+        },
+        {
+          "ticker": "603198",
+          "weight": 10,
+          "returnRate": 0.016309887869520923,
+          "weightedContribution": 0.0016309887869520923
+        }
+      ]
+    }
+  ],
+  "notes": "估值点使用同日持仓涨跌幅对齐同日净值，不做时间平移；若个别持仓缺历史行情，按可用权重归一化；极端波动日启用动态修正。"
+}

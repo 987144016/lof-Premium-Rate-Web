@@ -6,9 +6,23 @@
   "type": "module",
   "scripts": {
     "sync:data": "node scripts/sync-funds.mjs",
+    "sync:github-traffic": "node scripts/sync-github-traffic.mjs",
+    "sync:research": "node scripts/generate-160723-research.mjs 160723 && node scripts/generate-161725-research.mjs",
+    "sync:research:oil": "node scripts/generate-160723-research.mjs 160723 && node scripts/generate-160723-research.mjs 501018 && node scripts/generate-160723-research.mjs 161129",
+    "sync:research:gold": "node scripts/generate-160723-research.mjs 160719 && node scripts/generate-160723-research.mjs 161116 && node scripts/generate-160723-research.mjs 164701",
+    "sync:research:commodities": "node scripts/generate-160723-research.mjs 160216",
+    "sync:research:semiconductor": "node scripts/generate-160723-research.mjs 501225 && node scripts/generate-160723-research.mjs 513310 && node scripts/generate-160723-research.mjs 161130",
+    "sync:research:energy": "node scripts/generate-160723-research.mjs 160416 && node scripts/generate-160723-research.mjs 162719 && node scripts/generate-160723-research.mjs 162411",
+    "sync:research:us-tech": "node scripts/generate-160723-research.mjs 161125 && node scripts/generate-160723-research.mjs 159509",
+    "sync:research:innovation": "node scripts/generate-160723-research.mjs 501312",
+    "sync:research:domestic-industry": "node scripts/generate-160723-research.mjs 501011 && node scripts/generate-160723-research.mjs 501050",
+    "sync:research:a-share": "node scripts/generate-160723-research.mjs 160221 && node scripts/generate-160723-research.mjs 165520 && node scripts/generate-160723-research.mjs 167301",
+    "sync:research:remaining": "node scripts/generate-160723-research.mjs 161226 && node scripts/generate-160723-research.mjs 161128",
+    "sync:data:full": "npm run sync:data && npm run sync:research",
     "dev": "npm run sync:data && vite",
     "app:start": "node scripts/dev-auto-refresh.mjs",
     "build": "npm run sync:data && tsc && vite build",
+    "build:static": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

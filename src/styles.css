@@ -109,7 +109,7 @@ input:focus {
 }
 
 .hero--wide {
-  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
+  grid-template-columns: minmax(0, 1.28fr) minmax(420px, 1fr);
 }
 
 .hero__copy {
@@ -269,7 +269,7 @@ small {
 }
 
 .hero__facts--compact {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-content: start;
 }
 
@@ -283,7 +283,8 @@ small {
 }
 
 .hero__fact {
-  min-height: 5.8rem;
+  min-height: 4.55rem;
+  padding: 0.8rem !important;
 }
 
 .hero__fact--accent {
@@ -304,6 +305,28 @@ small {
   display: block;
   margin-bottom: 0.45rem;
   font-size: 0.85rem;
+}
+
+.hero__fact-subtle {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.76rem;
+  color: #7b8b87;
+}
+
+.traffic-mini-chart {
+  display: block;
+  width: 120px;
+  height: 26px;
+  margin-top: 0.35rem;
+}
+
+.traffic-mini-chart polyline {
+  fill: none;
+  stroke: #0f766e;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .metrics-grid,
@@ -397,8 +420,38 @@ label span {
   overflow: visible;
 }
 
+.table-scroll--window {
+  max-height: 20rem;
+  overflow: auto;
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.table-scroll--window .mini-data-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(247, 243, 235, 0.98);
+  box-shadow: inset 0 -1px 0 rgba(31, 41, 55, 0.08);
+}
+
+.offline-research-image-wrap {
+  margin-top: 1rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.offline-research-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .fund-table-card {
-  --fund-table-columns: 6% 18% 6% 6% 6% 6% 6% 7% 9% 7% 7% 8% 8%;
+  --fund-table-columns: 6% 18% 6% 6% 6% 6% 6% 7% 9% 9% 8% 8% 8%;
 }
 
 .fund-table-floating-header {
@@ -460,11 +513,11 @@ table {
 }
 
 .fund-table__col--error {
-  width: 7%;
+  width: 9%;
 }
 
 .fund-table__col--recent-error {
-  width: 7%;
+  width: 8%;
 }
 
 .fund-table__col--error-30d {
@@ -521,6 +574,14 @@ th {
 .fund-table__link:hover {
   text-decoration: underline;
   color: #1d4ed8;
+}
+
+.fund-table__name {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .fund-table th:nth-child(10),
@@ -721,8 +782,66 @@ button {
   stroke: #c2410c;
 }
 
+.chart-dot--tertiary,
+.chart-line--tertiary {
+  background: #2563eb;
+  stroke: #2563eb;
+}
+
+.chart-dot--quaternary,
+.chart-line--quaternary {
+  background: #a855f7;
+  stroke: #a855f7;
+}
+
 .chart-point--secondary {
   fill: #c2410c;
+}
+
+.chart-point--tertiary {
+  fill: #2563eb;
+}
+
+.chart-point--quaternary {
+  fill: #a855f7;
+}
+
+.chart-line--dashed {
+  stroke-dasharray: 7 6;
+}
+
+.chart-dot--dashed {
+  border: 2px dashed #5b6b68;
+  background: transparent;
+}
+
+.research-card {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.research-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.research-metrics div {
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background: rgba(15, 118, 110, 0.08);
+}
+
+.research-metrics span {
+  color: #49605b;
+  font-size: 0.78rem;
+}
+
+.research-metrics strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1rem;
 }
 
 .chart-grid-line {
@@ -734,6 +853,17 @@ button {
 .chart-axis-label {
   fill: #5b6b68;
   font-size: 12px;
+}
+
+.chart-split-line {
+  stroke: #6b7280;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+}
+
+.chart-split-label {
+  fill: #465863;
+  font-size: 11px;
 }
 
 .chart-svg {
@@ -756,6 +886,20 @@ button {
   margin-top: 0.8rem;
 }
 
+.chart-labels--dates {
+  color: #556662;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.research-time-note {
+  color: #4f6360;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
 .notice-panel {
   margin-bottom: 1rem;
 }
@@ -773,6 +917,16 @@ button {
   }
 }
 
+@media (max-width: 1360px) {
+  .hero--wide {
+    grid-template-columns: minmax(0, 1.42fr) minmax(280px, 0.9fr);
+  }
+
+  .hero__facts--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 720px) {
   .page {
     width: min(100vw - 1rem, 100%);
@@ -781,6 +935,10 @@ button {
 
   .table-scroll {
     overflow-x: auto;
+  }
+
+  .table-scroll--window {
+    overflow: auto;
   }
 
   .fund-table-floating-header {
@@ -803,7 +961,8 @@ button {
   .contribution-row,
   .chart-grid,
   .fund-card__metrics,
-  .summary-strip--stacked {
+  .summary-strip--stacked,
+  .research-metrics {
     grid-template-columns: 1fr;
   }
 

@@ -15,6 +15,10 @@ const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
 const MAX_FX_MOVE = 0.05;
 const JOURNAL_RETENTION_DAYS = 90;
+const HOLDINGS_SIGNAL_MIN_COVERAGE_BY_CODE: Record<string, number> = {
+  '513310': 0.55,
+  '161128': 0.7,
+};
 
 function clamp(value: number, limit: number): number {
   return Math.max(-limit, Math.min(limit, value));
@@ -108,8 +112,17 @@ function hasAnnouncedHoldingsSignal(runtime: FundRuntimeData): boolean {
   const coveredCount = disclosedHoldings
     .slice(0, requiredCount)
     .filter((item) => quotedTickers.has(String(item.ticker || '').toUpperCase())).length;
+  const strictCoverage = coveredCount >= requiredCount;
+  if (strictCoverage) {
+    return true;
+  }
 
-  return coveredCount >= requiredCount;
+  const minCoverage = HOLDINGS_SIGNAL_MIN_COVERAGE_BY_CODE[runtime.code];
+  if (!Number.isFinite(minCoverage)) {
+    return false;
+  }
+
+  return coveredCount >= Math.min(3, requiredCount) && getAnnouncedHoldingsCoverageWeight(runtime) >= minCoverage;
 }
 
 function getBlendedLeadReturn(runtime: FundRuntimeData): number {

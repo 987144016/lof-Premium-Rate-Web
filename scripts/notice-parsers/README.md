@@ -14,7 +14,8 @@
 1. 在这个目录新增一个 `.mjs` 解析器文件，只处理一种固定格式。
 2. 解析器返回统一结构：`disclosedHoldingsTitle`、`disclosedHoldingsReportDate`、`disclosedHoldings`。
 3. 在 `registry.mjs` 里把基金代码挂到对应解析器。
-4. 跑一次 `npm run sync:data`，确认目标基金持仓和 `holdingQuotes` 数量正常。
+4. 跑一次 `npm run sync:data`，确认目标基金持仓和 `holdingQuotes` 数量正常（每日同步流程）。
+5. 如需同时刷新离线研究图，额外执行 `npm run sync:research`。
 
 ## 经验规则
 

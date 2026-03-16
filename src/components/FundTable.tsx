@@ -5,6 +5,7 @@ type SortKey = 'code' | 'premiumRate' | 'estimatedNav' | 'marketPrice' | 'offici
 
 interface FundTableProps {
   funds: FundViewModel[];
+  trainingMetricsByCode: Record<string, { maeValidation30: number }>;
   formatCurrency: (value: number) => string;
   formatPercent: (value: number) => string;
   title: string;
@@ -12,7 +13,13 @@ interface FundTableProps {
   pagePath: string;
 }
 
-export function FundTable({ funds, formatCurrency, formatPercent, title, description, pagePath }: FundTableProps) {
+export function FundTable({ funds, trainingMetricsByCode, formatCurrency, formatPercent, title, description, pagePath }: FundTableProps) {
+    const SORT_LABEL_HINTS: Partial<Record<SortKey, string>> = {
+      meanAbsError: '离线训练验证集近30天 MAE（鲁棒口径：剔除最近30天最大单日误差后计算），优先用于看模型是否训练到位。',
+      latestError: '线上最近一个交易日误差（估值相对后续真实净值）。',
+      error30d: '线上最近30天平均误差（随日常波动变化）。',
+    };
+
   const [sortKey, setSortKey] = useState<SortKey>('premiumRate');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
   const tableRef = useRef<HTMLTableElement | null>(null);
@@ -35,6 +42,8 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
       const leftValue =
         sortKey === 'premiumRate'
           ? left.estimate.premiumRate
+          : sortKey === 'meanAbsError'
+            ? getTrainingValidation30Error(left, trainingMetricsByCode) ?? Number.POSITIVE_INFINITY
           : sortKey === 'latestError'
             ? getLatestError(left) ?? Number.NEGATIVE_INFINITY
             : sortKey === 'error30d'
@@ -47,10 +56,12 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
               ? left.runtime.marketPrice
               : sortKey === 'officialNavT1'
                 ? left.runtime.officialNavT1
-                : left.model.meanAbsError;
+                : Number.POSITIVE_INFINITY;
       const rightValue =
         sortKey === 'premiumRate'
           ? right.estimate.premiumRate
+          : sortKey === 'meanAbsError'
+            ? getTrainingValidation30Error(right, trainingMetricsByCode) ?? Number.POSITIVE_INFINITY
           : sortKey === 'latestError'
             ? getLatestError(right) ?? Number.NEGATIVE_INFINITY
             : sortKey === 'error30d'
@@ -63,13 +74,13 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
               ? right.runtime.marketPrice
               : sortKey === 'officialNavT1'
                 ? right.runtime.officialNavT1
-                : right.model.meanAbsError;
+                : Number.POSITIVE_INFINITY;
 
       return multiplier * (leftValue - rightValue);
     });
 
     return next;
-  }, [funds, sortDirection, sortKey]);
+  }, [funds, sortDirection, sortKey, trainingMetricsByCode]);
 
   const toggleSort = (nextKey: SortKey) => {
     if (sortKey === nextKey) {
@@ -85,7 +96,12 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
     const suffix = active ? (sortDirection === 'desc' ? ' ↓' : ' ↑') : '';
 
     return (
-      <button className={`table-sort-button${active ? ' table-sort-button--active' : ''}`} type="button" onClick={() => toggleSort(key)}>
+      <button
+        className={`table-sort-button${active ? ' table-sort-button--active' : ''}`}
+        type="button"
+        onClick={() => toggleSort(key)}
+        title={SORT_LABEL_HINTS[key] || label}
+      >
         {label}
         {suffix}
       </button>
@@ -131,9 +147,9 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
       <div>{renderSortLabel('净值', 'officialNavT1')}</div>
       <div>净值日期</div>
       <div>现价时间</div>
-      <div>{renderSortLabel('模型误差', 'meanAbsError')}</div>
+      <div>{renderSortLabel('训练误差', 'meanAbsError')}</div>
       <div>{renderSortLabel('最近误差', 'latestError')}</div>
-      <div>{renderSortLabel('30天误差', 'error30d')}</div>
+      <div>{renderSortLabel('30d误差', 'error30d')}</div>
       <div>限购</div>
     </>
   );
@@ -180,9 +196,9 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
               <th>{renderSortLabel('净值', 'officialNavT1')}</th>
               <th>净值日期</th>
               <th>现价时间</th>
-              <th>{renderSortLabel('模型误差', 'meanAbsError')}</th>
+              <th>{renderSortLabel('训练误差', 'meanAbsError')}</th>
               <th>{renderSortLabel('最近误差', 'latestError')}</th>
-              <th>{renderSortLabel('30天误差', 'error30d')}</th>
+              <th>{renderSortLabel('30d误差', 'error30d')}</th>
               <th>限购</th>
             </tr>
           </thead>
@@ -192,6 +208,7 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
               const changeRate = getChangeRate(fund.runtime.marketPrice, fund.runtime.previousClose);
               const latestError = getLatestError(fund);
               const avg30dError = getRecent30DayAvgAbsError(fund);
+              const training30Error = getTrainingValidation30Error(fund, trainingMetricsByCode);
 
               return (
                 <tr key={fund.runtime.code}>
@@ -201,7 +218,7 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
                     </a>
                   </td>
                   <td>
-                    {fund.runtime.name}
+                    <span className="fund-table__name" title={fund.runtime.name}>{fund.runtime.name}</span>
                   </td>
                   <td>{formatCurrency(fund.runtime.marketPrice)}</td>
                   <td className={changeRate >= 0 ? 'tone-positive' : 'tone-negative'}>{formatPercent(changeRate)}</td>
@@ -210,7 +227,9 @@ export function FundTable({ funds, formatCurrency, formatPercent, title, descrip
                   <td>{formatCurrency(fund.runtime.officialNavT1)}</td>
                   <td>{fund.runtime.navDate || '--'}</td>
                   <td>{`${fund.runtime.marketDate || '--'} ${fund.runtime.marketTime || ''}`.trim()}</td>
-                  <td>{formatPercent(fund.model.meanAbsError)}</td>
+                  <td className={typeof training30Error === 'number' ? (training30Error > 0.02 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>
+                    {typeof training30Error === 'number' ? formatPercent(training30Error) : '未训练'}
+                  </td>
                   <td className={typeof latestError === 'number' ? (latestError >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>
                     {typeof latestError === 'number' ? formatPercent(latestError) : '--'}
                   </td>
@@ -257,4 +276,16 @@ function getLimitClass(limit: string | undefined): string {
     if (val > 0 && val <= 1000) return 'tone-positive';
   }
   return '';
+}
+
+function getTrainingValidation30Error(
+  fund: FundViewModel,
+  trainingMetricsByCode: Record<string, { maeValidation30: number }>,
+): number | undefined {
+  const metric = trainingMetricsByCode[fund.runtime.code];
+  if (!metric || !Number.isFinite(metric.maeValidation30)) {
+    return undefined;
+  }
+
+  return metric.maeValidation30;
 }

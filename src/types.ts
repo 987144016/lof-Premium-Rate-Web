@@ -162,6 +162,38 @@ export interface RuntimePayload {
   stateByCode?: Record<string, PersistedFundState>;
 }
 
+export interface GithubTrafficDay {
+  date: string;
+  viewCount: number;
+  viewUniques: number;
+  cloneCount: number;
+  cloneUniques: number;
+}
+
+export interface GithubTrafficRecent7 {
+  days: GithubTrafficDay[];
+  viewCount: number;
+  viewUniques: number;
+  cloneCount: number;
+  cloneUniques: number;
+}
+
+export interface GithubTrafficPayload {
+  generatedAt: string;
+  source: string;
+  repo: string;
+  available: boolean;
+  reason?: string;
+  recent7: GithubTrafficRecent7;
+  totals: {
+    viewCount: number;
+    viewUniques: number;
+    cloneCount: number;
+    cloneUniques: number;
+  };
+  last14Days?: GithubTrafficDay[];
+}
+
 export interface WatchlistModel {
   alpha: number;
   betaLead: number;
@@ -184,6 +216,8 @@ export interface FundEstimateSnapshot {
   leadReturn: number;
   closeGapReturn: number;
   impliedReturn: number;
+  adaptiveUsed?: boolean;
+  adaptiveShockTriggered?: boolean;
   createdAt: string;
 }
 

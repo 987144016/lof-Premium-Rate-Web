@@ -23,8 +23,8 @@
   { "code": "161130", "detailMode": "summary", "priority": 22, "pageCategory": "qdii-lof", "estimateMode": "proxy", "proxyBasketKey": "us-nasdaq100" },
   { "code": "159509", "detailMode": "summary", "priority": 23, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-nasdaq100" },
   { "code": "513310", "detailMode": "summary", "priority": 24, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "cn-kr-semiconductor" },
-  { "code": "160620", "detailMode": "summary", "priority": 25, "pageCategory": "qdii-lof", "estimateMode": "market" },
-  { "code": "161217", "detailMode": "summary", "priority": 26, "pageCategory": "qdii-lof", "estimateMode": "market" },
+  { "code": "160620", "detailMode": "summary", "priority": 25, "pageCategory": "domestic-lof", "estimateMode": "market" },
+  { "code": "161217", "detailMode": "summary", "priority": 26, "pageCategory": "domestic-lof", "estimateMode": "market" },
   { "code": "159561", "detailMode": "summary", "priority": 27, "pageCategory": "etf", "estimateMode": "market" },
   { "code": "513030", "detailMode": "summary", "priority": 28, "pageCategory": "etf", "estimateMode": "market" },
   { "code": "513850", "detailMode": "summary", "priority": 29, "pageCategory": "etf", "estimateMode": "market" },
@@ -52,5 +52,6 @@
   { "code": "513400", "detailMode": "summary", "priority": 51, "pageCategory": "etf", "estimateMode": "market" },
   { "code": "161126", "detailMode": "summary", "priority": 52, "pageCategory": "qdii-lof", "estimateMode": "market" },
   { "code": "513500", "detailMode": "summary", "priority": 53, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-sandp500" },
-  { "code": "513100", "detailMode": "summary", "priority": 54, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-nasdaq100" }
+  { "code": "513100", "detailMode": "summary", "priority": 54, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-nasdaq100" },
+  { "code": "163208", "detailMode": "summary", "priority": 55, "pageCategory": "qdii-lof", "estimateMode": "market" }
 ]

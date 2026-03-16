@@ -141,10 +141,10 @@ export function FundTable({ funds, trainingMetricsByCode, formatCurrency, format
       <div>{renderSortLabel('代码', 'code')}</div>
       <div>名称</div>
       <div>{renderSortLabel('溢价率', 'premiumRate')}</div>
+      <div>限购</div>
       <div>{renderSortLabel('训练误差', 'meanAbsError')}</div>
       <div>{renderSortLabel('最近误差', 'latestError')}</div>
       <div>{renderSortLabel('30d误差', 'error30d')}</div>
-      <div>限购</div>
       <div>{renderSortLabel('现价', 'marketPrice')}</div>
       <div>{renderSortLabel('涨跌幅', 'changeRate')}</div>
       <div>{renderSortLabel('估值', 'estimatedNav')}</div>
@@ -174,10 +174,10 @@ export function FundTable({ funds, trainingMetricsByCode, formatCurrency, format
             <col className="fund-table__col fund-table__col--code" />
             <col className="fund-table__col fund-table__col--name" />
             <col className="fund-table__col fund-table__col--premium" />
+            <col className="fund-table__col fund-table__col--limit" />
             <col className="fund-table__col fund-table__col--error" />
             <col className="fund-table__col fund-table__col--recent-error" />
             <col className="fund-table__col fund-table__col--error-30d" />
-            <col className="fund-table__col fund-table__col--limit" />
             <col className="fund-table__col fund-table__col--market" />
             <col className="fund-table__col fund-table__col--change" />
             <col className="fund-table__col fund-table__col--estimate" />
@@ -190,10 +190,10 @@ export function FundTable({ funds, trainingMetricsByCode, formatCurrency, format
               <th>{renderSortLabel('代码', 'code')}</th>
               <th>名称</th>
               <th>{renderSortLabel('溢价率', 'premiumRate')}</th>
+              <th>限购</th>
               <th>{renderSortLabel('训练误差', 'meanAbsError')}</th>
               <th>{renderSortLabel('最近误差', 'latestError')}</th>
               <th>{renderSortLabel('30d误差', 'error30d')}</th>
-              <th>限购</th>
               <th>{renderSortLabel('现价', 'marketPrice')}</th>
               <th>{renderSortLabel('涨跌幅', 'changeRate')}</th>
               <th>{renderSortLabel('估值', 'estimatedNav')}</th>
@@ -209,6 +209,8 @@ export function FundTable({ funds, trainingMetricsByCode, formatCurrency, format
               const latestError = getLatestError(fund);
               const avg30dError = getRecent30DayAvgAbsError(fund);
               const training30Error = getTrainingValidation30Error(fund, trainingMetricsByCode);
+              const compactName = getCompactFundName(fund.runtime.code, fund.runtime.name);
+              const fullName = getFullFundName(fund.runtime.code, fund.runtime.name);
 
               return (
                 <tr key={fund.runtime.code}>
@@ -218,9 +220,12 @@ export function FundTable({ funds, trainingMetricsByCode, formatCurrency, format
                     </a>
                   </td>
                   <td>
-                    <span className="fund-table__name" title={fund.runtime.name}>{fund.runtime.name}</span>
+                    <span className="fund-table__name" title={fullName}>{compactName}</span>
                   </td>
                   <td className={`tone-${premiumTone}`}>{formatPercent(fund.estimate.premiumRate)}</td>
+                  <td className={getLimitClass(fund.runtime.purchaseLimit)}>
+                    {fund.runtime.purchaseLimit || '待校验'}
+                  </td>
                   <td className={typeof training30Error === 'number' ? (training30Error > 0.02 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>
                     {typeof training30Error === 'number' ? formatPercent(training30Error) : '未训练'}
                   </td>
@@ -228,9 +233,6 @@ export function FundTable({ funds, trainingMetricsByCode, formatCurrency, format
                     {typeof latestError === 'number' ? formatPercent(latestError) : '--'}
                   </td>
                   <td>{typeof avg30dError === 'number' ? formatPercent(avg30dError) : '--'}</td>
-                  <td className={getLimitClass(fund.runtime.purchaseLimit)}>
-                    {fund.runtime.purchaseLimit || '待校验'}
-                  </td>
                   <td>{formatCurrency(fund.runtime.marketPrice)}</td>
                   <td className={changeRate >= 0 ? 'tone-positive' : 'tone-negative'}>{formatPercent(changeRate)}</td>
                   <td>{formatCurrency(fund.estimate.estimatedNav)}</td>
@@ -249,6 +251,71 @@ export function FundTable({ funds, trainingMetricsByCode, formatCurrency, format
 
 function getChangeRate(marketPrice: number, previousClose: number) {
   return previousClose > 0 ? marketPrice / previousClose - 1 : 0;
+}
+
+function stripFundCodeSuffix(name: string): string {
+  return name.replace(/\s*[（(]\s*(?:基金)?(?:代码)?\s*[:：]?\s*\d{6}\s*[)）]\s*$/, '').trim();
+}
+
+const FUND_NAME_OVERRIDES: Record<string, { shortName: string; fullName?: string }> = {
+  '160719': {
+    shortName: '嘉实黄金',
+  },
+  '161129': {
+    shortName: '易方达原油',
+  },
+  '160723': {
+    shortName: '嘉实原油',
+  },
+  '501018': {
+    shortName: '南方原油',
+  },
+  '513800': {
+    shortName: '日本东证指数',
+    fullName: '日本东证指数ETF南方 / 南方顶峰TOPIX(ETF-QDII)',
+  },
+};
+
+const FUND_COMPANY_PREFIXES = [
+  '南方', '易方达', '华夏', '嘉实', '广发', '汇添富', '富国', '博时', '国泰', '招商', '鹏华', '工银瑞信',
+  '银华', '中欧', '中银', '景顺长城', '华安', '天弘', '建信', '兴证全球', '华宝', '平安', '万家', '长城',
+  '长信', '国投瑞银', '诺安', '大成', '中信保诚', '交银施罗德', '前海开源', '民生加银', '南华', '华泰柏瑞',
+  '华商', '中加', '西部利得', '海富通', '永赢', '信达澳亚', '创金合信', '摩根', '摩根士丹利',
+];
+
+function getFullFundName(code: string, name: string): string {
+  const override = FUND_NAME_OVERRIDES[code];
+  if (override?.fullName) {
+    return override.fullName;
+  }
+  return stripFundCodeSuffix(name);
+}
+
+function getCompactFundName(code: string, name: string): string {
+  const override = FUND_NAME_OVERRIDES[code];
+  if (override) {
+    return override.shortName;
+  }
+
+  const baseName = stripFundCodeSuffix(name);
+  let compact = baseName;
+
+  compact = compact.replace(/[（(][^)）]*(?:ETF|QDII|LOF)[^)）]*[)）]/gi, ' ');
+  compact = compact.replace(/\b(?:ETF|QDII|LOF)\b/gi, ' ');
+  compact = compact.replace(/(?:ETF|QDII|LOF)/gi, ' ');
+  compact = compact.replace(/(?:人民币|人民幣)/gi, ' ');
+  compact = compact.replace(/\bA(?:类|份额|份)?\b/gi, ' ');
+  compact = compact.replace(/([\u4e00-\u9fa5])A(?=$|[\s（(\-_/])/g, '$1');
+  compact = compact.replace(/[（(]\s*[)）]/g, ' ');
+
+  for (const company of FUND_COMPANY_PREFIXES) {
+    const escaped = company.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    compact = compact.replace(new RegExp(`^${escaped}`), '');
+    compact = compact.replace(new RegExp(`${escaped}$`), '');
+  }
+
+  compact = compact.replace(/[\s\-_/]+/g, ' ').replace(/[（(]\s*[)）]/g, ' ').trim();
+  return compact || baseName;
 }
 
 function getLatestError(fund: FundViewModel): number | undefined {

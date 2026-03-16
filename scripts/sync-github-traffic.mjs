@@ -98,10 +98,21 @@ async function main() {
   }
 
   try {
-    const [views, clones] = await Promise.all([
-      fetchGithubTraffic(`/repos/${repo}/traffic/views`),
-      fetchGithubTraffic(`/repos/${repo}/traffic/clones`),
+    const [viewsResult, clonesResult] = await Promise.all([
+      fetchGithubTraffic(`/repos/${repo}/traffic/views`)
+        .then((data) => ({ ok: true, data, error: '' }))
+        .catch((error) => ({ ok: false, data: null, error: error instanceof Error ? error.message : String(error) })),
+      fetchGithubTraffic(`/repos/${repo}/traffic/clones`)
+        .then((data) => ({ ok: true, data, error: '' }))
+        .catch((error) => ({ ok: false, data: null, error: error instanceof Error ? error.message : String(error) })),
     ]);
+
+    if (!viewsResult.ok && !clonesResult.ok) {
+      throw new Error(`views+clones unavailable; views=${viewsResult.error}; clones=${clonesResult.error}`);
+    }
+
+    const views = viewsResult.data || { views: [], count: 0, uniques: 0 };
+    const clones = clonesResult.data || { clones: [], count: 0, uniques: 0 };
 
     const byDay = new Map();
 
@@ -134,12 +145,16 @@ async function main() {
     }
 
     const days = [...byDay.values()].sort((a, b) => a.date.localeCompare(b.date));
+    const partialWarnings = [
+      viewsResult.ok ? '' : `views-failed: ${viewsResult.error}`,
+      clonesResult.ok ? '' : `clones-failed: ${clonesResult.error}`,
+    ].filter(Boolean);
     const payload = {
       generatedAt: new Date().toISOString(),
       source: 'github-traffic-api',
       repo,
       available: true,
-      reason: '',
+      reason: partialWarnings.join(' | '),
       recent7: buildRecentSeven(days),
       totals: {
         viewCount: Number(views?.count) || 0,

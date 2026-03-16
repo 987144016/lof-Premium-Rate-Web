@@ -53,5 +53,7 @@
   { "code": "161126", "detailMode": "summary", "priority": 52, "pageCategory": "qdii-lof", "estimateMode": "market" },
   { "code": "513500", "detailMode": "summary", "priority": 53, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-sandp500" },
   { "code": "513100", "detailMode": "summary", "priority": 54, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-nasdaq100" },
-  { "code": "163208", "detailMode": "summary", "priority": 55, "pageCategory": "qdii-lof", "estimateMode": "market" }
+  { "code": "163208", "detailMode": "summary", "priority": 55, "pageCategory": "qdii-lof", "estimateMode": "market" },
+  { "code": "159502", "detailMode": "summary", "priority": 56, "pageCategory": "etf", "estimateMode": "market" },
+  { "code": "513290", "detailMode": "summary", "priority": 57, "pageCategory": "etf", "estimateMode": "market" }
 ]

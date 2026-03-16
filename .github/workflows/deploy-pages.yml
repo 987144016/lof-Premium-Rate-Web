@@ -6,11 +6,11 @@ on:
     branches:
       - main
   schedule:
-    # Workdays only (Mon-Fri). Beijing time is UTC+8.
+    # Beijing time is UTC+8.
     # Day session: 09:00-16:59 CST, every 5 minutes.
-    - cron: '*/5 1-8 * * 1-5'
+    - cron: '*/5 1-8 * * *'
     # US night session: 21:00-04:59 CST, every 5 minutes.
-    - cron: '*/5 13-20 * * 1-5'
+    - cron: '*/5 13-20 * * *'
 
 permissions:
   contents: read
@@ -55,6 +55,9 @@ jobs:
           GH_TRAFFIC_REPO: ${{ github.repository }}
           GH_TRAFFIC_TOKEN: ${{ secrets.GH_TRAFFIC_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Sync Funds Runtime Data
+        run: npm run sync:data
 
       - name: Build Site
         run: npm run build:static

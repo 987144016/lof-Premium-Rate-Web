@@ -802,6 +802,120 @@ const RESEARCH_CONFIG_BY_CODE = {
     fxGapWeight: 0.3,
     noteLabel: '美股科技交易时段/非交易时段',
   },
+  '513300': {
+    theme: 'us-nasdaq100',
+    aliases: [
+      { ticker: 'NVDA', aliases: ['NVIDIA Corp'] },
+      { ticker: 'MSFT', aliases: ['Microsoft Corp'] },
+      { ticker: 'AAPL', aliases: ['Apple Inc'] },
+      { ticker: 'AMZN', aliases: ['Amazon.com Inc'] },
+      { ticker: 'META', aliases: ['Meta Platforms Inc'] },
+      { ticker: 'GOOGL', aliases: ['Alphabet Inc Class A'] },
+      { ticker: 'GOOG', aliases: ['Alphabet Inc Class C'] },
+      { ticker: 'AVGO', aliases: ['Broadcom Inc'] },
+      { ticker: 'QQQ', aliases: ['Invesco QQQ Trust Series 1', 'Invesco QQQ Trust'] },
+      { ticker: 'XLK', aliases: ['Technology Select Sector SPDR ETF'] },
+      { ticker: 'SOXX', aliases: ['iShares Semiconductor ETF'] },
+    ],
+    seedHoldings: ['NVDA', 'MSFT', 'AAPL', 'AMZN', 'META', 'GOOGL', 'AVGO', 'QQQ'],
+    proxyComponents: [
+      { ticker: 'QQQ', weight: 0.72 },
+      { ticker: 'XLK', weight: 0.18 },
+      { ticker: 'SOXX', weight: 0.1 },
+    ],
+    gapSpreadThreshold: 0.016,
+    gapSignalThresholdHint: 0.012,
+    fxGapWeight: 0.28,
+    noteLabel: '纳指交易时段/非交易时段',
+  },
+  '159518': {
+    theme: 'oil-upstream',
+    aliases: [
+      { ticker: 'XOM', aliases: ['Exxon Mobil Corp'] },
+      { ticker: 'CVX', aliases: ['Chevron Corp'] },
+      { ticker: 'COP', aliases: ['ConocoPhillips'] },
+      { ticker: 'EOG', aliases: ['EOG Resources Inc'] },
+      { ticker: 'OXY', aliases: ['Occidental Petroleum Corp'] },
+      { ticker: 'DVN', aliases: ['Devon Energy Corp'] },
+      { ticker: 'FANG', aliases: ['Diamondback Energy Inc'] },
+      { ticker: 'PSX', aliases: ['Phillips 66'] },
+      { ticker: 'XOP', aliases: ['SPDR S&P Oil & Gas E&P ETF'] },
+      { ticker: 'XLE', aliases: ['Energy Select Sector SPDR'] },
+    ],
+    seedHoldings: ['XOM', 'CVX', 'COP', 'EOG', 'OXY', 'DVN', 'FANG', 'PSX', 'XOP', 'XLE'],
+    proxyComponents: [
+      { ticker: 'XOP', weight: 0.70 },
+      { ticker: 'XLE', weight: 0.30 },
+    ],
+    gapSpreadThreshold: 0.02,
+    gapSignalThresholdHint: 0.016,
+    fxGapWeight: 0.35,
+    noteLabel: '油气上游交易时段/非交易时段',
+  },
+  '163208': {
+    theme: 'oil-upstream',
+    aliases: [
+      { ticker: 'XOM', aliases: ['Exxon Mobil Corp'] },
+      { ticker: 'CVX', aliases: ['Chevron Corp'] },
+      { ticker: 'COP', aliases: ['ConocoPhillips'] },
+      { ticker: 'SHEL', aliases: ['Shell PLC'] },
+      { ticker: 'BP', aliases: ['BP PLC', 'BP P.L.C.'] },
+      { ticker: 'OXY', aliases: ['Occidental Petroleum Corp'] },
+      { ticker: 'XOP', aliases: ['SPDR S&P Oil & Gas E&P ETF'] },
+      { ticker: 'XLE', aliases: ['Energy Select Sector SPDR'] },
+      { ticker: 'IXC', aliases: ['iShares Global Energy ETF'] },
+    ],
+    seedHoldings: ['XOM', 'CVX', 'COP', 'SHEL', 'OXY', 'XOP', 'XLE', 'IXC'],
+    proxyComponents: [
+      { ticker: 'XOP', weight: 0.55 },
+      { ticker: 'XLE', weight: 0.30 },
+      { ticker: 'IXC', weight: 0.15 },
+    ],
+    gapSpreadThreshold: 0.018,
+    gapSignalThresholdHint: 0.015,
+    fxGapWeight: 0.32,
+    noteLabel: '全球油气交易时段/非交易时段',
+  },
+  '159577': {
+    theme: 'us-large50',
+    aliases: [
+      { ticker: 'MGC', aliases: ['Vanguard Mega Cap ETF'] },
+      { ticker: 'SPY', aliases: ['SPDR S&P 500 ETF Trust'] },
+      { ticker: 'IVV', aliases: ['iShares Core S&P 500 ETF'] },
+      { ticker: 'VOO', aliases: ['Vanguard S&P 500 ETF'] },
+      { ticker: 'QQQ', aliases: ['Invesco QQQ Trust Series 1', 'Invesco QQQ Trust'] },
+    ],
+    seedHoldings: ['MGC', 'SPY', 'IVV', 'VOO', 'QQQ'],
+    proxyComponents: [
+      { ticker: 'MGC', weight: 0.45 },
+      { ticker: 'SPY', weight: 0.35 },
+      { ticker: 'QQQ', weight: 0.20 },
+    ],
+    gapSpreadThreshold: 0.015,
+    gapSignalThresholdHint: 0.011,
+    fxGapWeight: 0.28,
+    noteLabel: '美股大盘交易时段/非交易时段',
+  },
+  '513400': {
+    theme: 'us-dow',
+    aliases: [
+      { ticker: 'DIA', aliases: ['SPDR Dow Jones Industrial Average ETF Trust', 'Dow Jones Industrial ETF'] },
+      { ticker: 'SPY', aliases: ['SPDR S&P 500 ETF Trust'] },
+      { ticker: 'VOO', aliases: ['Vanguard S&P 500 ETF'] },
+      { ticker: 'XLI', aliases: ['Industrial Select Sector SPDR Fund'] },
+      { ticker: 'XLF', aliases: ['Financial Select Sector SPDR Fund'] },
+    ],
+    seedHoldings: ['DIA', 'SPY', 'VOO', 'XLI', 'XLF'],
+    proxyComponents: [
+      { ticker: 'DIA', weight: 0.65 },
+      { ticker: 'SPY', weight: 0.25 },
+      { ticker: 'XLI', weight: 0.10 },
+    ],
+    gapSpreadThreshold: 0.015,
+    gapSignalThresholdHint: 0.011,
+    fxGapWeight: 0.27,
+    noteLabel: '道指交易时段/非交易时段',
+  },
 };
 const TARGET_CONFIG = RESEARCH_CONFIG_BY_CODE[TARGET_CODE];
 if (!TARGET_CONFIG) {
@@ -1836,7 +1950,7 @@ function renderChart({ x, y, width, height, title, yFormatter, yMin, yMax, dates
 
   const legend = series.map((item, idx) => {
     const lx = x + padLeft + idx * 215;
-    const ly = y + 20;
+    const ly = y + 38;
     return `<line x1="${lx}" y1="${ly}" x2="${lx + 26}" y2="${ly}" stroke="${item.color}" stroke-width="2" ${item.dashed ? 'stroke-dasharray="6 4"' : ''} />
       <text x="${lx + 32}" y="${ly + 4}" fill="#24312e" font-size="12">${xmlEscape(item.label)}</text>`;
   }).join('\n');

@@ -1,0 +1,428 @@
+{
+  "code": "513400",
+  "generatedAt": "2026-03-16T06:11:34.054Z",
+  "splitMode": "year-split",
+  "method": "history-holdings-daily-return",
+  "explanation": "旧版离线研究主要基于净值时序特征，并未直接按前十大持仓逐日涨跌幅估值；本版已切换为历史前十大持仓逐日估值。",
+  "fallbackMode": "none",
+  "disclosureCount": 8,
+  "usedQuoteTickers": [
+    "DIA",
+    "SPY",
+    "VOO",
+    "XLI",
+    "XLF"
+  ],
+  "avgHoldingCoverage": 0.9212410501193318,
+  "trainRange": "2025-01-02 ~ 2025-12-31",
+  "validationRange": "2026-01-05 ~ 2026-03-12",
+  "segmented": {
+    "maeTrain": 0.0029239830584654744,
+    "maeValidation": 0.003187109232747965,
+    "maeValidation30": 0.0030037203691070918,
+    "maeValidation30Robust": 0.0028242176583673515,
+    "maeValidationWeighted": 0.003187109232747965,
+    "maeValidation30Weighted": 0.0030037203691070918
+  },
+  "dualObjective": {
+    "mode": "holdings-return-plus-fx",
+    "lambda": 0.1,
+    "maeValidation": 0.006880584504287593,
+    "maeValidation30": 0.006862972288304766,
+    "premiumProxyValidation": 0.005691710272751851
+  },
+  "adaptiveModel": {
+    "kLearnRate": 0.18,
+    "biasLearnRate": 0.05,
+    "fxMix": 0.5,
+    "tradingShockThreshold": 0.008945817212817342,
+    "offShockThreshold": 0.010561000704663325,
+    "shockBaseBlend": 0.3,
+    "tradingBaseBlend": 0.5900000000000001,
+    "offBaseBlend": 0.65,
+    "sessionSplit": true,
+    "tradingLeadScale": 1.08,
+    "offLeadScale": 0.94,
+    "upMoveScale": 1.12,
+    "downMoveScale": 1.12,
+    "shockAmplify": 0.2,
+    "arWeight": 0,
+    "gapBranch": true,
+    "gapCoef": 0.75,
+    "gapAmplify": 0.35,
+    "gapSignalThreshold": 0.006,
+    "weekendThreshold": 0.01,
+    "weekendAmplify": 0,
+    "weekendFxCoef": 0.4,
+    "weekendMomentumCoef": 0,
+    "extremeThreshold": 0.017939930107838543,
+    "extremeAmplify": 0.25,
+    "tuningMae": 0.0026516988518912625,
+    "tuningMae30": 0.00241098630292406,
+    "tuningMae30Robust": 0.002242625571679914,
+    "validationSelectionMae": 0.003271796195306515,
+    "validationSelectionMae30": 0.0031083441057614515,
+    "validationSelectionMae30Robust": 0.0029317403360977806,
+    "validationSelectionTrainTop4": 0.018572915387841976,
+    "refinedSelectionMae": 0.003187059105296845,
+    "refinedSelectionMae30": 0.003005487560517972,
+    "refinedSelectionMae30Robust": 0.0028256889551984245,
+    "refinedSelectionTrainTop4": 0.018122063564931373,
+    "residualRefineShrink": 0.8,
+    "residualRefineCap": 0.008,
+    "residualRefineMae": 0.003187109232747965,
+    "residualRefineMae30": 0.0030037203691070918,
+    "residualRefineMae30Robust": 0.0028242176583673515,
+    "residualRefineTrainTop4": 0.017325421883276543,
+    "residualRefineTrainTop8": 0.013888683763467788
+  },
+  "validationDiagnostics": {
+    "maeBySession": {
+      "oilTradingSession": 0.003237932985597436,
+      "nonTradingSession": 0.0029951083886499636,
+      "gapDayHint": 0.0029951083886499636,
+      "nonGapDay": 0.003237932985597436
+    },
+    "topErrorDays": [
+      {
+        "date": "2026-01-20",
+        "absError": 0.01764306344186939,
+        "predictedReturn": -0.0005799796639727676,
+        "targetReturn": -0.0179071068830442,
+        "residualCorrection": -0.000008187605684718305,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.0001854960647123405,
+        "usoReturn": 0,
+        "bnoReturn": 0,
+        "fxReturn": -0.0006870224618975573,
+        "tags": [
+          "披露覆盖不足"
+        ]
+      },
+      {
+        "date": "2026-02-27",
+        "absError": 0.008209298980559554,
+        "predictedReturn": -0.002192151029072947,
+        "targetReturn": -0.010316756669621951,
+        "residualCorrection": -0.00001024137504259623,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.0007564376374329614,
+        "usoReturn": -0.01050802247100191,
+        "bnoReturn": -0.004801973016103189,
+        "fxReturn": 0.0029590559105057146,
+        "tags": []
+      },
+      {
+        "date": "2026-01-27",
+        "absError": 0.007941032060237552,
+        "predictedReturn": -0.00013024462185905154,
+        "targetReturn": -0.008007687379884665,
+        "residualCorrection": -0.000011860847551318733,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.001358040891320819,
+        "usoReturn": -0.008096182649880546,
+        "bnoReturn": 0.003984236282534415,
+        "fxReturn": 0.00024749020471181993,
+        "tags": []
+      },
+      {
+        "date": "2026-03-05",
+        "absError": 0.007292785037150029,
+        "predictedReturn": -0.010360204562223486,
+        "targetReturn": -0.017525182212759005,
+        "residualCorrection": -0.000011201937757102344,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.0014506802978545117,
+        "usoReturn": -0.016197154221511578,
+        "bnoReturn": -0.005575584195700145,
+        "fxReturn": -0.0019386073878460142,
+        "tags": []
+      },
+      {
+        "date": "2026-01-13",
+        "absError": 0.006273576716891549,
+        "predictedReturn": -0.0018060505387254657,
+        "targetReturn": -0.008029255107719235,
+        "residualCorrection": -0.00001007096470575406,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.001634132072423677,
+        "usoReturn": -0.007985480943738632,
+        "bnoReturn": -0.0019995396743195393,
+        "fxReturn": 0.000691731654042238,
+        "tags": []
+      },
+      {
+        "date": "2026-03-09",
+        "absError": 0.0059964237980378865,
+        "predictedReturn": 0.0010277454962302817,
+        "targetReturn": 0.007066543282577609,
+        "residualCorrection": -0.000022414196797354785,
+        "isOilTradingSession": false,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": -0.001787304288177399,
+        "usoReturn": 0.00557624729078543,
+        "bnoReturn": 0.008759927421993385,
+        "fxReturn": 0.000991746529248605,
+        "tags": [
+          "非油价交易时段",
+          "缺口日"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "absError": 0.005488648705713528,
+        "predictedReturn": 0.0050792444658921,
+        "targetReturn": 0.010626216742375183,
+        "residualCorrection": -0.000014780745493002673,
+        "isOilTradingSession": false,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": 0.001002883873624195,
+        "usoReturn": 0.010224321616260745,
+        "bnoReturn": 0.004971313785279596,
+        "fxReturn": -0.001369260110518855,
+        "tags": [
+          "非油价交易时段",
+          "缺口日"
+        ]
+      },
+      {
+        "date": "2026-03-11",
+        "absError": 0.0051179630306763535,
+        "predictedReturn": -0.0018719649904000413,
+        "targetReturn": -0.006954335986594007,
+        "residualCorrection": -0.000009612355610717773,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.0011666362014184015,
+        "usoReturn": -0.006049822064056909,
+        "bnoReturn": -0.0012552054106735877,
+        "fxReturn": -0.00048130122913569995,
+        "tags": []
+      },
+      {
+        "date": "2026-02-24",
+        "absError": 0.004878979294488772,
+        "predictedReturn": -0.0011818106891933117,
+        "targetReturn": -0.006031363088057962,
+        "residualCorrection": -0.000031036426902017086,
+        "isOilTradingSession": false,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": -0.0033624448423329443,
+        "usoReturn": -0.00704651914068799,
+        "bnoReturn": 0.008214154748808156,
+        "fxReturn": -0.0045102766254733195,
+        "tags": [
+          "非油价交易时段",
+          "缺口日"
+        ]
+      },
+      {
+        "date": "2026-01-23",
+        "absError": 0.00453094666226872,
+        "predictedReturn": -0.0023741497659110528,
+        "targetReturn": -0.006873950923187766,
+        "residualCorrection": -0.000009918592019816773,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.00256518078518466,
+        "usoReturn": -0.005590552776033486,
+        "bnoReturn": 0.000362855235275239,
+        "fxReturn": -0.00043797171707893323,
+        "tags": []
+      }
+    ]
+  },
+  "trainDiagnostics": {
+    "topErrorDays": [
+      {
+        "date": "2025-04-21",
+        "absError": 0.023996606788426078,
+        "predictedReturn": -0.0008782124362729073,
+        "targetReturn": -0.0242918961447679,
+        "residualCorrection": -0.000019572246368291977,
+        "isOilTradingSession": false,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": 0,
+        "usoReturn": 0,
+        "bnoReturn": 0,
+        "fxReturn": 0,
+        "tags": [
+          "非油价交易时段",
+          "缺口日",
+          "披露覆盖不足"
+        ]
+      },
+      {
+        "date": "2025-05-27",
+        "absError": 0.01835189647279656,
+        "predictedReturn": -0.00031827942896786305,
+        "targetReturn": 0.018370755242159698,
+        "residualCorrection": -0.000008470968163701097,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": 0.0005205471819017382,
+        "usoReturn": 0,
+        "bnoReturn": 0,
+        "fxReturn": 0.0019279525255619934,
+        "tags": [
+          "披露覆盖不足"
+        ]
+      },
+      {
+        "date": "2025-01-10",
+        "absError": 0.015656677771910932,
+        "predictedReturn": -0.0006594623592948405,
+        "targetReturn": -0.01606462152840793,
+        "residualCorrection": -0.000008176476179682898,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.0002132246300477392,
+        "usoReturn": 0,
+        "bnoReturn": 0,
+        "fxReturn": -0.0007897208520286636,
+        "tags": [
+          "披露覆盖不足"
+        ]
+      },
+      {
+        "date": "2025-01-21",
+        "absError": 0.011296506499972603,
+        "predictedReturn": -0.0015274048640011527,
+        "targetReturn": 0.009880719245148661,
+        "residualCorrection": -0.000007763350952435619,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.001242550704371538,
+        "usoReturn": 0,
+        "bnoReturn": 0,
+        "fxReturn": -0.00460203964582051,
+        "tags": [
+          "披露覆盖不足"
+        ]
+      },
+      {
+        "date": "2025-07-07",
+        "absError": 0.010920929330898055,
+        "predictedReturn": 0.0010493371243311467,
+        "targetReturn": -0.009764949879018436,
+        "residualCorrection": -0.000020113040802321356,
+        "isOilTradingSession": false,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": 0.0004715699592470069,
+        "usoReturn": 0,
+        "bnoReturn": 0,
+        "fxReturn": 0.0017465554046185439,
+        "tags": [
+          "非油价交易时段",
+          "缺口日",
+          "披露覆盖不足"
+        ]
+      },
+      {
+        "date": "2025-04-17",
+        "absError": 0.010831610878628606,
+        "predictedReturn": -0.002893190355297114,
+        "targetReturn": -0.01357773251866945,
+        "residualCorrection": -0.0035821046748977176,
+        "isOilTradingSession": true,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": 0.00042577350834309305,
+        "usoReturn": -0.013635103460442943,
+        "bnoReturn": 0.0014267777650953661,
+        "fxReturn": -0.0008811537093288413,
+        "tags": [
+          "缺口日"
+        ]
+      },
+      {
+        "date": "2025-08-04",
+        "absError": 0.010216013468107965,
+        "predictedReturn": 0.0014875133996676937,
+        "targetReturn": 0.01182432432432412,
+        "residualCorrection": -0.00001866763601596641,
+        "isOilTradingSession": false,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": -0.0027484531355940556,
+        "usoReturn": 0.013976865877168843,
+        "bnoReturn": 0.01519976838448156,
+        "fxReturn": -0.005963226538919564,
+        "tags": [
+          "非油价交易时段",
+          "缺口日"
+        ]
+      },
+      {
+        "date": "2025-11-11",
+        "absError": 0.009839228897001506,
+        "predictedReturn": 0.0019182668594785702,
+        "targetReturn": 0.011874330007421552,
+        "residualCorrection": -0.000005391688007374029,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.000028720949230945375,
+        "usoReturn": 0.011797729095437193,
+        "bnoReturn": 0.002289269781638792,
+        "fxReturn": -0.00021900853712120139,
+        "tags": []
+      },
+      {
+        "date": "2025-05-13",
+        "absError": 0.008865092625540472,
+        "predictedReturn": 0.001535887448457044,
+        "targetReturn": -0.007264802034144591,
+        "residualCorrection": -0.000011903479585374735,
+        "isOilTradingSession": true,
+        "isGapDayHint": false,
+        "isAnomalyDay": false,
+        "gapSignal": -0.000758563996226099,
+        "usoReturn": -0.006411616340192938,
+        "bnoReturn": 0.006603886859122943,
+        "fxReturn": -0.0023291570253891614,
+        "tags": []
+      },
+      {
+        "date": "2025-03-03",
+        "absError": 0.008542599114050864,
+        "predictedReturn": -0.005807852362516799,
+        "targetReturn": -0.014228899690676089,
+        "residualCorrection": -0.000017321067794658128,
+        "isOilTradingSession": false,
+        "isGapDayHint": true,
+        "isAnomalyDay": false,
+        "gapSignal": 0.0017956771628012858,
+        "usoReturn": -0.014325797842005716,
+        "bnoReturn": -0.017518627679364296,
+        "fxReturn": 0.001111312336390169,
+        "tags": [
+          "非油价交易时段",
+          "缺口日"
+        ]
+      }
+    ]
+  },
+  "chartPath": "generated/513400-offline-research.svg",
+  "notes": "估值点使用同日持仓涨跌幅对齐同日净值，不做时间平移；513400 使用“道指交易时段/非交易时段”分参数与“主代理/次代理跳空+汇率错位”缺口日专用分支。若个别持仓缺历史行情，按可用权重归一化。"
+}

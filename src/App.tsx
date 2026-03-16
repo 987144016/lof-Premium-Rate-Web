@@ -8,16 +8,18 @@ import { cloneInitialScenario, defaultCalibration } from './data/funds';
 import { estimateScenario, trainCalibration } from './lib/estimator';
 import { readFundJournal, readWatchlistModel, writeFundJournal, writeWatchlistModel } from './lib/storage';
 import { estimateWatchlistFund, getDefaultWatchlistModel, reconcileJournal, recordEstimateSnapshot } from './lib/watchlist';
-import type { CalibrationModel, FundJournal, FundRuntimeData, FundScenario, FundViewModel, GithubTrafficPayload, PageCategory, RuntimePayload, WatchlistModel } from './types';
+import type { CalibrationModel, FundJournal, FundRuntimeData, FundScenario, FundViewModel, GithubTrafficPayload, RuntimePayload, WatchlistModel } from './types';
 
 const DETAIL_CALIBRATION_PREFIX = 'premium-estimator:detailed-calibration:';
 const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
-const PAGE_OPTIONS: Array<{ key: PageCategory; path: string; label: string; lead: string; tableTitle: string; tableDescription: string }> = [
+type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf';
+
+const PAGE_OPTIONS: Array<{ key: ViewCategory; path: string; label: string; lead: string; tableTitle: string; tableDescription: string }> = [
   {
     key: 'qdii-lof',
     path: '/qdii-lof',
-    label: 'QDII 的 LOF',
+    label: 'QDII类LOF',
     lead: 'QDII 官方净值通常会慢一个到两个交易日，具体以净值日期列为准。本页默认优先按可获取的前十大持仓推算净值，持仓覆盖不足部分再由海外代理篮子补齐，并叠加 USD/CNY 与误差修正项。',
     tableTitle: 'QDII LOF 列表',
     tableDescription: '本页默认按“前十大持仓优先 + 代理篮子补足 + 汇率/修正因子”估值；若暂时拿不到持仓报价，则自动回退到代理篮子。点击表头可排序。',
@@ -31,12 +33,20 @@ const PAGE_OPTIONS: Array<{ key: PageCategory; path: string; label: string; lead
     tableDescription: '国内 LOF 当前口径是：前十大持仓优先、代理篮子补足、修正因子校准；持仓不可用时回退到代理或场内信号。点击表头可排序。',
   },
   {
-    key: 'etf',
-    path: '/etf',
-    label: 'ETF 类',
-    lead: '这一页单独放 ETF 类基金。默认同样采用“前十大持仓优先 + 代理篮子补足 + 汇率/修正因子”口径，场内价格主要用于展示溢价率。',
-    tableTitle: 'ETF 类列表',
-    tableDescription: 'ETF 页当前以跨境 ETF 为主，估值口径与 QDII 一致：前十大持仓优先、代理篮子补足、汇率和修正因子联合驱动。点击表头可排序。',
+    key: 'qdii-etf',
+    path: '/qdii-etf',
+    label: 'QDII类ETF',
+    lead: '这一页放跨境 QDII ETF。默认采用“前十大持仓优先 + 代理篮子补足 + 汇率/修正因子”口径，场内价格主要用于展示溢价率。',
+    tableTitle: 'QDII ETF 列表',
+    tableDescription: 'QDII ETF 页估值口径与 QDII LOF 一致：前十大持仓优先、代理篮子补足、汇率和修正因子联合驱动。点击表头可排序。',
+  },
+  {
+    key: 'domestic-etf',
+    path: '/domestic-etf',
+    label: '国内ETF',
+    lead: '这一页放国内 ETF。默认优先按持仓推算净值，持仓覆盖不足时由代理篮子或场内信号补足。',
+    tableTitle: '国内 ETF 列表',
+    tableDescription: '国内 ETF 当前口径是：前十大持仓优先、代理篮子补足、修正因子校准；持仓不可用时回退到代理或场内信号。点击表头可排序。',
   },
 ];
 
@@ -187,8 +197,17 @@ function getHoursSinceSync(syncedAt: string): number | null {
   return Math.max(0, (Date.now() - syncedAtMs) / (1000 * 60 * 60));
 }
 
-function getPageOption(pageCategory: PageCategory) {
+function getPageOption(pageCategory: ViewCategory) {
   return PAGE_OPTIONS.find((item) => item.key === pageCategory) ?? PAGE_OPTIONS[0];
+}
+
+function isQdiiEtfFund(fund: FundViewModel) {
+  if (fund.runtime.pageCategory !== 'etf') {
+    return false;
+  }
+
+  const text = `${fund.runtime.name || ''} ${fund.runtime.benchmark || ''} ${fund.runtime.fundType || ''}`;
+  return /QDII|纳斯达克|标普|道琼斯|日经|TOPIX|德国|巴西|沙特|东南亚|全球|美国|港美|油气|生物科技/i.test(text);
 }
 
 function hasAnnouncedHoldingsSignal(runtime: FundRuntimeData) {
@@ -418,7 +437,7 @@ function buildSparklinePoints(values: number[], width: number, height: number) {
     .join(' ');
 }
 
-const OFFLINE_RESEARCH_CODES = new Set(['160216', '160723', '161725', '501018', '161129', '160719', '161116', '164701', '501225', '513310', '161130', '160416', '162719', '162411', '161125', '159509', '501312', '501011', '501050', '160221', '165520', '167301', '161226', '161128', '513800', '513880', '513520', '513100', '513500', '159502', '513290', '159561', '513030', '513850']);
+const OFFLINE_RESEARCH_CODES = new Set(['160216', '160723', '161725', '501018', '161129', '160719', '161116', '164701', '501225', '513310', '161130', '160416', '162719', '162411', '161125', '159509', '501312', '501011', '501050', '160221', '165520', '167301', '161226', '161128', '513800', '513880', '513520', '513100', '513500', '159502', '513290', '159561', '513030', '513850', '513300', '159518', '163208', '159577', '513400']);
 
 function getPointsDateRange(points: ResearchPoint[]) {
   if (!points.length) {
@@ -1400,12 +1419,20 @@ function HomePage({
   syncedAt: string;
   loading: boolean;
   error: string;
-  pageCategory: PageCategory;
+  pageCategory: ViewCategory;
   githubTraffic: GithubTrafficPayload;
   trainingMetricsByCode: Record<string, TrainingMetricSummary>;
 }) {
   const pageOption = getPageOption(pageCategory);
-  const visibleFunds = useMemo(() => funds.filter((item) => item.runtime.pageCategory === pageCategory), [funds, pageCategory]);
+  const visibleFunds = useMemo(() => {
+    if (pageCategory === 'qdii-etf') {
+      return funds.filter((item) => isQdiiEtfFund(item));
+    }
+    if (pageCategory === 'domestic-etf') {
+      return funds.filter((item) => item.runtime.pageCategory === 'etf' && !isQdiiEtfFund(item));
+    }
+    return funds.filter((item) => item.runtime.pageCategory === pageCategory);
+  }, [funds, pageCategory]);
   const proxyDrivenCount = visibleFunds.filter((item) => item.runtime.estimateMode === 'proxy').length;
   const syncAgeHours = getHoursSinceSync(syncedAt);
   const untrainedCount = visibleFunds.filter((item) => !trainingMetricsByCode[item.runtime.code]).length;
@@ -2152,7 +2179,9 @@ export default function App() {
           <Route path="/" element={<Navigate to="/qdii-lof" replace />} />
           <Route path="/domestic-lof" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-lof" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
           <Route path="/qdii-lof" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="qdii-lof" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
-          <Route path="/etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="etf" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/qdii-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="qdii-etf" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/domestic-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-etf" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/etf" element={<Navigate to="/qdii-etf" replace />} />
           <Route path="/detail/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />
           <Route path="/fund/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />
           <Route path="*" element={<Navigate to="/qdii-lof" replace />} />

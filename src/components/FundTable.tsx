@@ -270,6 +270,12 @@ const FUND_NAME_OVERRIDES: Record<string, { shortName: string; fullName?: string
   '159509': {
     shortName: '纳指科技',
   },
+  '159502': {
+    shortName: '标普生物科技',
+  },
+  '513290': {
+    shortName: '纳指生物科技',
+  },
   '159518': {
     shortName: '标普油气',
   },

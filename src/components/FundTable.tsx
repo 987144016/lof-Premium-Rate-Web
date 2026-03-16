@@ -259,13 +259,43 @@ function stripFundCodeSuffix(name: string): string {
 
 const FUND_NAME_OVERRIDES: Record<string, { shortName: string; fullName?: string }> = {
   '160221': {
-    shortName: '有色金属',
+    shortName: '有色金属行业',
   },
   '165520': {
-    shortName: '有色',
+    shortName: '中证800有色',
   },
   '165529': {
     shortName: '有色',
+  },
+  '159509': {
+    shortName: '纳指科技',
+  },
+  '159518': {
+    shortName: '标普油气',
+  },
+  '501225': {
+    shortName: '全球芯片',
+  },
+  '161125': {
+    shortName: '标普500',
+  },
+  '161128': {
+    shortName: '标普信息科技',
+  },
+  '162415': {
+    shortName: '美国消费',
+  },
+  '160644': {
+    shortName: '港美互联',
+  },
+  '501300': {
+    shortName: '美元债',
+  },
+  '160620': {
+    shortName: '鹏华资源',
+  },
+  '161217': {
+    shortName: '国投资源',
   },
   '162411': {
     shortName: '华宝油气',

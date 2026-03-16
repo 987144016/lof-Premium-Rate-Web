@@ -451,7 +451,7 @@ label span {
 }
 
 .fund-table-card {
-  --fund-table-columns: 6% 22% 7% 7% 8% 8% 8% 6% 6% 6% 6% 4% 6%;
+  --fund-table-columns: 6% 18% 7% 9% 8% 8% 8% 6% 6% 6% 6% 6% 10%;
 }
 
 .fund-table-floating-header {
@@ -501,15 +501,15 @@ table {
 }
 
 .fund-table__col--name {
-  width: 22%;
+  width: 18%;
 }
 
 .fund-table__col--nav-date {
-  width: 5%;
+  width: 6%;
 }
 
 .fund-table__col--market-time {
-  width: 7%;
+  width: 10%;
 }
 
 .fund-table__col--error {
@@ -525,7 +525,7 @@ table {
 }
 
 .fund-table__col--limit {
-  width: 7%;
+  width: 9%;
 }
 
 th,

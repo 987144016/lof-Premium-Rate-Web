@@ -258,6 +258,12 @@ function stripFundCodeSuffix(name: string): string {
 }
 
 const FUND_NAME_OVERRIDES: Record<string, { shortName: string; fullName?: string }> = {
+  '162411': {
+    shortName: '华宝油气',
+  },
+  '163208': {
+    shortName: '全球油气能源',
+  },
   '160719': {
     shortName: '嘉实黄金',
   },

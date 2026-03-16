@@ -8,7 +8,7 @@ import { cloneInitialScenario, defaultCalibration } from './data/funds';
 import { estimateScenario, trainCalibration } from './lib/estimator';
 import { readFundJournal, readWatchlistModel, writeFundJournal, writeWatchlistModel } from './lib/storage';
 import { estimateWatchlistFund, getDefaultWatchlistModel, reconcileJournal, recordEstimateSnapshot } from './lib/watchlist';
-import type { CalibrationModel, FundJournal, FundRuntimeData, FundScenario, FundViewModel, GithubTrafficPayload, RuntimePayload, WatchlistModel } from './types';
+import type { CalibrationModel, FundJournal, FundRuntimeData, FundScenario, FundViewModel, RuntimePayload, WatchlistModel } from './types';
 
 const DETAIL_CALIBRATION_PREFIX = 'premium-estimator:detailed-calibration:';
 const FAST_SYNC_INTERVAL = 60_000;
@@ -50,26 +50,6 @@ const PAGE_OPTIONS: Array<{ key: ViewCategory; path: string; label: string; lead
   },
 ];
 
-const DEFAULT_GITHUB_TRAFFIC: GithubTrafficPayload = {
-  generatedAt: '',
-  source: 'github-traffic-api',
-  repo: '',
-  available: false,
-  reason: 'not-loaded',
-  recent7: {
-    days: [],
-    viewCount: 0,
-    viewUniques: 0,
-    cloneCount: 0,
-    cloneUniques: 0,
-  },
-  totals: {
-    viewCount: 0,
-    viewUniques: 0,
-    cloneCount: 0,
-    cloneUniques: 0,
-  },
-};
 const HOLDINGS_SIGNAL_MIN_COVERAGE_BY_CODE: Record<string, number> = {
   '513310': 0.55,
   '161128': 0.7,
@@ -195,27 +175,6 @@ function getHoursSinceSync(syncedAt: string): number | null {
   }
 
   return Math.max(0, (Date.now() - syncedAtMs) / (1000 * 60 * 60));
-}
-
-function formatTrafficUnavailableReason(reason?: string): string {
-  if (!reason) {
-    return '原因未返回';
-  }
-
-  const lower = reason.toLowerCase();
-  if (lower.includes('missing-token')) {
-    return '缺少 GH_TRAFFIC_TOKEN';
-  }
-
-  if (lower.includes('resource not accessible by integration') || lower.includes('403')) {
-    return 'Token 权限不足(403)';
-  }
-
-  if (lower.includes('missing-repo')) {
-    return '仓库信息缺失';
-  }
-
-  return reason.length > 42 ? `${reason.slice(0, 42)}...` : reason;
 }
 
 function getPageOption(pageCategory: ViewCategory) {
@@ -437,25 +396,6 @@ interface TrainingMetricSummary {
   maeValidation30: number;
   maeValidation30Robust?: number;
   generatedAt: string;
-}
-
-function buildSparklinePoints(values: number[], width: number, height: number) {
-  if (!values.length) {
-    return '';
-  }
-
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const range = Math.max(1e-9, max - min);
-  const step = values.length > 1 ? width / (values.length - 1) : 0;
-
-  return values
-    .map((value, index) => {
-      const x = (index * step).toFixed(2);
-      const y = (height - ((value - min) / range) * height).toFixed(2);
-      return `${x},${y}`;
-    })
-    .join(' ');
 }
 
 const OFFLINE_RESEARCH_CODES = new Set(['160216', '160723', '161725', '501018', '161129', '160719', '161116', '164701', '501225', '513310', '161130', '160416', '162719', '162411', '161125', '159509', '501312', '501011', '501050', '160221', '165520', '167301', '161226', '161128', '513800', '513880', '513520', '513100', '513500', '159502', '513290', '159561', '513030', '513850', '513300', '159518', '163208', '159577', '513400']);
@@ -1433,7 +1373,6 @@ function HomePage({
   loading,
   error,
   pageCategory,
-  githubTraffic,
   trainingMetricsByCode,
 }: {
   funds: FundViewModel[];
@@ -1441,7 +1380,6 @@ function HomePage({
   loading: boolean;
   error: string;
   pageCategory: ViewCategory;
-  githubTraffic: GithubTrafficPayload;
   trainingMetricsByCode: Record<string, TrainingMetricSummary>;
 }) {
   const pageOption = getPageOption(pageCategory);
@@ -1457,9 +1395,6 @@ function HomePage({
   const proxyDrivenCount = visibleFunds.filter((item) => item.runtime.estimateMode === 'proxy').length;
   const syncAgeHours = getHoursSinceSync(syncedAt);
   const untrainedCount = visibleFunds.filter((item) => !trainingMetricsByCode[item.runtime.code]).length;
-  const uvSeries = githubTraffic.available ? githubTraffic.recent7.days.map((item) => item.viewUniques) : [];
-  const uvSparkline = buildSparklinePoints(uvSeries, 120, 26);
-  const trafficUnavailableReason = formatTrafficUnavailableReason(githubTraffic.reason);
 
   return (
     <main className="page">
@@ -1486,33 +1421,6 @@ function HomePage({
             <strong>{proxyDrivenCount}</strong>
           </div>
           <div className="hero__fact">
-            <span>累计访客</span>
-            <strong id="busuanzi_value_site_uv">--</strong>
-          </div>
-          <div className="hero__fact">
-            <span>页面浏览</span>
-            <strong id="busuanzi_value_site_pv">--</strong>
-          </div>
-          <div className="hero__fact">
-            <span>近7天访客</span>
-            <strong>{githubTraffic.available ? githubTraffic.recent7.viewUniques : '--'}</strong>
-            <small className="hero__fact-subtle" title={githubTraffic.reason || ''}>
-              {githubTraffic.available ? 'GitHub 仓库 UV' : `不可用：${trafficUnavailableReason}`}
-            </small>
-            {uvSparkline ? (
-              <svg className="traffic-mini-chart" viewBox="0 0 120 26" aria-hidden="true">
-                <polyline points={uvSparkline} />
-              </svg>
-            ) : null}
-          </div>
-          <div className="hero__fact">
-            <span>近7天浏览</span>
-            <strong>{githubTraffic.available ? githubTraffic.recent7.viewCount : '--'}</strong>
-            <small className="hero__fact-subtle" title={githubTraffic.reason || ''}>
-              {githubTraffic.available ? 'GitHub 仓库 PV' : `不可用：${trafficUnavailableReason}`}
-            </small>
-          </div>
-          <div className="hero__fact">
             <span>状态</span>
             <strong>{loading ? '同步中' : error ? '同步异常' : '可用'}</strong>
             <small className="hero__fact-subtle">本页未训练基金 {untrainedCount} 只</small>
@@ -1521,9 +1429,7 @@ function HomePage({
             <span>最近同步</span>
             <strong>{syncedAt ? formatDateTime(syncedAt) : '等待同步'}</strong>
             <small className="hero__fact-subtle">
-              {githubTraffic.available
-                ? `GitHub 访客更新时间 ${formatDateTime(githubTraffic.generatedAt)}`
-                : `GitHub 访客数据暂不可用（${trafficUnavailableReason}）`}
+              交易时段约 60 秒自动刷新，切回页面会立即补拉一次。
             </small>
           </div>
         </div>
@@ -2040,11 +1946,11 @@ export default function App() {
   const [syncedAt, setSyncedAt] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [githubTraffic, setGithubTraffic] = useState<GithubTrafficPayload>(DEFAULT_GITHUB_TRAFFIC);
   const [trainingMetricsByCode, setTrainingMetricsByCode] = useState<Record<string, TrainingMetricSummary>>({});
 
   useEffect(() => {
     let active = true;
+    let timer = 0;
 
     async function loadRuntime() {
       setLoading(true);
@@ -2097,17 +2003,43 @@ export default function App() {
       }
     }
 
-    void loadRuntime();
+    function scheduleNextRefresh() {
+      timer = window.setTimeout(() => {
+        void loadRuntime().finally(() => {
+          if (active) {
+            scheduleNextRefresh();
+          }
+        });
+      }, getRuntimeRefreshInterval());
+    }
 
-    let timer = window.setTimeout(function scheduleNext() {
+    function triggerImmediateRefresh() {
+      window.clearTimeout(timer);
       void loadRuntime().finally(() => {
-        timer = window.setTimeout(scheduleNext, getRuntimeRefreshInterval());
+        if (active) {
+          scheduleNextRefresh();
+        }
       });
-    }, getRuntimeRefreshInterval());
+    }
+
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        triggerImmediateRefresh();
+      }
+    }
+
+    void loadRuntime();
+    scheduleNextRefresh();
+    window.addEventListener('focus', triggerImmediateRefresh);
+    window.addEventListener('pageshow', triggerImmediateRefresh);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       active = false;
       window.clearTimeout(timer);
+      window.removeEventListener('focus', triggerImmediateRefresh);
+      window.removeEventListener('pageshow', triggerImmediateRefresh);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
@@ -2166,38 +2098,6 @@ export default function App() {
     };
   }, [syncedAt]);
 
-  useEffect(() => {
-    let active = true;
-
-    async function loadGithubTraffic() {
-      try {
-        const response = await fetch(`generated/github-traffic.json?ts=${Date.now()}`);
-        if (!response.ok) {
-          throw new Error(`访客数据读取失败: ${response.status}`);
-        }
-
-        const payload = (await response.json()) as GithubTrafficPayload;
-        if (active) {
-          setGithubTraffic({ ...DEFAULT_GITHUB_TRAFFIC, ...payload });
-        }
-      } catch {
-        if (active) {
-          setGithubTraffic(DEFAULT_GITHUB_TRAFFIC);
-        }
-      }
-    }
-
-    void loadGithubTraffic();
-    const timer = window.setInterval(() => {
-      void loadGithubTraffic();
-    }, 60 * 60 * 1000);
-
-    return () => {
-      active = false;
-      window.clearInterval(timer);
-    };
-  }, []);
-
   return (
     <div className="app-shell">
       <div className="background-orb background-orb--amber" />
@@ -2205,10 +2105,10 @@ export default function App() {
       <AppErrorBoundary>
         <Routes>
           <Route path="/" element={<Navigate to="/qdii-lof" replace />} />
-          <Route path="/domestic-lof" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-lof" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
-          <Route path="/qdii-lof" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="qdii-lof" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
-          <Route path="/qdii-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="qdii-etf" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
-          <Route path="/domestic-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-etf" githubTraffic={githubTraffic} trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/domestic-lof" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-lof" trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/qdii-lof" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="qdii-lof" trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/qdii-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="qdii-etf" trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/domestic-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-etf" trainingMetricsByCode={trainingMetricsByCode} />} />
           <Route path="/etf" element={<Navigate to="/qdii-etf" replace />} />
           <Route path="/detail/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />
           <Route path="/fund/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />

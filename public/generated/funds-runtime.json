@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-03-17T08:01:43.260Z",
+  "syncedAt": "2026-03-17T08:16:58.104Z",
   "funds": [
     {
       "code": "160221",
@@ -56777,7 +56777,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "520870",
@@ -57153,7 +57153,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "513800",
@@ -58873,7 +58873,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "513880",
@@ -60634,7 +60634,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "513520",
@@ -62395,7 +62395,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "160644",
@@ -64297,7 +64297,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "161124",
@@ -66199,7 +66199,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "501300",
@@ -67919,7 +67919,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "160140",
@@ -69617,7 +69617,7 @@
       "marketPrice": 1.352,
       "previousClose": 1.345,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:27",
+      "marketTime": "16:14:27",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "100万元",
@@ -69717,10 +69717,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -69730,7 +69730,7 @@
           "currentPrice": 207.82,
           "previousClose": 206.20000000000002,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69739,7 +69739,7 @@
           "currentPrice": 131.75,
           "previousClose": 131.9,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69748,7 +69748,7 @@
           "currentPrice": 969.9,
           "previousClose": 971.47,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69757,7 +69757,7 @@
           "currentPrice": 186.82,
           "previousClose": 187.57,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69766,7 +69766,7 @@
           "currentPrice": 64.44,
           "previousClose": 65.03,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69775,7 +69775,7 @@
           "currentPrice": 179.61,
           "previousClose": 179.18,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69784,7 +69784,7 @@
           "currentPrice": 297.72,
           "previousClose": 297.74,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69793,7 +69793,7 @@
           "currentPrice": 86.56,
           "previousClose": 86.2,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69802,7 +69802,7 @@
           "currentPrice": 141.37,
           "previousClose": 140.18,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         },
         {
@@ -69811,17 +69811,17 @@
           "currentPrice": 168.96,
           "previousClose": 171.04,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:27",
+          "quoteTime": "16:14:27",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-17",
-      "holdingsQuoteTime": "15:41:27",
+      "holdingsQuoteTime": "16:14:27",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "520830",
@@ -71455,7 +71455,7 @@
       "marketPrice": 0.924,
       "previousClose": 0.918,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:56",
+      "marketTime": "16:14:59",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -71464,10 +71464,10 @@
       "disclosedHoldings": [],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -71477,7 +71477,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "513300",
@@ -73175,7 +73175,7 @@
       "marketPrice": 2.167,
       "previousClose": 2.179,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:57",
+      "marketTime": "16:14:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -73275,10 +73275,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -73288,7 +73288,7 @@
           "currentPrice": 180.25,
           "previousClose": 183.14,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73297,7 +73297,7 @@
           "currentPrice": 250.12,
           "previousClose": 255.76000000000002,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73306,7 +73306,7 @@
           "currentPrice": 395.55,
           "previousClose": 401.86,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73315,7 +73315,7 @@
           "currentPrice": 207.67,
           "previousClose": 209.53,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73324,7 +73324,7 @@
           "currentPrice": 391.2,
           "previousClose": 395.01,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73333,7 +73333,7 @@
           "currentPrice": 613.71,
           "previousClose": 638.18,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73342,7 +73342,7 @@
           "currentPrice": 302.28,
           "previousClose": 303.55,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73351,7 +73351,7 @@
           "currentPrice": 301.46,
           "previousClose": 303.21,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73360,7 +73360,7 @@
           "currentPrice": 322.16,
           "previousClose": 335.97,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         },
         {
@@ -73369,12 +73369,12 @@
           "currentPrice": 150.95,
           "previousClose": 153.5,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:57",
+          "quoteTime": "16:14:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-17",
-      "holdingsQuoteTime": "15:41:57",
+      "holdingsQuoteTime": "16:14:54",
       "proxyBasketName": "纳指100篮子",
       "proxyQuotes": [
         {
@@ -73390,7 +73390,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:03",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "520580",
@@ -74472,7 +74472,7 @@
       "marketPrice": 0.969,
       "previousClose": 0.964,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:58",
+      "marketTime": "16:14:55",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -74481,10 +74481,10 @@
       "disclosedHoldings": [],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -74494,7 +74494,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "161127",
@@ -76192,7 +76192,7 @@
       "marketPrice": 1.682,
       "previousClose": 1.692,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:15",
+      "marketTime": "16:14:15",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "10元",
@@ -76292,10 +76292,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -76305,7 +76305,7 @@
           "currentPrice": 14.37,
           "previousClose": 14.37,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76314,7 +76314,7 @@
           "currentPrice": 293.95,
           "previousClose": 303.37,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76323,7 +76323,7 @@
           "currentPrice": 27.8,
           "previousClose": 27.55,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76332,7 +76332,7 @@
           "currentPrice": 58.51,
           "previousClose": 59.07,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76341,7 +76341,7 @@
           "currentPrice": 63.66,
           "previousClose": 63.559999999999995,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76350,7 +76350,7 @@
           "currentPrice": 28.06,
           "previousClose": 28.55,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76359,7 +76359,7 @@
           "currentPrice": 41.24,
           "previousClose": 41.17,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76368,7 +76368,7 @@
           "currentPrice": 745.77,
           "previousClose": 746.61,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76377,7 +76377,7 @@
           "currentPrice": 54.58,
           "previousClose": 56.21,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         },
         {
@@ -76386,17 +76386,17 @@
           "currentPrice": 444.83,
           "previousClose": 438.73,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:15",
+          "quoteTime": "16:14:15",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-17",
-      "holdingsQuoteTime": "15:41:15",
+      "holdingsQuoteTime": "16:14:15",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "159518",
@@ -78094,7 +78094,7 @@
       "marketPrice": 1.188,
       "previousClose": 1.191,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:03",
+      "marketTime": "16:14:03",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -78194,10 +78194,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -78207,7 +78207,7 @@
           "currentPrice": 13.1,
           "previousClose": 12.770000000000001,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78216,7 +78216,7 @@
           "currentPrice": 156.12,
           "previousClose": 153.53,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78225,7 +78225,7 @@
           "currentPrice": 196.82,
           "previousClose": 196.97,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78234,7 +78234,7 @@
           "currentPrice": 196.64,
           "previousClose": 196.01000000000002,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78243,7 +78243,7 @@
           "currentPrice": 57.88,
           "previousClose": 58.41,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78252,7 +78252,7 @@
           "currentPrice": 32.15,
           "previousClose": 31.98,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78261,7 +78261,7 @@
           "currentPrice": 121.89,
           "previousClose": 120.26000000000002,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78270,7 +78270,7 @@
           "currentPrice": 531.13,
           "previousClose": 528.97,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78279,7 +78279,7 @@
           "currentPrice": 46.25,
           "previousClose": 45.95000000000001,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         },
         {
@@ -78288,12 +78288,12 @@
           "currentPrice": 29.5,
           "previousClose": 28.94,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:03",
+          "quoteTime": "16:14:03",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-17",
-      "holdingsQuoteTime": "15:41:03",
+      "holdingsQuoteTime": "16:14:03",
       "proxyBasketName": "油气上游篮子",
       "proxyQuotes": [
         {
@@ -78319,7 +78319,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "162415",
@@ -80017,7 +80017,7 @@
       "marketPrice": 2.802,
       "previousClose": 2.807,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:45",
+      "marketTime": "16:14:45",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "500元",
@@ -80117,10 +80117,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -80130,7 +80130,7 @@
           "currentPrice": 207.67,
           "previousClose": 209.53,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80139,7 +80139,7 @@
           "currentPrice": 391.2,
           "previousClose": 395.01,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80148,7 +80148,7 @@
           "currentPrice": 339.03,
           "previousClose": 338.93,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80157,7 +80157,7 @@
           "currentPrice": 326.46,
           "previousClose": 323.91,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80166,7 +80166,7 @@
           "currentPrice": 4241.26,
           "previousClose": 4217.71,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80175,7 +80175,7 @@
           "currentPrice": 155.43,
           "previousClose": 155.79,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80184,7 +80184,7 @@
           "currentPrice": 237.59,
           "previousClose": 239.45,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80193,7 +80193,7 @@
           "currentPrice": 99.15,
           "previousClose": 100.18,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80202,7 +80202,7 @@
           "currentPrice": 161.36,
           "previousClose": 161.75,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         },
         {
@@ -80211,12 +80211,12 @@
           "currentPrice": 91.54,
           "previousClose": 92.98,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:45",
+          "quoteTime": "16:14:45",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-17",
-      "holdingsQuoteTime": "15:41:45",
+      "holdingsQuoteTime": "16:14:45",
       "proxyBasketName": "标普500篮子",
       "proxyQuotes": [
         {
@@ -80232,7 +80232,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "513080",
@@ -81930,7 +81930,7 @@
       "marketPrice": 1.73,
       "previousClose": 1.764,
       "marketDate": "2026-03-17",
-      "marketTime": "15:41:59",
+      "marketTime": "16:14:32",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -82012,10 +82012,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8865,
-        "previousCloseRate": 6.8879,
+        "currentRate": 6.8885,
+        "previousCloseRate": 6.8888,
         "quoteDate": "2026-03-17",
-        "quoteTime": "15:41:32",
+        "quoteTime": "16:16:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -82025,17 +82025,17 @@
           "currentPrice": 82.75,
           "previousClose": 81.42,
           "quoteDate": "2026-03-17",
-          "quoteTime": "15:41:59",
+          "quoteTime": "16:14:32",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-17",
-      "holdingsQuoteTime": "15:41:59",
+      "holdingsQuoteTime": "16:14:32",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "513730",
@@ -102545,15 +102545,15 @@
             "marketPrice": 1.188,
             "premiumRate": 0.0320656769570693,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:03",
+            "marketPriceTime": "16:14:03",
             "marketPriceType": "intraday",
             "anchorNav": 1.1473,
             "leadReturn": 0.008692111978137108,
-            "closeGapReturn": -0.00020325498337669945,
+            "closeGapReturn": -0.00004354894901870132,
             "impliedReturn": 0.003303002551692101,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:01.974Z"
+            "createdAt": "2026-03-17T08:16:57.867Z"
           }
         ],
         "errors": []
@@ -102733,15 +102733,15 @@
             "marketPrice": 1.352,
             "premiumRate": 0.003945374691016745,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:27",
+            "marketPriceTime": "16:14:27",
             "marketPriceType": "intraday",
             "anchorNav": 1.3465,
             "leadReturn": 0.0003651101681639462,
-            "closeGapReturn": -0.00020325498337669945,
+            "closeGapReturn": -0.00004354894901870132,
             "impliedReturn": 0.00013874186390229956,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:00.037Z"
+            "createdAt": "2026-03-17T08:16:56.482Z"
           }
         ],
         "errors": []
@@ -103934,15 +103934,15 @@
             "marketPrice": 1.682,
             "premiumRate": 0.006186186658371451,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:15",
+            "marketPriceTime": "16:14:15",
             "marketPriceType": "intraday",
             "anchorNav": 1.6756,
             "leadReturn": -0.006189759845172003,
-            "closeGapReturn": -0.00020325498337669945,
+            "closeGapReturn": -0.00004354894901870132,
             "impliedReturn": -0.002352108741165361,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:01.583Z"
+            "createdAt": "2026-03-17T08:16:57.744Z"
           }
         ],
         "errors": []
@@ -104829,15 +104829,15 @@
             "marketPrice": 2.802,
             "premiumRate": 0.010629165745915659,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:45",
+            "marketPriceTime": "16:14:45",
             "marketPriceType": "intraday",
             "anchorNav": 2.779,
             "leadReturn": -0.006126478912860884,
-            "closeGapReturn": -0.00020325498337669945,
+            "closeGapReturn": -0.00004354894901870132,
             "impliedReturn": -0.002328061986887136,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:02.349Z"
+            "createdAt": "2026-03-17T08:16:57.982Z"
           }
         ],
         "errors": []
@@ -106230,7 +106230,7 @@
             "marketPrice": 1.73,
             "premiumRate": 0.04922604777755679,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:59",
+            "marketPriceTime": "16:14:32",
             "marketPriceType": "intraday",
             "anchorNav": 1.661,
             "leadReturn": -0.01927437641723362,
@@ -106238,7 +106238,7 @@
             "impliedReturn": -0.007324263038548775,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:02.736Z"
+            "createdAt": "2026-03-17T08:16:58.101Z"
           }
         ],
         "errors": []
@@ -106383,15 +106383,15 @@
             "marketPrice": 2.167,
             "premiumRate": 0.0404140566799045,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:57",
+            "marketPriceTime": "16:14:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.0968,
             "leadReturn": -0.01753974950708919,
-            "closeGapReturn": -0.00020325498337669945,
+            "closeGapReturn": -0.00004354894901870132,
             "impliedReturn": -0.006665104812693892,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:00.811Z"
+            "createdAt": "2026-03-17T08:16:57.242Z"
           }
         ],
         "errors": []
@@ -106974,7 +106974,7 @@
             "marketPrice": 0.969,
             "premiumRate": 0.0009251729044241763,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:58",
+            "marketPriceTime": "16:14:55",
             "marketPriceType": "intraday",
             "anchorNav": 0.9662,
             "leadReturn": 0.005186721991701226,
@@ -106982,7 +106982,7 @@
             "impliedReturn": 0.001970954356846466,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:01.198Z"
+            "createdAt": "2026-03-17T08:16:57.575Z"
           }
         ],
         "errors": []
@@ -107025,7 +107025,7 @@
             "marketPrice": 0.924,
             "premiumRate": 0.015323621584637293,
             "marketPriceDate": "2026-03-17",
-            "marketPriceTime": "15:41:56",
+            "marketPriceTime": "16:14:59",
             "marketPriceType": "intraday",
             "anchorNav": 0.9078,
             "leadReturn": 0.006535947712418277,
@@ -107033,7 +107033,7 @@
             "impliedReturn": 0.0024836601307189456,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T07:42:00.422Z"
+            "createdAt": "2026-03-17T08:16:57.035Z"
           }
         ],
         "errors": []

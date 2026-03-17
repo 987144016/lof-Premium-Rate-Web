@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-03-17T10:41:59.042Z",
+  "syncedAt": "2026-03-17T10:57:41.707Z",
   "funds": [
     {
       "code": "160221",
@@ -24253,7 +24253,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "161129",
@@ -26098,7 +26098,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "162719",
@@ -28021,7 +28021,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "160723",
@@ -29883,7 +29883,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "162411",
@@ -31806,7 +31806,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "160416",
@@ -33729,7 +33729,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "501225",
@@ -35598,7 +35598,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:03",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "161125",
@@ -37511,7 +37511,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "daily-cache"
+      "cacheMode": "reused-from-previous-runtime"
     },
     {
       "code": "501312",
@@ -39299,10 +39299,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -39424,7 +39424,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:01",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "161130",
@@ -41222,10 +41222,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -41337,7 +41337,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:03",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "159509",
@@ -43135,10 +43135,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -43250,7 +43250,7 @@
       ],
       "proxyQuoteDate": "2026-03-16",
       "proxyQuoteTime": "16:00:03",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "513310",
@@ -45048,10 +45048,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -45173,7 +45173,7 @@
       ],
       "proxyQuoteDate": "2026-03-17",
       "proxyQuoteTime": "16:14:03",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "160620",
@@ -46971,10 +46971,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -47075,7 +47075,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "161217",
@@ -48873,10 +48873,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -48977,7 +48977,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "159561",
@@ -50759,10 +50759,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -50791,7 +50791,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "513030",
@@ -52573,10 +52573,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8878,
+        "currentRate": 6.8892,
         "previousCloseRate": 6.8894,
         "quoteDate": "2026-03-17",
-        "quoteTime": "18:32:02",
+        "quoteTime": "18:57:02",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -52605,7 +52605,7 @@
       "proxyQuotes": [],
       "proxyQuoteDate": "",
       "proxyQuoteTime": "",
-      "cacheMode": "reused-from-previous-runtime"
+      "cacheMode": "daily-cache"
     },
     {
       "code": "513850",
@@ -102453,19 +102453,19 @@
           },
           {
             "estimateDate": "2026-03-17",
-            "estimatedNav": 1.717249765673244,
+            "estimatedNav": 1.7172497656349008,
             "marketPrice": 2.042,
-            "premiumRate": 0.1891106586929352,
+            "premiumRate": 0.18911065871948596,
             "marketPriceDate": "2026-03-17",
             "marketPriceTime": "16:15:00",
             "marketPriceType": "intraday",
             "anchorNav": 1.7517,
             "leadReturn": -0.018393557667704726,
-            "closeGapReturn": -0.00023224083374451254,
-            "impliedReturn": -0.019666743350320377,
+            "closeGapReturn": -0.00002903010421817509,
+            "impliedReturn": -0.01966674337220945,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-17T10:33:24.231Z"
+            "createdAt": "2026-03-17T10:57:41.560Z"
           }
         ],
         "errors": [
@@ -102604,7 +102604,7 @@
             "impliedReturn": -0.005511450381679428,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T10:33:24.496Z"
+            "createdAt": "2026-03-17T10:57:41.671Z"
           }
         ],
         "errors": []
@@ -103195,7 +103195,7 @@
             "impliedReturn": -0.01737919925206242,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T10:33:24.345Z"
+            "createdAt": "2026-03-17T10:57:41.616Z"
           }
         ],
         "errors": [
@@ -104280,19 +104280,19 @@
           },
           {
             "estimateDate": "2026-03-17",
-            "estimatedNav": 3.706934554258972,
+            "estimatedNav": 3.7069345542062337,
             "marketPrice": 3.811,
-            "premiumRate": 0.028073181281677906,
+            "premiumRate": 0.028073181296304206,
             "marketPriceDate": "2026-03-17",
             "marketPriceTime": "16:14:27",
             "marketPriceType": "intraday",
             "anchorNav": 3.7618,
             "leadReturn": -0.015916521401418905,
-            "closeGapReturn": -0.00023224083374451254,
-            "impliedReturn": -0.014584891738271016,
+            "closeGapReturn": -0.00002903010421817509,
+            "impliedReturn": -0.014584891752290472,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-17T10:33:24.201Z"
+            "createdAt": "2026-03-17T10:57:41.534Z"
           }
         ],
         "errors": [
@@ -104381,7 +104381,7 @@
             "impliedReturn": -0.014089284342163631,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T10:33:24.428Z"
+            "createdAt": "2026-03-17T10:57:41.643Z"
           }
         ],
         "errors": [
@@ -106087,19 +106087,19 @@
           },
           {
             "estimateDate": "2026-03-17",
-            "estimatedNav": 1.8363797427681416,
+            "estimatedNav": 1.846138094206105,
             "marketPrice": 1.9,
-            "premiumRate": 0.03464439067268166,
+            "premiumRate": 0.029175447905513963,
             "marketPriceDate": "2026-03-17",
             "marketPriceTime": "16:14:03",
             "marketPriceType": "intraday",
             "anchorNav": 1.896,
             "leadReturn": -0.031235399863339036,
-            "closeGapReturn": -0.00023224083374451254,
-            "impliedReturn": -0.031445283350136154,
+            "closeGapReturn": -0.00002903010421817509,
+            "impliedReturn": -0.026298473519986786,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-17T10:33:24.164Z"
+            "createdAt": "2026-03-17T10:57:41.508Z"
           }
         ],
         "errors": [
@@ -106187,7 +106187,7 @@
             "impliedReturn": -0.00635451505016722,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T10:33:24.553Z"
+            "createdAt": "2026-03-17T10:57:41.702Z"
           }
         ],
         "errors": []
@@ -106483,7 +106483,7 @@
             "impliedReturn": 0.0027717318760626824,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-17T10:33:24.281Z"
+            "createdAt": "2026-03-17T10:57:41.586Z"
           }
         ],
         "errors": [

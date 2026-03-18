@@ -4,6 +4,12 @@ import { execSync } from 'node:child_process';
 
 const projectRoot = process.cwd();
 const outputPath = path.join(projectRoot, 'public', 'generated', 'github-traffic.json');
+const historyPath = path.join(projectRoot, '.cache', 'fund-sync', 'github-traffic-history.json');
+const SNAPSHOT_TZ = 'Asia/Shanghai';
+const SNAPSHOT_HOUR_CST = Math.max(0, Math.min(23, Number.parseInt(String(process.env.GH_TRAFFIC_SNAPSHOT_HOUR_CST || '12'), 10) || 12));
+const SNAPSHOT_WINDOW_MINUTES = Math.max(1, Math.min(59, Number.parseInt(String(process.env.GH_TRAFFIC_SNAPSHOT_WINDOW_MINUTES || '20'), 10) || 20));
+const SNAPSHOT_KEEP_DAYS = 180;
+
 function inferRepoFromGitRemote() {
   try {
     const remote = execSync('git config --get remote.origin.url', { stdio: ['ignore', 'pipe', 'ignore'] })
@@ -23,6 +29,25 @@ function toDateKey(timestamp) {
   return String(timestamp || '').slice(0, 10);
 }
 
+function getCstClock(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: SNAPSHOT_TZ,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).formatToParts(date);
+
+  const pick = (type) => parts.find((item) => item.type === type)?.value || '';
+  return {
+    date: `${pick('year')}-${pick('month')}-${pick('day')}`,
+    hour: Number.parseInt(pick('hour'), 10) || 0,
+    minute: Number.parseInt(pick('minute'), 10) || 0,
+  };
+}
+
 function sumMetric(items, key) {
   return items.reduce((sum, item) => sum + (Number(item?.[key]) || 0), 0);
 }
@@ -35,6 +60,81 @@ function buildRecentSeven(days) {
     viewUniques: sumMetric(lastSeven, 'viewUniques'),
     cloneCount: sumMetric(lastSeven, 'cloneCount'),
     cloneUniques: sumMetric(lastSeven, 'cloneUniques'),
+  };
+}
+
+function sanitizeHistory(input) {
+  const list = Array.isArray(input?.snapshots) ? input.snapshots : [];
+  return {
+    snapshots: list
+      .map((item) => ({
+        date: String(item?.date || ''),
+        viewCount: Number(item?.viewCount) || 0,
+        viewUniques: Number(item?.viewUniques) || 0,
+        cloneCount: Number(item?.cloneCount) || 0,
+        cloneUniques: Number(item?.cloneUniques) || 0,
+      }))
+      .filter((item) => /^\d{4}-\d{2}-\d{2}$/.test(item.date))
+      .sort((a, b) => a.date.localeCompare(b.date)),
+  };
+}
+
+async function readHistory() {
+  try {
+    const raw = await fs.readFile(historyPath, 'utf8');
+    return sanitizeHistory(JSON.parse(raw));
+  } catch {
+    return { snapshots: [] };
+  }
+}
+
+function pruneHistoryDays(snapshots) {
+  if (!snapshots.length) {
+    return [];
+  }
+
+  return snapshots.slice(-SNAPSHOT_KEEP_DAYS);
+}
+
+async function writeHistory(history) {
+  await fs.mkdir(path.dirname(historyPath), { recursive: true });
+  await fs.writeFile(historyPath, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
+}
+
+function summarizeSnapshots(snapshots) {
+  const totalDays = snapshots.length;
+  return {
+    totalDays,
+    cumulativeViewUniques: sumMetric(snapshots, 'viewUniques'),
+    cumulativeViewCount: sumMetric(snapshots, 'viewCount'),
+    latestCapturedDate: totalDays ? snapshots[totalDays - 1].date : '',
+  };
+}
+
+function shouldCaptureSnapshotToday(history, cstClock) {
+  if (cstClock.hour !== SNAPSHOT_HOUR_CST) {
+    return false;
+  }
+  if (cstClock.minute >= SNAPSHOT_WINDOW_MINUTES) {
+    return false;
+  }
+
+  return !history.snapshots.some((item) => item.date === cstClock.date);
+}
+
+function mergeSnapshot(history, dayKey, latestDayData) {
+  const byDate = new Map(history.snapshots.map((item) => [item.date, item]));
+  byDate.set(dayKey, {
+    date: dayKey,
+    viewCount: Number(latestDayData?.viewCount) || 0,
+    viewUniques: Number(latestDayData?.viewUniques) || 0,
+    cloneCount: Number(latestDayData?.cloneCount) || 0,
+    cloneUniques: Number(latestDayData?.cloneUniques) || 0,
+  });
+
+  const snapshots = [...byDate.values()].sort((a, b) => a.date.localeCompare(b.date));
+  return {
+    snapshots: pruneHistoryDays(snapshots),
   };
 }
 
@@ -62,12 +162,20 @@ async function writePayload(payload) {
 }
 
 async function main() {
+  const history = await readHistory();
+  const cstClock = getCstClock(new Date());
   const basePayload = {
     generatedAt: new Date().toISOString(),
     source: 'github-traffic-api',
     repo,
     available: false,
     reason: '',
+    snapshotConfig: {
+      timeZone: SNAPSHOT_TZ,
+      snapshotHourCst: SNAPSHOT_HOUR_CST,
+      windowMinutes: SNAPSHOT_WINDOW_MINUTES,
+    },
+    snapshotSummary: summarizeSnapshots(history.snapshots),
     recent7: {
       days: [],
       viewCount: 0,
@@ -75,6 +183,7 @@ async function main() {
       cloneCount: 0,
       cloneUniques: 0,
     },
+    snapshots: history.snapshots,
     totals: {
       viewCount: 0,
       viewUniques: 0,
@@ -145,6 +254,14 @@ async function main() {
     }
 
     const days = [...byDay.values()].sort((a, b) => a.date.localeCompare(b.date));
+    const latestDay = days.length ? days[days.length - 1] : null;
+    let nextHistory = history;
+
+    if (latestDay && shouldCaptureSnapshotToday(history, cstClock)) {
+      nextHistory = mergeSnapshot(history, cstClock.date, latestDay);
+      await writeHistory(nextHistory);
+    }
+
     const partialWarnings = [
       viewsResult.ok ? '' : `views-failed: ${viewsResult.error}`,
       clonesResult.ok ? '' : `clones-failed: ${clonesResult.error}`,
@@ -155,7 +272,14 @@ async function main() {
       repo,
       available: true,
       reason: partialWarnings.join(' | '),
+      snapshotConfig: {
+        timeZone: SNAPSHOT_TZ,
+        snapshotHourCst: SNAPSHOT_HOUR_CST,
+        windowMinutes: SNAPSHOT_WINDOW_MINUTES,
+      },
+      snapshotSummary: summarizeSnapshots(nextHistory.snapshots),
       recent7: buildRecentSeven(days),
+      snapshots: nextHistory.snapshots,
       totals: {
         viewCount: Number(views?.count) || 0,
         viewUniques: Number(views?.uniques) || 0,

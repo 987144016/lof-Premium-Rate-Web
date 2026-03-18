@@ -184,6 +184,17 @@ export interface GithubTrafficPayload {
   repo: string;
   available: boolean;
   reason?: string;
+  snapshotConfig?: {
+    timeZone: string;
+    snapshotHourCst: number;
+    windowMinutes: number;
+  };
+  snapshotSummary?: {
+    totalDays: number;
+    cumulativeViewUniques: number;
+    cumulativeViewCount: number;
+    latestCapturedDate: string;
+  };
   recent7: GithubTrafficRecent7;
   totals: {
     viewCount: number;
@@ -192,6 +203,7 @@ export interface GithubTrafficPayload {
     cloneUniques: number;
   };
   last14Days?: GithubTrafficDay[];
+  snapshots?: GithubTrafficDay[];
 }
 
 export interface WatchlistModel {

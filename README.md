@@ -166,6 +166,7 @@ npm run sync:data:full
 - 网站本体按静态站点发布，不需要访问时保持本地电脑在线
 - 数据同步和构建由 GitHub Actions 定时执行，交易时段 5 分钟一次，其他工作时段 15 分钟一次
 - 工作流会额外拉取 GitHub 仓库 traffic API，并生成最近 7 天访客/浏览统计供首页展示
+- 访客统计会在北京时间固定时段（默认 12:00 窗口）写入每日快照，并在首页显示累计访客与趋势线，便于看长期变化
 - Pages 构建前会在 CI 执行 runtime 数据同步（sync:data），再构建并部署
 - 离线研究类 generated 文件仍以仓库已提交内容为准；如需展示本地私有训练结果，请先在本地生成并提交对应 generated 文件
 - 访客统计依赖 GH_TRAFFIC_TOKEN 仓库密钥；若未配置或权限不足，页面会显示访客数据不可用，并在 generated/github-traffic.json 写入失败原因

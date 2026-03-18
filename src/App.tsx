@@ -5,7 +5,7 @@ import { LineChart } from './components/LineChart';
 import { MetricCard } from './components/MetricCard';
 import { readDetailScrollY, readFavoriteFundCodes, readFundJournal, readFundOrder, readWatchlistModel, writeDetailScrollY, writeFavoriteFundCodes, writeFundJournal, writeFundOrder, writeWatchlistModel } from './lib/storage';
 import { estimateWatchlistFund, getDefaultWatchlistModel, reconcileJournal, recordEstimateSnapshot } from './lib/watchlist';
-import type { FundJournal, FundRuntimeData, FundViewModel, RuntimePayload, WatchlistModel } from './types';
+import type { FundJournal, FundRuntimeData, FundViewModel, GithubTrafficPayload, RuntimePayload, WatchlistModel } from './types';
 const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
 type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 'favorites';
@@ -165,6 +165,30 @@ function formatDateTime(value: string): string {
 function formatRuntimeTime(date: string, time: string): string {
   const merged = `${date || '--'} ${time || ''}`.trim();
   return merged || '--';
+}
+
+function getDefaultGithubTrafficPayload(): GithubTrafficPayload {
+  return {
+    generatedAt: '',
+    source: 'github-traffic-api',
+    repo: '',
+    available: false,
+    reason: '',
+    recent7: {
+      days: [],
+      viewCount: 0,
+      viewUniques: 0,
+      cloneCount: 0,
+      cloneUniques: 0,
+    },
+    totals: {
+      viewCount: 0,
+      viewUniques: 0,
+      cloneCount: 0,
+      cloneUniques: 0,
+    },
+    snapshots: [],
+  };
 }
 
 function getHoursSinceSync(syncedAt: string): number | null {
@@ -1117,10 +1141,42 @@ function HomePage({
   const pageOption = getPageOption(pageCategory);
   const [favoriteCodes, setFavoriteCodes] = useState<string[]>(() => readFavoriteFundCodes());
   const [orderedCodes, setOrderedCodes] = useState<string[]>(() => readFundOrder(pageCategory));
+  const [githubTraffic, setGithubTraffic] = useState<GithubTrafficPayload>(() => getDefaultGithubTrafficPayload());
 
   useEffect(() => {
     setOrderedCodes(readFundOrder(pageCategory));
   }, [pageCategory]);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadGithubTraffic() {
+      try {
+        const response = await fetch(`generated/github-traffic.json?ts=${Date.now()}`);
+        if (!response.ok) {
+          throw new Error(`traffic ${response.status}`);
+        }
+
+        const payload = (await response.json()) as GithubTrafficPayload;
+        if (active) {
+          setGithubTraffic({
+            ...getDefaultGithubTrafficPayload(),
+            ...payload,
+          });
+        }
+      } catch {
+        if (active) {
+          setGithubTraffic(getDefaultGithubTrafficPayload());
+        }
+      }
+    }
+
+    void loadGithubTraffic();
+
+    return () => {
+      active = false;
+    };
+  }, [syncedAt]);
 
   const filteredFunds = useMemo(() => {
     if (pageCategory === 'favorites') {
@@ -1173,6 +1229,24 @@ function HomePage({
   const syncAgeHours = getHoursSinceSync(syncedAt);
   const untrainedCount = visibleFunds.filter((item) => !trainingMetricsByCode[item.runtime.code]).length;
   const favoriteVisibleCount = visibleFunds.filter((item) => favoriteCodes.includes(item.runtime.code)).length;
+  const trafficSnapshots = (githubTraffic.snapshots ?? []).slice(-14);
+  const trafficTrendPoints = useMemo(() => {
+    if (!trafficSnapshots.length) {
+      return '';
+    }
+
+    const maxY = Math.max(...trafficSnapshots.map((item) => item.viewUniques || 0), 1);
+    const stepX = trafficSnapshots.length > 1 ? 120 / (trafficSnapshots.length - 1) : 0;
+    return trafficSnapshots
+      .map((item, index) => {
+        const x = Number((stepX * index).toFixed(2));
+        const y = Number((24 - ((item.viewUniques || 0) / maxY) * 22).toFixed(2));
+        return `${x},${y}`;
+      })
+      .join(' ');
+  }, [trafficSnapshots]);
+  const latestTrafficDay = trafficSnapshots.length ? trafficSnapshots[trafficSnapshots.length - 1].date : '';
+  const cumulativeSnapshotUniques = githubTraffic.snapshotSummary?.cumulativeViewUniques ?? trafficSnapshots.reduce((sum, item) => sum + (Number(item?.viewUniques) || 0), 0);
 
   const handleToggleFavorite = (code: string) => {
     setFavoriteCodes((current) => {
@@ -1202,6 +1276,9 @@ function HomePage({
   return (
     <main className="page">
       <section className="hero panel hero--wide">
+        <Link className="hero-corner-link" to="/traffic" title="查看访客趋势页">
+          访客趋势
+        </Link>
         <div className="hero__copy">
           <span className="eyebrow">本地缓存 + 免费行情 + 每基金独立模型</span>
           <h1>溢价率日常看板</h1>
@@ -1227,9 +1304,25 @@ function HomePage({
             <strong>{proxyDrivenCount}</strong>
           </div>
           <div className="hero__fact">
+            <span>最近7日访客</span>
+            <strong>{githubTraffic.available ? githubTraffic.recent7.viewUniques : '--'}</strong>
+            <small className="hero__fact-subtle">
+              累计访客（快照）{cumulativeSnapshotUniques}
+              {latestTrafficDay ? `，最新快照 ${latestTrafficDay}` : ''}
+            </small>
+            {trafficTrendPoints ? (
+              <svg className="traffic-mini-chart" viewBox="0 0 120 26" aria-label="访客趋势图">
+                <polyline points={trafficTrendPoints} />
+              </svg>
+            ) : null}
+          </div>
+          <div className="hero__fact">
             <span>状态</span>
             <strong>{loading ? '同步中' : error ? '同步异常' : '可用'}</strong>
-            <small className="hero__fact-subtle">本页未训练基金 {untrainedCount} 只，已收藏 {favoriteVisibleCount} 只</small>
+            <small className="hero__fact-subtle">
+              本页未训练基金 {untrainedCount} 只，已收藏 {favoriteVisibleCount} 只
+              {!githubTraffic.available && githubTraffic.reason ? `；访客数据不可用：${githubTraffic.reason}` : ''}
+            </small>
           </div>
           <div className="hero__fact hero__fact--wide">
             <span>最近同步</span>
@@ -1371,6 +1464,129 @@ function DocsPage() {
 
       <section className="panel notice-panel">
         说明页面会持续补充：例如新增误差口径、特殊基金处理逻辑、以及数据源异常时的兜底策略。你后续提到的解释需求都可以直接加在这里。
+      </section>
+    </main>
+  );
+}
+
+function TrafficPage() {
+  const [githubTraffic, setGithubTraffic] = useState<GithubTrafficPayload>(() => getDefaultGithubTrafficPayload());
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadGithubTraffic() {
+      try {
+        const response = await fetch(`generated/github-traffic.json?ts=${Date.now()}`);
+        if (!response.ok) {
+          throw new Error(`traffic ${response.status}`);
+        }
+
+        const payload = (await response.json()) as GithubTrafficPayload;
+        if (active) {
+          setGithubTraffic({
+            ...getDefaultGithubTrafficPayload(),
+            ...payload,
+          });
+        }
+      } catch {
+        if (active) {
+          setGithubTraffic(getDefaultGithubTrafficPayload());
+        }
+      }
+    }
+
+    void loadGithubTraffic();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const recentTrafficDays = githubTraffic.recent7?.days ?? [];
+  const trafficSnapshots = (githubTraffic.snapshots ?? []).slice(-30);
+  const snapshotVisitorSeries = trafficSnapshots.map((item) => ({
+    label: item.date,
+    value: Number(item.viewUniques) || 0,
+  }));
+  const snapshotViewSeries = trafficSnapshots.map((item) => ({
+    label: item.date,
+    value: Number(item.viewCount) || 0,
+  }));
+  const recentVisitorSeries = recentTrafficDays.map((item) => ({
+    label: item.date,
+    value: Number(item.viewUniques) || 0,
+  }));
+  const recentViewSeries = recentTrafficDays.map((item) => ({
+    label: item.date,
+    value: Number(item.viewCount) || 0,
+  }));
+
+  return (
+    <main className="page">
+      <section className="hero panel hero--wide">
+        <div className="hero__copy">
+          <span className="eyebrow">GitHub Traffic 趋势</span>
+          <h1>访客趋势页</h1>
+          <div className="page-tabs" role="tablist" aria-label="页面导航">
+            {PAGE_OPTIONS.map((item) => (
+              <Link key={item.key} className="page-tab" to={item.path}>
+                {item.label}
+              </Link>
+            ))}
+            <Link className="page-tab" to="/docs">
+              说明文档
+            </Link>
+            <Link className="page-tab page-tab--active" to="/traffic">
+              访客趋势
+            </Link>
+          </div>
+          <p className="hero__lead">这里专门看访客趋势和快照口径，不占首页空间。最近 7 天看短期波动，固定时点快照看长期趋势。</p>
+        </div>
+        <div className="hero__facts hero__facts--single">
+          <div className="hero__fact hero__fact--accent">
+            <span>最近7日访客(UV)</span>
+            <strong>{githubTraffic.available ? githubTraffic.recent7.viewUniques : '--'}</strong>
+            <small className="hero__fact-subtle">最近7日浏览(PV) {githubTraffic.available ? githubTraffic.recent7.viewCount : '--'}</small>
+          </div>
+          <div className="hero__fact">
+            <span>累计访客（快照）</span>
+            <strong>{githubTraffic.snapshotSummary?.cumulativeViewUniques ?? 0}</strong>
+            <small className="hero__fact-subtle">已记录天数 {githubTraffic.snapshotSummary?.totalDays ?? 0}</small>
+          </div>
+          <div className="hero__fact">
+            <span>数据状态</span>
+            <strong>{githubTraffic.available ? '可用' : '不可用'}</strong>
+            <small className="hero__fact-subtle">{githubTraffic.available ? '由 GitHub traffic API 提供' : (githubTraffic.reason || '未知原因')}</small>
+          </div>
+        </div>
+      </section>
+
+      <section className="panel traffic-detail-panel">
+        <div className="traffic-detail-grid">
+          <LineChart
+            title="每日快照访客趋势（近30天）"
+            primary={snapshotVisitorSeries}
+            secondary={snapshotViewSeries}
+            primaryLabel="访客(UV)"
+            secondaryLabel="浏览(PV)"
+            valueFormatter={(value) => `${Math.round(value)}`}
+          />
+          <LineChart
+            title="GitHub API 最近7天趋势"
+            primary={recentVisitorSeries}
+            secondary={recentViewSeries}
+            primaryLabel="访客(UV)"
+            secondaryLabel="浏览(PV)"
+            valueFormatter={(value) => `${Math.round(value)}`}
+          />
+        </div>
+
+        <ul className="docs-list">
+          <li>最近7日访客：GitHub traffic API 返回的滚动 7 天去重访客总和。</li>
+          <li>累计访客（快照）：每天固定时段抓取一次，便于比较长期变化趋势。</li>
+          <li>快照时间默认北京时间中午，窗口内只记一次，避免同一天重复累计。</li>
+        </ul>
       </section>
     </main>
   );
@@ -2112,6 +2328,7 @@ export default function App() {
           <Route path="/domestic-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-etf" trainingMetricsByCode={trainingMetricsByCode} />} />
           <Route path="/favorites" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="favorites" trainingMetricsByCode={trainingMetricsByCode} />} />
           <Route path="/docs" element={<DocsPage />} />
+          <Route path="/traffic" element={<TrafficPage />} />
           <Route path="/etf" element={<Navigate to="/qdii-etf" replace />} />
           <Route path="/detail/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />
           <Route path="/fund/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />

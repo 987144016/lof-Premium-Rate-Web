@@ -1,9 +1,20 @@
 {
-  "generatedAt": "2026-03-16T07:00:46.324Z",
+  "generatedAt": "2026-03-18T11:40:17.714Z",
   "source": "github-traffic-api",
   "repo": "987144016/lof-Premium-Rate-Web",
   "available": false,
   "reason": "missing-token: set GH_TRAFFIC_TOKEN secret with traffic API access",
+  "snapshotConfig": {
+    "timeZone": "Asia/Shanghai",
+    "snapshotHourCst": 12,
+    "windowMinutes": 20
+  },
+  "snapshotSummary": {
+    "totalDays": 0,
+    "cumulativeViewUniques": 0,
+    "cumulativeViewCount": 0,
+    "latestCapturedDate": ""
+  },
   "recent7": {
     "days": [],
     "viewCount": 0,
@@ -11,6 +22,7 @@
     "cloneCount": 0,
     "cloneUniques": 0
   },
+  "snapshots": [],
   "totals": {
     "viewCount": 0,
     "viewUniques": 0,

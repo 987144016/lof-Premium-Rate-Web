@@ -54,6 +54,8 @@ jobs:
         env:
           GH_TRAFFIC_REPO: ${{ github.repository }}
           GH_TRAFFIC_TOKEN: ${{ secrets.GH_TRAFFIC_TOKEN }}
+          GH_TRAFFIC_SNAPSHOT_HOUR_CST: '12'
+          GH_TRAFFIC_SNAPSHOT_WINDOW_MINUTES: '20'
 
       - name: Sync Funds Runtime Data
         run: npm run sync:data

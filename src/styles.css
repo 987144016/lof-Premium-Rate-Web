@@ -109,23 +109,6 @@ input:focus {
   align-items: start;
 }
 
-.hero-corner-link {
-  position: absolute;
-  top: 0.9rem;
-  right: 1rem;
-  padding: 0.3rem 0.62rem;
-  border-radius: 999px;
-  border: 1px solid rgba(15, 118, 110, 0.18);
-  background: rgba(255, 255, 255, 0.72);
-  color: #3b4f4b;
-  font-size: 0.76rem;
-  line-height: 1;
-}
-
-.hero-corner-link:hover {
-  color: #0f766e;
-  border-color: rgba(15, 118, 110, 0.32);
-}
 
 .hero--wide {
   grid-template-columns: minmax(0, 1.28fr) minmax(420px, 1fr);
@@ -304,6 +287,18 @@ small {
 .hero__fact {
   min-height: 4.55rem;
   padding: 0.8rem !important;
+}
+
+.hero__fact--link {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.hero__fact--link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(31, 41, 55, 0.08);
 }
 
 .hero__fact--accent {
@@ -1120,11 +1115,6 @@ button {
     padding: 1.2rem;
   }
 
-  .hero-corner-link {
-    top: 0.7rem;
-    right: 0.8rem;
-    font-size: 0.72rem;
-  }
 
   .hero__lead,
   .hero__note {

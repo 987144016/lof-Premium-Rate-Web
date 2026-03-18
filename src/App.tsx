@@ -1211,6 +1211,9 @@ function HomePage({
                 {item.label}
               </Link>
             ))}
+            <Link className="page-tab" to="/docs">
+              说明文档
+            </Link>
           </div>
           <p className="hero__lead">{pageOption.lead}</p>
         </div>
@@ -1274,6 +1277,100 @@ function HomePage({
 
       <section className="panel notice-panel">
         首页显示的是列表主看板。净值列展示最近一次已公布的官方净值，具体是 T-1 还是 T-2 直接看净值日期列；估值列展示的是当前预估净值。默认策略是“前十大持仓优先、代理篮子补足、汇率和误差修正联合驱动”；当持仓报价暂不可用时，会自动回退到代理篮子或场内信号。点击基金代码进入详情页后，可查看误差折线、净值误差、溢价率误差和历史估值口径。
+      </section>
+    </main>
+  );
+}
+
+function DocsPage() {
+  return (
+    <main className="page">
+      <section className="hero panel hero--wide">
+        <div className="hero__copy">
+          <span className="eyebrow">新手说明 + 口径定义 + 持续更新</span>
+          <h1>估值说明文档</h1>
+          <div className="page-tabs" role="tablist" aria-label="页面导航">
+            {PAGE_OPTIONS.map((item) => (
+              <Link key={item.key} className="page-tab" to={item.path}>
+                {item.label}
+              </Link>
+            ))}
+            <Link className="page-tab page-tab--active" to="/docs">
+              说明文档
+            </Link>
+          </div>
+          <p className="hero__lead">
+            这个页面专门解释看板里每个指标是什么意思、估值大概怎么做、为什么会和盘中感受有偏差。后续新增规则、口径调整、异常处理都会优先补到这里。
+          </p>
+        </div>
+        <div className="hero__facts hero__facts--single">
+          <div className="hero__fact hero__fact--accent">
+            <span>阅读建议</span>
+            <strong>先看误差定义，再看估值流程</strong>
+            <small className="hero__fact-subtle">这样最容易把“数字”和“结果”对应起来。</small>
+          </div>
+          <div className="hero__fact">
+            <span>更新方式</span>
+            <strong>文档随版本持续补充</strong>
+            <small className="hero__fact-subtle">每次口径变化会同步到此页。</small>
+          </div>
+        </div>
+      </section>
+
+      <section className="panel docs-section">
+        <h2>三个误差指标是什么意思</h2>
+        <div className="docs-grid">
+          <article className="docs-card">
+            <h3>训练误差</h3>
+            <p>看模型在离线验证数据上的平均误差，主要用来判断“模型本身的底子”是否靠谱。</p>
+            <p>一般来说越小越好，适合看长期能力，不代表今天一定最准。</p>
+          </article>
+          <article className="docs-card">
+            <h3>最近误差</h3>
+            <p>最近一个已结算交易日的实际偏差，反映模型刚刚那次估值的命中情况。</p>
+            <p>这个值会受单日突发影响比较大，波动通常最大。</p>
+          </article>
+          <article className="docs-card">
+            <h3>30d误差</h3>
+            <p>最近 30 个交易日平均绝对误差，用于看近期稳定性。</p>
+            <p>可以把它理解为“最近一个月平均偏离多少”。</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="panel docs-section">
+        <h2>估值是怎么做出来的（小白版）</h2>
+        <ol className="docs-list">
+          <li>先用最近一次官方净值作为起点（通常是 T-1 或 T-2）。</li>
+          <li>优先看前十大持仓的盘中涨跌，估算基金今天大概涨跌多少。</li>
+          <li>如果持仓行情拿不全，就用代理篮子补足缺失信号。</li>
+          <li>QDII 基金会叠加汇率变化影响。</li>
+          <li>把历史误差学习得到的修正项加进去，减少系统性偏差。</li>
+          <li>得到当日估值后，再和场内价格比较，算出溢价率。</li>
+        </ol>
+      </section>
+
+      <section className="panel docs-section">
+        <h2>为什么有时你觉得在跌，表里却显示涨</h2>
+        <ul className="docs-list">
+          <li>行情有刷新间隔，短时间内可能看到的是上一轮快照。</li>
+          <li>不同数据源更新时间不完全一致，分钟级会有错位。</li>
+          <li>基金估值是组合信号，不是单一股票涨跌的直接映射。</li>
+          <li>若遇到节假日、跨市场休市、临停等情况，误差会放大。</li>
+        </ul>
+      </section>
+
+      <section className="panel docs-section">
+        <h2>刷新与缓存口径</h2>
+        <ul className="docs-list">
+          <li>公告和持仓结构按日更新，不需要每分钟重抓。</li>
+          <li>盘中行情按短周期刷新，当前策略是最多约 5 分钟一轮。</li>
+          <li>即使分组同步，也会对全基金统一叠加实时行情覆盖。</li>
+        </ul>
+      </section>
+
+      <section className="panel notice-panel">
+        说明页面会持续补充：例如新增误差口径、特殊基金处理逻辑、以及数据源异常时的兜底策略。你后续提到的解释需求都可以直接加在这里。
       </section>
     </main>
   );
@@ -2014,6 +2111,7 @@ export default function App() {
           <Route path="/qdii-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="qdii-etf" trainingMetricsByCode={trainingMetricsByCode} />} />
           <Route path="/domestic-etf" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="domestic-etf" trainingMetricsByCode={trainingMetricsByCode} />} />
           <Route path="/favorites" element={<HomePage funds={funds} syncedAt={syncedAt} loading={loading} error={error} pageCategory="favorites" trainingMetricsByCode={trainingMetricsByCode} />} />
+          <Route path="/docs" element={<DocsPage />} />
           <Route path="/etf" element={<Navigate to="/qdii-etf" replace />} />
           <Route path="/detail/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />
           <Route path="/fund/:code" element={<DetailPage funds={funds} syncedAt={syncedAt} loading={loading} />} />

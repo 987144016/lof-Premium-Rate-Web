@@ -514,6 +514,23 @@ function getPremiumProviderLabel(provider: string) {
   return key || '未知来源';
 }
 
+function getEstimatedNavFromPremium(marketPrice: number | null | undefined, premiumRate: number | null | undefined): number | null {
+  if (typeof marketPrice !== 'number' || !Number.isFinite(marketPrice) || marketPrice <= 0) {
+    return null;
+  }
+  if (typeof premiumRate !== 'number' || !Number.isFinite(premiumRate)) {
+    return null;
+  }
+
+  const denominator = 1 + premiumRate;
+  if (!Number.isFinite(denominator) || Math.abs(denominator) < 1e-9) {
+    return null;
+  }
+
+  const estimatedNav = marketPrice / denominator;
+  return Number.isFinite(estimatedNav) ? estimatedNav : null;
+}
+
 function getPointsDateRange(points: ResearchPoint[]) {
   if (!points.length) {
     return '-- ~ --';
@@ -1810,10 +1827,29 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
   const adaptiveShockTriggered = Boolean(currentSnapshot?.adaptiveShockTriggered);
   const showOfflineResearch = OFFLINE_RESEARCH_CODES.has(fund.runtime.code) && offlineResearch;
   const offlineChartVersion = offlineResearch?.generatedAt || syncedAt || Date.now().toString();
-  const shouldShowPremiumCompareDetails = PREMIUM_COMPARE_DETAIL_CODES.has(fund.runtime.code);
+  const shouldShowPremiumCompareDetails = Boolean(premiumCompare);
   const premiumCompareProviders = premiumCompare?.providers ?? [];
+  const providerDailyComparisons = premiumCompare?.providerDailyComparisons ?? {};
+  const providerStatsByName = new Map(premiumCompareProviders.map((item) => [item.provider, item]));
   const eastmoneyProvider = premiumCompareProviders.find((item) => item.provider === 'eastmoney-fundgz') ?? null;
-  const otherPremiumProviders = premiumCompareProviders.filter((item) => item.provider !== 'eastmoney-fundgz');
+  const eastmoneyRows = premiumCompare?.eastmoneyDailyValuations ?? [];
+  const hasEastmoneyRows = eastmoneyRows.length > 0;
+  const providersWithRows = Object.entries(providerDailyComparisons)
+    .filter((entry) => Array.isArray(entry[1]) && entry[1].length > 0)
+    .map((entry) => entry[0]);
+  const summaryProviders = premiumCompareProviders.filter((item) => {
+    if (item.provider === 'eastmoney-fundgz') {
+      return hasEastmoneyRows;
+    }
+    return providersWithRows.includes(item.provider);
+  });
+  const otherPremiumProviders = providersWithRows
+    .filter((provider) => provider !== 'eastmoney-fundgz')
+    .map((provider) => ({
+      provider,
+      rows: providerDailyComparisons[provider] ?? [],
+      stats: providerStatsByName.get(provider) ?? null,
+    }));
   const ourPremiumSummary = premiumCompare?.ourPremiumSummary;
 
   return (
@@ -1906,7 +1942,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
               <h3>第三方误差总表</h3>
               <div className="muted-text">总表汇总最近30条已结算样本；第一行是本站口径，后面是各来源。</div>
             </div>
-            {premiumCompareProviders.length ? (
+            {summaryProviders.length ? (
               <div className="table-scroll table-scroll--window">
                 <table className="mini-data-table">
                   <thead>
@@ -1932,7 +1968,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
                       <td>{typeof ourPremiumSummary?.avgAbsOurError30 === 'number' ? formatPercent(ourPremiumSummary.avgAbsOurError30) : '--'}</td>
                       <td>--</td>
                     </tr>
-                    {premiumCompareProviders.map((providerItem) => (
+                    {summaryProviders.map((providerItem) => (
                       <tr key={`summary-${providerItem.provider}`}>
                         <td>{getPremiumProviderLabel(providerItem.provider)}</td>
                         <td>{providerItem.sourceUrl ? <a className="fund-table__link" href={providerItem.sourceUrl} target="_blank" rel="noreferrer">{providerItem.status}</a> : providerItem.status}</td>
@@ -2017,22 +2053,26 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
               <h3>{getPremiumProviderLabel(item.provider)}日度误差</h3>
               <div className="muted-text">仅保留最近30条已结算样本，并保留已抓到溢价率但尚未结算的待验证样本。</div>
             </div>
-            {premiumCompare.providerDailyComparisons?.[item.provider]?.length ? (
+            {item.rows.length ? (
               <div className="table-scroll table-scroll--window">
                 <table className="mini-data-table">
-                  <thead><tr><th>日期</th><th>快照时间</th><th>场内价</th><th>来源溢价率</th><th>本站溢价率</th><th>状态</th><th>实际收盘溢价率</th><th>来源误差</th><th>本站误差</th><th>误差差距</th></tr></thead>
+                  <thead><tr><th>日期</th><th>快照时间</th><th>场内价</th><th>来源溢价率</th><th>来源反算估值</th><th>本站溢价率</th><th>状态</th><th>实际收盘溢价率</th><th>来源误差</th><th>本站误差</th><th>误差差距</th></tr></thead>
                   <tbody>
-                    {[...premiumCompare.providerDailyComparisons[item.provider]].reverse().map((dailyItem) => (
-                      <tr key={`${item.provider}-${dailyItem.date}-${dailyItem.time || 'na'}`}>
-                        <td>{dailyItem.date}</td><td>{dailyItem.time || '--'}</td><td>{typeof dailyItem.marketPrice === 'number' ? formatCurrency(dailyItem.marketPrice) : '--'}</td><td>{formatPercent(dailyItem.providerPremiumRate)}</td>
-                        <td className={typeof dailyItem.ourReportedPremiumRate === 'number' ? (dailyItem.ourReportedPremiumRate >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.ourReportedPremiumRate === 'number' ? formatPercent(dailyItem.ourReportedPremiumRate) : '--'}</td>
-                        <td className={dailyItem.status === 'settled' ? 'tone-positive' : 'muted-text'}>{dailyItem.status === 'settled' ? '已结算' : '待结算'}</td>
-                        <td className={typeof dailyItem.actualPremiumRate === 'number' ? (dailyItem.actualPremiumRate >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.actualPremiumRate === 'number' ? formatPercent(dailyItem.actualPremiumRate) : '--'}</td>
-                        <td className={typeof dailyItem.providerPremiumError === 'number' ? (dailyItem.providerPremiumError <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.providerPremiumError === 'number' ? formatPercent(dailyItem.providerPremiumError) : '--'}</td>
-                        <td className={typeof dailyItem.ourPremiumError === 'number' ? (dailyItem.ourPremiumError <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.ourPremiumError === 'number' ? formatPercent(dailyItem.ourPremiumError) : '--'}</td>
-                        <td className={typeof dailyItem.premiumErrorDelta === 'number' ? (dailyItem.premiumErrorDelta <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.premiumErrorDelta === 'number' ? formatPercent(dailyItem.premiumErrorDelta) : '--'}</td>
-                      </tr>
-                    ))}
+                    {[...item.rows].reverse().map((dailyItem) => {
+                      const estimatedNav = getEstimatedNavFromPremium(dailyItem.marketPrice, dailyItem.providerPremiumRate);
+                      return (
+                        <tr key={`${item.provider}-${dailyItem.date}-${dailyItem.time || 'na'}`}>
+                          <td>{dailyItem.date}</td><td>{dailyItem.time || '--'}</td><td>{typeof dailyItem.marketPrice === 'number' ? formatCurrency(dailyItem.marketPrice) : '--'}</td><td>{formatPercent(dailyItem.providerPremiumRate)}</td>
+                          <td>{typeof estimatedNav === 'number' ? formatCurrency(estimatedNav) : '--'}</td>
+                          <td className={typeof dailyItem.ourReportedPremiumRate === 'number' ? (dailyItem.ourReportedPremiumRate >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.ourReportedPremiumRate === 'number' ? formatPercent(dailyItem.ourReportedPremiumRate) : '--'}</td>
+                          <td className={dailyItem.status === 'settled' ? 'tone-positive' : 'muted-text'}>{dailyItem.status === 'settled' ? '已结算' : '待结算'}</td>
+                          <td className={typeof dailyItem.actualPremiumRate === 'number' ? (dailyItem.actualPremiumRate >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.actualPremiumRate === 'number' ? formatPercent(dailyItem.actualPremiumRate) : '--'}</td>
+                          <td className={typeof dailyItem.providerPremiumError === 'number' ? (dailyItem.providerPremiumError <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.providerPremiumError === 'number' ? formatPercent(dailyItem.providerPremiumError) : '--'}</td>
+                          <td className={typeof dailyItem.ourPremiumError === 'number' ? (dailyItem.ourPremiumError <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.ourPremiumError === 'number' ? formatPercent(dailyItem.ourPremiumError) : '--'}</td>
+                          <td className={typeof dailyItem.premiumErrorDelta === 'number' ? (dailyItem.premiumErrorDelta <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.premiumErrorDelta === 'number' ? formatPercent(dailyItem.premiumErrorDelta) : '--'}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

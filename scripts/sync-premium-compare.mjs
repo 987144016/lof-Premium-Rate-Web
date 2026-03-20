@@ -410,7 +410,8 @@ async function fetchFromSina(code) {
 async function readJson(filePath, fallback) {
   try {
     const raw = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(raw);
+    const normalized = String(raw).replace(/^\uFEFF/, '');
+    return JSON.parse(normalized);
   } catch {
     return fallback;
   }

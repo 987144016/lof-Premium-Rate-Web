@@ -483,6 +483,8 @@ async function main() {
       fetchFromXueqiu(code),
       fetchFromSina(code),
     ]);
+    const marketPriceFallback = Number.isFinite(marketPrice) ? marketPrice : Number.NaN;
+    const ourPremiumRateFallback = Number.isFinite(ourPremiumRate) ? ourPremiumRate : Number.NaN;
 
     for (const provider of providers) {
       if (!Number.isFinite(provider.premiumRate)) {
@@ -636,10 +638,17 @@ async function main() {
               return null;
             }
 
+            const marketPriceResolved = Number.isFinite(marketPriceAtSnapshot)
+              ? marketPriceAtSnapshot
+              : (date === marketDate && Number.isFinite(marketPriceFallback) ? marketPriceFallback : Number.NaN);
+            const ourReportedPremiumResolved = Number.isFinite(ourReportedPremiumRate)
+              ? ourReportedPremiumRate
+              : (date === marketDate && Number.isFinite(ourPremiumRateFallback) ? ourPremiumRateFallback : Number.NaN);
+
             const actualPremiumRate = toFiniteNumber(actualPremiumByDate.get(date));
             const isSettled = Number.isFinite(actualPremiumRate);
             const providerPremiumError = isSettled ? providerPremiumRate - actualPremiumRate : Number.NaN;
-            const ourPremiumError = isSettled && Number.isFinite(ourReportedPremiumRate) ? ourReportedPremiumRate - actualPremiumRate : Number.NaN;
+            const ourPremiumError = isSettled && Number.isFinite(ourReportedPremiumResolved) ? ourReportedPremiumResolved - actualPremiumRate : Number.NaN;
             const premiumErrorDelta = Number.isFinite(providerPremiumError) && Number.isFinite(ourPremiumError)
               ? providerPremiumError - ourPremiumError
               : Number.NaN;
@@ -647,9 +656,9 @@ async function main() {
             return {
               date,
               time,
-              marketPrice: Number.isFinite(marketPriceAtSnapshot) ? marketPriceAtSnapshot : null,
+              marketPrice: Number.isFinite(marketPriceResolved) ? marketPriceResolved : null,
               providerPremiumRate,
-              ourReportedPremiumRate: Number.isFinite(ourReportedPremiumRate) ? ourReportedPremiumRate : null,
+              ourReportedPremiumRate: Number.isFinite(ourReportedPremiumResolved) ? ourReportedPremiumResolved : null,
               status: isSettled ? 'settled' : 'pending',
               actualPremiumRate: isSettled ? actualPremiumRate : null,
               providerPremiumError: Number.isFinite(providerPremiumError) ? providerPremiumError : null,

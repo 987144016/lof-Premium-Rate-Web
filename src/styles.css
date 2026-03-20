@@ -324,11 +324,6 @@ small {
   background: linear-gradient(135deg, rgba(15, 118, 110, 0.14), rgba(244, 239, 230, 0.8)) !important;
 }
 
-.hero__fact--traffic {
-  background: rgba(244, 239, 230, 0.9) !important;
-  border: none;
-}
-
 .hero__fact--wide {
   grid-column: 1 / -1;
 }

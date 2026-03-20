@@ -240,10 +240,8 @@ const COUNTAPI_NAMESPACE = 'lof-premium-rate-web';
 const COUNTAPI_TOTAL_KEY = 'uv-total-devices';
 const COUNTAPI_DAILY_PREFIX = 'uv-day-';
 const COUNTAPI_ACTIVE7_BUCKET_PREFIX = 'uv-active7-bucket-';
-const LOCAL_DEVICE_ID_KEY = 'traffic-device-id';
 const LOCAL_DEVICE_DAILY_MARK_PREFIX = 'traffic-device-daily-hit-';
 const LOCAL_DEVICE_7D_MARK_PREFIX = 'traffic-device-7d-hit-';
-const LOCAL_DEVICE_VISIT_DAYS_KEY = 'traffic-device-visit-days';
 
 function getDefaultPublicTrafficCounter(): PublicTrafficCounter {
   return {
@@ -283,20 +281,6 @@ function parseCstDayIndex(dateKey: string): number {
   return Math.floor(Date.UTC(year, month - 1, day) / 86_400_000);
 }
 
-function getDeviceId(): string {
-  try {
-    const cached = window.localStorage.getItem(LOCAL_DEVICE_ID_KEY);
-    if (cached) {
-      return cached;
-    }
-    const seeded = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
-    window.localStorage.setItem(LOCAL_DEVICE_ID_KEY, seeded);
-    return seeded;
-  } catch {
-    return 'anonymous-device';
-  }
-}
-
 function shouldHitDeviceDailyCounter(dateKey: string): boolean {
   try {
     const markerKey = `${LOCAL_DEVICE_DAILY_MARK_PREFIX}${dateKey}`;
@@ -323,18 +307,6 @@ function shouldHitDevice7dCounter(bucketKey: string): boolean {
   }
 }
 
-function updateLocalDeviceVisitDays(today: string): string[] {
-  try {
-    const raw = window.localStorage.getItem(LOCAL_DEVICE_VISIT_DAYS_KEY);
-    const days = Array.isArray(raw ? JSON.parse(raw) : []) ? (JSON.parse(raw || '[]') as string[]) : [];
-    const merged = Array.from(new Set([...days, today])).sort((left, right) => left.localeCompare(right));
-    window.localStorage.setItem(LOCAL_DEVICE_VISIT_DAYS_KEY, JSON.stringify(merged.slice(-90)));
-    return merged;
-  } catch {
-    return [today];
-  }
-}
-
 async function requestCountApiValue(key: string, mode: 'get' | 'hit'): Promise<{ value: number; ok: boolean }> {
   for (const endpoint of COUNTAPI_ENDPOINTS) {
     const controller = new AbortController();
@@ -350,7 +322,20 @@ async function requestCountApiValue(key: string, mode: 'get' | 'hit'): Promise<{
       const payload = (await response.json()) as { value?: number };
       return { value: Number(payload?.value) || 0, ok: true };
     } catch {
-      continue;
+      const relayUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`${endpoint}/${mode}/${COUNTAPI_NAMESPACE}/${key}`)}`;
+      try {
+        const relayResponse = await fetch(relayUrl, {
+          cache: 'no-store',
+          signal: controller.signal,
+        });
+        if (!relayResponse.ok) {
+          continue;
+        }
+        const relayPayload = (await relayResponse.json()) as { value?: number };
+        return { value: Number(relayPayload?.value) || 0, ok: true };
+      } catch {
+        continue;
+      }
     } finally {
       window.clearTimeout(timeout);
     }
@@ -363,11 +348,9 @@ async function loadPublicTrafficCounter(): Promise<PublicTrafficCounter> {
   const today = getCstDateKey(new Date());
   const todayIndex = parseCstDayIndex(today);
   const active7Bucket = String(Math.floor(todayIndex / 7));
-  const deviceId = getDeviceId();
   const dayKeys = getRecentCstDateKeys(7);
   const shouldHitDaily = shouldHitDeviceDailyCounter(today);
   const shouldHitActive7 = shouldHitDevice7dCounter(active7Bucket);
-  const localVisitDays = updateLocalDeviceVisitDays(today);
 
   const [totalUniqueRes, todayUniqueRes, active7UniqueRes, dayValues] = await Promise.all([
     requestCountApiValue(COUNTAPI_TOTAL_KEY, shouldHitDaily ? 'hit' : 'get'),
@@ -392,21 +375,14 @@ async function loadPublicTrafficCounter(): Promise<PublicTrafficCounter> {
       reason: available ? '' : 'countapi-empty',
     };
   }
-
-  const recent7LocalSet = new Set(localVisitDays.filter((dateKey) => parseCstDayIndex(dateKey) >= todayIndex - 6));
-  const recent7LocalDays = dayKeys.map((dateKey) => ({
-    date: dateKey,
-    uniqueDevices: recent7LocalSet.has(dateKey) ? 1 : 0,
-  }));
-
   return {
-    available: true,
-    source: `local-device:${deviceId}`,
-    totalUniqueDevices: 1,
-    todayUniqueDevices: 1,
-    active7UniqueDevices: recent7LocalSet.size > 0 ? 1 : 0,
-    days: recent7LocalDays,
-    reason: 'countapi-unreachable-local-fallback',
+    available: false,
+    source: 'countapi',
+    totalUniqueDevices: 0,
+    todayUniqueDevices: 0,
+    active7UniqueDevices: 0,
+    days: dayKeys.map((dateKey) => ({ date: dateKey, uniqueDevices: 0 })),
+    reason: 'countapi-unreachable',
   };
 }
 
@@ -1629,7 +1605,7 @@ function HomePage({
             <span>代理估值数</span>
             <strong>{proxyDrivenCount}</strong>
           </div>
-          <Link className="hero__fact hero__fact--link hero__fact--traffic" to="/traffic" title="查看访客趋势详情">
+          <Link className="hero__fact hero__fact--link" to="/traffic" title="查看访客趋势详情">
             <span>近7日活跃访客</span>
             <strong>{recent7UniquesDisplay}</strong>
             <small className="hero__fact-subtle">

@@ -281,29 +281,39 @@ function parseCstDayIndex(dateKey: string): number {
   return Math.floor(Date.UTC(year, month - 1, day) / 86_400_000);
 }
 
-function shouldHitDeviceDailyCounter(dateKey: string): boolean {
+function hasDeviceDailyCounterMark(dateKey: string): boolean {
   try {
     const markerKey = `${LOCAL_DEVICE_DAILY_MARK_PREFIX}${dateKey}`;
-    if (window.localStorage.getItem(markerKey)) {
-      return false;
-    }
-    window.localStorage.setItem(markerKey, '1');
-    return true;
+    return Boolean(window.localStorage.getItem(markerKey));
   } catch {
-    return true;
+    return false;
   }
 }
 
-function shouldHitDevice7dCounter(bucketKey: string): boolean {
+function markDeviceDailyCounter(dateKey: string) {
+  try {
+    const markerKey = `${LOCAL_DEVICE_DAILY_MARK_PREFIX}${dateKey}`;
+    window.localStorage.setItem(markerKey, '1');
+  } catch {
+    // ignore local storage failures
+  }
+}
+
+function hasDevice7dCounterMark(bucketKey: string): boolean {
   try {
     const markerKey = `${LOCAL_DEVICE_7D_MARK_PREFIX}${bucketKey}`;
-    if (window.localStorage.getItem(markerKey)) {
-      return false;
-    }
-    window.localStorage.setItem(markerKey, '1');
-    return true;
+    return Boolean(window.localStorage.getItem(markerKey));
   } catch {
-    return true;
+    return false;
+  }
+}
+
+function markDevice7dCounter(bucketKey: string) {
+  try {
+    const markerKey = `${LOCAL_DEVICE_7D_MARK_PREFIX}${bucketKey}`;
+    window.localStorage.setItem(markerKey, '1');
+  } catch {
+    // ignore local storage failures
   }
 }
 
@@ -349,13 +359,13 @@ async function loadPublicTrafficCounter(): Promise<PublicTrafficCounter> {
   const todayIndex = parseCstDayIndex(today);
   const active7Bucket = String(Math.floor(todayIndex / 7));
   const dayKeys = getRecentCstDateKeys(7);
-  const shouldHitDaily = shouldHitDeviceDailyCounter(today);
-  const shouldHitActive7 = shouldHitDevice7dCounter(active7Bucket);
+  const dailyMarked = hasDeviceDailyCounterMark(today);
+  const active7Marked = hasDevice7dCounterMark(active7Bucket);
 
-  const [totalUniqueRes, todayUniqueRes, active7UniqueRes, dayValues] = await Promise.all([
-    requestCountApiValue(COUNTAPI_TOTAL_KEY, shouldHitDaily ? 'hit' : 'get'),
-    requestCountApiValue(`${COUNTAPI_DAILY_PREFIX}${today}`, shouldHitDaily ? 'hit' : 'get'),
-    requestCountApiValue(`${COUNTAPI_ACTIVE7_BUCKET_PREFIX}${active7Bucket}`, shouldHitActive7 ? 'hit' : 'get'),
+  let [totalUniqueRes, todayUniqueRes, active7UniqueRes, dayValues] = await Promise.all([
+    requestCountApiValue(COUNTAPI_TOTAL_KEY, dailyMarked ? 'get' : 'hit'),
+    requestCountApiValue(`${COUNTAPI_DAILY_PREFIX}${today}`, dailyMarked ? 'get' : 'hit'),
+    requestCountApiValue(`${COUNTAPI_ACTIVE7_BUCKET_PREFIX}${active7Bucket}`, active7Marked ? 'get' : 'hit'),
     Promise.all(dayKeys.map(async (dateKey) => {
       const daily = await requestCountApiValue(`${COUNTAPI_DAILY_PREFIX}${dateKey}`, 'get');
       return { date: dateKey, uniqueDevices: daily.value };
@@ -364,6 +374,37 @@ async function loadPublicTrafficCounter(): Promise<PublicTrafficCounter> {
 
   const countApiReachable = totalUniqueRes.ok || todayUniqueRes.ok || active7UniqueRes.ok;
   if (countApiReachable) {
+    // Recover from old bug: marker existed but never really hit counter.
+    if (dailyMarked && totalUniqueRes.value <= 0 && todayUniqueRes.value <= 0) {
+      const [recoveryTotal, recoveryToday] = await Promise.all([
+        requestCountApiValue(COUNTAPI_TOTAL_KEY, 'hit'),
+        requestCountApiValue(`${COUNTAPI_DAILY_PREFIX}${today}`, 'hit'),
+      ]);
+      if (recoveryTotal.ok) {
+        totalUniqueRes = recoveryTotal;
+      }
+      if (recoveryToday.ok) {
+        todayUniqueRes = recoveryToday;
+      }
+    }
+    if (active7Marked && active7UniqueRes.value <= 0) {
+      const recoveryActive7 = await requestCountApiValue(`${COUNTAPI_ACTIVE7_BUCKET_PREFIX}${active7Bucket}`, 'hit');
+      if (recoveryActive7.ok) {
+        active7UniqueRes = recoveryActive7;
+      }
+    }
+
+    if (!dailyMarked && totalUniqueRes.ok && todayUniqueRes.ok && (totalUniqueRes.value > 0 || todayUniqueRes.value > 0)) {
+      markDeviceDailyCounter(today);
+    }
+    if (!active7Marked && active7UniqueRes.ok && active7UniqueRes.value > 0) {
+      markDevice7dCounter(active7Bucket);
+    }
+
+    dayValues = dayValues.map((item) => (item.date === today
+      ? { ...item, uniqueDevices: Math.max(item.uniqueDevices, todayUniqueRes.value) }
+      : item));
+
     const available = totalUniqueRes.value > 0 || todayUniqueRes.value > 0 || active7UniqueRes.value > 0 || dayValues.some((item) => item.uniqueDevices > 0);
     return {
       available,

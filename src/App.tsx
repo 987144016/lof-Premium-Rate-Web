@@ -1851,6 +1851,18 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
       stats: providerStatsByName.get(provider) ?? null,
     }));
   const ourPremiumSummary = premiumCompare?.ourPremiumSummary;
+  const getPremiumGapDisplay = (delta: number | null | undefined) => {
+    if (typeof delta !== 'number' || !Number.isFinite(delta)) {
+      return { className: 'muted-text', text: '--' };
+    }
+    if (Math.abs(delta) < 1e-12) {
+      return { className: 'muted-text', text: '--' };
+    }
+    if (delta > 0) {
+      return { className: 'tone-negative', text: `↓ ${formatPercent(Math.abs(delta))}` };
+    }
+    return { className: 'tone-positive', text: `↑ ${formatPercent(Math.abs(delta))}` };
+  };
 
   return (
     <main className="page">
@@ -1977,7 +1989,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
                         <td>{typeof providerItem.settledCount30 === 'number' ? providerItem.settledCount30 : providerItem.sampleCount30}/{typeof providerItem.settledWindowSize === 'number' ? providerItem.settledWindowSize : 30}</td>
                         <td>{typeof providerItem.avgAbsProviderError30 === 'number' ? formatPercent(providerItem.avgAbsProviderError30) : '--'}</td>
                         <td>{typeof providerItem.avgAbsOurError30 === 'number' ? formatPercent(providerItem.avgAbsOurError30) : '--'}</td>
-                        <td className={typeof providerItem.avgAbsDelta30 === 'number' ? (providerItem.avgAbsDelta30 <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof providerItem.avgAbsDelta30 === 'number' ? formatPercent(providerItem.avgAbsDelta30) : '--'}</td>
+                        <td className={getPremiumGapDisplay(providerItem.avgAbsDelta30).className}>{getPremiumGapDisplay(providerItem.avgAbsDelta30).text}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -2069,7 +2081,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
                           <td className={typeof dailyItem.actualPremiumRate === 'number' ? (dailyItem.actualPremiumRate >= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.actualPremiumRate === 'number' ? formatPercent(dailyItem.actualPremiumRate) : '--'}</td>
                           <td className={typeof dailyItem.providerPremiumError === 'number' ? (dailyItem.providerPremiumError <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.providerPremiumError === 'number' ? formatPercent(dailyItem.providerPremiumError) : '--'}</td>
                           <td className={typeof dailyItem.ourPremiumError === 'number' ? (dailyItem.ourPremiumError <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.ourPremiumError === 'number' ? formatPercent(dailyItem.ourPremiumError) : '--'}</td>
-                          <td className={typeof dailyItem.premiumErrorDelta === 'number' ? (dailyItem.premiumErrorDelta <= 0 ? 'tone-positive' : 'tone-negative') : 'muted-text'}>{typeof dailyItem.premiumErrorDelta === 'number' ? formatPercent(dailyItem.premiumErrorDelta) : '--'}</td>
+                          <td className={getPremiumGapDisplay(dailyItem.premiumErrorDelta).className}>{getPremiumGapDisplay(dailyItem.premiumErrorDelta).text}</td>
                         </tr>
                       );
                     })}

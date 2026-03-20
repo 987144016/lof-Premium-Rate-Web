@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-03-20T06:32:52.707Z",
+  "syncedAt": "2026-03-20T06:37:59.296Z",
   "funds": [
     {
       "code": "160221",
@@ -1694,10 +1694,10 @@
           "nav": 1.2245
         }
       ],
-      "marketPrice": 2.319,
+      "marketPrice": 2.317,
       "previousClose": 2.332,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:30",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "开放申购 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -1707,8 +1707,8 @@
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "changeRate": -0.0189,
+          "currentPrice": 31.7,
+          "changeRate": -0.0192,
           "weight": 14.6,
           "shares": 1264.19,
           "marketValue": 43576.7
@@ -1716,8 +1716,8 @@
         {
           "ticker": "603993",
           "name": "洛阳钼业",
-          "currentPrice": 17.62,
-          "changeRate": -0.0129,
+          "currentPrice": 17.61,
+          "changeRate": -0.0134,
           "weight": 6.2,
           "shares": 925.87,
           "marketValue": 18517.37
@@ -1725,8 +1725,8 @@
         {
           "ticker": "600111",
           "name": "北方稀土",
-          "currentPrice": 46.16,
-          "changeRate": -0.009899999999999999,
+          "currentPrice": 46.12,
+          "changeRate": -0.010700000000000001,
           "weight": 4.72,
           "shares": 305.1,
           "marketValue": 14071.06
@@ -1734,8 +1734,8 @@
         {
           "ticker": "603799",
           "name": "华友钴业",
-          "currentPrice": 57.74,
-          "changeRate": 0.0218,
+          "currentPrice": 57.64,
+          "changeRate": 0.02,
           "weight": 4.65,
           "shares": 203.31,
           "marketValue": 13877.65
@@ -1743,8 +1743,8 @@
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "changeRate": -0.0194,
+          "currentPrice": 11.59,
+          "changeRate": -0.0203,
           "weight": 4.31,
           "shares": 1053.65,
           "marketValue": 12875.64
@@ -1752,8 +1752,8 @@
         {
           "ticker": "002460",
           "name": "赣锋锂业",
-          "currentPrice": 68.09,
-          "changeRate": 0.0733,
+          "currentPrice": 67.9,
+          "changeRate": 0.0703,
           "weight": 3.1,
           "shares": 147.15,
           "marketValue": 9254.01
@@ -1761,8 +1761,8 @@
         {
           "ticker": "000807",
           "name": "云铝股份",
-          "currentPrice": 28.53,
-          "changeRate": -0.0196,
+          "currentPrice": 28.54,
+          "changeRate": -0.0192,
           "weight": 3.01,
           "shares": 273.31,
           "marketValue": 8975.59
@@ -1770,8 +1770,8 @@
         {
           "ticker": "600547",
           "name": "山东黄金",
-          "currentPrice": 39.77,
-          "changeRate": -0.0216,
+          "currentPrice": 39.71,
+          "changeRate": -0.0231,
           "weight": 2.81,
           "shares": 216.74,
           "marketValue": 8390.09
@@ -1779,8 +1779,8 @@
         {
           "ticker": "600489",
           "name": "中金黄金",
-          "currentPrice": 26.24,
-          "changeRate": -0.0172,
+          "currentPrice": 26.25,
+          "changeRate": -0.0169,
           "weight": 2.8,
           "shares": 357.54,
           "marketValue": 8352.21
@@ -1788,8 +1788,8 @@
         {
           "ticker": "002466",
           "name": "天齐锂业",
-          "currentPrice": 50.4,
-          "changeRate": 0.03,
+          "currentPrice": 50.36,
+          "changeRate": 0.0292,
           "weight": 2.5,
           "shares": 134.94,
           "marketValue": 7473.11
@@ -1797,106 +1797,106 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "previousClose": 32.320864335949445,
+          "currentPrice": 31.7,
+          "previousClose": 32.3205546492659,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603993",
           "name": "洛阳钼业",
-          "currentPrice": 17.62,
-          "previousClose": 17.85026846317496,
+          "currentPrice": 17.61,
+          "previousClose": 17.849178998580985,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600111",
           "name": "北方稀土",
-          "currentPrice": 46.16,
-          "previousClose": 46.62155337844662,
+          "currentPrice": 46.12,
+          "previousClose": 46.61882138886081,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603799",
           "name": "华友钴业",
-          "currentPrice": 57.74,
-          "previousClose": 56.50812292033666,
+          "currentPrice": 57.64,
+          "previousClose": 56.509803921568626,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "previousClose": 11.829492147664695,
+          "currentPrice": 11.59,
+          "previousClose": 11.830152087373685,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002460",
           "name": "赣锋锂业",
-          "currentPrice": 68.09,
-          "previousClose": 63.439858380695064,
+          "currentPrice": 67.9,
+          "previousClose": 63.440156965336826,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000807",
           "name": "云铝股份",
-          "currentPrice": 28.53,
-          "previousClose": 29.100367197062422,
+          "currentPrice": 28.54,
+          "previousClose": 29.09869494290375,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600547",
           "name": "山东黄金",
-          "currentPrice": 39.77,
-          "previousClose": 40.64799672935405,
+          "currentPrice": 39.71,
+          "previousClose": 40.64899170846556,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600489",
           "name": "中金黄金",
-          "currentPrice": 26.24,
-          "previousClose": 26.6992266992267,
+          "currentPrice": 26.25,
+          "previousClose": 26.701251144339334,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002466",
           "name": "天齐锂业",
-          "currentPrice": 50.4,
-          "previousClose": 48.932038834951456,
+          "currentPrice": 50.36,
+          "previousClose": 48.93120870579091,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -3596,10 +3596,10 @@
           "nav": 1.5004
         }
       ],
-      "marketPrice": 2.911,
+      "marketPrice": 2.906,
       "previousClose": 2.932,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:27",
+      "marketTime": "14:33:51",
       "marketSource": "腾讯行情",
       "purchaseStatus": "开放申购 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -3609,8 +3609,8 @@
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "changeRate": -0.0189,
+          "currentPrice": 31.7,
+          "changeRate": -0.0192,
           "weight": 14.47,
           "shares": 794.8,
           "marketValue": 27396.77
@@ -3618,8 +3618,8 @@
         {
           "ticker": "603993",
           "name": "洛阳钼业",
-          "currentPrice": 17.62,
-          "changeRate": -0.0129,
+          "currentPrice": 17.61,
+          "changeRate": -0.0134,
           "weight": 7.88,
           "shares": 745.69,
           "marketValue": 14913.85
@@ -3627,8 +3627,8 @@
         {
           "ticker": "600111",
           "name": "北方稀土",
-          "currentPrice": 46.16,
-          "changeRate": -0.009899999999999999,
+          "currentPrice": 46.12,
+          "changeRate": -0.010700000000000001,
           "weight": 5.26,
           "shares": 216.14,
           "marketValue": 9968.33
@@ -3636,8 +3636,8 @@
         {
           "ticker": "603799",
           "name": "华友钴业",
-          "currentPrice": 57.74,
-          "changeRate": 0.0218,
+          "currentPrice": 57.64,
+          "changeRate": 0.02,
           "weight": 4.67,
           "shares": 129.57,
           "marketValue": 8844.11
@@ -3645,8 +3645,8 @@
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "changeRate": -0.0194,
+          "currentPrice": 11.59,
+          "changeRate": -0.0203,
           "weight": 4.37,
           "shares": 677.08,
           "marketValue": 8273.87
@@ -3654,8 +3654,8 @@
         {
           "ticker": "002460",
           "name": "赣锋锂业",
-          "currentPrice": 68.09,
-          "changeRate": 0.0733,
+          "currentPrice": 67.9,
+          "changeRate": 0.0703,
           "weight": 3.2,
           "shares": 96.47,
           "marketValue": 6067.3
@@ -3663,8 +3663,8 @@
         {
           "ticker": "600547",
           "name": "山东黄金",
-          "currentPrice": 39.77,
-          "changeRate": -0.0216,
+          "currentPrice": 39.71,
+          "changeRate": -0.0231,
           "weight": 3.16,
           "shares": 154.36,
           "marketValue": 5975.26
@@ -3672,8 +3672,8 @@
         {
           "ticker": "000807",
           "name": "云铝股份",
-          "currentPrice": 28.53,
-          "changeRate": -0.0196,
+          "currentPrice": 28.54,
+          "changeRate": -0.0192,
           "weight": 3.08,
           "shares": 177.73,
           "marketValue": 5836.65
@@ -3681,8 +3681,8 @@
         {
           "ticker": "600489",
           "name": "中金黄金",
-          "currentPrice": 26.24,
-          "changeRate": -0.0172,
+          "currentPrice": 26.25,
+          "changeRate": -0.0169,
           "weight": 3.06,
           "shares": 248.42,
           "marketValue": 5802.98
@@ -3690,8 +3690,8 @@
         {
           "ticker": "002466",
           "name": "天齐锂业",
-          "currentPrice": 50.4,
-          "changeRate": 0.03,
+          "currentPrice": 50.36,
+          "changeRate": 0.0292,
           "weight": 2.58,
           "shares": 88.31,
           "marketValue": 4890.61
@@ -3699,106 +3699,106 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "previousClose": 32.320864335949445,
+          "currentPrice": 31.7,
+          "previousClose": 32.3205546492659,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603993",
           "name": "洛阳钼业",
-          "currentPrice": 17.62,
-          "previousClose": 17.85026846317496,
+          "currentPrice": 17.61,
+          "previousClose": 17.849178998580985,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600111",
           "name": "北方稀土",
-          "currentPrice": 46.16,
-          "previousClose": 46.62155337844662,
+          "currentPrice": 46.12,
+          "previousClose": 46.61882138886081,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603799",
           "name": "华友钴业",
-          "currentPrice": 57.74,
-          "previousClose": 56.50812292033666,
+          "currentPrice": 57.64,
+          "previousClose": 56.509803921568626,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "previousClose": 11.829492147664695,
+          "currentPrice": 11.59,
+          "previousClose": 11.830152087373685,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002460",
           "name": "赣锋锂业",
-          "currentPrice": 68.09,
-          "previousClose": 63.439858380695064,
+          "currentPrice": 67.9,
+          "previousClose": 63.440156965336826,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600547",
           "name": "山东黄金",
-          "currentPrice": 39.77,
-          "previousClose": 40.64799672935405,
+          "currentPrice": 39.71,
+          "previousClose": 40.64899170846556,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000807",
           "name": "云铝股份",
-          "currentPrice": 28.53,
-          "previousClose": 29.100367197062422,
+          "currentPrice": 28.54,
+          "previousClose": 29.09869494290375,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600489",
           "name": "中金黄金",
-          "currentPrice": 26.24,
-          "previousClose": 26.6992266992267,
+          "currentPrice": 26.25,
+          "previousClose": 26.701251144339334,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002466",
           "name": "天齐锂业",
-          "currentPrice": 50.4,
-          "previousClose": 48.932038834951456,
+          "currentPrice": 50.36,
+          "previousClose": 48.93120870579091,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -5498,10 +5498,10 @@
           "nav": 0.8363
         }
       ],
-      "marketPrice": 0.653,
+      "marketPrice": 0.654,
       "previousClose": 0.657,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "50万元",
@@ -5511,8 +5511,8 @@
         {
           "ticker": "600519",
           "name": "贵州茅台",
-          "currentPrice": 1441.3,
-          "changeRate": -0.008,
+          "currentPrice": 1442.69,
+          "changeRate": -0.006999999999999999,
           "weight": 15.38,
           "shares": 482.29,
           "marketValue": 664201.11
@@ -5520,8 +5520,8 @@
         {
           "ticker": "600809",
           "name": "山西汾酒",
-          "currentPrice": 154.18,
-          "changeRate": -0.0126,
+          "currentPrice": 154.32,
+          "changeRate": -0.011699999999999999,
           "weight": 15.11,
           "shares": 3801.47,
           "marketValue": 652712.47
@@ -5529,8 +5529,8 @@
         {
           "ticker": "000858",
           "name": "五粮液",
-          "currentPrice": 102.23,
-          "changeRate": -0.0029,
+          "currentPrice": 102.24,
+          "changeRate": -0.0028000000000000004,
           "weight": 14.65,
           "shares": 5974.61,
           "marketValue": 632950.6
@@ -5538,8 +5538,8 @@
         {
           "ticker": "000568",
           "name": "泸州老窖",
-          "currentPrice": 105.23,
-          "changeRate": -0.0016,
+          "currentPrice": 105.25,
+          "changeRate": -0.0014000000000000002,
           "weight": 14.53,
           "shares": 5399.78,
           "marketValue": 627562.14
@@ -5556,8 +5556,8 @@
         {
           "ticker": "000596",
           "name": "古井贡酒",
-          "currentPrice": 109.56,
-          "changeRate": 0.010700000000000001,
+          "currentPrice": 109.3,
+          "changeRate": 0.0083,
           "weight": 5.14,
           "shares": 1675.45,
           "marketValue": 222164.23
@@ -5565,8 +5565,8 @@
         {
           "ticker": "603369",
           "name": "今世缘",
-          "currentPrice": 28.15,
-          "changeRate": -0.0070999999999999995,
+          "currentPrice": 28.16,
+          "changeRate": -0.0067,
           "weight": 4.97,
           "shares": 6171.43,
           "marketValue": 214642.27
@@ -5574,8 +5574,8 @@
         {
           "ticker": "603198",
           "name": "迎驾贡酒",
-          "currentPrice": 33.71,
-          "changeRate": -0.0143,
+          "currentPrice": 33.61,
+          "changeRate": -0.0173,
           "weight": 2.47,
           "shares": 2692.85,
           "marketValue": 106528.99
@@ -5583,8 +5583,8 @@
         {
           "ticker": "600702",
           "name": "舍得酒业",
-          "currentPrice": 47.5,
-          "changeRate": -0.019,
+          "currentPrice": 47.32,
+          "changeRate": -0.0227,
           "weight": 2.14,
           "shares": 1645.38,
           "marketValue": 92272.66
@@ -5592,8 +5592,8 @@
         {
           "ticker": "603589",
           "name": "口子窖",
-          "currentPrice": 25.83,
-          "changeRate": -0.0152,
+          "currentPrice": 25.79,
+          "changeRate": -0.0168,
           "weight": 2.06,
           "shares": 2967.96,
           "marketValue": 89187.18
@@ -5601,47 +5601,47 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "600519",
           "name": "贵州茅台",
-          "currentPrice": 1441.3,
-          "previousClose": 1452.9233870967741,
+          "currentPrice": 1442.69,
+          "previousClose": 1452.860020140987,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600809",
           "name": "山西汾酒",
-          "currentPrice": 154.18,
-          "previousClose": 156.14745797042738,
+          "currentPrice": 154.32,
+          "previousClose": 156.1469189517353,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000858",
           "name": "五粮液",
-          "currentPrice": 102.23,
-          "previousClose": 102.52732925483903,
+          "currentPrice": 102.24,
+          "previousClose": 102.52707581227436,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000568",
           "name": "泸州老窖",
-          "currentPrice": 105.23,
-          "previousClose": 105.39863782051283,
+          "currentPrice": 105.25,
+          "previousClose": 105.39755657921089,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -5650,57 +5650,57 @@
           "currentPrice": 50.54,
           "previousClose": 50.758260520237016,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000596",
           "name": "古井贡酒",
-          "currentPrice": 109.56,
-          "previousClose": 108.40011872959336,
+          "currentPrice": 109.3,
+          "previousClose": 108.40027769513041,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603369",
           "name": "今世缘",
-          "currentPrice": 28.15,
-          "previousClose": 28.351294188740052,
+          "currentPrice": 28.16,
+          "previousClose": 28.3499446290144,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603198",
           "name": "迎驾贡酒",
-          "currentPrice": 33.71,
-          "previousClose": 34.19904636299077,
+          "currentPrice": 33.61,
+          "previousClose": 34.20168922356772,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600702",
           "name": "舍得酒业",
-          "currentPrice": 47.5,
-          "previousClose": 48.41997961264016,
+          "currentPrice": 47.32,
+          "previousClose": 48.4191138851939,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603589",
           "name": "口子窖",
-          "currentPrice": 25.83,
-          "previousClose": 26.228675873273758,
+          "currentPrice": 25.79,
+          "previousClose": 26.2306753458096,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -7400,10 +7400,10 @@
           "nav": 0.774
         }
       ],
-      "marketPrice": 1.144,
+      "marketPrice": 1.143,
       "previousClose": 1.16,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:45",
       "marketSource": "腾讯行情",
       "purchaseStatus": "开放申购 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -7413,8 +7413,8 @@
         {
           "ticker": "601318",
           "name": "中国平安",
-          "currentPrice": 60,
-          "changeRate": -0.0102,
+          "currentPrice": 59.99,
+          "changeRate": -0.0104,
           "weight": 29.04,
           "shares": 1060.22,
           "marketValue": 72519.38
@@ -7422,8 +7422,8 @@
         {
           "ticker": "601601",
           "name": "中国太保",
-          "currentPrice": 39.24,
-          "changeRate": -0.0131,
+          "currentPrice": 39.26,
+          "changeRate": -0.0126,
           "weight": 22.69,
           "shares": 1352.5,
           "marketValue": 56683.2
@@ -7431,8 +7431,8 @@
         {
           "ticker": "601628",
           "name": "中国人寿",
-          "currentPrice": 41.95,
-          "changeRate": -0.0104,
+          "currentPrice": 41.96,
+          "changeRate": -0.0101,
           "weight": 11.99,
           "shares": 658.28,
           "marketValue": 29951.8
@@ -7449,8 +7449,8 @@
         {
           "ticker": "601319",
           "name": "中国人保",
-          "currentPrice": 8.27,
-          "changeRate": -0.0143,
+          "currentPrice": 8.28,
+          "changeRate": -0.0131,
           "weight": 4.52,
           "shares": 1262.57,
           "marketValue": 11300.04
@@ -7458,8 +7458,8 @@
         {
           "ticker": "601398",
           "name": "工商银行",
-          "currentPrice": 7.53,
-          "changeRate": 0,
+          "currentPrice": 7.52,
+          "changeRate": -0.0013,
           "weight": 2.67,
           "shares": 841.17,
           "marketValue": 6670.48
@@ -7476,8 +7476,8 @@
         {
           "ticker": "600036",
           "name": "招商银行",
-          "currentPrice": 39.75,
-          "changeRate": -0.0005,
+          "currentPrice": 39.76,
+          "changeRate": -0.0003,
           "weight": 2.62,
           "shares": 155.63,
           "marketValue": 6552.04
@@ -7503,38 +7503,38 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "601318",
           "name": "中国平安",
-          "currentPrice": 60,
-          "previousClose": 60.61830672863205,
+          "currentPrice": 59.99,
+          "previousClose": 60.62045270816491,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601601",
           "name": "中国太保",
-          "currentPrice": 39.24,
-          "previousClose": 39.760867362448074,
+          "currentPrice": 39.26,
+          "previousClose": 39.76098845452704,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601628",
           "name": "中国人寿",
-          "currentPrice": 41.95,
-          "previousClose": 42.39086499595796,
+          "currentPrice": 41.96,
+          "previousClose": 42.388120012122435,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -7543,25 +7543,25 @@
           "currentPrice": 69.39,
           "previousClose": 70.28258887876027,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601319",
           "name": "中国人保",
-          "currentPrice": 8.27,
-          "previousClose": 8.389976666328497,
+          "currentPrice": 8.28,
+          "previousClose": 8.389907792076198,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601398",
           "name": "工商银行",
-          "currentPrice": 7.53,
-          "previousClose": 7.53,
+          "currentPrice": 7.52,
+          "previousClose": 7.529788725342945,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -7570,16 +7570,16 @@
           "currentPrice": 6.8,
           "previousClose": 6.8300522298111686,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600036",
           "name": "招商银行",
-          "currentPrice": 39.75,
-          "previousClose": 39.769884942471236,
+          "currentPrice": 39.76,
+          "previousClose": 39.771931579473836,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -7588,7 +7588,7 @@
           "currentPrice": 6.9,
           "previousClose": 6.889665501747379,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -7597,12 +7597,12 @@
           "currentPrice": 5.52,
           "previousClose": 5.529953917050691,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -9305,7 +9305,7 @@
       "marketPrice": 1.693,
       "previousClose": 1.704,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:02",
+      "marketTime": "14:33:02",
       "marketSource": "腾讯行情",
       "purchaseStatus": "开放申购 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -9315,8 +9315,8 @@
         {
           "ticker": "600519",
           "name": "贵州茅台",
-          "currentPrice": 1441.3,
-          "changeRate": -0.008,
+          "currentPrice": 1442.69,
+          "changeRate": -0.006999999999999999,
           "weight": 8.73,
           "shares": 11.76,
           "marketValue": 16201.97
@@ -9324,8 +9324,8 @@
         {
           "ticker": "02318",
           "name": "中国平安",
-          "currentPrice": 61.85,
-          "changeRate": 0.0032441200324413444,
+          "currentPrice": 61.9,
+          "changeRate": 0.0040551500405514584,
           "weight": 7.18,
           "shares": 226.45,
           "marketValue": 13325.4
@@ -9333,8 +9333,8 @@
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "changeRate": -0.0189,
+          "currentPrice": 31.7,
+          "changeRate": -0.0192,
           "weight": 5.75,
           "shares": 309.52,
           "marketValue": 10669.15
@@ -9342,8 +9342,8 @@
         {
           "ticker": "600036",
           "name": "招商银行",
-          "currentPrice": 39.75,
-          "changeRate": -0.0005,
+          "currentPrice": 39.76,
+          "changeRate": -0.0003,
           "weight": 5.27,
           "shares": 232.6,
           "marketValue": 9792.31
@@ -9360,8 +9360,8 @@
         {
           "ticker": "600900",
           "name": "长江电力",
-          "currentPrice": 27.16,
-          "changeRate": -0.0037,
+          "currentPrice": 27.18,
+          "changeRate": -0.0029,
           "weight": 3.37,
           "shares": 229.9,
           "marketValue": 6251.04
@@ -9369,8 +9369,8 @@
         {
           "ticker": "688256",
           "name": "寒武纪",
-          "currentPrice": 1041.41,
-          "changeRate": 0.0042,
+          "currentPrice": 1040.61,
+          "changeRate": 0.0034999999999999996,
           "weight": 2.89,
           "shares": 3.96,
           "marketValue": 5370.82
@@ -9378,8 +9378,8 @@
         {
           "ticker": "06030",
           "name": "中信证券",
-          "currentPrice": 25.66,
-          "changeRate": -0.0007788161993769194,
+          "currentPrice": 25.58,
+          "changeRate": -0.003894080996884819,
           "weight": 2.8,
           "shares": 210,
           "marketValue": 5197.07
@@ -9396,8 +9396,8 @@
         {
           "ticker": "01398",
           "name": "工商银行",
-          "currentPrice": 6.63,
-          "changeRate": 0.0075987841945288626,
+          "currentPrice": 6.62,
+          "changeRate": 0.006079027355623046,
           "weight": 2.68,
           "shares": 875.4,
           "marketValue": 4973.37
@@ -9405,47 +9405,47 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "600519",
           "name": "贵州茅台",
-          "currentPrice": 1441.3,
-          "previousClose": 1452.9233870967741,
+          "currentPrice": 1442.69,
+          "previousClose": 1452.860020140987,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "02318",
           "name": "中国平安",
-          "currentPrice": 61.85,
-          "previousClose": 61.64999999999999,
+          "currentPrice": 61.9,
+          "previousClose": 61.65,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "HKD"
         },
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "previousClose": 32.320864335949445,
+          "currentPrice": 31.7,
+          "previousClose": 32.3205546492659,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600036",
           "name": "招商银行",
-          "currentPrice": 39.75,
-          "previousClose": 39.769884942471236,
+          "currentPrice": 39.76,
+          "previousClose": 39.771931579473836,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -9454,34 +9454,34 @@
           "currentPrice": 18.81,
           "previousClose": 18.830713785163677,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600900",
           "name": "长江电力",
-          "currentPrice": 27.16,
-          "previousClose": 27.260865201244606,
+          "currentPrice": 27.18,
+          "previousClose": 27.259051248621002,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "688256",
           "name": "寒武纪",
-          "currentPrice": 1041.41,
-          "previousClose": 1037.0543716391157,
+          "currentPrice": 1040.61,
+          "previousClose": 1036.980568011958,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "06030",
           "name": "中信证券",
-          "currentPrice": 25.66,
+          "currentPrice": 25.58,
           "previousClose": 25.68,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "HKD"
         },
         {
@@ -9490,21 +9490,21 @@
           "currentPrice": 55.31,
           "previousClose": 56.02147270333233,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "01398",
           "name": "工商银行",
-          "currentPrice": 6.63,
+          "currentPrice": 6.62,
           "previousClose": 6.58,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "HKD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -11207,7 +11207,7 @@
       "marketPrice": 1.079,
       "previousClose": 1.073,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:43",
+      "marketTime": "14:33:28",
       "marketSource": "腾讯行情",
       "purchaseStatus": "开放申购 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -11226,8 +11226,8 @@
         {
           "ticker": "600436",
           "name": "片仔癀",
-          "currentPrice": 156.8,
-          "changeRate": -0.0013,
+          "currentPrice": 156.72,
+          "changeRate": -0.0018,
           "weight": 10.24,
           "shares": 148.85,
           "marketValue": 25123.27
@@ -11235,8 +11235,8 @@
         {
           "ticker": "600085",
           "name": "同仁堂",
-          "currentPrice": 29.76,
-          "changeRate": -0.0033,
+          "currentPrice": 29.72,
+          "changeRate": -0.004699999999999999,
           "weight": 5.55,
           "shares": 421.7,
           "marketValue": 13604.1
@@ -11244,8 +11244,8 @@
         {
           "ticker": "000423",
           "name": "东阿阿胶",
-          "currentPrice": 56.16,
-          "changeRate": 0.064,
+          "currentPrice": 56.2,
+          "changeRate": 0.06480000000000001,
           "weight": 5.55,
           "shares": 277.13,
           "marketValue": 13601.32
@@ -11253,8 +11253,8 @@
         {
           "ticker": "000999",
           "name": "华润三九",
-          "currentPrice": 29.72,
-          "changeRate": 0.0203,
+          "currentPrice": 29.7,
+          "changeRate": 0.0196,
           "weight": 4.75,
           "shares": 409.16,
           "marketValue": 11644.67
@@ -11271,8 +11271,8 @@
         {
           "ticker": "600332",
           "name": "白云山",
-          "currentPrice": 25.2,
-          "changeRate": -0.0008,
+          "currentPrice": 25.18,
+          "changeRate": -0.0016,
           "weight": 4.54,
           "shares": 432.4,
           "marketValue": 11129.87
@@ -11289,8 +11289,8 @@
         {
           "ticker": "600329",
           "name": "达仁堂",
-          "currentPrice": 42.33,
-          "changeRate": 0.0059,
+          "currentPrice": 42.31,
+          "changeRate": 0.0055000000000000005,
           "weight": 3.26,
           "shares": 175.13,
           "marketValue": 7989.44
@@ -11298,8 +11298,8 @@
         {
           "ticker": "002317",
           "name": "众生药业",
-          "currentPrice": 17.73,
-          "changeRate": -0.0204,
+          "currentPrice": 17.72,
+          "changeRate": -0.021,
           "weight": 3.24,
           "shares": 418.04,
           "marketValue": 7934.4
@@ -11307,10 +11307,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -11320,43 +11320,43 @@
           "currentPrice": 56.95,
           "previousClose": 56.728757844406815,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600436",
           "name": "片仔癀",
-          "currentPrice": 156.8,
-          "previousClose": 157.00410533693804,
+          "currentPrice": 156.72,
+          "previousClose": 157.0026046884392,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600085",
           "name": "同仁堂",
-          "currentPrice": 29.76,
-          "previousClose": 29.858533159426106,
+          "currentPrice": 29.72,
+          "previousClose": 29.860343614990455,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000423",
           "name": "东阿阿胶",
-          "currentPrice": 56.16,
-          "previousClose": 52.78195488721804,
+          "currentPrice": 56.2,
+          "previousClose": 52.779864763335844,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000999",
           "name": "华润三九",
-          "currentPrice": 29.72,
-          "previousClose": 29.128687640889932,
+          "currentPrice": 29.7,
+          "previousClose": 29.129070223617102,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -11365,16 +11365,16 @@
           "currentPrice": 18.11,
           "previousClose": 18.180905531573135,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600332",
           "name": "白云山",
-          "currentPrice": 25.2,
-          "previousClose": 25.22017614091273,
+          "currentPrice": 25.18,
+          "previousClose": 25.220352564102566,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -11383,30 +11383,30 @@
           "currentPrice": 16.46,
           "previousClose": 16.58939729893167,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600329",
           "name": "达仁堂",
-          "currentPrice": 42.33,
-          "previousClose": 42.081717864598865,
+          "currentPrice": 42.31,
+          "previousClose": 42.07856787667827,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002317",
           "name": "众生药业",
-          "currentPrice": 17.73,
-          "previousClose": 18.09922417313189,
+          "currentPrice": 17.72,
+          "previousClose": 18.100102145045966,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -13106,10 +13106,10 @@
           "nav": 0.9422
         }
       ],
-      "marketPrice": 2.682,
+      "marketPrice": 2.675,
       "previousClose": 2.645,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -13118,10 +13118,10 @@
       "disclosedHoldings": [],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -14837,10 +14837,10 @@
           "nav": 4.624
         }
       ],
-      "marketPrice": 5.5,
+      "marketPrice": 5.499,
       "previousClose": 5.505,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -14940,10 +14940,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -16770,10 +16770,10 @@
           "nav": 0.491
         }
       ],
-      "marketPrice": 0.758,
+      "marketPrice": 0.759,
       "previousClose": 0.757,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:42",
+      "marketTime": "14:33:42",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "1000元",
@@ -16839,10 +16839,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -16852,7 +16852,7 @@
           "currentPrice": 33.72,
           "previousClose": 33.65,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:39",
+          "quoteTime": "14:33:42",
           "currency": "USD"
         },
         {
@@ -16861,7 +16861,7 @@
           "currentPrice": 91.86,
           "previousClose": 95.81,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:39",
+          "quoteTime": "14:33:42",
           "currency": "USD"
         },
         {
@@ -16870,7 +16870,7 @@
           "currentPrice": 426.41,
           "previousClose": 444.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:39",
+          "quoteTime": "14:33:42",
           "currency": "USD"
         },
         {
@@ -16879,7 +16879,7 @@
           "currentPrice": 60.92,
           "previousClose": 66.59,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:39",
+          "quoteTime": "14:33:42",
           "currency": "USD"
         },
         {
@@ -16888,7 +16888,7 @@
           "currentPrice": 72.38,
           "previousClose": 74.93,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:39",
+          "quoteTime": "14:33:42",
           "currency": "USD"
         },
         {
@@ -16897,7 +16897,7 @@
           "currentPrice": 22.95,
           "previousClose": 23.28,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:39",
+          "quoteTime": "14:33:42",
           "currency": "USD"
         },
         {
@@ -16906,12 +16906,12 @@
           "currentPrice": 158.05,
           "previousClose": 192.54,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:39",
+          "quoteTime": "14:33:42",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:39",
+      "holdingsQuoteTime": "14:33:42",
       "proxyBasketName": "大宗商品篮子",
       "proxyQuotes": [
         {
@@ -18622,10 +18622,10 @@
           "nav": 0.93
         }
       ],
-      "marketPrice": 1.775,
+      "marketPrice": 1.772,
       "previousClose": 1.797,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:42",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -18683,10 +18683,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -18696,7 +18696,7 @@
           "currentPrice": 426.41,
           "previousClose": 444.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -18705,7 +18705,7 @@
           "currentPrice": 91.86,
           "previousClose": 95.81,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -18714,7 +18714,7 @@
           "currentPrice": 87.37,
           "previousClose": 91.12,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -18723,7 +18723,7 @@
           "currentPrice": 44.23,
           "previousClose": 46.13,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -18732,7 +18732,7 @@
           "currentPrice": 426.41,
           "previousClose": 444.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -18741,12 +18741,12 @@
           "currentPrice": 60.92,
           "previousClose": 66.59,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:42",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "黄金篮子",
       "proxyQuotes": [
         {
@@ -20460,7 +20460,7 @@
       "marketPrice": 1.864,
       "previousClose": 1.894,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "50元",
@@ -20494,10 +20494,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -20507,7 +20507,7 @@
           "currentPrice": 91.86,
           "previousClose": 95.81,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -20516,7 +20516,7 @@
           "currentPrice": 45.8,
           "previousClose": 47.76,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -20525,12 +20525,12 @@
           "currentPrice": 68.98,
           "previousClose": 72.17,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:42",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "贵金属篮子",
       "proxyQuotes": [
         {
@@ -22251,10 +22251,10 @@
           "nav": 1.171
         }
       ],
-      "marketPrice": 2.11,
+      "marketPrice": 2.109,
       "previousClose": 2.148,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -22312,10 +22312,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -22325,7 +22325,7 @@
           "currentPrice": 426.41,
           "previousClose": 444.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:36",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -22334,7 +22334,7 @@
           "currentPrice": 44.23,
           "previousClose": 46.13,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:36",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -22343,7 +22343,7 @@
           "currentPrice": 87.37,
           "previousClose": 91.12,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:36",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -22352,7 +22352,7 @@
           "currentPrice": 426.41,
           "previousClose": 444.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:36",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -22361,7 +22361,7 @@
           "currentPrice": 426.41,
           "previousClose": 444.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:36",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -22370,12 +22370,12 @@
           "currentPrice": 426.41,
           "previousClose": 444.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:36",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:36",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "黄金篮子",
       "proxyQuotes": [
         {
@@ -24089,7 +24089,7 @@
       "marketPrice": 2.356,
       "previousClose": 2.213,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 暂停赎回",
       "purchaseLimit": "0元",
@@ -24155,10 +24155,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -24168,7 +24168,7 @@
           "currentPrice": 51.14,
           "previousClose": 52.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -24177,7 +24177,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -24186,7 +24186,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -24195,7 +24195,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -24204,7 +24204,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -24213,7 +24213,7 @@
           "currentPrice": 51.14,
           "previousClose": 52.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -24222,12 +24222,12 @@
           "currentPrice": 20.66,
           "previousClose": 21.05,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:42",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "原油篮子",
       "proxyQuotes": [
         {
@@ -25948,10 +25948,10 @@
           "nav": 1.3229
         }
       ],
-      "marketPrice": 2.216,
+      "marketPrice": 2.218,
       "previousClose": 2.086,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -26003,16 +26003,16 @@
           "name": "Samsung S&P GSCI Crude Oil ER Futures ETF",
           "marketValue": 27707465.75,
           "weight": 5.72,
-          "currentPrice": 9.925,
-          "changeRate": -0.02886497064579252
+          "currentPrice": 9.93,
+          "changeRate": -0.02837573385518599
         }
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -26022,7 +26022,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -26031,7 +26031,7 @@
           "currentPrice": 51.14,
           "previousClose": 52.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -26040,7 +26040,7 @@
           "currentPrice": 20.66,
           "previousClose": 21.05,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -26049,7 +26049,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -26058,21 +26058,21 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
           "ticker": "03175",
           "name": "Samsung S&P GSCI Crude Oil ER Futures ETF",
-          "currentPrice": 9.925,
+          "currentPrice": 9.93,
           "previousClose": 10.22,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "HKD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:42",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "原油篮子",
       "proxyQuotes": [
         {
@@ -27796,7 +27796,7 @@
       "marketPrice": 2.88,
       "previousClose": 2.871,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -27896,10 +27896,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -27909,7 +27909,7 @@
           "currentPrice": 126.02,
           "previousClose": 123.65000000000002,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27918,7 +27918,7 @@
           "currentPrice": 138.82,
           "previousClose": 137.52,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27927,7 +27927,7 @@
           "currentPrice": 178.34,
           "previousClose": 172.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27936,7 +27936,7 @@
           "currentPrice": 235.78,
           "previousClose": 236.24,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27945,7 +27945,7 @@
           "currentPrice": 48.79,
           "previousClose": 48.15999999999999,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27954,7 +27954,7 @@
           "currentPrice": 190.31,
           "previousClose": 189.68,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27963,7 +27963,7 @@
           "currentPrice": 107.95,
           "previousClose": 105.52000000000001,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27972,7 +27972,7 @@
           "currentPrice": 64.68,
           "previousClose": 63.52,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27981,7 +27981,7 @@
           "currentPrice": 242.07,
           "previousClose": 238.46,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -27990,12 +27990,12 @@
           "currentPrice": 33.9,
           "previousClose": 33.47,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:42",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "油气上游篮子",
       "proxyQuotes": [
         {
@@ -29716,10 +29716,10 @@
           "nav": 1.569
         }
       ],
-      "marketPrice": 2.698,
+      "marketPrice": 2.699,
       "previousClose": 2.545,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -29785,10 +29785,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -29798,7 +29798,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -29807,7 +29807,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -29816,7 +29816,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -29825,7 +29825,7 @@
           "currentPrice": 51.14,
           "previousClose": 52.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -29834,7 +29834,7 @@
           "currentPrice": 51.14,
           "previousClose": 52.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -29843,7 +29843,7 @@
           "currentPrice": 117.36,
           "previousClose": 121.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         },
         {
@@ -29852,12 +29852,12 @@
           "currentPrice": 51.14,
           "previousClose": 52.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:23:42",
+          "quoteTime": "14:33:54",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:23:42",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "原油篮子",
       "proxyQuotes": [
         {
@@ -31578,10 +31578,10 @@
           "nav": 0.8109
         }
       ],
-      "marketPrice": 0.918,
+      "marketPrice": 0.919,
       "previousClose": 0.917,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -31682,9 +31682,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -31694,7 +31694,7 @@
           "currentPrice": 14.29,
           "previousClose": 14.85,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31703,7 +31703,7 @@
           "currentPrice": 158.16,
           "previousClose": 157.59,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31712,7 +31712,7 @@
           "currentPrice": 201.44,
           "previousClose": 198.61,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31721,7 +31721,7 @@
           "currentPrice": 203.87,
           "previousClose": 197.38,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31730,7 +31730,7 @@
           "currentPrice": 59.58,
           "previousClose": 58.379999999999995,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31739,7 +31739,7 @@
           "currentPrice": 33.9,
           "previousClose": 33.47,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31748,7 +31748,7 @@
           "currentPrice": 126.02,
           "previousClose": 123.65000000000002,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31757,7 +31757,7 @@
           "currentPrice": 532.52,
           "previousClose": 530.08,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31766,7 +31766,7 @@
           "currentPrice": 48.79,
           "previousClose": 48.15999999999999,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -31775,12 +31775,12 @@
           "currentPrice": 30.6,
           "previousClose": 30.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:48",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "油气上游篮子",
       "proxyQuotes": [
         {
@@ -33501,10 +33501,10 @@
           "nav": 1.709
         }
       ],
-      "marketPrice": 2.636,
+      "marketPrice": 2.626,
       "previousClose": 2.543,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -33605,9 +33605,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -33617,7 +33617,7 @@
           "currentPrice": 158.16,
           "previousClose": 157.59,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33626,7 +33626,7 @@
           "currentPrice": 201.44,
           "previousClose": 198.61,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33635,7 +33635,7 @@
           "currentPrice": 60.5,
           "previousClose": 60.1,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33644,7 +33644,7 @@
           "currentPrice": 91.19,
           "previousClose": 92.75,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33653,7 +33653,7 @@
           "currentPrice": 90.06,
           "previousClose": 86.9,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33662,7 +33662,7 @@
           "currentPrice": 126.02,
           "previousClose": 123.65000000000002,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33671,7 +33671,7 @@
           "currentPrice": 54.07,
           "previousClose": 53.24,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33680,7 +33680,7 @@
           "currentPrice": 45.86,
           "previousClose": 44.61,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33689,7 +33689,7 @@
           "currentPrice": 74.06,
           "previousClose": 72.8,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -33698,12 +33698,12 @@
           "currentPrice": 50.55,
           "previousClose": 49.1,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:48",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "油气上游篮子",
       "proxyQuotes": [
         {
@@ -35424,10 +35424,10 @@
           "nav": 1.4101
         }
       ],
-      "marketPrice": 2.335,
+      "marketPrice": 2.33,
       "previousClose": 2.354,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:42",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -35471,24 +35471,24 @@
           "name": "华夏国证半导体芯片ETF",
           "weight": 7.01,
           "marketValue": 46928886.4,
-          "currentPrice": 1.762,
-          "changeRate": -0.0068000000000000005
+          "currentPrice": 1.758,
+          "changeRate": -0.009000000000000001
         },
         {
           "ticker": "512760",
           "name": "国泰CES半导体芯片行业ETF",
           "weight": 7,
           "marketValue": 46858736.2,
-          "currentPrice": 1.661,
-          "changeRate": -0.0077658303464754885
+          "currentPrice": 1.659,
+          "changeRate": -0.008960573476702427
         },
         {
           "ticker": "159560",
           "name": "景顺长城中证芯片产业ETF",
           "weight": 6.81,
           "marketValue": 45567477.2,
-          "currentPrice": 1.715,
-          "changeRate": -0.0115
+          "currentPrice": 1.711,
+          "changeRate": -0.0138
         },
         {
           "ticker": "2644",
@@ -35502,9 +35502,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -35514,7 +35514,7 @@
           "currentPrice": 394.92,
           "previousClose": 393.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "USD"
         },
         {
@@ -35523,7 +35523,7 @@
           "currentPrice": 61.92,
           "previousClose": 61.42,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "USD"
         },
         {
@@ -35532,7 +35532,7 @@
           "currentPrice": 340.2,
           "previousClose": 338.29,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "USD"
         },
         {
@@ -35541,34 +35541,34 @@
           "currentPrice": 97.21,
           "previousClose": 95.44,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "USD"
         },
         {
           "ticker": "159995",
           "name": "华夏国证半导体芯片ETF",
-          "currentPrice": 1.762,
-          "previousClose": 1.7740636327023762,
+          "currentPrice": 1.758,
+          "previousClose": 1.773965691220989,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "512760",
           "name": "国泰CES半导体芯片行业ETF",
-          "currentPrice": 1.661,
+          "currentPrice": 1.659,
           "previousClose": 1.674,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "159560",
           "name": "景顺长城中证芯片产业ETF",
-          "currentPrice": 1.715,
-          "previousClose": 1.734951947395043,
+          "currentPrice": 1.711,
+          "previousClose": 1.7349422023930239,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -35577,12 +35577,12 @@
           "currentPrice": 340.2,
           "previousClose": 338.29,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "半导体篮子",
       "proxyQuotes": [
         {
@@ -37293,10 +37293,10 @@
           "nav": 2.405
         }
       ],
-      "marketPrice": 2.827,
+      "marketPrice": 2.825,
       "previousClose": 2.833,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -37397,9 +37397,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -37409,7 +37409,7 @@
           "currentPrice": 178.56,
           "previousClose": 180.4,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37418,7 +37418,7 @@
           "currentPrice": 248.96,
           "previousClose": 249.94,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37427,7 +37427,7 @@
           "currentPrice": 389.02,
           "previousClose": 391.79,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37436,7 +37436,7 @@
           "currentPrice": 208.76,
           "previousClose": 209.87,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37445,7 +37445,7 @@
           "currentPrice": 307.13,
           "previousClose": 307.69,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37454,7 +37454,7 @@
           "currentPrice": 319.84,
           "previousClose": 315.92999999999995,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37463,7 +37463,7 @@
           "currentPrice": 305.73,
           "previousClose": 306.3,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37472,7 +37472,7 @@
           "currentPrice": 606.7,
           "previousClose": 615.68,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37481,7 +37481,7 @@
           "currentPrice": 380.3,
           "previousClose": 392.78,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -37490,12 +37490,12 @@
           "currentPrice": 481.48,
           "previousClose": 484.47,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:48",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "标普500篮子",
       "proxyQuotes": [
         {
@@ -39209,7 +39209,7 @@
       "marketPrice": 1.909,
       "previousClose": 1.904,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:49",
+      "marketTime": "14:33:52",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "2000元",
@@ -39300,9 +39300,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -39312,7 +39312,7 @@
           "currentPrice": 71.07,
           "previousClose": 71.41,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39321,7 +39321,7 @@
           "currentPrice": 26.7,
           "previousClose": 26.34,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39330,7 +39330,7 @@
           "currentPrice": 118.97,
           "previousClose": 118.95000000000002,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39339,7 +39339,7 @@
           "currentPrice": 340.2,
           "previousClose": 338.29,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39348,7 +39348,7 @@
           "currentPrice": 48.8,
           "previousClose": 48.87,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39357,7 +39357,7 @@
           "currentPrice": 34.88,
           "previousClose": 34.85,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39366,7 +39366,7 @@
           "currentPrice": 593.02,
           "previousClose": 594.9,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39375,7 +39375,7 @@
           "currentPrice": 138.43,
           "previousClose": 137.96,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39384,7 +39384,7 @@
           "currentPrice": 394.92,
           "previousClose": 393.67,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         },
         {
@@ -39393,12 +39393,12 @@
           "currentPrice": 24.27,
           "previousClose": 24.25,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:49",
+          "quoteTime": "14:33:52",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:49",
+      "holdingsQuoteTime": "14:33:52",
       "proxyBasketName": "海外科技篮子",
       "proxyQuotes": [
         {
@@ -41119,10 +41119,10 @@
           "nav": 3.211
         }
       ],
-      "marketPrice": 3.807,
+      "marketPrice": 3.805,
       "previousClose": 3.812,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -41223,9 +41223,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -41235,7 +41235,7 @@
           "currentPrice": 178.56,
           "previousClose": 180.4,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41244,7 +41244,7 @@
           "currentPrice": 248.96,
           "previousClose": 249.94,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41253,7 +41253,7 @@
           "currentPrice": 389.02,
           "previousClose": 391.79,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41262,7 +41262,7 @@
           "currentPrice": 208.76,
           "previousClose": 209.87,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41271,7 +41271,7 @@
           "currentPrice": 380.3,
           "previousClose": 392.78,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41280,7 +41280,7 @@
           "currentPrice": 606.7,
           "previousClose": 615.68,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41289,7 +41289,7 @@
           "currentPrice": 307.13,
           "previousClose": 307.69,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41298,7 +41298,7 @@
           "currentPrice": 305.73,
           "previousClose": 306.3,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41307,7 +41307,7 @@
           "currentPrice": 319.84,
           "previousClose": 315.92999999999995,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -41316,12 +41316,12 @@
           "currentPrice": 155.68,
           "previousClose": 152.77,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:48",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "纳指100篮子",
       "proxyQuotes": [
         {
@@ -43035,7 +43035,7 @@
       "marketPrice": 2.032,
       "previousClose": 2.04,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -43136,9 +43136,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -43148,7 +43148,7 @@
           "currentPrice": 178.56,
           "previousClose": 180.4,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43157,7 +43157,7 @@
           "currentPrice": 389.02,
           "previousClose": 391.79,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43166,7 +43166,7 @@
           "currentPrice": 248.96,
           "previousClose": 249.94,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43175,7 +43175,7 @@
           "currentPrice": 606.7,
           "previousClose": 615.68,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43184,7 +43184,7 @@
           "currentPrice": 319.84,
           "previousClose": 315.92999999999995,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43193,7 +43193,7 @@
           "currentPrice": 307.13,
           "previousClose": 307.69,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43202,7 +43202,7 @@
           "currentPrice": 305.73,
           "previousClose": 306.3,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43211,7 +43211,7 @@
           "currentPrice": 155.68,
           "previousClose": 152.77,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43220,7 +43220,7 @@
           "currentPrice": 205.27,
           "previousClose": 199.46,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -43229,12 +43229,12 @@
           "currentPrice": 444.27,
           "previousClose": 461.73,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:48",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "纳指100篮子",
       "proxyQuotes": [
         {
@@ -44945,10 +44945,10 @@
           "nav": 1.3522
         }
       ],
-      "marketPrice": 4.025,
+      "marketPrice": 4.022,
       "previousClose": 4.047,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:47",
+      "marketTime": "14:33:53",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -44976,8 +44976,8 @@
         {
           "ticker": "688256",
           "name": "寒武纪",
-          "currentPrice": 1041.41,
-          "changeRate": 0.0042,
+          "currentPrice": 1040.61,
+          "changeRate": 0.0034999999999999996,
           "weight": 7.95,
           "shares": 21.52,
           "marketValue": 29172.66
@@ -44985,8 +44985,8 @@
         {
           "ticker": "688981",
           "name": "中芯国际",
-          "currentPrice": 103.14,
-          "changeRate": -0.026600000000000002,
+          "currentPrice": 103.05,
+          "changeRate": -0.0275,
           "weight": 6.83,
           "shares": 204.04,
           "marketValue": 25062.18
@@ -44994,8 +44994,8 @@
         {
           "ticker": "688041",
           "name": "海光信息",
-          "currentPrice": 216.68,
-          "changeRate": -0.026699999999999998,
+          "currentPrice": 217.12,
+          "changeRate": -0.024700000000000003,
           "weight": 5.8,
           "shares": 94.88,
           "marketValue": 21291.35
@@ -45003,8 +45003,8 @@
         {
           "ticker": "002371",
           "name": "北方华创",
-          "currentPrice": 472,
-          "changeRate": 0.0225,
+          "currentPrice": 472.05,
+          "changeRate": 0.0226,
           "weight": 5.53,
           "shares": 44.19,
           "marketValue": 20285
@@ -45012,8 +45012,8 @@
         {
           "ticker": "603986",
           "name": "兆易创新",
-          "currentPrice": 293.19,
-          "changeRate": -0.0345,
+          "currentPrice": 292.36,
+          "changeRate": -0.0373,
           "weight": 3.98,
           "shares": 68.15,
           "marketValue": 14600.69
@@ -45021,8 +45021,8 @@
         {
           "ticker": "688008",
           "name": "澜起科技",
-          "currentPrice": 146.38,
-          "changeRate": -0.022000000000000002,
+          "currentPrice": 146.2,
+          "changeRate": -0.0232,
           "weight": 3.75,
           "shares": 116.87,
           "marketValue": 13766.71
@@ -45030,8 +45030,8 @@
         {
           "ticker": "688012",
           "name": "中微公司",
-          "currentPrice": 312.92,
-          "changeRate": -0.0038,
+          "currentPrice": 312.23,
+          "changeRate": -0.006,
           "weight": 3.24,
           "shares": 43.6,
           "marketValue": 11890.51
@@ -45039,8 +45039,8 @@
         {
           "ticker": "603501",
           "name": "豪威集团",
-          "currentPrice": 104.83,
-          "changeRate": -0.0095,
+          "currentPrice": 104.62,
+          "changeRate": -0.0115,
           "weight": 2.96,
           "shares": 86.4,
           "marketValue": 10877.24
@@ -45049,9 +45049,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -45061,7 +45061,7 @@
           "currentPrice": 340.2,
           "previousClose": 338.29,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -45070,93 +45070,93 @@
           "currentPrice": 2.38,
           "previousClose": 2.38,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "688256",
           "name": "寒武纪",
-          "currentPrice": 1041.41,
-          "previousClose": 1037.0543716391157,
+          "currentPrice": 1040.61,
+          "previousClose": 1036.980568011958,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "688981",
           "name": "中芯国际",
-          "currentPrice": 103.14,
-          "previousClose": 105.9584959934251,
+          "currentPrice": 103.05,
+          "previousClose": 105.96401028277634,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "688041",
           "name": "海光信息",
-          "currentPrice": 216.68,
-          "previousClose": 222.62406246789274,
+          "currentPrice": 217.12,
+          "previousClose": 222.61868143135447,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002371",
           "name": "北方华创",
-          "currentPrice": 472,
-          "previousClose": 461.61369193154036,
+          "currentPrice": 472.05,
+          "previousClose": 461.6174457265793,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603986",
           "name": "兆易创新",
-          "currentPrice": 293.19,
-          "previousClose": 303.6664940445365,
+          "currentPrice": 292.36,
+          "previousClose": 303.68754544510233,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "688008",
           "name": "澜起科技",
-          "currentPrice": 146.38,
-          "previousClose": 149.67280163599182,
+          "currentPrice": 146.2,
+          "previousClose": 149.67239967239965,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "688012",
           "name": "中微公司",
-          "currentPrice": 312.92,
-          "previousClose": 314.1136318008432,
+          "currentPrice": 312.23,
+          "previousClose": 314.1146881287727,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603501",
           "name": "豪威集团",
-          "currentPrice": 104.83,
-          "previousClose": 105.83543664815748,
+          "currentPrice": 104.62,
+          "previousClose": 105.83712696004046,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "中韩半导体篮子",
       "proxyQuotes": [
         {
           "ticker": "159995",
           "name": "华夏国证半导体芯片ETF",
-          "currentPrice": 1.763,
+          "currentPrice": 1.762,
           "previousClose": 1.774,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "CNY",
           "weight": 0.5576601671309193
         },
@@ -45172,7 +45172,7 @@
         }
       ],
       "proxyQuoteDate": "2026-03-20",
-      "proxyQuoteTime": "14:28:48",
+      "proxyQuoteTime": "14:33:54",
       "cacheMode": "intraday-cache-ttl"
     },
     {
@@ -46871,7 +46871,7 @@
       "marketPrice": 2.952,
       "previousClose": 2.969,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:09",
+      "marketTime": "14:33:15",
       "marketSource": "腾讯行情",
       "purchaseStatus": "开放申购 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -46881,8 +46881,8 @@
         {
           "ticker": "600362",
           "name": "江西铜业",
-          "currentPrice": 45.19,
-          "changeRate": -0.0105,
+          "currentPrice": 45.13,
+          "changeRate": -0.0118,
           "weight": 2.58,
           "shares": 8.51,
           "marketValue": 467.59
@@ -46890,8 +46890,8 @@
         {
           "ticker": "000807",
           "name": "云铝股份",
-          "currentPrice": 28.53,
-          "changeRate": -0.0196,
+          "currentPrice": 28.54,
+          "changeRate": -0.0192,
           "weight": 2.44,
           "shares": 13.46,
           "marketValue": 442.03
@@ -46899,8 +46899,8 @@
         {
           "ticker": "002532",
           "name": "天山铝业",
-          "currentPrice": 15.5,
-          "changeRate": -0.0438,
+          "currentPrice": 15.45,
+          "changeRate": -0.046900000000000004,
           "weight": 2.41,
           "shares": 26.94,
           "marketValue": 435.89
@@ -46908,8 +46908,8 @@
         {
           "ticker": "000975",
           "name": "山金国际",
-          "currentPrice": 28.76,
-          "changeRate": -0.0151,
+          "currentPrice": 28.68,
+          "changeRate": -0.0178,
           "weight": 2.34,
           "shares": 17.42,
           "marketValue": 423.88
@@ -46917,8 +46917,8 @@
         {
           "ticker": "600549",
           "name": "厦门钨业",
-          "currentPrice": 54.87,
-          "changeRate": -0.008100000000000001,
+          "currentPrice": 54.76,
+          "changeRate": -0.0101,
           "weight": 2.33,
           "shares": 10.27,
           "marketValue": 421.69
@@ -46926,8 +46926,8 @@
         {
           "ticker": "000878",
           "name": "云南铜业",
-          "currentPrice": 18.83,
-          "changeRate": -0.0105,
+          "currentPrice": 18.82,
+          "changeRate": -0.011000000000000001,
           "weight": 2.32,
           "shares": 20.48,
           "marketValue": 420.04
@@ -46935,8 +46935,8 @@
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "changeRate": -0.0189,
+          "currentPrice": 31.7,
+          "changeRate": -0.0192,
           "weight": 2.3,
           "shares": 12.1,
           "marketValue": 417.18
@@ -46953,8 +46953,8 @@
         {
           "ticker": "600219",
           "name": "南山铝业",
-          "currentPrice": 6.02,
-          "changeRate": -0.0147,
+          "currentPrice": 6.03,
+          "changeRate": -0.0131,
           "weight": 2.28,
           "shares": 76.86,
           "marketValue": 413.53
@@ -46962,8 +46962,8 @@
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "changeRate": -0.0194,
+          "currentPrice": 11.59,
+          "changeRate": -0.0203,
           "weight": 2.28,
           "shares": 33.83,
           "marketValue": 413.42
@@ -46972,73 +46972,73 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "600362",
           "name": "江西铜业",
-          "currentPrice": 45.19,
-          "previousClose": 45.669530065689734,
+          "currentPrice": 45.13,
+          "previousClose": 45.668892936652504,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000807",
           "name": "云铝股份",
-          "currentPrice": 28.53,
-          "previousClose": 29.100367197062422,
+          "currentPrice": 28.54,
+          "previousClose": 29.09869494290375,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002532",
           "name": "天山铝业",
-          "currentPrice": 15.5,
-          "previousClose": 16.209997908387365,
+          "currentPrice": 15.45,
+          "previousClose": 16.210261252754172,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000975",
           "name": "山金国际",
-          "currentPrice": 28.76,
-          "previousClose": 29.20093410498528,
+          "currentPrice": 28.68,
+          "previousClose": 29.199755650580332,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600549",
           "name": "厦门钨业",
-          "currentPrice": 54.87,
-          "previousClose": 55.31807641899385,
+          "currentPrice": 54.76,
+          "previousClose": 55.318719062531564,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "000878",
           "name": "云南铜业",
-          "currentPrice": 18.83,
-          "previousClose": 19.029813036887315,
+          "currentPrice": 18.82,
+          "previousClose": 19.02932254802831,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "previousClose": 32.320864335949445,
+          "currentPrice": 31.7,
+          "previousClose": 32.3205546492659,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -47047,30 +47047,30 @@
           "currentPrice": 18.91,
           "previousClose": 19.380957261453315,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600219",
           "name": "南山铝业",
-          "currentPrice": 6.02,
-          "previousClose": 6.109814269765553,
+          "currentPrice": 6.03,
+          "previousClose": 6.110041544229405,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "previousClose": 11.829492147664695,
+          "currentPrice": 11.59,
+          "previousClose": 11.830152087373685,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -48770,10 +48770,10 @@
           "nav": 1.381
         }
       ],
-      "marketPrice": 2.292,
+      "marketPrice": 2.289,
       "previousClose": 2.305,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:36",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "开放申购 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -48783,8 +48783,8 @@
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "changeRate": -0.0189,
+          "currentPrice": 31.7,
+          "changeRate": -0.0192,
           "weight": 17.76,
           "shares": 175.67,
           "marketValue": 6055.34
@@ -48792,8 +48792,8 @@
         {
           "ticker": "603993",
           "name": "洛阳钼业",
-          "currentPrice": 17.62,
-          "changeRate": -0.0129,
+          "currentPrice": 17.61,
+          "changeRate": -0.0134,
           "weight": 5.28,
           "shares": 89.96,
           "marketValue": 1799.2
@@ -48801,8 +48801,8 @@
         {
           "ticker": "601088",
           "name": "中国神华",
-          "currentPrice": 49.6,
-          "changeRate": 0.0026,
+          "currentPrice": 49.52,
+          "changeRate": 0.001,
           "weight": 4.18,
           "shares": 35.16,
           "marketValue": 1423.82
@@ -48810,8 +48810,8 @@
         {
           "ticker": "600111",
           "name": "北方稀土",
-          "currentPrice": 46.16,
-          "changeRate": -0.009899999999999999,
+          "currentPrice": 46.12,
+          "changeRate": -0.010700000000000001,
           "weight": 3.74,
           "shares": 27.63,
           "marketValue": 1274.3
@@ -48828,8 +48828,8 @@
         {
           "ticker": "603799",
           "name": "华友钴业",
-          "currentPrice": 57.74,
-          "changeRate": 0.0218,
+          "currentPrice": 57.64,
+          "changeRate": 0.02,
           "weight": 3.31,
           "shares": 16.52,
           "marketValue": 1127.93
@@ -48837,8 +48837,8 @@
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "changeRate": -0.0194,
+          "currentPrice": 11.59,
+          "changeRate": -0.0203,
           "weight": 3.05,
           "shares": 84.98,
           "marketValue": 1038.46
@@ -48846,8 +48846,8 @@
         {
           "ticker": "600028",
           "name": "中国石化",
-          "currentPrice": 6.08,
-          "changeRate": -0.0318,
+          "currentPrice": 6.07,
+          "changeRate": -0.0334,
           "weight": 2.82,
           "shares": 155.77,
           "marketValue": 962.67
@@ -48855,8 +48855,8 @@
         {
           "ticker": "601225",
           "name": "陕西煤业",
-          "currentPrice": 27.09,
-          "changeRate": 0.0177,
+          "currentPrice": 27.1,
+          "changeRate": 0.018000000000000002,
           "weight": 2.61,
           "shares": 41.69,
           "marketValue": 888.87
@@ -48864,8 +48864,8 @@
         {
           "ticker": "002460",
           "name": "赣锋锂业",
-          "currentPrice": 68.09,
-          "changeRate": 0.0733,
+          "currentPrice": 67.9,
+          "changeRate": 0.0703,
           "weight": 2.27,
           "shares": 12.3,
           "marketValue": 773.42
@@ -48874,46 +48874,46 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "601899",
           "name": "紫金矿业",
-          "currentPrice": 31.71,
-          "previousClose": 32.320864335949445,
+          "currentPrice": 31.7,
+          "previousClose": 32.3205546492659,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603993",
           "name": "洛阳钼业",
-          "currentPrice": 17.62,
-          "previousClose": 17.85026846317496,
+          "currentPrice": 17.61,
+          "previousClose": 17.849178998580985,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601088",
           "name": "中国神华",
-          "currentPrice": 49.6,
-          "previousClose": 49.471374426491124,
+          "currentPrice": 49.52,
+          "previousClose": 49.47052947052948,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600111",
           "name": "北方稀土",
-          "currentPrice": 46.16,
-          "previousClose": 46.62155337844662,
+          "currentPrice": 46.12,
+          "previousClose": 46.61882138886081,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
@@ -48922,57 +48922,57 @@
           "currentPrice": 12.23,
           "previousClose": 12.479591836734695,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "603799",
           "name": "华友钴业",
-          "currentPrice": 57.74,
-          "previousClose": 56.50812292033666,
+          "currentPrice": 57.64,
+          "previousClose": 56.509803921568626,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601600",
           "name": "中国铝业",
-          "currentPrice": 11.6,
-          "previousClose": 11.829492147664695,
+          "currentPrice": 11.59,
+          "previousClose": 11.830152087373685,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "600028",
           "name": "中国石化",
-          "currentPrice": 6.08,
-          "previousClose": 6.2796942780417275,
+          "currentPrice": 6.07,
+          "previousClose": 6.279743430581419,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "601225",
           "name": "陕西煤业",
-          "currentPrice": 27.09,
-          "previousClose": 26.61884641839442,
+          "currentPrice": 27.1,
+          "previousClose": 26.62082514734774,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         },
         {
           "ticker": "002460",
           "name": "赣锋锂业",
-          "currentPrice": 68.09,
-          "previousClose": 63.439858380695064,
+          "currentPrice": 67.9,
+          "previousClose": 63.440156965336826,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:32:52",
+          "quoteTime": "14:37:59",
           "currency": "CNY"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:32:52",
+      "holdingsQuoteTime": "14:37:59",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -50675,7 +50675,7 @@
       "marketPrice": 1.25,
       "previousClose": 1.267,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:45",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -50760,9 +50760,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -50772,7 +50772,7 @@
           "currentPrice": 122.86,
           "previousClose": 123,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -50781,12 +50781,12 @@
           "currentPrice": 37.23,
           "previousClose": 37.02000000000001,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:45",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -52486,10 +52486,10 @@
           "nav": 1.336
         }
       ],
-      "marketPrice": 1.722,
+      "marketPrice": 1.721,
       "previousClose": 1.742,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -52574,9 +52574,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -52586,7 +52586,7 @@
           "currentPrice": 122.86,
           "previousClose": 123,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -52595,12 +52595,12 @@
           "currentPrice": 37.23,
           "previousClose": 37.02000000000001,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:48",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:48",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -54300,10 +54300,10 @@
           "nav": 1.2445
         }
       ],
-      "marketPrice": 1.522,
+      "marketPrice": 1.523,
       "previousClose": 1.532,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:46",
+      "marketTime": "14:33:55",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -54404,9 +54404,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -54416,7 +54416,7 @@
           "currentPrice": 178.56,
           "previousClose": 180.4,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54425,7 +54425,7 @@
           "currentPrice": 248.96,
           "previousClose": 249.94,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54434,7 +54434,7 @@
           "currentPrice": 389.02,
           "previousClose": 391.79,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54443,7 +54443,7 @@
           "currentPrice": 208.76,
           "previousClose": 209.87,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54452,7 +54452,7 @@
           "currentPrice": 307.13,
           "previousClose": 307.69,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54461,7 +54461,7 @@
           "currentPrice": 319.84,
           "previousClose": 315.92999999999995,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54470,7 +54470,7 @@
           "currentPrice": 305.73,
           "previousClose": 306.3,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54479,7 +54479,7 @@
           "currentPrice": 606.7,
           "previousClose": 615.68,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54488,7 +54488,7 @@
           "currentPrice": 380.3,
           "previousClose": 392.78,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         },
         {
@@ -54497,12 +54497,12 @@
           "currentPrice": 287.97,
           "previousClose": 287.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:46",
+          "quoteTime": "14:33:55",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:46",
+      "holdingsQuoteTime": "14:33:55",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -56202,10 +56202,10 @@
           "nav": 1.1216
         }
       ],
-      "marketPrice": 1.366,
+      "marketPrice": 1.365,
       "previousClose": 1.371,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:45",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -56306,9 +56306,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -56318,7 +56318,7 @@
           "currentPrice": 178.56,
           "previousClose": 180.4,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56327,7 +56327,7 @@
           "currentPrice": 248.96,
           "previousClose": 249.94,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56336,7 +56336,7 @@
           "currentPrice": 389.02,
           "previousClose": 391.79,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56345,7 +56345,7 @@
           "currentPrice": 208.76,
           "previousClose": 209.87,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56354,7 +56354,7 @@
           "currentPrice": 307.13,
           "previousClose": 307.69,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56363,7 +56363,7 @@
           "currentPrice": 319.84,
           "previousClose": 315.92999999999995,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56372,7 +56372,7 @@
           "currentPrice": 305.73,
           "previousClose": 306.3,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56381,7 +56381,7 @@
           "currentPrice": 606.7,
           "previousClose": 615.68,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56390,7 +56390,7 @@
           "currentPrice": 380.3,
           "previousClose": 392.78,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -56399,12 +56399,12 @@
           "currentPrice": 287.97,
           "previousClose": 287.74,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:45",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:45",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -56764,10 +56764,10 @@
           "nav": 1
         }
       ],
-      "marketPrice": 1.174,
+      "marketPrice": 1.175,
       "previousClose": 1.18,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -56777,9 +56777,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -57152,10 +57152,10 @@
           "nav": 1
         }
       ],
-      "marketPrice": 1.165,
+      "marketPrice": 1.164,
       "previousClose": 1.165,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:47",
+      "marketTime": "14:33:56",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -57165,9 +57165,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -58875,7 +58875,7 @@
       "marketPrice": 1.687,
       "previousClose": 1.677,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:47",
+      "marketTime": "14:33:56",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -58885,9 +58885,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -60592,10 +60592,10 @@
           "nav": 1.3012
         }
       ],
-      "marketPrice": 1.722,
+      "marketPrice": 1.72,
       "previousClose": 1.735,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:49",
+      "marketTime": "14:33:55",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -60605,9 +60605,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -62356,7 +62356,7 @@
       "marketPrice": 1.877,
       "previousClose": 1.896,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -62366,9 +62366,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -64117,7 +64117,7 @@
       "marketPrice": 1.613,
       "previousClose": 1.612,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:27",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "10万元",
@@ -64154,8 +64154,8 @@
         {
           "ticker": "00700",
           "name": "腾讯控股",
-          "currentPrice": 511.5,
-          "changeRate": -0.0029239766081871066,
+          "currentPrice": 510.5,
+          "changeRate": -0.004873294346978585,
           "weight": 8.84,
           "shares": 3.17,
           "marketValue": 1715.06
@@ -64163,8 +64163,8 @@
         {
           "ticker": "09988",
           "name": "阿里巴巴-W",
-          "currentPrice": 123.8,
-          "changeRate": -0.06212121212121213,
+          "currentPrice": 123.7,
+          "changeRate": -0.06287878787878787,
           "weight": 7.9,
           "shares": 11.87,
           "marketValue": 1530.99
@@ -64190,8 +64190,8 @@
         {
           "ticker": "09992",
           "name": "泡泡玛特",
-          "currentPrice": 212.8,
-          "changeRate": 0,
+          "currentPrice": 211.8,
+          "changeRate": -0.0046992481203007586,
           "weight": 5.47,
           "shares": 6.26,
           "marketValue": 1061.29
@@ -64208,8 +64208,8 @@
         {
           "ticker": "02899",
           "name": "紫金矿业",
-          "currentPrice": 34.1,
-          "changeRate": -0.01729106628242083,
+          "currentPrice": 34.12,
+          "changeRate": -0.01671469740634024,
           "weight": 3.36,
           "shares": 20.2,
           "marketValue": 650.62
@@ -64218,9 +64218,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -64230,7 +64230,7 @@
           "currentPrice": 307.13,
           "previousClose": 307.69,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -64239,7 +64239,7 @@
           "currentPrice": 178.56,
           "previousClose": 180.4,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -64248,25 +64248,25 @@
           "currentPrice": 338.79,
           "previousClose": 339.57,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
           "ticker": "00700",
           "name": "腾讯控股",
-          "currentPrice": 511.5,
+          "currentPrice": 510.5,
           "previousClose": 513,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "HKD"
         },
         {
           "ticker": "09988",
           "name": "阿里巴巴-W",
-          "currentPrice": 123.8,
+          "currentPrice": 123.7,
           "previousClose": 132,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "HKD"
         },
         {
@@ -64275,7 +64275,7 @@
           "currentPrice": 319.84,
           "previousClose": 315.92999999999995,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
@@ -64284,16 +64284,16 @@
           "currentPrice": 444.27,
           "previousClose": 461.73,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
           "ticker": "09992",
           "name": "泡泡玛特",
-          "currentPrice": 212.8,
+          "currentPrice": 211.8,
           "previousClose": 212.8,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "HKD"
         },
         {
@@ -64302,21 +64302,21 @@
           "currentPrice": 772.09,
           "previousClose": 753.69,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "USD"
         },
         {
           "ticker": "02899",
           "name": "紫金矿业",
-          "currentPrice": 34.1,
+          "currentPrice": 34.12,
           "previousClose": 34.7,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:27",
+          "quoteTime": "14:33:54",
           "currency": "HKD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:27",
+      "holdingsQuoteTime": "14:33:54",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -66016,10 +66016,10 @@
           "nav": 0.8379
         }
       ],
-      "marketPrice": 1.093,
+      "marketPrice": 1.091,
       "previousClose": 1.102,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:15",
+      "marketTime": "14:32:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "1000元",
@@ -66029,8 +66029,8 @@
         {
           "ticker": "01787",
           "name": "山东黄金",
-          "currentPrice": 32.66,
-          "changeRate": 0.0012262415695891704,
+          "currentPrice": 32.7,
+          "changeRate": 0.002452483139178563,
           "weight": 3.02,
           "shares": 5.15,
           "marketValue": 160.94
@@ -66038,8 +66038,8 @@
         {
           "ticker": "01772",
           "name": "赣锋锂业",
-          "currentPrice": 58.1,
-          "changeRate": 0.045904590459046046,
+          "currentPrice": 58.15,
+          "changeRate": 0.046804680468046866,
           "weight": 2.02,
           "shares": 2.3,
           "marketValue": 107.92
@@ -66056,8 +66056,8 @@
         {
           "ticker": "02400",
           "name": "心动公司",
-          "currentPrice": 70.1,
-          "changeRate": 0.0014285714285713347,
+          "currentPrice": 69.95,
+          "changeRate": -0.0007142857142856673,
           "weight": 1.69,
           "shares": 1.54,
           "marketValue": 90.2
@@ -66065,8 +66065,8 @@
         {
           "ticker": "06855",
           "name": "亚盛医药-B",
-          "currentPrice": 43.38,
-          "changeRate": -0.017663043478260754,
+          "currentPrice": 43.3,
+          "changeRate": -0.019474637681159424,
           "weight": 1.37,
           "shares": 1.55,
           "marketValue": 73.15
@@ -66074,8 +66074,8 @@
         {
           "ticker": "09969",
           "name": "诺诚健华",
-          "currentPrice": 12.26,
-          "changeRate": -0.015261044176706817,
+          "currentPrice": 12.21,
+          "changeRate": -0.01927710843373487,
           "weight": 1.29,
           "shares": 6.2,
           "marketValue": 68.88
@@ -66083,8 +66083,8 @@
         {
           "ticker": "03618",
           "name": "重庆农村商业银行",
-          "currentPrice": 6.45,
-          "changeRate": 0.023809523809523947,
+          "currentPrice": 6.46,
+          "changeRate": 0.02539682539682553,
           "weight": 1.22,
           "shares": 11.7,
           "marketValue": 64.99
@@ -66092,8 +66092,8 @@
         {
           "ticker": "06682",
           "name": "范式智能",
-          "currentPrice": 34.84,
-          "changeRate": -0.03597122302158262,
+          "currentPrice": 34.78,
+          "changeRate": -0.0376314333148865,
           "weight": 1.18,
           "shares": 1.58,
           "marketValue": 62.82
@@ -66101,8 +66101,8 @@
         {
           "ticker": "03931",
           "name": "中创新航",
-          "currentPrice": 28.84,
-          "changeRate": 0.062638172439204,
+          "currentPrice": 28.66,
+          "changeRate": 0.05600589535740608,
           "weight": 1.17,
           "shares": 2.76,
           "marketValue": 62.62
@@ -66110,8 +66110,8 @@
         {
           "ticker": "01070",
           "name": "TCL电子",
-          "currentPrice": 11.13,
-          "changeRate": -0.011545293072824037,
+          "currentPrice": 11.15,
+          "changeRate": -0.009769094138543433,
           "weight": 1.14,
           "shares": 6.5,
           "marketValue": 60.94
@@ -66120,28 +66120,28 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "01787",
           "name": "山东黄金",
-          "currentPrice": 32.66,
+          "currentPrice": 32.7,
           "previousClose": 32.62,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "01772",
           "name": "赣锋锂业",
-          "currentPrice": 58.1,
+          "currentPrice": 58.15,
           "previousClose": 55.55,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
@@ -66150,75 +66150,75 @@
           "currentPrice": 9.54,
           "previousClose": 9.54,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "02400",
           "name": "心动公司",
-          "currentPrice": 70.1,
+          "currentPrice": 69.95,
           "previousClose": 70,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "06855",
           "name": "亚盛医药-B",
-          "currentPrice": 43.38,
+          "currentPrice": 43.3,
           "previousClose": 44.16,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "09969",
           "name": "诺诚健华",
-          "currentPrice": 12.26,
+          "currentPrice": 12.21,
           "previousClose": 12.45,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "03618",
           "name": "重庆农村商业银行",
-          "currentPrice": 6.45,
+          "currentPrice": 6.46,
           "previousClose": 6.299999999999999,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "06682",
           "name": "范式智能",
-          "currentPrice": 34.84,
+          "currentPrice": 34.78,
           "previousClose": 36.14,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "03931",
           "name": "中创新航",
-          "currentPrice": 28.84,
-          "previousClose": 27.140000000000004,
+          "currentPrice": 28.66,
+          "previousClose": 27.14,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         },
         {
           "ticker": "01070",
           "name": "TCL电子",
-          "currentPrice": 11.13,
+          "currentPrice": 11.15,
           "previousClose": 11.26,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:15",
+          "quoteTime": "14:32:54",
           "currency": "HKD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:15",
+      "holdingsQuoteTime": "14:32:54",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -67921,7 +67921,7 @@
       "marketPrice": 0.955,
       "previousClose": 0.957,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:17",
+      "marketTime": "14:33:11",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "1000万元",
@@ -67931,9 +67931,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -69638,10 +69638,10 @@
           "nav": 1.1833
         }
       ],
-      "marketPrice": 1.338,
+      "marketPrice": 1.337,
       "previousClose": 1.351,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:42",
+      "marketTime": "14:33:24",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "100万元",
@@ -69742,9 +69742,9 @@
       "fx": {
         "pair": "USD/CNY",
         "currentRate": 6.8932,
-        "previousCloseRate": 6.8946,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:27:35",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -69754,7 +69754,7 @@
           "currentPrice": 206.09,
           "previousClose": 209.21,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69763,7 +69763,7 @@
           "currentPrice": 131.09,
           "previousClose": 131.2,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69772,7 +69772,7 @@
           "currentPrice": 974.76,
           "previousClose": 973.5599999999998,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69781,7 +69781,7 @@
           "currentPrice": 191.31,
           "previousClose": 189.9,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69790,7 +69790,7 @@
           "currentPrice": 62.64,
           "previousClose": 63.04,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69799,7 +69799,7 @@
           "currentPrice": 179.85,
           "previousClose": 178.94,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69808,7 +69808,7 @@
           "currentPrice": 277.33,
           "previousClose": 277.59,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69817,7 +69817,7 @@
           "currentPrice": 85.55,
           "previousClose": 87.33,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69826,7 +69826,7 @@
           "currentPrice": 135.99,
           "previousClose": 136.37,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         },
         {
@@ -69835,12 +69835,12 @@
           "currentPrice": 165.24,
           "previousClose": 166.11,
           "quoteDate": "2026-03-20",
-          "quoteTime": "14:28:42",
+          "quoteTime": "14:33:24",
           "currency": "USD"
         }
       ],
       "holdingsQuoteDate": "2026-03-20",
-      "holdingsQuoteTime": "14:28:42",
+      "holdingsQuoteTime": "14:33:24",
       "proxyBasketName": "",
       "proxyQuotes": [],
       "proxyQuoteDate": "",
@@ -71491,7 +71491,7 @@
       "marketPrice": 0.907,
       "previousClose": 0.907,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:46",
+      "marketTime": "14:33:55",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -73211,7 +73211,7 @@
       "marketPrice": 2.148,
       "previousClose": 2.157,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -74517,10 +74517,10 @@
           "nav": 1
         }
       ],
-      "marketPrice": 0.968,
+      "marketPrice": 0.969,
       "previousClose": 0.963,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:46",
+      "marketTime": "14:33:55",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -76237,10 +76237,10 @@
           "nav": 1.3616
         }
       ],
-      "marketPrice": 1.668,
+      "marketPrice": 1.672,
       "previousClose": 1.66,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:03",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -78139,10 +78139,10 @@
           "nav": 1.0182
         }
       ],
-      "marketPrice": 1.353,
+      "marketPrice": 1.35,
       "previousClose": 1.287,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -80062,10 +80062,10 @@
           "nav": 2.395
         }
       ],
-      "marketPrice": 2.764,
+      "marketPrice": 2.762,
       "previousClose": 2.781,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:36",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "500元",
@@ -81975,10 +81975,10 @@
           "nav": 1.5487
         }
       ],
-      "marketPrice": 1.699,
+      "marketPrice": 1.694,
       "previousClose": 1.719,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -83778,10 +83778,10 @@
           "nav": 1.0941
         }
       ],
-      "marketPrice": 1.202,
+      "marketPrice": 1.201,
       "previousClose": 1.206,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -85472,7 +85472,7 @@
       "marketPrice": 0.918,
       "previousClose": 0.918,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:45",
+      "marketTime": "14:33:51",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -87192,7 +87192,7 @@
       "marketPrice": 1.281,
       "previousClose": 1.277,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "限大额 / 开放赎回",
       "purchaseLimit": "1000元",
@@ -88912,7 +88912,7 @@
       "marketPrice": 1.169,
       "previousClose": 1.172,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:47",
+      "marketTime": "14:33:56",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -90814,7 +90814,7 @@
       "marketPrice": 1.834,
       "previousClose": 1.838,
       "marketDate": "2026-03-20",
-      "marketTime": "14:27:54",
+      "marketTime": "14:32:57",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -92716,7 +92716,7 @@
       "marketPrice": 2.255,
       "previousClose": 2.259,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -94626,10 +94626,10 @@
           "nav": 1.414
         }
       ],
-      "marketPrice": 1.759,
+      "marketPrice": 1.758,
       "previousClose": 1.764,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:47",
+      "marketTime": "14:33:56",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -96539,10 +96539,10 @@
           "nav": 1.072
         }
       ],
-      "marketPrice": 1.332,
+      "marketPrice": 1.331,
       "previousClose": 1.332,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "暂停申购 / 开放赎回",
       "purchaseLimit": "0元",
@@ -98444,7 +98444,7 @@
       "marketPrice": 1.248,
       "previousClose": 1.234,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -100346,7 +100346,7 @@
       "marketPrice": 1.424,
       "previousClose": 1.416,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -102245,10 +102245,10 @@
           "nav": 2.1688
         }
       ],
-      "marketPrice": 2.24,
+      "marketPrice": 2.239,
       "previousClose": 2.244,
       "marketDate": "2026-03-20",
-      "marketTime": "14:28:48",
+      "marketTime": "14:33:54",
       "marketSource": "腾讯行情",
       "purchaseStatus": "场内交易 / 开放赎回",
       "purchaseLimit": "不限购",
@@ -102257,10 +102257,10 @@
       "disclosedHoldings": [],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.8939,
-        "previousCloseRate": 6.8945,
+        "currentRate": 6.8932,
+        "previousCloseRate": 6.8944,
         "quoteDate": "2026-03-20",
-        "quoteTime": "14:23:01",
+        "quoteTime": "14:33:15",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -102387,19 +102387,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.1299443524507646,
-            "marketPrice": 1.174,
-            "premiumRate": 0.03898921876434169,
+            "estimatedNav": 1.1303085619599398,
+            "marketPrice": 1.175,
+            "premiumRate": 0.039539148462757634,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.131,
-            "leadReturn": -0.005084745762711895,
+            "leadReturn": -0.004237288135593098,
             "closeGapReturn": 0.043324491600353676,
-            "impliedReturn": -0.0009333753750975318,
+            "impliedReturn": -0.0006113510522194473,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.364Z"
+            "createdAt": "2026-03-20T06:36:57.761Z"
           }
         ],
         "errors": [
@@ -102838,19 +102838,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.7654908893603887,
+            "estimatedNav": 1.7654908891893255,
             "marketPrice": 2.032,
-            "premiumRate": 0.15095467908994054,
+            "premiumRate": 0.15095467920145977,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.7628,
             "leadReturn": -0.0038792581004854707,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.0015264859090019568,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.0015264858119614028,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.329Z"
+            "createdAt": "2026-03-20T06:35:56.142Z"
           }
         ],
         "errors": [
@@ -103152,7 +103152,7 @@
             "marketPrice": 1.25,
             "premiumRate": -0.0007633649659221087,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:45",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.2573,
             "leadReturn": -0.013417521704814472,
@@ -103160,7 +103160,7 @@
             "impliedReturn": -0.005046579836588588,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.306Z"
+            "createdAt": "2026-03-20T06:36:57.638Z"
           }
         ],
         "errors": [
@@ -103285,19 +103285,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.3418084866481308,
-            "marketPrice": 1.366,
-            "premiumRate": 0.01802903588149185,
+            "estimatedNav": 1.3418084864146045,
+            "marketPrice": 1.365,
+            "premiumRate": 0.017283773221143273,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:45",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.3389,
             "leadReturn": -0.006409008539938905,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.0021722956517519843,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.002172295477335652,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.363Z"
+            "createdAt": "2026-03-20T06:36:57.759Z"
           }
         ],
         "errors": [
@@ -103406,19 +103406,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.1017273036041955,
-            "marketPrice": 2.238,
-            "premiumRate": 0.06483842892563385,
+            "estimatedNav": 2.1017273035831456,
+            "marketPrice": 2.239,
+            "premiumRate": 0.06531422805557319,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.0999,
             "leadReturn": 0.0031890451245289884,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": 0.0008701860108554948,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.0008701860008312456,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:25:43.445Z"
+            "createdAt": "2026-03-20T06:33:53.574Z"
           }
         ],
         "errors": [
@@ -103543,19 +103543,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.3433131521449502,
-            "marketPrice": 1.338,
-            "premiumRate": -0.003955259528626076,
+            "estimatedNav": 1.3433131520288466,
+            "marketPrice": 1.337,
+            "premiumRate": -0.004699687499755134,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:42",
+            "marketPriceTime": "14:33:24",
             "marketPriceType": "intraday",
             "anchorNav": 1.3425,
             "leadReturn": -0.0041108265655237465,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.0006056999217504204,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.0006056998352675022,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:30:49.918Z"
+            "createdAt": "2026-03-20T06:37:59.132Z"
           }
         ],
         "errors": [
@@ -103720,19 +103720,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 0.7672536821181101,
+            "estimatedNav": 0.7672536821756788,
             "marketPrice": 0.759,
-            "premiumRate": -0.010757435657167025,
+            "premiumRate": -0.010757435731392095,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:39",
+            "marketPriceTime": "14:33:42",
             "marketPriceType": "intraday",
             "anchorNav": 0.783,
             "leadReturn": -0.039437099030388445,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.020110239951328154,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.020110239877804935,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-20T06:27:45.595Z"
+            "createdAt": "2026-03-20T06:34:54.678Z"
           }
         ],
         "errors": [
@@ -103936,19 +103936,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.3337535658464033,
-            "marketPrice": 2.32,
-            "premiumRate": -0.005893323977167797,
+            "estimatedNav": 2.332325968788835,
+            "marketPrice": 2.317,
+            "premiumRate": -0.006571109267712427,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:39",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.347,
-            "leadReturn": -0.0034254249622166504,
+            "leadReturn": -0.004348414743555556,
             "closeGapReturn": 0,
-            "impliedReturn": -0.005643985578865295,
+            "impliedReturn": -0.006252250196491267,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.515Z"
+            "createdAt": "2026-03-20T06:33:53.463Z"
           }
         ],
         "errors": [
@@ -104161,19 +104161,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.152580759099444,
-            "marketPrice": 2.636,
-            "premiumRate": 0.22457658736241792,
+            "estimatedNav": 2.1525807590907524,
+            "marketPrice": 2.626,
+            "premiumRate": 0.2199310009205968,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.1376,
             "leadReturn": 0.010800233816636499,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.007008214399066419,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.0070082143950002986,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.188Z"
+            "createdAt": "2026-03-20T06:35:55.968Z"
           }
         ],
         "errors": [
@@ -104334,19 +104334,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.9561846753434042,
+            "estimatedNav": 2.9524091545170683,
             "marketPrice": 2.952,
-            "premiumRate": -0.0014155662798428503,
+            "premiumRate": -0.00013858327069682375,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:09",
+            "marketPriceTime": "14:33:15",
             "marketPriceType": "intraday",
             "anchorNav": 2.9851,
-            "leadReturn": -0.016374789541412957,
+            "leadReturn": -0.019701905981808314,
             "closeGapReturn": 0,
-            "impliedReturn": -0.009686551424272423,
+            "impliedReturn": -0.010951340150390954,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.267Z"
+            "createdAt": "2026-03-20T06:36:57.543Z"
           }
         ],
         "errors": [
@@ -104483,19 +104483,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.655787929624028,
+            "estimatedNav": 1.655364188076979,
             "marketPrice": 1.613,
-            "premiumRate": -0.025841431054364428,
+            "premiumRate": -0.02559206510694967,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:27",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.6553,
-            "leadReturn": -0.01105877121908848,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.0002947680928098852,
+            "leadReturn": -0.011732392797442306,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.00003877730742406191,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:30:49.875Z"
+            "createdAt": "2026-03-20T06:37:59.093Z"
           }
         ],
         "errors": [
@@ -104660,19 +104660,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.1097117408407744,
-            "marketPrice": 2.115,
-            "premiumRate": 0.0025066264062778565,
+            "estimatedNav": 2.109711740877923,
+            "marketPrice": 2.109,
+            "premiumRate": -0.0003373640408460554,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:36",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.204,
             "leadReturn": -0.04119860049474009,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.042780516859902834,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.0427805168430478,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-20T06:27:45.691Z"
+            "createdAt": "2026-03-20T06:34:54.797Z"
           }
         ],
         "errors": [
@@ -104873,19 +104873,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.008482791441208,
-            "marketPrice": 2.706,
-            "premiumRate": 0.3472856285008452,
+            "estimatedNav": 2.0084827912017014,
+            "marketPrice": 2.699,
+            "premiumRate": 0.3438004108490036,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.0479,
             "leadReturn": -0.030343871806132277,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.019247623691973047,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.01924762380892546,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-20T06:27:45.833Z"
+            "createdAt": "2026-03-20T06:35:55.914Z"
           }
         ],
         "errors": [
@@ -105086,19 +105086,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.729159547838989,
-            "marketPrice": 1.776,
-            "premiumRate": 0.02708856578304175,
+            "estimatedNav": 1.7291318705957694,
+            "marketPrice": 1.772,
+            "premiumRate": 0.024791706250524737,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.8173,
             "leadReturn": -0.04569190128735477,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.04850077156276403,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.04851600143302186,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-20T06:27:45.629Z"
+            "createdAt": "2026-03-20T06:34:54.719Z"
           }
         ],
         "errors": [
@@ -105259,19 +105259,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.100157919832972,
-            "marketPrice": 1.093,
-            "premiumRate": -0.006506265785969023,
+            "estimatedNav": 1.0998545981760517,
+            "marketPrice": 1.091,
+            "premiumRate": -0.008050698874865647,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:15",
+            "marketPriceTime": "14:32:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.0968,
-            "leadReturn": 0.006423644659605169,
+            "leadReturn": 0.005695909866627382,
             "closeGapReturn": 0,
-            "impliedReturn": 0.003061560752162697,
+            "impliedReturn": 0.002785009277946489,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:30:49.894Z"
+            "createdAt": "2026-03-20T06:37:59.113Z"
           }
         ],
         "errors": [
@@ -105448,19 +105448,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.7768671708815744,
-            "marketPrice": 2.827,
-            "premiumRate": 0.018053736831247003,
+            "estimatedNav": 2.776867170758957,
+            "marketPrice": 2.825,
+            "premiumRate": 0.017333500769461718,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.7825,
             "leadReturn": -0.006628619214321056,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": -0.002024377041662439,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.0020243770857297392,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.267Z"
+            "createdAt": "2026-03-20T06:35:56.068Z"
           }
         ],
         "errors": [
@@ -105935,19 +105935,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 5.344255317622647,
-            "marketPrice": 5.501,
-            "premiumRate": 0.02932956474973958,
+            "estimatedNav": 5.34425531793569,
+            "marketPrice": 5.499,
+            "premiumRate": 0.02895533107203474,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:39",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 5.3559,
             "leadReturn": -0.0033991921911449684,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.002174178453173657,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.0021741783947255996,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.683Z"
+            "createdAt": "2026-03-20T06:34:54.633Z"
           }
         ],
         "errors": [
@@ -106148,19 +106148,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.6733119701980936,
-            "marketPrice": 2.219,
-            "premiumRate": 0.3261125477619726,
+            "estimatedNav": 1.6733395186559599,
+            "marketPrice": 2.218,
+            "premiumRate": 0.32549310840487156,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.6999,
-            "leadReturn": -0.028681160996061855,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.015640937585685227,
+            "leadReturn": -0.0286509989520624,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.015624731657179935,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:27:45.785Z"
+            "createdAt": "2026-03-20T06:34:54.910Z"
           }
         ],
         "errors": [
@@ -106361,19 +106361,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 3.7632565834904033,
-            "marketPrice": 3.807,
-            "premiumRate": 0.011623819832403015,
+            "estimatedNav": 3.7632565832847162,
+            "marketPrice": 3.805,
+            "premiumRate": 0.01109236529358526,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 3.7633,
             "leadReturn": -0.00632324858357574,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": -0.000011536818642459627,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.000011536873298361393,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.313Z"
+            "createdAt": "2026-03-20T06:35:56.124Z"
           }
         ],
         "errors": [
@@ -106534,19 +106534,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.3078971651702314,
-            "marketPrice": 2.292,
-            "premiumRate": -0.006888160100954499,
+            "estimatedNav": 2.306417309562119,
+            "marketPrice": 2.289,
+            "premiumRate": -0.00755167310352256,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:36",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.3234,
-            "leadReturn": -0.006725753284550455,
+            "leadReturn": -0.008401334742799197,
             "closeGapReturn": 0,
-            "impliedReturn": -0.006672477760940317,
+            "impliedReturn": -0.007309413117793109,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.286Z"
+            "createdAt": "2026-03-20T06:36:57.583Z"
           }
         ],
         "errors": [
@@ -106726,19 +106726,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.0712983634810898,
-            "marketPrice": 2.687,
-            "premiumRate": 0.29725395789148523,
+            "estimatedNav": 2.071298362370954,
+            "marketPrice": 2.675,
+            "premiumRate": 0.29146049096374793,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.1322,
             "leadReturn": -0.04395924308588062,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.02856281611429987,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.028562816634952515,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.643Z"
+            "createdAt": "2026-03-20T06:33:53.574Z"
           }
         ],
         "errors": [
@@ -106941,19 +106941,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 0.6550031507275353,
-            "marketPrice": 0.655,
-            "premiumRate": -0.000004810247907660603,
+            "estimatedNav": 0.6547527132466869,
+            "marketPrice": 0.654,
+            "premiumRate": -0.0011496145513539835,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 0.6569,
-            "leadReturn": -0.004886778515044705,
+            "leadReturn": -0.005582857238290859,
             "closeGapReturn": 0,
-            "impliedReturn": -0.0028875769104348605,
+            "impliedReturn": -0.0032688183183332805,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.564Z"
+            "createdAt": "2026-03-20T06:33:53.506Z"
           }
         ],
         "errors": [
@@ -107154,19 +107154,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 0.9320423743600584,
-            "marketPrice": 0.918,
-            "premiumRate": -0.015066240276575327,
+            "estimatedNav": 0.9320423743715751,
+            "marketPrice": 0.919,
+            "premiumRate": -0.013993327696467439,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 0.9261,
             "leadReturn": 0.00913148395228238,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.006416557995959863,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.006416558008395403,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.148Z"
+            "createdAt": "2026-03-20T06:35:55.932Z"
           }
         ],
         "errors": [
@@ -107504,19 +107504,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.8408230320322505,
-            "marketPrice": 2.888,
-            "premiumRate": 0.016606795789740003,
+            "estimatedNav": 2.840823032062603,
+            "marketPrice": 2.88,
+            "premiumRate": 0.013790710472011414,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.7937,
             "leadReturn": 0.01569358287967707,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": 0.0168676064116586,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.016867606422523235,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-20T06:27:45.801Z"
+            "createdAt": "2026-03-20T06:34:54.935Z"
           }
         ],
         "errors": [
@@ -107854,19 +107854,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.8572067318892862,
-            "marketPrice": 1.866,
-            "premiumRate": 0.00473467383018189,
+            "estimatedNav": 1.8572067319199452,
+            "marketPrice": 1.864,
+            "premiumRate": 0.0036577877752101973,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.936,
             "leadReturn": -0.04118088417833905,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.04069900212330259,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.04069900210746625,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-20T06:27:45.659Z"
+            "createdAt": "2026-03-20T06:34:54.759Z"
           }
         ],
         "errors": [
@@ -108207,19 +108207,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.925880525990536,
-            "marketPrice": 2.915,
-            "premiumRate": -0.0037187184828240127,
+            "estimatedNav": 2.924022382603736,
+            "marketPrice": 2.906,
+            "premiumRate": -0.006163558360893218,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:22:33",
+            "marketPriceTime": "14:33:51",
             "marketPriceType": "intraday",
             "anchorNav": 2.9424,
-            "leadReturn": -0.003685506444973417,
+            "leadReturn": -0.004653387680001302,
             "closeGapReturn": 0,
-            "impliedReturn": -0.005614285620399816,
+            "impliedReturn": -0.006245791665396946,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.534Z"
+            "createdAt": "2026-03-20T06:33:53.485Z"
           }
         ],
         "errors": [
@@ -108422,19 +108422,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.1545335042089007,
-            "marketPrice": 1.145,
-            "premiumRate": -0.008257451320508147,
+            "estimatedNav": 1.1551890323659626,
+            "marketPrice": 1.143,
+            "premiumRate": -0.010551547863121624,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:39",
+            "marketPriceTime": "14:33:45",
             "marketPriceType": "intraday",
             "anchorNav": 1.158,
-            "leadReturn": -0.010515589515615901,
+            "leadReturn": -0.009681688172116676,
             "closeGapReturn": 0,
-            "impliedReturn": -0.0029935196814329652,
+            "impliedReturn": -0.0024274331900150763,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.584Z"
+            "createdAt": "2026-03-20T06:33:53.529Z"
           }
         ],
         "errors": [
@@ -108625,19 +108625,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.0822779832679443,
-            "marketPrice": 1.08,
-            "premiumRate": -0.0021048042214311113,
+            "estimatedNav": 1.0819485743550967,
+            "marketPrice": 1.079,
+            "premiumRate": -0.0027252444570706746,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:28",
+            "marketPriceTime": "14:33:28",
             "marketPriceType": "intraday",
             "anchorNav": 1.0751,
-            "leadReturn": 0.00737084491371685,
+            "leadReturn": 0.00689930443475166,
             "closeGapReturn": 0,
-            "impliedReturn": 0.006676572661095982,
+            "impliedReturn": 0.006370174267600211,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.641Z"
+            "createdAt": "2026-03-20T06:33:53.573Z"
           }
         ],
         "errors": [
@@ -108838,19 +108838,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.7281208675975943,
-            "marketPrice": 2.361,
-            "premiumRate": 0.3662238818296455,
+            "estimatedNav": 1.7281208675135025,
+            "marketPrice": 2.356,
+            "premiumRate": 0.36333056575488154,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.7748,
             "leadReturn": -0.029876013777629808,
-            "closeGapReturn": -0.00008702589020226359,
-            "impliedReturn": -0.02630106626234268,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.02630106630972357,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-20T06:27:45.723Z"
+            "createdAt": "2026-03-20T06:34:54.837Z"
           }
         ],
         "errors": [
@@ -109041,19 +109041,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.7146158328858747,
-            "marketPrice": 1.692,
-            "premiumRate": -0.013190029190276342,
+            "estimatedNav": 1.7140876664046543,
+            "marketPrice": 1.693,
+            "premiumRate": -0.012302560025349352,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:23:41",
+            "marketPriceTime": "14:33:02",
             "marketPriceType": "intraday",
             "anchorNav": 1.715,
-            "leadReturn": -0.003103882833648659,
+            "leadReturn": -0.003559525831867471,
             "closeGapReturn": 0,
-            "impliedReturn": -0.00022400414817806268,
+            "impliedReturn": -0.0005319729418925735,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:26:44.610Z"
+            "createdAt": "2026-03-20T06:33:53.551Z"
           }
         ],
         "errors": [
@@ -109254,19 +109254,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 2.170041332237319,
-            "marketPrice": 2.335,
-            "premiumRate": 0.07601637135298622,
+            "estimatedNav": 2.169641945941102,
+            "marketPrice": 2.33,
+            "premiumRate": 0.07390991603886121,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:42",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.1564,
-            "leadReturn": 0.004945600030181536,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.006325974882822535,
+            "leadReturn": 0.004688413403624635,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.006140765136849341,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.251Z"
+            "createdAt": "2026-03-20T06:35:56.046Z"
           }
         ],
         "errors": [
@@ -109431,7 +109431,7 @@
             "marketPrice": 0.955,
             "premiumRate": 0.0005675406197658273,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:17",
+            "marketPriceTime": "14:33:11",
             "marketPriceType": "intraday",
             "anchorNav": 0.9547,
             "leadReturn": -0.002089864158829724,
@@ -109439,7 +109439,7 @@
             "impliedReturn": -0.00025316210182066586,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:30:49.898Z"
+            "createdAt": "2026-03-20T06:37:59.114Z"
           }
         ],
         "errors": [
@@ -109604,19 +109604,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.9402789045395625,
+            "estimatedNav": 1.9402789040661994,
             "marketPrice": 1.909,
-            "premiumRate": -0.01612082905523582,
+            "premiumRate": -0.01612082881520227,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:49",
+            "marketPriceTime": "14:33:52",
             "marketPriceType": "intraday",
             "anchorNav": 1.9104,
             "leadReturn": 0.0019937795598507957,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.015640130098179564,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.015640129850397443,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.297Z"
+            "createdAt": "2026-03-20T06:35:56.106Z"
           }
         ],
         "errors": [
@@ -109777,19 +109777,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.7136464261955173,
-            "marketPrice": 1.722,
-            "premiumRate": 0.0048747359296448245,
+            "estimatedNav": 1.7132710515242344,
+            "marketPrice": 1.721,
+            "premiumRate": 0.004511223410265108,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.7209,
-            "leadReturn": -0.01148105625717566,
+            "leadReturn": -0.012055109070034375,
             "closeGapReturn": 0.01226102620721714,
-            "impliedReturn": -0.00421498855510649,
+            "impliedReturn": -0.004433115506865994,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.324Z"
+            "createdAt": "2026-03-20T06:36:57.667Z"
           }
         ],
         "errors": [
@@ -110502,19 +110502,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 3.2765268394132145,
-            "marketPrice": 4.025,
-            "premiumRate": 0.2284349243178574,
+            "estimatedNav": 3.2740517222019885,
+            "marketPrice": 4.022,
+            "premiumRate": 0.2284473005499661,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:47",
+            "marketPriceTime": "14:33:53",
             "marketPriceType": "intraday",
             "anchorNav": 3.2722,
-            "leadReturn": -0.004027617121874628,
+            "leadReturn": -0.005340167265904862,
             "closeGapReturn": 0,
-            "impliedReturn": 0.001322302858387131,
+            "impliedReturn": 0.0005658951781639175,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:28:47.361Z"
+            "createdAt": "2026-03-20T06:36:57.482Z"
           }
         ],
         "errors": [
@@ -110961,19 +110961,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.7835014733638443,
+            "estimatedNav": 1.7835014724723166,
             "marketPrice": 1.877,
-            "premiumRate": 0.05242413759255782,
+            "premiumRate": 0.05242413811863833,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:48",
+            "marketPriceTime": "14:33:54",
             "marketPriceType": "intraday",
             "anchorNav": 1.7918,
             "leadReturn": -0.008371971593789763,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": -0.004631391135258222,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.0046313916328181,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:30:49.794Z"
+            "createdAt": "2026-03-20T06:37:58.998Z"
           }
         ],
         "errors": [
@@ -111251,7 +111251,7 @@
             "marketPrice": 1.687,
             "premiumRate": 0.005237782672604663,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:47",
+            "marketPriceTime": "14:33:56",
             "marketPriceType": "intraday",
             "anchorNav": 1.6745,
             "leadReturn": 0.005963029218843285,
@@ -111259,7 +111259,7 @@
             "impliedReturn": 0.0022155277743781173,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:30:49.793Z"
+            "createdAt": "2026-03-20T06:37:58.997Z"
           }
         ],
         "errors": [
@@ -111396,19 +111396,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.496812249574596,
-            "marketPrice": 1.522,
-            "premiumRate": 0.016827595065822543,
+            "estimatedNav": 1.4968122493149405,
+            "marketPrice": 1.523,
+            "premiumRate": 0.017495681704265076,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:46",
+            "marketPriceTime": "14:33:55",
             "marketPriceType": "intraday",
             "anchorNav": 1.4936,
             "leadReturn": -0.006404898245054615,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": 0.0021506759337144876,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": 0.0021506757598689567,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.343Z"
+            "createdAt": "2026-03-20T06:36:57.708Z"
           }
         ],
         "errors": [
@@ -111533,19 +111533,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.6575349304957645,
-            "marketPrice": 1.722,
-            "premiumRate": 0.03889213332291841,
+            "estimatedNav": 1.6575349302883782,
+            "marketPrice": 1.72,
+            "premiumRate": 0.03768552238036649,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:49",
+            "marketPriceTime": "14:33:55",
             "marketPriceType": "intraday",
             "anchorNav": 1.6648,
             "leadReturn": -0.008371971593789763,
-            "closeGapReturn": -0.0002030574652626127,
-            "impliedReturn": -0.004363929303361045,
+            "closeGapReturn": -0.00017405430494310536,
+            "impliedReturn": -0.004363929427932411,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:30:49.794Z"
+            "createdAt": "2026-03-20T06:37:58.998Z"
           }
         ],
         "errors": [
@@ -111956,19 +111956,19 @@
           },
           {
             "estimateDate": "2026-03-20",
-            "estimatedNav": 1.1337568343506301,
-            "marketPrice": 1.165,
-            "premiumRate": 0.02755720159981645,
+            "estimatedNav": 1.1333883547041048,
+            "marketPrice": 1.164,
+            "premiumRate": 0.027008964022651183,
             "marketPriceDate": "2026-03-20",
-            "marketPriceTime": "14:28:47",
+            "marketPriceTime": "14:33:56",
             "marketPriceType": "intraday",
             "anchorNav": 1.1298,
-            "leadReturn": 0,
+            "leadReturn": -0.0008583690987125081,
             "closeGapReturn": 0.031155956806514506,
-            "impliedReturn": 0.003502243185192325,
+            "impliedReturn": 0.0031760972774870235,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-20T06:29:48.364Z"
+            "createdAt": "2026-03-20T06:37:58.997Z"
           }
         ],
         "errors": [

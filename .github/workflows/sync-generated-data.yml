@@ -1,30 +1,29 @@
-name: Deploy Pages
+name: Sync Generated Data
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'public/generated/**'
+  schedule:
+    # Beijing time is UTC+8.
+    # Day session: 09:00-16:59 CST, every 5 minutes.
+    - cron: '*/5 1-8 * * 1-5'
+    # US night session: 21:00-04:59 CST, every 5 minutes.
+    - cron: '*/5 13-20 * * 1-5'
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  # Separate push and schedule queues so scheduled data refresh does not cancel code deployment.
-  group: pages-${{ github.event_name }}
-  # Only push runs should preempt older push runs; scheduled runs should not preempt deployments.
-  cancel-in-progress: ${{ github.event_name == 'push' }}
+  group: sync-generated-data
+  cancel-in-progress: true
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Restore Fund Sync Cache
         id: fund-sync-cache-restore
@@ -44,9 +43,6 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
       - name: Sync GitHub Traffic
         run: npm run sync:github-traffic
         env:
@@ -55,11 +51,10 @@ jobs:
           GH_TRAFFIC_SNAPSHOT_HOUR_CST: '12'
           GH_TRAFFIC_SNAPSHOT_WINDOW_MINUTES: '20'
 
-      - name: Sync Funds Runtime Data
+      - name: Sync Funds Runtime Data (full)
         run: npm run sync:data
-
-      - name: Build Site
-        run: npm run build:static
+        env:
+          SYNC_BATCH_SIZE: '9999'
 
       - name: Save Fund Sync Cache
         if: always()
@@ -68,18 +63,18 @@ jobs:
           path: .cache/fund-sync
           key: fund-sync-${{ github.ref_name }}-${{ github.run_id }}
 
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
+      - name: Commit Generated Data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/generated/*.json
+          if git diff --cached --quiet; then
+            echo "No generated data changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(auto): refresh runtime data $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Rebase and Push
+        run: |
+          git pull --rebase origin main
+          git push origin HEAD:main

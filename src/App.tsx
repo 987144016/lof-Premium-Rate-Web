@@ -8,7 +8,31 @@ import { estimateWatchlistFund, getDefaultWatchlistModel, reconcileJournal, reco
 import type { FundJournal, FundRuntimeData, FundViewModel, GithubTrafficPayload, RuntimePayload, WatchlistModel } from './types';
 const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
+const REMOTE_GENERATED_BASE = 'https://raw.githubusercontent.com/987144016/lof-Premium-Rate-Web/main/public/generated';
 type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 'favorites';
+
+async function fetchGeneratedJson<T>(fileName: string): Promise<T> {
+  const ts = Date.now();
+  const candidates = [
+    `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
+    `generated/${fileName}?ts=${ts}`,
+  ];
+
+  let lastError: Error | null = null;
+  for (const url of candidates) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`http-${response.status}`);
+      }
+      return (await response.json()) as T;
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+    }
+  }
+
+  throw lastError ?? new Error(`failed to load generated/${fileName}`);
+}
 
 const PAGE_OPTIONS: Array<{ key: ViewCategory; path: string; label: string; lead: string; tableTitle: string; tableDescription: string }> = [
   {
@@ -1464,12 +1488,7 @@ function HomePage({
 
     async function loadGithubTraffic() {
       try {
-        const response = await fetch(`generated/github-traffic.json?ts=${Date.now()}`);
-        if (!response.ok) {
-          throw new Error(`traffic ${response.status}`);
-        }
-
-        const payload = (await response.json()) as GithubTrafficPayload;
+        const payload = await fetchGeneratedJson<GithubTrafficPayload>('github-traffic.json');
         if (active) {
           setGithubTraffic({
             ...getDefaultGithubTrafficPayload(),
@@ -1834,12 +1853,7 @@ function TrafficPage() {
 
     async function loadGithubTraffic() {
       try {
-        const response = await fetch(`generated/github-traffic.json?ts=${Date.now()}`);
-        if (!response.ok) {
-          throw new Error(`traffic ${response.status}`);
-        }
-
-        const payload = (await response.json()) as GithubTrafficPayload;
+        const payload = await fetchGeneratedJson<GithubTrafficPayload>('github-traffic.json');
         if (active) {
           setGithubTraffic({
             ...getDefaultGithubTrafficPayload(),
@@ -2007,12 +2021,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
 
     async function loadOfflineResearch() {
       try {
-        const response = await fetch(`generated/${fundCode}-offline-research.json?ts=${Date.now()}`);
-        if (!response.ok) {
-          throw new Error(`离线研究文件读取失败: ${response.status}`);
-        }
-
-        const payload = (await response.json()) as OfflineResearchSummary;
+        const payload = await fetchGeneratedJson<OfflineResearchSummary>(`${fundCode}-offline-research.json`);
         if (active) {
           setOfflineResearch(payload);
         }
@@ -2035,12 +2044,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
 
     async function loadPremiumCompare() {
       try {
-        const response = await fetch(`generated/premium-compare.json?ts=${Date.now()}`);
-        if (!response.ok) {
-          throw new Error(`premium compare ${response.status}`);
-        }
-
-        const payload = (await response.json()) as PremiumComparePayload;
+        const payload = await fetchGeneratedJson<PremiumComparePayload>('premium-compare.json');
         if (!active) {
           return;
         }
@@ -2563,12 +2567,7 @@ export default function App() {
       setError('');
 
       try {
-        const response = await fetch(`generated/funds-runtime.json?ts=${Date.now()}`);
-        if (!response.ok) {
-          throw new Error(`同步文件读取失败: ${response.status}`);
-        }
-
-        const payload = (await response.json()) as RuntimePayload;
+        const payload = await fetchGeneratedJson<RuntimePayload>('funds-runtime.json');
         const nextFunds = payload.funds.map((runtime: FundRuntimeData) => {
           const persistedState = payload.stateByCode?.[runtime.code];
           const initialModel = normalizeWatchlistModel(persistedState?.model ?? readWatchlistModel(runtime.code));
@@ -2663,12 +2662,7 @@ export default function App() {
       const entries = await Promise.all(
         [...OFFLINE_RESEARCH_CODES].map(async (code) => {
           try {
-            const response = await fetch(`generated/${code}-offline-research.json?ts=${Date.now()}`);
-            if (!response.ok) {
-              return null;
-            }
-
-            const payload = (await response.json()) as OfflineResearchSummary;
+            const payload = await fetchGeneratedJson<OfflineResearchSummary>(`${code}-offline-research.json`);
             const maeValidation30 = Number(payload?.segmented?.maeValidation30);
             const maeValidation30Robust = Number((payload as OfflineResearchSummary & { segmented?: { maeValidation30Robust?: number } })?.segmented?.maeValidation30Robust);
             const maeValidation = Number(payload?.segmented?.maeValidation);
@@ -2723,12 +2717,7 @@ export default function App() {
 
     async function loadPremiumCompareCodes() {
       try {
-        const response = await fetch(`generated/premium-compare.json?ts=${Date.now()}`);
-        if (!response.ok) {
-          throw new Error(`premium compare ${response.status}`);
-        }
-
-        const payload = (await response.json()) as PremiumComparePayload;
+        const payload = await fetchGeneratedJson<PremiumComparePayload>('premium-compare.json');
         if (!active) {
           return;
         }

@@ -7,10 +7,10 @@ on:
       - main
   schedule:
     # Beijing time is UTC+8.
-    # Day session: 09:00-16:59 CST, every 5 minutes.
-    - cron: '*/5 1-8 * * 1-5'
-    # US night session: 21:00-04:59 CST, every 5 minutes.
-    - cron: '*/5 13-20 * * 1-5'
+    # Day session: 09:00-16:59 CST, every 15 minutes.
+    - cron: '*/15 1-8 * * 1-5'
+    # US night session: 21:00-04:59 CST, every 15 minutes.
+    - cron: '*/15 13-20 * * 1-5'
 
 permissions:
   contents: read
@@ -18,8 +18,10 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  # Separate push and schedule queues so scheduled data refresh does not cancel code deployment.
+  group: pages-${{ github.event_name }}
+  # Only push runs should preempt older push runs; scheduled runs should not preempt deployments.
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 
 jobs:
   build:

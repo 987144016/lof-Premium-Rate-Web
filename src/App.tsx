@@ -3,7 +3,7 @@ import { Link, Navigate, Route, Routes, useLocation, useParams } from 'react-rou
 import { FundTable } from './components/FundTable';
 import { LineChart } from './components/LineChart';
 import { MetricCard } from './components/MetricCard';
-import { readDetailScrollY, readFavoriteFundCodes, readFundJournal, readFundOrder, readWatchlistModel, writeDetailScrollY, writeFavoriteFundCodes, writeFundJournal, writeFundOrder, writeWatchlistModel } from './lib/storage';
+import { readFavoriteFundCodes, readFundJournal, readFundOrder, readWatchlistModel, writeFavoriteFundCodes, writeFundJournal, writeFundOrder, writeWatchlistModel } from './lib/storage';
 import { estimateWatchlistFund, getDefaultWatchlistModel, reconcileJournal, recordEstimateSnapshot } from './lib/watchlist';
 import type { FundJournal, FundRuntimeData, FundViewModel, GithubTrafficPayload, RuntimePayload, WatchlistModel } from './types';
 const FAST_SYNC_INTERVAL = 60_000;
@@ -2059,31 +2059,6 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
       active = false;
     };
   }, [fundCode, syncedAt]);
-
-  useEffect(() => {
-    if (!fundCode) {
-      return;
-    }
-
-    const storedY = readDetailScrollY(fundCode);
-    const rafId = window.requestAnimationFrame(() => {
-      if (storedY > 0) {
-        window.scrollTo({ top: storedY, behavior: 'auto' });
-      }
-    });
-
-    const onScroll = () => {
-      writeDetailScrollY(fundCode, window.scrollY || window.pageYOffset || 0);
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    return () => {
-      window.cancelAnimationFrame(rafId);
-      window.removeEventListener('scroll', onScroll);
-      writeDetailScrollY(fundCode, window.scrollY || window.pageYOffset || 0);
-    };
-  }, [fundCode]);
 
   if (loading && !fund) {
     return (

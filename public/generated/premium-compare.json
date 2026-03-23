@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-23T15:48:26.329Z",
-  "syncedAt": "2026-03-23T15:32:52.805Z",
+  "generatedAt": "2026-03-23T16:42:15.047Z",
+  "syncedAt": "2026-03-23T16:32:47.300Z",
   "codes": {
     "159100": {
       "code": "159100",
@@ -646,8 +646,8 @@
         },
         {
           "provider": "eastmoney-quote",
-          "sourceUrl": "https://push2.eastmoney.com/api/qt/stock/get?invt=2&fltt=2&secid=0.159509&fields=f57,f58,f193,f194",
-          "status": "ok",
+          "sourceUrl": "https://fund.eastmoney.com/159509.html",
+          "status": "premium-unavailable",
           "premiumRateCurrent": -0.1625,
           "hitCount60": 3,
           "avgAbsProviderError30": null,
@@ -10411,7 +10411,7 @@
         {
           "provider": "eastmoney-fundgz",
           "sourceUrl": "https://fundgz.1234567.com.cn/js/513290.js",
-          "status": "ok",
+          "status": "fetch failed",
           "premiumRateCurrent": -0.04709294296367905,
           "hitCount60": 4,
           "avgAbsProviderError30": 0.015057254349973626,

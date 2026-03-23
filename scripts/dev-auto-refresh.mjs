@@ -18,6 +18,10 @@ const GIT_BRANCH = process.env.AUTO_PUSH_BRANCH || 'main';
 const ENABLE_GITHUB_PUSH = process.env.AUTO_PUSH_GITHUB !== '0';
 const GIT_PUSH_INTERVAL = Number.parseInt(process.env.AUTO_PUSH_INTERVAL_MS ?? '', 10) || DEFAULT_GIT_PUSH_INTERVAL;
 const GIT_SYNC_PATHS = ['public/generated/funds-runtime.json'];
+const ENABLE_STARTUP_FULL_SYNC = process.env.SYNC_STARTUP_FULL_FIRST !== '0';
+const REGULAR_SYNC_BATCH_SIZE = process.env.SYNC_BATCH_SIZE;
+const STARTUP_SYNC_BATCH_SIZE = process.env.SYNC_BOOTSTRAP_BATCH_SIZE || '9999';
+const startupSyncStatePath = path.join(projectRoot, '.cache', 'fund-sync', 'startup-sync-state.json');
 let pushing = false;
 let gitPushReady = false;
 
@@ -64,6 +68,19 @@ function isUsTradingSession(date) {
 
 function getSyncInterval(now = new Date()) {
   return isCnTradingSession(now) || isUsTradingSession(now) ? FAST_SYNC_INTERVAL : SLOW_SYNC_INTERVAL;
+}
+
+function getBeijingDateKey(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+  const year = parts.find((item) => item.type === 'year')?.value ?? '1970';
+  const month = parts.find((item) => item.type === 'month')?.value ?? '01';
+  const day = parts.find((item) => item.type === 'day')?.value ?? '01';
+  return `${year}-${month}-${day}`;
 }
 
 function runCommand(command, args, options = {}) {
@@ -134,6 +151,17 @@ async function prepareGitPush() {
   return true;
 }
 
+async function hasNonRuntimeChanges() {
+  // Keep runtime auto-commit isolated: if any other tracked file is dirty, skip auto push.
+  const unstaged = await runCommandCapture('git', ['diff', '--name-only', '--', '.', ':!public/generated/funds-runtime.json']);
+  if (unstaged.code === 0 && unstaged.stdout.trim() !== '') {
+    return true;
+  }
+
+  const staged = await runCommandCapture('git', ['diff', '--cached', '--name-only', '--', '.', ':!public/generated/funds-runtime.json']);
+  return staged.code === 0 && staged.stdout.trim() !== '';
+}
+
 async function pushRuntimeUpdate() {
   if (!gitPushReady || pushing) {
     return;
@@ -141,6 +169,11 @@ async function pushRuntimeUpdate() {
 
   pushing = true;
   try {
+    if (await hasNonRuntimeChanges()) {
+      console.warn('[auto-refresh] skipped runtime auto push: non-runtime changes detected.');
+      return;
+    }
+
     const status = await runCommandCapture('git', ['status', '--porcelain', '--', ...GIT_SYNC_PATHS]);
     if (status.code !== 0 || status.stdout.trim() === '') {
       return;
@@ -164,28 +197,83 @@ async function pushRuntimeUpdate() {
   }
 }
 
-async function syncOnce() {
+async function readStartupSyncState() {
+  try {
+    const raw = await fs.promises.readFile(startupSyncStatePath, 'utf8');
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') {
+      return {};
+    }
+    return parsed;
+  } catch {
+    return {};
+  }
+}
+
+async function writeStartupSyncState(state) {
+  await fs.promises.mkdir(path.dirname(startupSyncStatePath), { recursive: true });
+  await fs.promises.writeFile(startupSyncStatePath, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
+}
+
+async function shouldRunStartupFullSync() {
+  if (!ENABLE_STARTUP_FULL_SYNC) {
+    return false;
+  }
+
+  const state = await readStartupSyncState();
+  return String(state.lastFullSyncDate || '') !== getBeijingDateKey();
+}
+
+async function markStartupFullSyncDone() {
+  await writeStartupSyncState({
+    lastFullSyncDate: getBeijingDateKey(),
+    updatedAt: new Date().toISOString(),
+  });
+}
+
+async function syncOnce(options = {}) {
   if (syncing) {
-    return;
+    return false;
+  }
+
+  const batchSizeOverride = options.batchSizeOverride;
+  const env = { ...process.env };
+  if (batchSizeOverride) {
+    env.SYNC_BATCH_SIZE = String(batchSizeOverride);
+  } else if (REGULAR_SYNC_BATCH_SIZE) {
+    env.SYNC_BATCH_SIZE = String(REGULAR_SYNC_BATCH_SIZE);
   }
 
   syncing = true;
   try {
-    await runCommand(nodeExecutable, ['scripts/sync-funds.mjs']);
+    await runCommand(nodeExecutable, ['scripts/sync-funds.mjs'], { env });
+    return true;
   } catch (error) {
     console.error('[auto-refresh] sync failed:', error instanceof Error ? error.message : error);
+    return false;
   } finally {
     syncing = false;
   }
 }
 
 async function main() {
-  if (process.env.SYNC_BATCH_SIZE) {
-    process.stdout.write(`[auto-refresh] sync:data uses batched mode, SYNC_BATCH_SIZE=${process.env.SYNC_BATCH_SIZE}\n`);
+  if (REGULAR_SYNC_BATCH_SIZE) {
+    process.stdout.write(`[auto-refresh] sync:data uses batched mode, SYNC_BATCH_SIZE=${REGULAR_SYNC_BATCH_SIZE}\n`);
   }
 
   gitPushReady = await prepareGitPush();
-  await syncOnce();
+  let synced = false;
+  if (await shouldRunStartupFullSync()) {
+    process.stdout.write(`[auto-refresh] startup full sync enabled, SYNC_BATCH_SIZE=${STARTUP_SYNC_BATCH_SIZE}\n`);
+    synced = await syncOnce({ batchSizeOverride: STARTUP_SYNC_BATCH_SIZE });
+    if (synced) {
+      await markStartupFullSyncDone();
+    }
+  }
+
+  if (!synced) {
+    await syncOnce();
+  }
   await pushRuntimeUpdate();
 
   if (!fs.existsSync(viteBin)) {

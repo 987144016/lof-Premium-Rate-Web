@@ -1125,7 +1125,7 @@ const PROXY_BASKETS = {
     components: [{ ticker: '159845', name: '中证1000ETF', weight: 1 }],
   },
 };
-const GOLD_REALTIME_PROXY_CODES = new Set(['160719', '161116', '164701']);
+const GOLD_REALTIME_PROXY_CODES = new Set(['160719', '161116', '164701', '161226']);
 const GOLD_US_PROXY_TICKERS = new Set(['GLD', 'IAU', 'UGL']);
 const GOLD_DOMESTIC_PROXY_TICKERS = new Set(['518880']);
 const GOLD_REALTIME_CARRY_MAX_MOVE = 0.03;
@@ -1134,6 +1134,7 @@ const GOLD_CONTINUOUS_FACTOR_WEIGHT_BY_CODE = {
   '160719': 0.7,
   '161116': 0.65,
   '164701': 0.65,
+  '161226': 0.65,
 };
 const GOLD_CONTINUOUS_FACTOR_MAX_MOVE = 0.08;
 const GOLD_CONTINUOUS_FACTOR_ANOMALY_MOVE = 0.12;
@@ -1148,6 +1149,8 @@ const FUTURES_CONTINUOUS_BY_BASKET = {};
 
 const SINA_FUTURES_CARRY_BY_BASKET = {
   'us-gold': { symbol: 'hf_XAU', name: '伦敦金现货' },
+  'us-silver': { symbol: 'hf_XAG', name: '伦敦银现货' },
+  'us-oil': { symbol: 'hf_CL', name: 'NYMEX WTI 原油' },
   'us-precious-metals': { symbol: 'hf_XAU', name: '伦敦金现货' },
 };
 
@@ -1512,6 +1515,17 @@ const SUPPLEMENTAL_NOTICE_HOLDINGS = {
   ],
 };
 let intradayPromise = null;
+
+function toFiniteNumber(value) {
+  if (value === null || value === undefined) {
+    return Number.NaN;
+  }
+  if (typeof value === 'string' && !value.trim()) {
+    return Number.NaN;
+  }
+  const num = Number(value);
+  return Number.isFinite(num) ? num : Number.NaN;
+}
 
 function clamp(value, limit) {
   return Math.max(-limit, Math.min(limit, value));
@@ -4617,6 +4631,17 @@ async function main() {
       };
     } catch (error) {
       console.error(`Sync failed for ${entry.code}:`, error instanceof Error ? error.message : error);
+
+      // Never drop an existing fund/state snapshot because of one-run transient failures.
+      const reusedRuntime = previousFundByCode.get(entry.code);
+      if (reusedRuntime) {
+        funds.push({
+          ...reusedRuntime,
+          cacheMode: 'reused-after-sync-failure',
+        });
+      }
+
+      stateByCode[entry.code] = normalizePersistedState(entry.code, persistedStateByCode[entry.code]);
     }
   }
 

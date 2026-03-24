@@ -591,6 +591,15 @@ async function main() {
     const errorRows = Array.isArray(stateByCode?.[code]?.journal?.errors) ? stateByCode[code].journal.errors : [];
     const actualPremiumByDate = new Map();
     const actualNavByDate = new Map();
+    const navHistoryRows = Array.isArray(fund?.navHistory) ? fund.navHistory : [];
+    for (const row of navHistoryRows) {
+      const date = String(row?.date || '').trim();
+      const nav = toFiniteNumber(row?.nav);
+      if (date && Number.isFinite(nav) && nav > 0) {
+        actualNavByDate.set(date, nav);
+      }
+    }
+
     for (const row of errorRows) {
       const date = String(row?.date || '').trim();
       const actualPremium = toFiniteNumber(row?.actualPremiumRate);
@@ -627,17 +636,28 @@ async function main() {
       }
     }
 
-    const settledOurRows = errorRows
-      .map((row) => {
-        const date = String(row?.date || '').trim();
-        const actualPremiumRate = toFiniteNumber(row?.actualPremiumRate);
-        const premiumError = toFiniteNumber(row?.premiumError);
-        if (!date || !Number.isFinite(actualPremiumRate) || !Number.isFinite(premiumError)) {
+    for (const [date, nav] of actualNavByDate.entries()) {
+      if (actualPremiumByDate.has(date)) {
+        continue;
+      }
+
+      const marketPriceAtDate = toFiniteNumber(dateMarketSnapshotMap.get(date));
+      if (!Number.isFinite(marketPriceAtDate) || !(marketPriceAtDate > 0) || !Number.isFinite(nav) || !(nav > 0)) {
+        continue;
+      }
+
+      actualPremiumByDate.set(date, marketPriceAtDate / nav - 1);
+    }
+
+    const settledOurRows = [...dateOurPremiumMap.entries()]
+      .map(([date, ourReportedPremiumRate]) => {
+        const actualPremiumRate = toFiniteNumber(actualPremiumByDate.get(date));
+        if (!date || !Number.isFinite(actualPremiumRate) || !Number.isFinite(ourReportedPremiumRate)) {
           return null;
         }
         return {
           date,
-          absOurPremiumError: Math.abs(premiumError),
+          absOurPremiumError: Math.abs(ourReportedPremiumRate - actualPremiumRate),
         };
       })
       .filter(Boolean)

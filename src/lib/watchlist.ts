@@ -10,10 +10,14 @@ import type {
 
 const DEFAULT_LEARNING_RATE = 0.24;
 const DEFAULT_BETA_LEAD = 0.38;
+const DEFAULT_BETA_INTRADAY = 0.05;
+const DEFAULT_BETA_INTRADAY_MIN = 0.001;
+const DEFAULT_BETA_INTRADAY_MAX = 0.3;
 const MAX_MARKET_MOVE = 0.08;
 const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
 const MAX_FX_MOVE = 0.05;
+const MAX_INTRADAY_MOVE = 0.08;
 const STALE_LEAD_REPEAT_EPSILON = 1e-6;
 const STALE_LEAD_SIGNAL_THRESHOLD = 0.015;
 const STALE_LEAD_PROXY_BLEND = 0.65;
@@ -284,6 +288,7 @@ export function getDefaultWatchlistModel(): WatchlistModel {
     alpha: 0,
     betaLead: DEFAULT_BETA_LEAD,
     betaGap: 0,
+    betaIntraday: DEFAULT_BETA_INTRADAY,
     learningRate: DEFAULT_LEARNING_RATE,
     sampleCount: 0,
     meanAbsError: 0,
@@ -305,6 +310,14 @@ export function estimateWatchlistFund(
   const anchorNav = runtime.officialNavT1;
   const useHoldingsEstimate = hasAnnouncedHoldingsSignal(runtime);
   const useProxyEstimate = runtime.estimateMode === 'proxy' && !useHoldingsEstimate;
+  
+  // 计算当日涨跌幅 (仅用于国内LOF，海外QDII不用)
+  const enableIntradayFactor = runtime.pageCategory === 'domestic-lof' && !useProxyEstimate;
+  const intradayReturn = enableIntradayFactor && runtime.previousClose > 0
+    ? runtime.marketPrice / runtime.previousClose - 1
+    : 0;
+  const clampedIntradayReturn = clamp(intradayReturn, MAX_INTRADAY_MOVE);
+  
   const modeLeadReturn = useProxyEstimate
     ? getWeightedProxyReturn(runtime)
     : useHoldingsEstimate
@@ -326,7 +339,8 @@ export function estimateWatchlistFund(
         : 0;
   const closeGapReturn = clamp(rawCloseGapReturn, useProxyEstimate ? MAX_FX_MOVE : MAX_CLOSE_GAP);
   const learnedBiasReturn = model.alpha;
-  const rawImpliedReturn = learnedBiasReturn + model.betaLead * leadReturn + model.betaGap * closeGapReturn;
+  const betaIntra = enableIntradayFactor ? (model.betaIntraday ?? DEFAULT_BETA_INTRADAY) : 0;
+  const rawImpliedReturn = learnedBiasReturn + model.betaLead * leadReturn + model.betaGap * closeGapReturn + betaIntra * clampedIntradayReturn;
   const impliedReturn = applyGoldCloseForceImpliedReturn(runtime, rawImpliedReturn);
   const estimatedNav = anchorNav * (1 + impliedReturn);
   const premiumRate = estimatedNav > 0 ? runtime.marketPrice / estimatedNav - 1 : 0;
@@ -376,12 +390,19 @@ export function reconcileJournal(
         model.sampleCount === 0
           ? Math.abs(displayError)
           : (model.meanAbsError * model.sampleCount + Math.abs(displayError)) / nextSampleCount;
+      
+      // 计算当日涨跌幅用于训练 betaIntraday
+      const intradayReturn = snapshot.intradayReturn ?? 0;
+      const nextBetaIntraday = model.betaIntraday + adaptiveRate * residualError * intradayReturn;
+      // 约束 betaIntraday 在合理范围内
+      const clampedBetaIntraday = Math.max(DEFAULT_BETA_INTRADAY_MIN, Math.min(DEFAULT_BETA_INTRADAY_MAX, nextBetaIntraday));
 
       model = {
         ...model,
         alpha: model.alpha + adaptiveRate * residualError,
         betaLead: model.betaLead + adaptiveRate * residualError * snapshot.leadReturn,
         betaGap: model.betaGap + adaptiveRate * residualError * snapshot.closeGapReturn,
+        betaIntraday: clampedBetaIntraday,
         sampleCount: nextSampleCount,
         meanAbsError: nextMae,
         lastUpdatedAt: new Date().toISOString(),
@@ -422,6 +443,11 @@ export function recordEstimateSnapshot(
   estimate: WatchlistEstimateResult,
 ): FundJournal {
   const estimateDate = runtime.marketDate || new Date().toISOString().slice(0, 10);
+  // 计算当日涨跌幅用于保存到快照
+  const intradayReturn = runtime.pageCategory === 'domestic-lof' && runtime.previousClose > 0
+    ? runtime.marketPrice / runtime.previousClose - 1
+    : undefined;
+  
   const nextSnapshot: FundEstimateSnapshot = {
     estimateDate,
     estimatedNav: estimate.estimatedNav,
@@ -433,6 +459,7 @@ export function recordEstimateSnapshot(
     anchorNav: estimate.anchorNav,
     leadReturn: estimate.leadReturn,
     closeGapReturn: estimate.closeGapReturn,
+    intradayReturn,
     impliedReturn: estimate.impliedReturn,
     createdAt: new Date().toISOString(),
   };

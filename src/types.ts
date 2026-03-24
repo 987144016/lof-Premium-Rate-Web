@@ -213,6 +213,7 @@ export interface WatchlistModel {
   alpha: number;
   betaLead: number;
   betaGap: number;
+  betaIntraday: number;
   learningRate: number;
   sampleCount: number;
   meanAbsError: number;
@@ -230,6 +231,7 @@ export interface FundEstimateSnapshot {
   anchorNav: number;
   leadReturn: number;
   closeGapReturn: number;
+  intradayReturn?: number;
   impliedReturn: number;
   adaptiveUsed?: boolean;
   adaptiveShockTriggered?: boolean;

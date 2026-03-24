@@ -25,6 +25,7 @@ const WATCHLIST_STATE_VERSION = 17;
 const DAILY_CACHE_VERSION = 40;
 const INTRADAY_CACHE_TTL_MS = 5 * 60 * 1000;
 const HOLDING_QUOTE_BATCH_SIZE = 180;
+const SKIP_REALTIME_DISCLOSED_HOLDINGS_REFRESH = process.env.SYNC_SKIP_REALTIME_HOLDINGS === '1';
 const MAX_MARKET_MOVE = 0.08;
 const MAX_PROXY_MOVE = 0.15;
 const MAX_CLOSE_GAP = 0.2;
@@ -4650,7 +4651,9 @@ async function main() {
   // Always overlay grouped intraday quotes so batched runs still refresh realtime fields for all funds.
   const intradayData = await getIntradayData();
   const fundsWithRealtimeQuotes = overlayRealtimeFundQuotes(funds, intradayData);
-  const fundsWithRealtimeHoldings = await refreshRealtimeDisclosedHoldingsQuotes(fundsWithRealtimeQuotes);
+  const fundsWithRealtimeHoldings = SKIP_REALTIME_DISCLOSED_HOLDINGS_REFRESH
+    ? fundsWithRealtimeQuotes
+    : await refreshRealtimeDisclosedHoldingsQuotes(fundsWithRealtimeQuotes);
 
   const normalizedFunds = fundsWithRealtimeHoldings.map((item) => ({
     ...item,

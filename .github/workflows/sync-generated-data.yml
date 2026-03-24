@@ -54,8 +54,22 @@ jobs:
           GH_TRAFFIC_SNAPSHOT_HOUR_CST: '12'
           GH_TRAFFIC_SNAPSHOT_WINDOW_MINUTES: '20'
 
-      - name: Sync Funds Runtime Data (fast)
+      - name: Sync Funds Runtime Data (fast market-focused)
         run: node scripts/sync-funds.mjs
+        env:
+          # Keep high-frequency runs lightweight: refresh market quotes for all funds,
+          # skip heavy disclosed-holdings intraday refresh, and batch model updates.
+          SYNC_BATCH_SIZE: '6'
+          SYNC_SKIP_REALTIME_HOLDINGS: '1'
+
+      - name: Sync Funds Runtime Data (full detail every 60 minutes)
+        run: |
+          MINUTE=$(date -u +'%M')
+          if [ $((10#$MINUTE % 60)) -eq 0 ]; then
+            SYNC_BATCH_SIZE=9999 node scripts/sync-funds.mjs
+          else
+            echo "Skip full-detail runtime sync on minute ${MINUTE}; fast market-focused mode already completed."
+          fi
 
       - name: Sync Premium Compare (every 30 minutes)
         run: |

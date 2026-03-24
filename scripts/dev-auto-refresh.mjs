@@ -138,31 +138,13 @@ async function prepareGitPush() {
   return true;
 }
 
-async function hasNonRuntimeChanges() {
-  // Keep runtime auto-commit isolated: if any other tracked file is dirty, skip auto push.
-  const unstaged = await runCommandCapture('git', ['diff', '--name-only', '--', '.', ':!public/generated/funds-runtime.json']);
-  if (unstaged.code === 0 && unstaged.stdout.trim() !== '') {
-    return true;
-  }
-
-  const staged = await runCommandCapture('git', ['diff', '--cached', '--name-only', '--', '.', ':!public/generated/funds-runtime.json']);
-  return staged.code === 0 && staged.stdout.trim() !== '';
-}
-
-async function pushRuntimeUpdate(options = {}) {
+async function pushRuntimeUpdate() {
   if (!gitPushReady || pushing) {
     return false;
   }
 
-  const ignoreNonRuntimeChanges = Boolean(options.ignoreNonRuntimeChanges);
-
   pushing = true;
   try {
-    if (!ignoreNonRuntimeChanges && await hasNonRuntimeChanges()) {
-      console.warn('[auto-refresh] skipped runtime auto push: non-runtime changes detected.');
-      return false;
-    }
-
     const status = await runCommandCapture('git', ['status', '--porcelain', '--', ...GIT_SYNC_PATHS]);
     if (status.code !== 0 || status.stdout.trim() === '') {
       // No runtime delta means online is already up-to-date for this path.
@@ -240,7 +222,7 @@ async function main() {
       return true;
     }
 
-    const ok = await pushRuntimeUpdate({ ignoreNonRuntimeChanges: true });
+    const ok = await pushRuntimeUpdate();
     if (ok) {
       initialPushCompleted = true;
       process.stdout.write('[auto-refresh] bootstrap push completed; switching to regular push schedule.\n');

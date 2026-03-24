@@ -9,25 +9,36 @@ import type { FundJournal, FundRuntimeData, FundViewModel, GithubTrafficPayload,
 const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
 const REMOTE_GENERATED_BASE = 'https://raw.githubusercontent.com/987144016/lof-Premium-Rate-Web/main/public/generated';
+const GENERATED_FETCH_TIMEOUT_MS = 1500;
 type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 'favorites';
 
 async function fetchGeneratedJson<T>(fileName: string): Promise<T> {
   const ts = Date.now();
-  const candidates = [
-    `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
-    `generated/${fileName}?ts=${ts}`,
-  ];
+  const isLocalDev = typeof window !== 'undefined' && (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost');
+  const candidates = isLocalDev
+    ? [
+      `generated/${fileName}?ts=${ts}`,
+      `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
+    ]
+    : [
+      `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
+      `generated/${fileName}?ts=${ts}`,
+    ];
 
   let lastError: Error | null = null;
   for (const url of candidates) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), GENERATED_FETCH_TIMEOUT_MS);
     try {
-      const response = await fetch(url, { cache: 'no-store' });
+      const response = await fetch(url, { cache: 'no-store', signal: controller.signal });
       if (!response.ok) {
         throw new Error(`http-${response.status}`);
       }
       return (await response.json()) as T;
     } catch (error) {
       lastError = error instanceof Error ? error : new Error(String(error));
+    } finally {
+      clearTimeout(timeout);
     }
   }
 
@@ -2265,7 +2276,7 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
           <section className="chart-card">
             <div className="chart-card__header">
               <h3>第三方误差总表</h3>
-              <div className="muted-text">总表汇总最近30条已结算样本；第一行是本站口径，后面是各来源。</div>
+              <div className="muted-text">总表汇总最近30条已结算样本；第一行是本站全样本口径，来源行里的“本站误差MAE”按该来源可结算日期对齐计算。</div>
             </div>
             {summaryProviders.length ? (
               <div className="table-scroll table-scroll--window">
@@ -2278,13 +2289,13 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
                       <th>命中(60天)</th>
                       <th>已结算(最近30条)</th>
                       <th>来源误差MAE</th>
-                      <th>本站误差MAE</th>
+                      <th>本站误差MAE(同样本)</th>
                       <th>误差差距</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>本站</td>
+                      <td>本站(全样本)</td>
                       <td>--</td>
                       <td>--</td>
                       <td>--</td>

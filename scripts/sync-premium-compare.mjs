@@ -812,6 +812,26 @@ async function main() {
           })
           .filter(Boolean);
 
+        // For manual providers, keep a visible pending row for current trade date
+        // when no same-day source snapshot is available yet.
+        if (providerName.startsWith('manual-') && marketDate && !rows.some((item) => item.date === marketDate)) {
+          const latestManualRow = rows.length ? rows[rows.length - 1] : null;
+          if (latestManualRow && Number.isFinite(toFiniteNumber(latestManualRow.providerPremiumRate))) {
+            rows.push({
+              date: marketDate,
+              time: marketTime || '',
+              marketPrice: Number.isFinite(marketPriceFallback) ? marketPriceFallback : null,
+              providerPremiumRate: toFiniteNumber(latestManualRow.providerPremiumRate),
+              ourReportedPremiumRate: Number.isFinite(ourPremiumRateFallback) ? ourPremiumRateFallback : null,
+              status: 'pending',
+              actualPremiumRate: null,
+              providerPremiumError: null,
+              ourPremiumError: null,
+              premiumErrorDelta: null,
+            });
+          }
+        }
+
         const settledRows = rows.filter((item) => item.status === 'settled');
         const pendingRows = rows.filter((item) => item.status !== 'settled');
         const keptSettledRows = settledRows.slice(-SETTLED_WINDOW_SIZE);

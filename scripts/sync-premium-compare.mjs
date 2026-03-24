@@ -490,7 +490,12 @@ function sanitizeHistory(history) {
           provider,
           sortRowsByDateTime(
             (Array.isArray(rows) ? rows : [])
-              .filter((item) => Number.isFinite(toFiniteNumber(item?.providerPremiumRate))),
+              .filter((item) => {
+                const prem = toFiniteNumber(item?.providerPremiumRate);
+                if (!Number.isFinite(prem)) return false;
+                if (provider === 'eastmoney-quote' && Math.abs(prem) > 2) return false;
+                return true;
+              }),
           ).slice(-HISTORY_MAX_ROWS_PER_PROVIDER),
         ]),
       ),
@@ -647,6 +652,14 @@ async function main() {
       }
 
       actualPremiumByDate.set(date, marketPriceAtDate / nav - 1);
+    }
+
+    for (const errorRow of errorRows) {
+      const date = String(errorRow?.date || '').trim();
+      const estimatedPremiumRate = toFiniteNumber(errorRow?.premiumRate);
+      if (date && Number.isFinite(estimatedPremiumRate) && !dateOurPremiumMap.has(date) && actualPremiumByDate.has(date)) {
+        dateOurPremiumMap.set(date, estimatedPremiumRate);
+      }
     }
 
     const settledOurRows = [...dateOurPremiumMap.entries()]

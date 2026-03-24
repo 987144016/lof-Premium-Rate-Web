@@ -14,7 +14,10 @@ permissions:
 
 concurrency:
   group: sync-generated-data
-  cancel-in-progress: true
+  # Keep scheduled runs from canceling each other mid-sync.
+  # If one run takes longer than 5 minutes, canceling in-progress runs can
+  # prevent commits from ever reaching origin/main.
+  cancel-in-progress: false
 
 jobs:
   sync:

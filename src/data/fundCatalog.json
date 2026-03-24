@@ -55,5 +55,11 @@
   { "code": "163208", "detailMode": "summary", "priority": 55, "pageCategory": "qdii-lof", "estimateMode": "market" },
   { "code": "159502", "detailMode": "summary", "priority": 56, "pageCategory": "etf", "estimateMode": "market" },
   { "code": "513290", "detailMode": "summary", "priority": 57, "pageCategory": "etf", "estimateMode": "market" },
-  { "code": "159985", "detailMode": "summary", "priority": 58, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-agriculture" }
+  { "code": "159985", "detailMode": "summary", "priority": 58, "pageCategory": "etf", "estimateMode": "proxy", "proxyBasketKey": "us-agriculture" },
+  { "code": "168204", "detailMode": "summary", "priority": 59, "pageCategory": "domestic-lof", "estimateMode": "proxy", "proxyBasketKey": "cn-coal" },
+  { "code": "501036", "detailMode": "summary", "priority": 60, "pageCategory": "domestic-lof", "estimateMode": "proxy", "proxyBasketKey": "cn-csi500" },
+  { "code": "501043", "detailMode": "summary", "priority": 61, "pageCategory": "domestic-lof", "estimateMode": "proxy", "proxyBasketKey": "cn-hs300" },
+  { "code": "160807", "detailMode": "summary", "priority": 62, "pageCategory": "domestic-lof", "estimateMode": "proxy", "proxyBasketKey": "cn-hs300" },
+  { "code": "161607", "detailMode": "summary", "priority": 63, "pageCategory": "domestic-lof", "estimateMode": "proxy", "proxyBasketKey": "cn-giant100" },
+  { "code": "161039", "detailMode": "summary", "priority": 64, "pageCategory": "domestic-lof", "estimateMode": "proxy", "proxyBasketKey": "cn-csi1000" }
 ]

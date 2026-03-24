@@ -153,6 +153,9 @@ export interface FundRuntimeData {
   proxyQuotes?: ProxyQuote[];
   proxyQuoteDate?: string;
   proxyQuoteTime?: string;
+  goldContinuousReturn?: number | null;
+  goldContinuousSymbol?: string;
+  goldContinuousSource?: string;
   cacheMode?: 'fresh' | 'daily-cache' | 'intraday-cache';
 }
 

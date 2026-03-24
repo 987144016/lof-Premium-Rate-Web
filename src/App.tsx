@@ -14,8 +14,8 @@ type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 
 async function fetchGeneratedJson<T>(fileName: string): Promise<T> {
   const ts = Date.now();
   const candidates = [
-    `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
     `generated/${fileName}?ts=${ts}`,
+    `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
   ];
 
   let lastError: Error | null = null;

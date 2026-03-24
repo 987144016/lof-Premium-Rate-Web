@@ -541,56 +541,11 @@
     "status":  "manual-input"
 },
 {
-    "code":  "160723",
+    "code":  "161125",
     "provider":  "manual-xueqiu",
     "date":  "2026-03-19",
     "time":  "15:00:00",
-    "premiumRate":  0.2731,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
-    "code":  "501018",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  0.2682,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
-    "code":  "161129",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  0.2627,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
-    "code":  "160416",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  0.1933,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
-    "code":  "501225",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  0.0918,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
-    "code":  "162719",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  0.0365,
+    "premiumRate":  0.0043,
     "sourceUrl":  "https://xueqiu.com/",
     "status":  "manual-input"
 },
@@ -604,11 +559,11 @@
     "status":  "manual-input"
 },
 {
-    "code":  "161125",
+    "code":  "161126",
     "provider":  "manual-xueqiu",
     "date":  "2026-03-19",
     "time":  "15:00:00",
-    "premiumRate":  0.0043,
+    "premiumRate":  0.0022,
     "sourceUrl":  "https://xueqiu.com/",
     "status":  "manual-input"
 },
@@ -622,20 +577,11 @@
     "status":  "manual-input"
 },
 {
-    "code":  "163208",
+    "code":  "501312",
     "provider":  "manual-xueqiu",
     "date":  "2026-03-19",
     "time":  "15:00:00",
-    "premiumRate":  0.0008,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
-    "code":  "161126",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  0.0022,
+    "premiumRate":  -0.0031,
     "sourceUrl":  "https://xueqiu.com/",
     "status":  "manual-input"
 },
@@ -649,20 +595,11 @@
     "status":  "manual-input"
 },
 {
-    "code":  "161130",
+    "code":  "164701",
     "provider":  "manual-xueqiu",
     "date":  "2026-03-19",
     "time":  "15:00:00",
-    "premiumRate":  -0.0016,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
-    "code":  "162415",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  -0.0184,
+    "premiumRate":  -0.053,
     "sourceUrl":  "https://xueqiu.com/",
     "status":  "manual-input"
 },
@@ -676,15 +613,6 @@
     "status":  "manual-input"
 },
 {
-    "code":  "501312",
-    "provider":  "manual-xueqiu",
-    "date":  "2026-03-19",
-    "time":  "15:00:00",
-    "premiumRate":  -0.0031,
-    "sourceUrl":  "https://xueqiu.com/",
-    "status":  "manual-input"
-},
-{
     "code":  "160719",
     "provider":  "manual-xueqiu",
     "date":  "2026-03-19",
@@ -694,12 +622,1488 @@
     "status":  "manual-input"
 },
 {
-    "code":  "164701",
+    "code":  "160723",
     "provider":  "manual-xueqiu",
     "date":  "2026-03-19",
     "time":  "15:00:00",
-    "premiumRate":  -0.053,
+    "premiumRate":  0.2731,
     "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0184,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0016,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  0.2682,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  0.0918,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  0.0008,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  0.0365,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  0.1933,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-19",
+    "time":  "15:00:00",
+    "premiumRate":  0.2627,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0158,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0237,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0127,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2683,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0042,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0149,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0403,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0286,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0454,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2891,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0022,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.009,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.3099,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0812,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.006,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0125,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.1674,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2765,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.016,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0237,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0129,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2682,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.004,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0145,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0403,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0288,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0454,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2891,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0022,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.009,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.31,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.081,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.006,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0126,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.1677,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2765,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.016,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0237,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0129,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2682,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0013,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0033,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0403,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0288,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0454,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2891,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0043,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.009,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.31,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.081,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.006,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0126,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.1677,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2765,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.335,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.3567,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.273,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.1553,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0739,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0051,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0227,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0177,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.3664,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0165,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0214,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0145,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0109,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0022,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0042,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.004,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0489,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0438,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2297,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.008,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0057,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.2682,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  0.0584,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0697,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-20",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0315,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.3528,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2925,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.1272,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.1567,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-jiuquaner",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0701,
+    "sourceUrl":  "https://www.jiuquaner.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0051,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0008,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0118,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2926,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0193,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0402,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0656,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0605,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0736,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.3982,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0174,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0038,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.4172,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0516,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0191,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0981,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2689,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-xueqiu",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.3975,
+    "sourceUrl":  "https://xueqiu.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0049,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0008,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0115,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2925,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0194,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0401,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0656,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0606,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0736,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.3981,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0174,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0037,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.4173,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0515,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0191,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0981,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2689,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-sina-finance",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.398,
+    "sourceUrl":  "https://finance.sina.com.cn/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0201,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0223,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0208,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2322,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0438,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0495,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0947,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0828,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.089,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.4066,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0349,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0225,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.4298,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0282,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0244,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0976,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2625,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-huabao",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.4002,
+    "sourceUrl":  "https://www.cnhbstock.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161125",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0049,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161128",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0008,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161126",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0115,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161226",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2925,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501312",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0194,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162411",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0401,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "164701",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0656,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161116",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0606,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160719",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0736,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160723",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.3981,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162415",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0174,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161130",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  -0.0037,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501018",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.4173,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "501225",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0515,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "163208",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0191,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "162719",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.0981,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "160416",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.2689,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
+    "status":  "manual-input"
+},
+{
+    "code":  "161129",
+    "provider":  "manual-xiaobeiyangji",
+    "date":  "2026-03-23",
+    "time":  "15:00:00",
+    "premiumRate":  0.398,
+    "sourceUrl":  "https://www.xiaobeiyangji.com/",
     "status":  "manual-input"
 }
   ]

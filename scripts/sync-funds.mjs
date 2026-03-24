@@ -1049,7 +1049,10 @@ const PROXY_BASKETS = {
   },
   'us-gold': {
     name: '黄金篮子',
-    components: [{ ticker: 'GLD', name: 'SPDR Gold Shares', weight: 1 }],
+    components: [
+      { ticker: 'GLD', name: 'SPDR Gold Shares', weight: 0.35 },
+      { ticker: '518880', name: '华安黄金ETF', weight: 0.65 },
+    ],
   },
   'us-silver': {
     name: '白银篮子',
@@ -1058,7 +1061,8 @@ const PROXY_BASKETS = {
   'us-precious-metals': {
     name: '贵金属篮子',
     components: [
-      { ticker: 'GLD', name: 'SPDR Gold Shares', weight: 0.75 },
+      { ticker: 'GLD', name: 'SPDR Gold Shares', weight: 0.45 },
+      { ticker: '518880', name: '华安黄金ETF', weight: 0.30 },
       { ticker: 'SLV', name: 'iShares Silver Trust', weight: 0.25 },
     ],
   },
@@ -1100,7 +1104,268 @@ const PROXY_BASKETS = {
       { ticker: 'FLJP', name: 'Franklin FTSE Japan ETF', weight: 0.1 },
     ],
   },
+  'cn-coal': {
+    name: '煤炭篮子',
+    components: [{ ticker: '515220', name: '煤炭ETF', weight: 1 }],
+  },
+  'cn-csi500': {
+    name: '中证500篮子',
+    components: [{ ticker: '510500', name: '中证500ETF', weight: 1 }],
+  },
+  'cn-hs300': {
+    name: '沪深300篮子',
+    components: [{ ticker: '510300', name: '沪深300ETF', weight: 1 }],
+  },
+  'cn-giant100': {
+    name: '巨潮100篮子',
+    components: [{ ticker: '159901', name: '深100ETF', weight: 1 }],
+  },
+  'cn-csi1000': {
+    name: '中证1000篮子',
+    components: [{ ticker: '159845', name: '中证1000ETF', weight: 1 }],
+  },
 };
+const GOLD_REALTIME_PROXY_CODES = new Set(['160719', '161116', '164701']);
+const GOLD_US_PROXY_TICKERS = new Set(['GLD', 'IAU', 'UGL']);
+const GOLD_DOMESTIC_PROXY_TICKERS = new Set(['518880']);
+const GOLD_REALTIME_CARRY_MAX_MOVE = 0.03;
+const GOLD_REALTIME_CARRY_ANOMALY_MOVE = 0.06;
+const GOLD_CONTINUOUS_FACTOR_WEIGHT_BY_CODE = {
+  '160719': 0.7,
+  '161116': 0.65,
+  '164701': 0.65,
+};
+const GOLD_CONTINUOUS_FACTOR_MAX_MOVE = 0.08;
+const GOLD_CONTINUOUS_FACTOR_ANOMALY_MOVE = 0.12;
+const GOLD_CLOSE_FORCE_TIME = '15:00:00';
+const GOLD_CLOSE_FORCE_MIN_DROP = -0.08;
+const GOLD_CLOSE_FORCE_MARKET_WEIGHT = 0.96;
+
+// FUTURES_CONTINUOUS_BY_BASKET is disabled for now - Tencent API doesn't provide these symbols
+// TODO: Find alternative CN futures API (SHFE/DCE direct APIs, Eastmoney, Sina real-time futures)
+// Fallback: Using domestic fund anchors in REALTIME_PROXY_CARRY_CONFIG_BY_BASKET instead
+const FUTURES_CONTINUOUS_BY_BASKET = {};
+
+const SINA_FUTURES_CARRY_BY_BASKET = {
+  'us-gold': { symbol: 'hf_XAU', name: '伦敦金现货' },
+  'us-precious-metals': { symbol: 'hf_XAU', name: '伦敦金现货' },
+};
+
+const REALTIME_PROXY_CARRY_CONFIG_BY_BASKET = {
+  'us-silver': {
+    anchorCodes: ['161226'],
+    maxMove: 0.04,
+    anomalyMove: 0.08,
+  },
+  'us-oil': {
+    anchorCodes: ['160723', '501018', '161129'],
+    maxMove: 0.06,
+    anomalyMove: 0.12,
+  },
+  'us-oil-upstream': {
+    anchorCodes: ['159518', '162719', '162411', '160416'],
+    maxMove: 0.06,
+    anomalyMove: 0.12,
+  },
+  'us-nasdaq100': {
+    anchorCodes: ['513100', '159509', '513300', '161130'],
+    maxMove: 0.04,
+    anomalyMove: 0.08,
+  },
+  'us-sandp500': {
+    anchorCodes: ['513500', '162415', '161125'],
+    maxMove: 0.035,
+    anomalyMove: 0.07,
+  },
+};
+
+function getFundIntradayReturn(fundQuote) {
+  const currentPrice = Number(fundQuote?.marketPrice);
+  const previousClose = Number(fundQuote?.previousClose);
+  if (!(currentPrice > 0) || !(previousClose > 0)) {
+    return null;
+  }
+
+  const raw = currentPrice / previousClose - 1;
+  return Number.isFinite(raw) ? raw : null;
+}
+
+function isQuoteStaleAgainstMarket(quoteItem, marketDate, marketTime) {
+  if (!marketDate) {
+    return false;
+  }
+
+  const qDate = String(quoteItem?.quoteDate || '');
+  const qTime = String(quoteItem?.quoteTime || '');
+  const mDate = String(marketDate || '');
+  const mTime = String(marketTime || '');
+
+  if (qDate !== mDate) {
+    return true;
+  }
+
+  if (!mTime) {
+    return false;
+  }
+
+  if (!qTime) {
+    return true;
+  }
+
+  return qTime < mTime;
+}
+
+function applyAnchorCarryToProxyQuotes(proxyQuotes, marketDate, marketTime, carryReturnRaw, maxMove, anomalyMove) {
+  if (!Array.isArray(proxyQuotes) || proxyQuotes.length === 0) {
+    return proxyQuotes;
+  }
+
+  if (!Number.isFinite(carryReturnRaw)) {
+    return proxyQuotes;
+  }
+
+  if (Number.isFinite(anomalyMove) && Math.abs(carryReturnRaw) > anomalyMove) {
+    return proxyQuotes;
+  }
+
+  const hasStaleUsdProxy = proxyQuotes.some((item) => item?.currency === 'USD' && isQuoteStaleAgainstMarket(item, marketDate, marketTime));
+  if (!hasStaleUsdProxy) {
+    return proxyQuotes;
+  }
+
+  const maxCarry = Number.isFinite(maxMove) ? maxMove : MAX_PROXY_MOVE;
+  const carryReturn = clamp(carryReturnRaw, -maxCarry, maxCarry);
+
+  return proxyQuotes.map((item) => {
+    const hasValidBase = Number.isFinite(item?.previousClose) && item.previousClose > 0;
+    const needsCarry = item?.currency === 'USD' && hasValidBase && isQuoteStaleAgainstMarket(item, marketDate, marketTime);
+    if (!needsCarry) {
+      return item;
+    }
+
+    const carriedCurrent = item.currentPrice * (1 + carryReturn);
+    if (!Number.isFinite(carriedCurrent) || carriedCurrent <= 0) {
+      return item;
+    }
+
+    return {
+      ...item,
+      currentPrice: carriedCurrent,
+      quoteDate: String(marketDate || item.quoteDate || ''),
+      quoteTime: String(marketTime || item.quoteTime || ''),
+    };
+  });
+}
+
+function applyGoldRealtimeCarryToProxyQuotes(proxyQuotes, marketDate, marketTime) {
+  if (!Array.isArray(proxyQuotes) || proxyQuotes.length === 0) {
+    return proxyQuotes;
+  }
+
+  const hasStaleUsdGold = proxyQuotes.some((item) => {
+    const ticker = String(item?.ticker || '').toUpperCase();
+    return GOLD_US_PROXY_TICKERS.has(ticker) && isQuoteStaleAgainstMarket(item, marketDate, marketTime);
+  });
+
+  const domesticAnchor = proxyQuotes.find((item) => {
+    const ticker = String(item?.ticker || '').toUpperCase();
+    return GOLD_DOMESTIC_PROXY_TICKERS.has(ticker)
+      && Number.isFinite(item?.currentPrice)
+      && item.currentPrice > 0
+      && Number.isFinite(item?.previousClose)
+      && item.previousClose > 0;
+  });
+  if (!domesticAnchor) {
+    return proxyQuotes;
+  }
+
+  const domesticReturnRaw = domesticAnchor.currentPrice / domesticAnchor.previousClose - 1;
+  if (!Number.isFinite(domesticReturnRaw)) {
+    return proxyQuotes;
+  }
+  const isDomesticReturnAnomaly = Math.abs(domesticReturnRaw) > GOLD_REALTIME_CARRY_ANOMALY_MOVE;
+  const domesticReturn = isDomesticReturnAnomaly
+    ? 0
+    : clamp(domesticReturnRaw, -GOLD_REALTIME_CARRY_MAX_MOVE, GOLD_REALTIME_CARRY_MAX_MOVE);
+
+  const carriedQuotes = proxyQuotes.map((item) => {
+    const ticker = String(item?.ticker || '').toUpperCase();
+    const isUsdGoldProxy = GOLD_US_PROXY_TICKERS.has(ticker);
+    const hasValidBase = Number.isFinite(item?.previousClose) && item.previousClose > 0;
+    const needsCarry = isUsdGoldProxy && hasValidBase && isQuoteStaleAgainstMarket(item, marketDate, marketTime);
+    if (!needsCarry) {
+      return item;
+    }
+
+    // Anchor at latest US close and extend by domestic intraday move.
+    const carriedCurrent = item.currentPrice * (1 + domesticReturn);
+    if (!Number.isFinite(carriedCurrent) || carriedCurrent <= 0) {
+      return item;
+    }
+
+    return {
+      ...item,
+      currentPrice: carriedCurrent,
+      quoteDate: String(marketDate || item.quoteDate || ''),
+      quoteTime: String(marketTime || item.quoteTime || ''),
+    };
+  });
+
+  const stabilizedQuotes = isDomesticReturnAnomaly
+    ? carriedQuotes.map((item) => {
+        const ticker = String(item?.ticker || '').toUpperCase();
+        const isDomesticGold = GOLD_DOMESTIC_PROXY_TICKERS.has(ticker);
+        const hasValidBase = Number.isFinite(item?.previousClose) && item.previousClose > 0;
+        if (!isDomesticGold || !hasValidBase) {
+          return item;
+        }
+
+        return {
+          ...item,
+          currentPrice: item.previousClose,
+          quoteDate: String(marketDate || item.quoteDate || ''),
+          quoteTime: String(marketTime || item.quoteTime || ''),
+        };
+      })
+    : carriedQuotes;
+
+  if (!hasStaleUsdGold || isDomesticReturnAnomaly) {
+    return stabilizedQuotes;
+  }
+
+  const domesticWeightTarget = 0.8;
+  const domesticIndex = stabilizedQuotes.findIndex((item) => GOLD_DOMESTIC_PROXY_TICKERS.has(String(item?.ticker || '').toUpperCase()));
+  if (domesticIndex < 0) {
+    return stabilizedQuotes;
+  }
+
+  const nonDomesticTotalWeight = stabilizedQuotes.reduce((sum, item, index) => {
+    if (index === domesticIndex) {
+      return sum;
+    }
+
+    return sum + Math.max(0, Number(item?.weight) || 0);
+  }, 0);
+  if (!(nonDomesticTotalWeight > 0)) {
+    return stabilizedQuotes;
+  }
+
+  return stabilizedQuotes.map((item, index) => {
+    if (index === domesticIndex) {
+      return {
+        ...item,
+        weight: domesticWeightTarget,
+      };
+    }
+
+    const baseWeight = Math.max(0, Number(item?.weight) || 0);
+    return {
+      ...item,
+      weight: (1 - domesticWeightTarget) * (baseWeight / nonDomesticTotalWeight),
+    };
+  });
+}
+
 const RELATED_ETF_FALLBACKS = {
   '501011': '560080',
   '161130': '159696',
@@ -1363,6 +1628,107 @@ function getBlendedHoldingLeadReturn(runtime) {
   return holdingsReturn * (1 - proxyWeight) + proxyReturn * proxyWeight;
 }
 
+function blendGoldContinuousLeadReturn(runtime, baseLeadReturn, useProxyEstimate) {
+  if (!useProxyEstimate || !GOLD_REALTIME_PROXY_CODES.has(runtime.code)) {
+    return {
+      leadReturn: baseLeadReturn,
+      goldContinuousApplied: false,
+      goldContinuousReturn: null,
+      goldContinuousWeight: 0,
+    };
+  }
+
+  const rawContinuousReturn = toFiniteNumber(runtime.goldContinuousReturn);
+  if (!Number.isFinite(rawContinuousReturn) || Math.abs(rawContinuousReturn) > GOLD_CONTINUOUS_FACTOR_ANOMALY_MOVE) {
+    return {
+      leadReturn: baseLeadReturn,
+      goldContinuousApplied: false,
+      goldContinuousReturn: Number.isFinite(rawContinuousReturn) ? rawContinuousReturn : null,
+      goldContinuousWeight: 0,
+    };
+  }
+
+  const blendedWeightRaw = Number(GOLD_CONTINUOUS_FACTOR_WEIGHT_BY_CODE[runtime.code]);
+  const blendedWeight = Number.isFinite(blendedWeightRaw) ? clampRange(blendedWeightRaw, 0, 0.9) : 0;
+  if (!(blendedWeight > 0)) {
+    return {
+      leadReturn: baseLeadReturn,
+      goldContinuousApplied: false,
+      goldContinuousReturn: rawContinuousReturn,
+      goldContinuousWeight: 0,
+    };
+  }
+
+  const continuousReturn = clamp(rawContinuousReturn, GOLD_CONTINUOUS_FACTOR_MAX_MOVE);
+  const leadReturn = baseLeadReturn * (1 - blendedWeight) + continuousReturn * blendedWeight;
+
+  return {
+    leadReturn,
+    goldContinuousApplied: true,
+    goldContinuousReturn: continuousReturn,
+    goldContinuousWeight: blendedWeight,
+  };
+}
+
+function applyGoldCloseForceImpliedReturn(runtime, impliedReturn) {
+  if (!GOLD_REALTIME_PROXY_CODES.has(runtime.code)) {
+    return {
+      impliedReturn,
+      forced: false,
+      forcedBy: null,
+    };
+  }
+
+  const marketTime = String(runtime.marketTime || '');
+  if (!marketTime || marketTime < GOLD_CLOSE_FORCE_TIME) {
+    return {
+      impliedReturn,
+      forced: false,
+      forcedBy: null,
+    };
+  }
+
+  const marketPrice = Number(runtime.marketPrice);
+  const previousClose = Number(runtime.previousClose);
+  if (!(marketPrice > 0) || !(previousClose > 0)) {
+    return {
+      impliedReturn,
+      forced: false,
+      forcedBy: null,
+    };
+  }
+
+  const marketReturn = marketPrice / previousClose - 1;
+  if (!Number.isFinite(marketReturn) || marketReturn >= 0) {
+    return {
+      impliedReturn,
+      forced: false,
+      forcedBy: null,
+    };
+  }
+
+  const floorByMarket = Math.min(-0.0001, marketReturn * GOLD_CLOSE_FORCE_MARKET_WEIGHT);
+  const forcedFloor = Math.min(floorByMarket, GOLD_CLOSE_FORCE_MIN_DROP);
+  const forcedImplied = Math.min(impliedReturn, forcedFloor);
+
+  if (forcedImplied === impliedReturn) {
+    return {
+      impliedReturn,
+      forced: false,
+      forcedBy: null,
+    };
+  }
+
+  return {
+    impliedReturn: forcedImplied,
+    forced: true,
+    forcedBy: {
+      marketReturn,
+      forcedFloor,
+    },
+  };
+}
+
 function hasUsdHoldingSignal(runtime) {
   return (runtime.holdingQuotes ?? []).some((item) => item.currency === 'USD');
 }
@@ -1595,13 +1961,15 @@ function estimateWatchlistFund(runtime, model, journal = null) {
   const useHoldingsEstimate = hasHoldingsSignal(runtime);
   const useProxyEstimate = runtime.estimateMode === 'proxy' && !useHoldingsEstimate;
   const adaptiveConfig = getAdaptiveAlgoConfig(runtime);
-  const rawLeadReturn = useProxyEstimate
+  const modeLeadReturn = useProxyEstimate
     ? getWeightedProxyReturn(runtime)
     : useHoldingsEstimate
       ? getBlendedHoldingLeadReturn(runtime)
       : runtime.previousClose > 0
         ? runtime.marketPrice / runtime.previousClose - 1
         : 0;
+  const goldContinuousBlend = blendGoldContinuousLeadReturn(runtime, modeLeadReturn, useProxyEstimate);
+  const rawLeadReturn = goldContinuousBlend.leadReturn;
   const { leadReturn: stabilizedLeadReturn } = protectStaleLeadSignal(runtime, rawLeadReturn, useHoldingsEstimate, useProxyEstimate, journal);
   const leadMoveCap = useProxyEstimate ? MAX_PROXY_MOVE : (adaptiveConfig?.maxLeadMove ?? MAX_MARKET_MOVE);
   const leadReturn = clamp(stabilizedLeadReturn, leadMoveCap);
@@ -1640,12 +2008,16 @@ function estimateWatchlistFund(runtime, model, journal = null) {
     adaptiveShockTriggered = Boolean(adaptiveResult.adaptiveShockTriggered);
   }
 
+  const goldCloseForced = applyGoldCloseForceImpliedReturn(runtime, impliedReturn);
+  impliedReturn = goldCloseForced.impliedReturn;
+
   const estimatedNav = anchorNav * (1 + impliedReturn);
   const premiumRate = estimatedNav > 0 ? runtime.marketPrice / estimatedNav - 1 : 0;
 
   return {
     anchorNav,
     leadReturn,
+    modeLeadReturn,
     closeGapReturn,
     learnedBiasReturn,
     impliedReturn,
@@ -1653,6 +2025,11 @@ function estimateWatchlistFund(runtime, model, journal = null) {
     premiumRate,
     adaptiveUsed,
     adaptiveShockTriggered,
+    goldContinuousApplied: goldContinuousBlend.goldContinuousApplied,
+    goldContinuousReturn: goldContinuousBlend.goldContinuousReturn,
+    goldContinuousWeight: goldContinuousBlend.goldContinuousWeight,
+    goldCloseForceApplied: goldCloseForced.forced,
+    goldCloseForceFloor: Number.isFinite(goldCloseForced.forcedBy?.forcedFloor) ? goldCloseForced.forcedBy.forcedFloor : null,
   };
 }
 
@@ -3817,11 +4194,17 @@ async function loadIntradayData() {
     })).filter((item) => item.symbol);
     const proxySymbolMap = new Map(proxySymbolEntries.map((item) => [item.symbol.toLowerCase(), item.ticker]));
     const proxySymbols = proxySymbolEntries.map((item) => item.symbol).join(',');
-    const [fundQuotesRaw, fxRaw, holdingsRaw, proxyRaw] = await Promise.all([
+
+    const futuresSymbols = [...new Set(Object.values(FUTURES_CONTINUOUS_BY_BASKET).map((item) => item.symbol))].join(',');
+    const sinaFuturesSymbols = [...new Set(Object.values(SINA_FUTURES_CARRY_BY_BASKET).map((item) => item.symbol))].join(',');
+
+    const [fundQuotesRaw, fxRaw, holdingsRaw, proxyRaw, futuresRaw, sinaFuturesRaw] = await Promise.all([
       fetchText(`https://qt.gtimg.cn/q=${fundSymbols}`, { referer: 'https://gu.qq.com/' }, 'gb18030'),
       fetchText('https://hq.sinajs.cn/list=USDCNY,fx_susdcny', { referer: 'https://finance.sina.com.cn/' }, 'gb18030'),
       fetchText(`https://qt.gtimg.cn/q=${holdingSymbols}`, { referer: 'https://gu.qq.com/' }, 'gb18030'),
       fetchText(`https://qt.gtimg.cn/q=${proxySymbols}`, { referer: 'https://gu.qq.com/' }, 'gb18030'),
+      futuresSymbols ? fetchText(`https://qt.gtimg.cn/q=${futuresSymbols}`, { referer: 'https://gu.qq.com/' }, 'gb18030') : Promise.resolve(''),
+      sinaFuturesSymbols ? fetchText(`https://hq.sinajs.cn/list=${sinaFuturesSymbols}`, { referer: 'https://finance.sina.com.cn/' }, 'gb18030') : Promise.resolve(''),
     ]);
 
     const funds = {};
@@ -3874,6 +4257,41 @@ async function loadIntradayData() {
         currency: 'USD',
       })),
       proxyQuotes,
+      futuresQuotes: futuresRaw
+        ? Object.fromEntries(
+            futuresRaw
+              .split(';')
+              .map((row) => row.trim())
+              .filter(Boolean)
+              .map((row) => {
+                const symbolMatch = row.match(/^v_([^=]+)="([^"]+)"/);
+                if (!symbolMatch) {
+                  return null;
+                }
+
+                const symbol = `sh${symbolMatch[1].replace(/^sh/, '')}`;
+                return [symbol, symbolMatch[2]];
+              })
+              .filter(Boolean),
+          )
+        : {},
+      sinaFuturesQuotes: sinaFuturesRaw
+        ? Object.fromEntries(
+            sinaFuturesRaw
+              .split(';')
+              .map((row) => row.trim())
+              .filter(Boolean)
+              .map((row) => {
+                const symbolMatch = row.match(/^var hq_str_([^=]+)="([\s\S]*)"$/);
+                if (!symbolMatch) {
+                  return null;
+                }
+
+                return [symbolMatch[1], symbolMatch[2]];
+              })
+              .filter(Boolean),
+          )
+        : {},
     };
 
     for (const [code, row] of Object.entries(payload.funds || {})) {
@@ -3979,6 +4397,43 @@ async function syncFund(entry, holdingsHistoryByCode = {}) {
     marketTime: '',
     marketSource: '腾讯行情',
   };
+
+  function parseFuturesQuote(raw) {
+    const fields = raw.split('~');
+    const currentPrice = Number(fields[3]) || 0;
+    const previousClose = Number(fields[4]) || 0;
+    return {
+      currentPrice,
+      previousClose,
+      marketDate: fields[0] || '',
+      marketTime: fields[1] || '',
+    };
+  }
+
+  function parseSinaFuturesQuote(raw) {
+    const fields = String(raw || '').split(',').map((item) => item.trim());
+    const currentPrice = Number(fields[0]) || 0;
+    const previousCloseCandidates = [Number(fields[1]), Number(fields[7]), Number(fields[8]), Number(fields[2])].filter((v) => Number.isFinite(v) && v > 0);
+    const previousClose = previousCloseCandidates[0] || 0;
+    const dateMatch = String(raw || '').match(/\d{4}-\d{2}-\d{2}/);
+    const timeMatch = String(raw || '').match(/\d{2}:\d{2}:\d{2}/);
+
+    return {
+      currentPrice,
+      previousClose,
+      marketDate: dateMatch ? dateMatch[0] : '',
+      marketTime: timeMatch ? timeMatch[0] : '',
+    };
+  }
+
+  const futuresConfig = entry.proxyBasketKey ? FUTURES_CONTINUOUS_BY_BASKET[entry.proxyBasketKey] : null;
+  const futuresQuote = futuresConfig && intradayData.futuresQuotes?.[futuresConfig.symbol]
+    ? { ...parseFuturesQuote(intradayData.futuresQuotes[futuresConfig.symbol]), symbol: futuresConfig.symbol, source: 'tencent-futures' }
+    : null;
+  const sinaFuturesConfig = entry.proxyBasketKey ? SINA_FUTURES_CARRY_BY_BASKET[entry.proxyBasketKey] : null;
+  const sinaFuturesQuote = sinaFuturesConfig && intradayData.sinaFuturesQuotes?.[sinaFuturesConfig.symbol]
+    ? { ...parseSinaFuturesQuote(intradayData.sinaFuturesQuotes[sinaFuturesConfig.symbol]), symbol: sinaFuturesConfig.symbol, source: 'sina-futures' }
+    : null;
   const proxyConfig = entry.proxyBasketKey ? PROXY_BASKETS[entry.proxyBasketKey] : null;
   const dynamicProxyWeights = new Map();
   if (entry.code === '513310') {
@@ -3997,7 +4452,7 @@ async function syncFund(entry, holdingsHistoryByCode = {}) {
     }
   }
 
-  const proxyQuotes = proxyConfig
+  const rawProxyQuotes = proxyConfig
     ? proxyConfig.components
         .map((component) => {
           const matched = (intradayData.proxyQuotes ?? []).find((item) => item.ticker.toUpperCase() === component.ticker.toUpperCase());
@@ -4013,6 +4468,45 @@ async function syncFund(entry, holdingsHistoryByCode = {}) {
         })
         .filter(Boolean)
     : [];
+  let proxyQuotes = GOLD_REALTIME_PROXY_CODES.has(entry.code)
+    ? applyGoldRealtimeCarryToProxyQuotes(rawProxyQuotes, quote.marketDate, quote.marketTime)
+    : rawProxyQuotes;
+
+  let carryReturnRaw = null;
+  const carryQuote = futuresQuote && futuresQuote.previousClose > 0
+    ? futuresQuote
+    : sinaFuturesQuote && sinaFuturesQuote.previousClose > 0
+      ? sinaFuturesQuote
+      : null;
+
+  if (carryQuote && quote.marketDate) {
+    carryReturnRaw = carryQuote.currentPrice / carryQuote.previousClose - 1;
+    proxyQuotes = applyAnchorCarryToProxyQuotes(
+      proxyQuotes,
+      quote.marketDate,
+      quote.marketTime,
+      carryReturnRaw,
+      0.06,
+      0.12,
+    );
+  } else {
+    const carryConfig = entry.proxyBasketKey ? REALTIME_PROXY_CARRY_CONFIG_BY_BASKET[entry.proxyBasketKey] : null;
+    if (carryConfig && quote.marketDate) {
+      const anchorCodes = Array.isArray(carryConfig.anchorCodes) ? carryConfig.anchorCodes : [];
+      const selectedAnchorCode = anchorCodes.find((code) => code !== entry.code && intradayData.funds?.[code]);
+      if (selectedAnchorCode) {
+        const anchorReturnRaw = getFundIntradayReturn(intradayData.funds[selectedAnchorCode]);
+        proxyQuotes = applyAnchorCarryToProxyQuotes(
+          proxyQuotes,
+          quote.marketDate,
+          quote.marketTime,
+          anchorReturnRaw,
+          carryConfig.maxMove,
+          carryConfig.anomalyMove,
+        );
+      }
+    }
+  }
   const proxyMeta = proxyQuotes[0] ?? null;
   const holdingQuotePayload = buildHoldingQuotes({
     code: entry.code,
@@ -4029,9 +4523,13 @@ async function syncFund(entry, holdingsHistoryByCode = {}) {
     disclosedHoldings: dailyData.disclosedHoldings,
     holdingQuotes: holdingQuotePayload.holdingQuotes,
   };
-  const effectiveEstimateMode = hasHoldingsSignal(runtimeDraft)
-    ? 'holdings'
-    : entry.estimateMode;
+  const isGoldRealtimeProxyReady = GOLD_REALTIME_PROXY_CODES.has(entry.code) && proxyQuotes.length > 0;
+  const fallbackEstimateMode = isGoldRealtimeProxyReady ? 'proxy' : entry.estimateMode;
+  const effectiveEstimateMode = isGoldRealtimeProxyReady
+    ? 'proxy'
+    : hasHoldingsSignal(runtimeDraft)
+      ? 'holdings'
+      : fallbackEstimateMode;
 
   return {
     code: entry.code,
@@ -4063,6 +4561,9 @@ async function syncFund(entry, holdingsHistoryByCode = {}) {
     proxyQuotes,
     proxyQuoteDate: proxyMeta?.quoteDate || '',
     proxyQuoteTime: proxyMeta?.quoteTime || '',
+    goldContinuousReturn: Number.isFinite(carryReturnRaw) ? carryReturnRaw : null,
+    goldContinuousSymbol: String(carryQuote?.symbol || ''),
+    goldContinuousSource: String(carryQuote?.source || ''),
     cacheMode: intradayData.cacheMode === 'intraday-cache' ? 'intraday-cache' : dailyData.cacheMode,
   };
 }

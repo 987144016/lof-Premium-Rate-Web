@@ -12,6 +12,7 @@ const HISTORY_MAX_ROWS_PER_PROVIDER = 360;
 const PROVIDER_DAILY_ROWS_LIMIT = 120;
 const SETTLED_WINDOW_SIZE = 30;
 const EASTMONEY_QUOTE_RETRY = 3;
+const CLOSE_SNAPSHOT_TIME = '15:00:00';
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -46,6 +47,61 @@ function pickLatestRowsByDate(rows) {
   }
 
   return [...byDate.values()].sort((left, right) => String(left?.date || '').localeCompare(String(right?.date || '')));
+}
+
+function isTimeOnOrAfter(leftTime, rightTime) {
+  const left = toTimeOnly(leftTime);
+  const right = toTimeOnly(rightTime);
+  if (!left || !right) {
+    return false;
+  }
+  return left >= right;
+}
+
+function pickCanonicalRowsByDate(rows, targetTime = CLOSE_SNAPSHOT_TIME) {
+  const grouped = new Map();
+
+  for (const row of Array.isArray(rows) ? rows : []) {
+    const date = toDateOnly(row?.date);
+    const time = toTimeOnly(row?.time);
+    if (!date || !time) {
+      continue;
+    }
+    if (!grouped.has(date)) {
+      grouped.set(date, []);
+    }
+    grouped.get(date).push(row);
+  }
+
+  const selected = [];
+  for (const [date, dateRows] of grouped.entries()) {
+    const normalized = sortRowsByDateTime(dateRows);
+    let picked = normalized.find((item) => toTimeOnly(item?.time) === targetTime) || null;
+
+    if (!picked) {
+      const beforeOrAt = normalized.filter((item) => toTimeOnly(item?.time) <= targetTime);
+      if (beforeOrAt.length) {
+        picked = beforeOrAt[beforeOrAt.length - 1];
+      }
+    }
+
+    if (!picked) {
+      const after = normalized.filter((item) => toTimeOnly(item?.time) > targetTime);
+      if (after.length) {
+        picked = after[0];
+      }
+    }
+
+    if (!picked && normalized.length) {
+      picked = normalized[normalized.length - 1];
+    }
+
+    if (picked) {
+      selected.push(picked);
+    }
+  }
+
+  return selected.sort((left, right) => String(left?.date || '').localeCompare(String(right?.date || '')));
 }
 
 function sortRowsByDateTime(rows) {
@@ -155,6 +211,14 @@ function toDateTimeLabel(date, time) {
   const left = String(date || '').trim();
   const right = String(time || '').trim();
   return `${left} ${right}`.trim();
+}
+
+function toCloseDateTimeLabel(date) {
+  const left = String(date || '').trim();
+  if (!left) {
+    return '';
+  }
+  return `${left} ${CLOSE_SNAPSHOT_TIME}`;
 }
 
 function parsePremiumFromText(text) {
@@ -510,6 +574,18 @@ async function main() {
         sourceUrl: provider.sourceUrl,
         status: provider.status,
       });
+
+      if (marketDate && isTimeOnOrAfter(marketTime, CLOSE_SNAPSHOT_TIME)) {
+        history[code][provider.provider] = appendHistoryRow(history[code][provider.provider], {
+          date: marketDate,
+          time: CLOSE_SNAPSHOT_TIME,
+          marketPrice,
+          ourPremiumRate,
+          providerPremiumRate: provider.premiumRate,
+          sourceUrl: provider.sourceUrl,
+          status: `${provider.status || 'ok'}|close-benchmark`,
+        });
+      }
     }
 
     const errorRows = Array.isArray(stateByCode?.[code]?.journal?.errors) ? stateByCode[code].journal.errors : [];
@@ -577,9 +653,10 @@ async function main() {
 
     const providerStats = [...providerSet].map((providerName) => {
       const runtimeProvider = providers.find((item) => item.provider === providerName) || null;
-      const providerHistoryRows = pickLatestRowsByDate(history?.[code]?.[providerName] ?? []);
+      const providerHistoryRows = pickCanonicalRowsByDate(history?.[code]?.[providerName] ?? []);
       const hitRows60 = providerHistoryRows.slice(-60);
-      const latestHistoryRow = providerHistoryRows.length ? providerHistoryRows[providerHistoryRows.length - 1] : null;
+      const latestHistoryRows = sortRowsByDateTime(history?.[code]?.[providerName] ?? []);
+      const latestHistoryRow = latestHistoryRows.length ? latestHistoryRows[latestHistoryRows.length - 1] : null;
       const dailyRows = providerHistoryRows
         .map((row) => {
           const date = String(row?.date || '').trim();
@@ -656,7 +733,7 @@ async function main() {
 
     const providerDailyComparisons = Object.fromEntries(
       [...providerSet].map((providerName) => {
-        const providerHistoryRows = pickLatestRowsByDate(history?.[code]?.[providerName] ?? []);
+        const providerHistoryRows = pickCanonicalRowsByDate(history?.[code]?.[providerName] ?? []);
         const rows = providerHistoryRows
           .map((row) => {
             const date = String(row?.date || '').trim();
@@ -711,7 +788,7 @@ async function main() {
       }),
     );
 
-    const eastmoneyHistoryRows = pickLatestRowsByDate(history?.[code]?.['eastmoney-fundgz'] ?? []);
+    const eastmoneyHistoryRows = pickCanonicalRowsByDate(history?.[code]?.['eastmoney-fundgz'] ?? []);
     const eastmoneyDailyValuations = eastmoneyHistoryRows
       .map((row) => {
         const date = String(row?.date || '').trim();
@@ -756,7 +833,8 @@ async function main() {
     outputByCode[code] = {
       code,
       name: String(fund?.name || code),
-      snapshotAt: toDateTimeLabel(marketDate, marketTime),
+      snapshotAt: toCloseDateTimeLabel(marketDate),
+      snapshotAtLive: toDateTimeLabel(marketDate, marketTime),
       ourPremiumRate: Number.isFinite(ourPremiumRate) ? ourPremiumRate : null,
       ourPremiumSummary,
       eastmoneyDailyValuations,

@@ -35,7 +35,9 @@ export function FundTable({
 }: FundTableProps) {
     const SORT_LABEL_HINTS: Partial<Record<SortKey, string>> = {
       premiumRate: '场内交易价相对当日预估净值的偏离幅度。正数表示场内价高于预估净值（溢价），负数表示低于预估净值（折价）。',
+      marketPrice: '场内实时价格。',
       estimatedNav: '当日净值的估值。',
+      officialNavT1: 'T-N 的官方净值（按交易日口径，不含周末/节假日）。N 根据基金类别与披露节奏确定：国内 LOF 常见 T-1/T-2，QDII/黄金常见 T-2/T-3。',
       meanAbsError: '离线训练验证集近30天 MAE（鲁棒口径：剔除最近30天最大单日误差后计算）。反映模型在"排除历史异常后"的可靠性，越低越好。',
       latestError: '线上最近一个已结算交易日的估值误差（估值相对后续真实净值的偏离）。单日波动较大，需配合 30d 指标看整体效果。',
       error30d: '线上最近30个交易日平均绝对误差（滚动均值）。反映近期模型稳定性表现，更平滑更有参考价值。',
@@ -307,10 +309,10 @@ export function FundTable({
               <th>{renderSortLabel('最近误差', 'latestError')}</th>
               <th>{renderSortLabel('30d误差', 'error30d')}</th>
               <th>{renderSortLabel('训练误差', 'meanAbsError')}</th>
-              <th title="当前场内交易价格（实时更新）。以该日期该时间为准。">{renderSortLabel('现价', 'marketPrice')}</th>
+              <th title="场内实时价格。">{renderSortLabel('现价', 'marketPrice')}</th>
               <th title="当日净值的估值。">{renderSortLabel('估值', 'estimatedNav')}</th>
-              <th title="基金官方公布的最近一次净值。可能是 T-1 日或 T-2 日，具体看右侧净值日期列。">{renderSortLabel('净值', 'officialNavT1')}</th>
-              <th title="官方净值对应的日期。T-1 表示上一个交易日，T-2 表示上上个交易日。">净值日期</th>
+              <th title="T-N 的官方净值（按交易日口径，不含周末/节假日）。N 根据基金类别与披露节奏确定：国内 LOF 常见 T-1/T-2，QDII/黄金常见 T-2/T-3。">{renderSortLabel('净值', 'officialNavT1')}</th>
+              <th title="官方净值对应日期。">净值日期</th>
               <th title="场内行情数据的采集时间。用于判断现价和涨跌幅是当日还是前一日。">现价时间</th>
               <th title="鼠标按住该按钮可拖拽调整本页基金顺序（手动排序）。">调整</th>
             </tr>

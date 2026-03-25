@@ -8,6 +8,10 @@ on:
     - cron: '*/5 1-8 * * 1-5'
     # US night session: 21:00-04:59 CST, every 5 minutes.
     - cron: '*/5 13-20 * * 1-5'
+    # Off-session gap on weekdays: 17:00-20:59 CST, every 30 minutes.
+    - cron: '*/30 9-12 * * 1-5'
+    # Weekend maintenance refresh, every 2 hours.
+    - cron: '0 */2 * * 0,6'
 
 permissions:
   contents: write

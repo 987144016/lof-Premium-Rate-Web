@@ -9,21 +9,17 @@ import type { FundJournal, FundRuntimeData, FundViewModel, GithubTrafficPayload,
 const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
 const REMOTE_GENERATED_BASE = 'https://raw.githubusercontent.com/987144016/lof-Premium-Rate-Web/main/public/generated';
-const GENERATED_FETCH_TIMEOUT_MS = 1500;
+const GENERATED_FETCH_TIMEOUT_MS = 4500;
 type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 'favorites';
 
 async function fetchGeneratedJson<T>(fileName: string): Promise<T> {
   const ts = Date.now();
-  const isLocalDev = typeof window !== 'undefined' && (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost');
-  const candidates = isLocalDev
-    ? [
-      `generated/${fileName}?ts=${ts}`,
-      `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
-    ]
-    : [
-      `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
-      `generated/${fileName}?ts=${ts}`,
-    ];
+  // Always prefer the same-origin generated payload first.
+  // This is the most stable source for both local dev and online static hosting.
+  const candidates = [
+    `generated/${fileName}?ts=${ts}`,
+    `${REMOTE_GENERATED_BASE}/${fileName}?ts=${ts}`,
+  ];
 
   let lastError: Error | null = null;
   for (const url of candidates) {

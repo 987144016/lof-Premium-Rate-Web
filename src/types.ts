@@ -156,6 +156,9 @@ export interface FundRuntimeData {
   goldContinuousReturn?: number | null;
   goldContinuousSymbol?: string;
   goldContinuousSource?: string;
+  oilContinuousReturn?: number | null;
+  oilContinuousSymbol?: string;
+  oilContinuousSource?: string;
   cacheMode?: 'fresh' | 'daily-cache' | 'intraday-cache';
 }
 

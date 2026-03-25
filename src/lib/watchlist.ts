@@ -40,6 +40,21 @@ const HOLDINGS_SIGNAL_MIN_COVERAGE_BY_CODE: Record<string, number> = {
   '161128': 0.7,
 };
 
+// 原油类基金学习配置：通过历史误差自动调整期货权重
+const OIL_CONTINUOUS_CODES = new Set(['160723', '501018', '161129']);
+const OIL_CONTINUOUS_FACTOR_INIT_WEIGHT_BY_CODE: Record<string, number> = {
+  '160723': 0.4,  // 初始权重，会被学习覆盖
+  '501018': 0.35,
+  '161129': 0.35,
+};
+const OIL_CONTINUOUS_FACTOR_MAX_MOVE = 0.15;
+const OIL_CONTINUOUS_FACTOR_ANOMALY_MOVE = 0.25;
+const OIL_ADAPTIVE_LEARNING_BY_CODE: Record<string, { weight: number; learningRate: number; sampleCount: number }> = {
+  '160723': { weight: 0.4, learningRate: 0.15, sampleCount: 0 },
+  '501018': { weight: 0.35, learningRate: 0.15, sampleCount: 0 },
+  '161129': { weight: 0.35, learningRate: 0.15, sampleCount: 0 },
+};
+
 function clamp(value: number, limit: number): number {
   return Math.max(-limit, Math.min(limit, value));
 }
@@ -218,6 +233,30 @@ function blendGoldContinuousLeadReturn(runtime: FundRuntimeData, baseLeadReturn:
   return baseLeadReturn * (1 - weight) + continuous * weight;
 }
 
+function blendOilContinuousLeadReturn(runtime: FundRuntimeData, baseLeadReturn: number, useProxyEstimate: boolean): number {
+  if (!useProxyEstimate || !OIL_CONTINUOUS_CODES.has(runtime.code)) {
+    return baseLeadReturn;
+  }
+
+  const rawContinuous = Number(runtime.oilContinuousReturn);
+  if (!Number.isFinite(rawContinuous) || Math.abs(rawContinuous) > OIL_CONTINUOUS_FACTOR_ANOMALY_MOVE) {
+    return baseLeadReturn;
+  }
+
+  const adaptiveModel = OIL_ADAPTIVE_LEARNING_BY_CODE[runtime.code];
+  if (!adaptiveModel) {
+    return baseLeadReturn;
+  }
+
+  const weight = Math.max(0, Math.min(0.9, adaptiveModel.weight));
+  if (!(weight > 0)) {
+    return baseLeadReturn;
+  }
+
+  const continuous = clamp(rawContinuous, OIL_CONTINUOUS_FACTOR_MAX_MOVE);
+  return baseLeadReturn * (1 - weight) + continuous * weight;
+}
+
 function applyGoldCloseForceImpliedReturn(runtime: FundRuntimeData, impliedReturn: number): number {
   if (!GOLD_REALTIME_PROXY_CODES.has(runtime.code)) {
     return impliedReturn;
@@ -325,7 +364,8 @@ export function estimateWatchlistFund(
       : runtime.previousClose > 0
         ? runtime.marketPrice / runtime.previousClose - 1
         : 0;
-  const rawLeadReturn = blendGoldContinuousLeadReturn(runtime, modeLeadReturn, useProxyEstimate);
+  const goldBlendedReturn = blendGoldContinuousLeadReturn(runtime, modeLeadReturn, useProxyEstimate);
+  const rawLeadReturn = blendOilContinuousLeadReturn(runtime, goldBlendedReturn, useProxyEstimate);
   const stabilizedLeadReturn = protectStaleLeadSignal(runtime, rawLeadReturn, useHoldingsEstimate, useProxyEstimate, journal);
   const leadReturn = clamp(stabilizedLeadReturn, useProxyEstimate ? MAX_PROXY_MOVE : MAX_MARKET_MOVE);
   const rawCloseGapReturn = useProxyEstimate

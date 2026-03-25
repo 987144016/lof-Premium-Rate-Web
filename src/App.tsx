@@ -1699,7 +1699,7 @@ function HomePage({
           </Link>
           <div className="hero__fact">
             <span>状态</span>
-            <strong>{loading ? '同步中' : error ? '同步异常' : homeTrafficStateText}</strong>
+            <strong>{homeTrafficStateText}</strong>
             <small className="hero__fact-subtle">
               本页未训练基金 {untrainedCount} 只，已收藏 {favoriteVisibleCount} 只
               {!githubTraffic.available && githubTraffic.reason ? `；GitHub访客不可用：${githubTraffic.reason}` : ''}
@@ -2559,8 +2559,19 @@ export default function App() {
   const [syncedAt, setSyncedAt] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [toasts, setToasts] = useState<Array<{ id: string; message: string; type: 'error' | 'success' | 'warning' }>>([]);
   const [trainingMetricsByCode, setTrainingMetricsByCode] = useState<Record<string, TrainingMetricSummary>>({});
   const [premiumCompareCodes, setPremiumCompareCodes] = useState<Record<string, PremiumCompareCodePayload>>({});
+
+  // Toast helper function
+  const showToast = (message: string, type: 'error' | 'success' | 'warning' = 'error') => {
+    const id = `${type}-${Date.now()}`;
+    setToasts((prev) => [...prev, { id, message, type }]);
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 5000);
+  };
 
   useEffect(() => {
     let active = true;
@@ -2607,7 +2618,9 @@ export default function App() {
           return;
         }
 
-        setError(loadError instanceof Error ? loadError.message : '同步失败');
+        const errorMsg = loadError instanceof Error ? loadError.message : '同步失败';
+        setError(errorMsg);
+        showToast(errorMsg, 'error');
       } finally {
         if (active && !silent) {
           setLoading(false);
@@ -2748,6 +2761,23 @@ export default function App() {
     <div className="app-shell">
       <div className="background-orb background-orb--amber" />
       <div className="background-orb background-orb--teal" />
+      
+      {/* Toast notifications container */}
+      <div className="toast-container">
+        {toasts.map((toast) => (
+          <div key={toast.id} className={`toast toast--${toast.type}`}>
+            <span>{toast.message}</span>
+            <button
+              className="toast__close"
+              onClick={() => setToasts((prev) => prev.filter((t) => t.id !== toast.id))}
+              aria-label="关闭"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+
       <AppErrorBoundary>
         <Routes>
           <Route path="/" element={<Navigate to="/qdii-lof" replace />} />

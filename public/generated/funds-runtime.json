@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-03-25T09:40:57.678Z",
+  "syncedAt": "2026-03-25T10:36:57.058Z",
   "funds": [
     {
       "code": "160221",
@@ -64376,10 +64376,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9005,
-        "previousCloseRate": 6.9015,
+        "currentRate": 6.899,
+        "previousCloseRate": 6.8999,
         "quoteDate": "2026-03-25",
-        "quoteTime": "17:40:10",
+        "quoteTime": "18:36:05",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -66281,10 +66281,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9005,
-        "previousCloseRate": 6.9015,
+        "currentRate": 6.899,
+        "previousCloseRate": 6.8999,
         "quoteDate": "2026-03-25",
-        "quoteTime": "17:40:10",
+        "quoteTime": "18:36:05",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -68095,10 +68095,10 @@
       "disclosedHoldings": [],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9005,
-        "previousCloseRate": 6.9015,
+        "currentRate": 6.899,
+        "previousCloseRate": 6.8999,
         "quoteDate": "2026-03-25",
-        "quoteTime": "17:40:10",
+        "quoteTime": "18:36:05",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -69909,10 +69909,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9005,
-        "previousCloseRate": 6.9015,
+        "currentRate": 6.899,
+        "previousCloseRate": 6.8999,
         "quoteDate": "2026-03-25",
-        "quoteTime": "17:40:10",
+        "quoteTime": "18:36:05",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -71683,10 +71683,10 @@
       "disclosedHoldings": [],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9005,
-        "previousCloseRate": 6.9015,
+        "currentRate": 6.899,
+        "previousCloseRate": 6.8999,
         "quoteDate": "2026-03-25",
-        "quoteTime": "17:40:10",
+        "quoteTime": "18:36:05",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -73497,10 +73497,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9005,
-        "previousCloseRate": 6.9015,
+        "currentRate": 6.899,
+        "previousCloseRate": 6.8999,
         "quoteDate": "2026-03-25",
-        "quoteTime": "17:40:10",
+        "quoteTime": "18:36:05",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -114243,7 +114243,7 @@
             "impliedReturn": 0.006447792709004265,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:30:25.907Z"
+            "createdAt": "2026-03-25T09:59:02.578Z"
           }
         ],
         "errors": [
@@ -114464,7 +114464,7 @@
             "impliedReturn": 0.0017847678178330166,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.051Z"
+            "createdAt": "2026-03-25T09:59:04.635Z"
           }
         ],
         "errors": [
@@ -114673,19 +114673,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.2351770250174394,
+            "estimatedNav": 1.235177025017474,
             "marketPrice": 1.232,
-            "premiumRate": -0.002572121204565514,
+            "premiumRate": -0.0025721212045933806,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:06",
             "marketPriceType": "intraday",
             "anchorNav": 1.2424,
             "leadReturn": -0.011394596734687611,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.005813727448938071,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.005813727448910065,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.005Z"
+            "createdAt": "2026-03-25T09:59:05.761Z"
           }
         ],
         "errors": [
@@ -114942,11 +114942,11 @@
             "marketPriceType": "intraday",
             "anchorNav": 1.7477,
             "leadReturn": -0.015965984276359008,
-            "closeGapReturn": -0.00028993070656113673,
+            "closeGapReturn": -0.00028980047237470163,
             "impliedReturn": -0.010626959134344555,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:41.021Z"
+            "createdAt": "2026-03-25T09:59:01.086Z"
           }
         ],
         "errors": [
@@ -115191,19 +115191,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.2125058651616223,
+            "estimatedNav": 1.2125058651615865,
             "marketPrice": 1.33,
-            "premiumRate": 0.09690191050969998,
+            "premiumRate": 0.09690191050973218,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:15",
             "marketPriceType": "intraday",
             "anchorNav": 1.2002,
             "leadReturn": 0.022831105000320245,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.010253178771556685,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.01025317877152692,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:43.416Z"
+            "createdAt": "2026-03-25T09:59:03.888Z"
           }
         ],
         "errors": [
@@ -115424,7 +115424,7 @@
             "impliedReturn": 0.006781675201898085,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:41.819Z"
+            "createdAt": "2026-03-25T09:59:02.021Z"
           }
         ],
         "errors": [
@@ -115633,19 +115633,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.3219381416984723,
+            "estimatedNav": 1.321938141706256,
             "marketPrice": 1.355,
-            "premiumRate": 0.025010140231711997,
+            "premiumRate": 0.025010140225676825,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:39",
             "marketPriceType": "intraday",
             "anchorNav": 1.3301,
             "leadReturn": -0.012482852490751569,
-            "closeGapReturn": -0.00031879437762649676,
-            "impliedReturn": -0.006136274191059082,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.006136274185207279,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:30:25.906Z"
+            "createdAt": "2026-03-25T09:59:02.578Z"
           }
         ],
         "errors": [
@@ -115838,19 +115838,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.0503963717487155,
+            "estimatedNav": 2.0503963717487474,
             "marketPrice": 2.159,
-            "premiumRate": 0.05296713832880018,
+            "premiumRate": 0.05296713832878375,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:57",
             "marketPriceType": "intraday",
             "anchorNav": 2.053,
             "leadReturn": -0.0023968994836580937,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.0012682066494321214,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.0012682066494165765,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.164Z"
+            "createdAt": "2026-03-25T09:59:05.947Z"
           }
         ],
         "errors": [
@@ -116059,19 +116059,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.3037404215310704,
+            "estimatedNav": 1.3037404215363988,
             "marketPrice": 1.314,
-            "premiumRate": 0.007869341396104845,
+            "premiumRate": 0.007869341391985696,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:48",
             "marketPriceType": "intraday",
             "anchorNav": 1.3077,
             "leadReturn": -0.0028508195870199852,
-            "closeGapReturn": -0.0001448960370934449,
-            "impliedReturn": -0.0030278951356808056,
+            "closeGapReturn": -0.00013043667299517114,
+            "impliedReturn": -0.0030278951316060386,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:40:57.511Z"
+            "createdAt": "2026-03-25T10:36:56.886Z"
           }
         ],
         "errors": [
@@ -116320,19 +116320,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 0.7257049672164454,
+            "estimatedNav": 0.7257049672164491,
             "marketPrice": 0.738,
-            "premiumRate": 0.016942191853411392,
+            "premiumRate": 0.016942191853406285,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:03",
             "marketPriceType": "intraday",
             "anchorNav": 0.733,
             "leadReturn": -0.0020058069521838987,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.009952295748369134,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.009952295748364249,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:36.737Z"
+            "createdAt": "2026-03-25T09:58:56.004Z"
           }
         ],
         "errors": [
@@ -116632,7 +116632,7 @@
             "impliedReturn": 0.03854076381423837,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-25T08:27:35.447Z"
+            "createdAt": "2026-03-25T09:58:54.478Z"
           }
         ],
         "errors": [
@@ -116929,19 +116929,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.1968921678089557,
+            "estimatedNav": 2.1961444990982497,
             "marketPrice": 2.504,
-            "premiumRate": 0.13979194641006654,
+            "premiumRate": 0.14017998407124743,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:03",
             "marketPriceType": "intraday",
             "anchorNav": 2.1675,
-            "leadReturn": 0.012097473662348283,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.013560400373220646,
+            "leadReturn": 0.011420731564128778,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.01321545517796991,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:39.590Z"
+            "createdAt": "2026-03-25T09:58:59.400Z"
           }
         ],
         "errors": [
@@ -117198,7 +117198,7 @@
             "impliedReturn": 0.01004057131781019,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:41.502Z"
+            "createdAt": "2026-03-25T09:59:01.648Z"
           }
         ],
         "errors": [
@@ -117419,19 +117419,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.5632845889919362,
+            "estimatedNav": 1.5632845889965126,
             "marketPrice": 1.571,
-            "premiumRate": 0.00493538480606337,
+            "premiumRate": 0.004935384803121501,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:48",
             "marketPriceType": "intraday",
             "anchorNav": 1.5776,
             "leadReturn": -0.02023474571105737,
-            "closeGapReturn": -0.0001448960370934449,
-            "impliedReturn": -0.009074170263732018,
+            "closeGapReturn": -0.00013043667299517114,
+            "impliedReturn": -0.009074170260831196,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:40:57.189Z"
+            "createdAt": "2026-03-25T10:36:56.559Z"
           }
         ],
         "errors": [
@@ -117680,19 +117680,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.967292392236166,
+            "estimatedNav": 1.9672924242074052,
             "marketPrice": 2.057,
-            "premiumRate": 0.04559952964686942,
+            "premiumRate": 0.04559951265442219,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:27",
             "marketPriceType": "intraday",
             "anchorNav": 2.004,
             "leadReturn": 0.006151954362307453,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.018317169542831364,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.018317153589119096,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:37.689Z"
+            "createdAt": "2026-03-25T09:58:57.140Z"
           }
         ],
         "errors": [
@@ -117977,19 +117977,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.0720613187382035,
+            "estimatedNav": 2.0720613547825275,
             "marketPrice": 2.774,
-            "premiumRate": 0.3387634694562258,
+            "premiumRate": 0.33876344616790766,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:18",
             "marketPriceType": "intraday",
             "anchorNav": 1.9769,
             "leadReturn": 0.036643000168932315,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.04813663753260333,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.048136655765353475,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-25T08:27:39.114Z"
+            "createdAt": "2026-03-25T09:58:58.840Z"
           }
         ],
         "errors": [
@@ -118166,7 +118166,7 @@
             "impliedReturn": 0.006800502002575289,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.802Z"
+            "createdAt": "2026-03-25T09:59:06.695Z"
           }
         ],
         "errors": [
@@ -118259,7 +118259,7 @@
             "impliedReturn": 0.00575279547128838,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:46.120Z"
+            "createdAt": "2026-03-25T09:59:07.071Z"
           }
         ],
         "errors": [
@@ -118460,19 +118460,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.670425717011163,
+            "estimatedNav": 1.670425728391873,
             "marketPrice": 1.754,
-            "premiumRate": 0.05003172672555212,
+            "premiumRate": 0.050031719571623334,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:03",
             "marketPriceType": "intraday",
             "anchorNav": 1.6645,
             "leadReturn": 0.006239101150978487,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.0035600582824648324,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.0035600651197795086,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:37.056Z"
+            "createdAt": "2026-03-25T09:58:56.381Z"
           }
         ],
         "errors": [
@@ -118729,7 +118729,7 @@
             "impliedReturn": 0.005410740600239932,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:40:57.352Z"
+            "createdAt": "2026-03-25T10:36:56.722Z"
           }
         ],
         "errors": [
@@ -118990,19 +118990,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.744824753661688,
+            "estimatedNav": 2.7448248546786624,
             "marketPrice": 2.793,
-            "premiumRate": 0.017551301325902324,
+            "premiumRate": 0.017551263877263912,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:21",
             "marketPriceType": "intraday",
             "anchorNav": 2.7702,
             "leadReturn": -0.01291486194978736,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.009160077372865503,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.009160040907276564,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:40.382Z"
+            "createdAt": "2026-03-25T09:59:00.336Z"
           }
         ],
         "errors": [
@@ -119247,19 +119247,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.8002926516619744,
+            "estimatedNav": 1.8002926516620048,
             "marketPrice": 1.806,
-            "premiumRate": 0.0031702336466001846,
+            "premiumRate": 0.003170233646583087,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:48",
             "marketPriceType": "intraday",
             "anchorNav": 1.7951,
             "leadReturn": 0.009952979462056687,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.0028926809993730833,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.0028926809993898733,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.371Z"
+            "createdAt": "2026-03-25T09:59:05.009Z"
           }
         ],
         "errors": [
@@ -119468,19 +119468,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.6598954000070376,
+            "estimatedNav": 1.6598954000070825,
             "marketPrice": 1.653,
-            "premiumRate": -0.0041541171853409775,
+            "premiumRate": -0.004154117185367845,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:51",
             "marketPriceType": "intraday",
             "anchorNav": 1.6695,
             "leadReturn": -0.011408234637614768,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.0057529799298965765,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.005752979929869815,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:43.256Z"
+            "createdAt": "2026-03-25T09:59:03.701Z"
           }
         ],
         "errors": [
@@ -119729,19 +119729,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 5.284407747449767,
+            "estimatedNav": 5.284407913917273,
             "marketPrice": 5.423,
-            "premiumRate": 0.026226638664875512,
+            "premiumRate": 0.02622660633705509,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:54",
             "marketPriceType": "intraday",
             "anchorNav": 5.3259,
             "leadReturn": -0.01019261274824455,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.00779065557938256,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.00779062432316159,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:36.418Z"
+            "createdAt": "2026-03-25T09:58:55.624Z"
           }
         ],
         "errors": [
@@ -120026,19 +120026,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.6945808178174617,
+            "estimatedNav": 1.6945809025008822,
             "marketPrice": 2.308,
-            "premiumRate": 0.36198874419727733,
+            "premiumRate": 0.36198867613451013,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:24",
             "marketPriceType": "intraday",
             "anchorNav": 1.6256,
             "leadReturn": 0.03294385815932988,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.04243406607865505,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.042434118172294755,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:38.638Z"
+            "createdAt": "2026-03-25T09:58:58.275Z"
           }
         ],
         "errors": [
@@ -120323,19 +120323,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 3.706394621088956,
+            "estimatedNav": 3.706394621088028,
             "marketPrice": 3.757,
-            "premiumRate": 0.013653532363528065,
+            "premiumRate": 0.013653532363781862,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:48",
             "marketPriceType": "intraday",
             "anchorNav": 3.7354,
             "leadReturn": -0.014225202604100302,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.007764999440767769,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.007764999441016211,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:40.863Z"
+            "createdAt": "2026-03-25T09:59:00.896Z"
           }
         ],
         "errors": [
@@ -120592,7 +120592,7 @@
             "impliedReturn": 0.0069931801750576445,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:41.660Z"
+            "createdAt": "2026-03-25T09:59:01.835Z"
           }
         ],
         "errors": [
@@ -120856,19 +120856,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.9212744230291054,
+            "estimatedNav": 1.9158325825034643,
             "marketPrice": 2.759,
-            "premiumRate": 0.4360259871935035,
+            "premiumRate": 0.4401049576026881,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:00",
             "marketPriceType": "close",
             "anchorNav": 1.9115,
-            "leadReturn": 0.04465159837654149,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.005113483143659748,
+            "leadReturn": 0.03716069848475893,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.002266587760117357,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:36.248Z"
+            "createdAt": "2026-03-25T09:58:55.433Z"
           }
         ],
         "errors": [
@@ -121057,7 +121057,7 @@
             "impliedReturn": 0.004325884976667046,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.961Z"
+            "createdAt": "2026-03-25T09:59:06.884Z"
           }
         ],
         "errors": [
@@ -121260,7 +121260,7 @@
             "impliedReturn": 0.0038009234694989006,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:35.767Z"
+            "createdAt": "2026-03-25T09:58:54.861Z"
           }
         ],
         "errors": [
@@ -121545,19 +121545,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 0.9637774370798121,
+            "estimatedNav": 0.963777471335581,
             "marketPrice": 0.951,
-            "premiumRate": -0.0132576636350058,
+            "premiumRate": -0.013257698707020316,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:24",
             "marketPriceType": "intraday",
             "anchorNav": 0.9394,
             "leadReturn": 0.022835899473347198,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.025950007536525592,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.025950044002108853,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-25T08:27:39.272Z"
+            "createdAt": "2026-03-25T09:58:59.028Z"
           }
         ],
         "errors": [
@@ -121802,19 +121802,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.7565622259057037,
+            "estimatedNav": 2.7565622259057956,
             "marketPrice": 2.759,
-            "premiumRate": 0.0008843530073026074,
+            "premiumRate": 0.0008843530072690786,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:39",
             "marketPriceType": "intraday",
             "anchorNav": 2.767,
             "leadReturn": -0.005298729520090332,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.003772234945535347,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.003772234945502156,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:43.577Z"
+            "createdAt": "2026-03-25T09:59:04.075Z"
           }
         ],
         "errors": [
@@ -122071,11 +122071,11 @@
             "marketPriceType": "intraday",
             "anchorNav": 2.8372,
             "leadReturn": 0.025759101532767507,
-            "closeGapReturn": -0.00028993070656113673,
+            "closeGapReturn": -0.00028980047237470163,
             "impliedReturn": 0.03170746705507755,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-25T08:27:38.797Z"
+            "createdAt": "2026-03-25T09:58:58.466Z"
           }
         ],
         "errors": [
@@ -122332,7 +122332,7 @@
             "impliedReturn": 0.0019635446561355914,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.846Z"
+            "createdAt": "2026-03-25T09:59:05.573Z"
           }
         ],
         "errors": [
@@ -122581,19 +122581,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.7480289002146336,
+            "estimatedNav": 1.748028900214688,
             "marketPrice": 1.815,
-            "premiumRate": 0.038312352717476905,
+            "premiumRate": 0.03831235271744471,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:24",
             "marketPriceType": "intraday",
             "anchorNav": 1.764,
             "leadReturn": 0.03302181698082951,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.009053911442951375,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.009053911442920642,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:37.372Z"
+            "createdAt": "2026-03-25T09:58:56.759Z"
           }
         ],
         "errors": [
@@ -122850,7 +122850,7 @@
             "impliedReturn": 0.0031223417182898654,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.052Z"
+            "createdAt": "2026-03-25T09:59:04.635Z"
           }
         ],
         "errors": [
@@ -123114,7 +123114,7 @@
             "impliedReturn": 0.03821150330738607,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-25T08:27:35.609Z"
+            "createdAt": "2026-03-25T09:58:54.670Z"
           }
         ],
         "errors": [
@@ -123413,7 +123413,7 @@
             "impliedReturn": 0.012479874076099991,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-25T08:27:35.926Z"
+            "createdAt": "2026-03-25T09:58:55.053Z"
           }
         ],
         "errors": [
@@ -123590,7 +123590,7 @@
             "impliedReturn": -0.007282081361709809,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.323Z"
+            "createdAt": "2026-03-25T09:59:06.134Z"
           }
         ],
         "errors": [
@@ -123793,7 +123793,7 @@
             "impliedReturn": 0.0056862295601780456,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:36.246Z"
+            "createdAt": "2026-03-25T09:58:55.432Z"
           }
         ],
         "errors": [
@@ -124078,19 +124078,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.8150968799124383,
+            "estimatedNav": 1.8150969864446476,
             "marketPrice": 2.302,
-            "premiumRate": 0.268251863289551,
+            "premiumRate": 0.26825178885293743,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:17",
             "marketPriceType": "intraday",
             "anchorNav": 1.7131,
             "leadReturn": 0.03648435932938922,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.059539361340516274,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.05953942352731755,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-25T08:27:38.007Z"
+            "createdAt": "2026-03-25T09:58:57.518Z"
           }
         ],
         "errors": [
@@ -124267,7 +124267,7 @@
             "impliedReturn": 0.00894819284121647,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.483Z"
+            "createdAt": "2026-03-25T09:59:06.320Z"
           }
         ],
         "errors": [
@@ -124360,7 +124360,7 @@
             "impliedReturn": 0.004667598244452917,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.642Z"
+            "createdAt": "2026-03-25T09:59:06.508Z"
           }
         ],
         "errors": [
@@ -124563,7 +124563,7 @@
             "impliedReturn": 0.007137226101556225,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:36.086Z"
+            "createdAt": "2026-03-25T09:58:55.243Z"
           }
         ],
         "errors": [
@@ -124848,19 +124848,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.1385236712218143,
+            "estimatedNav": 2.138523702096509,
             "marketPrice": 2.321,
-            "premiumRate": 0.0853281781416666,
+            "premiumRate": 0.08532816247236341,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:12",
             "marketPriceType": "intraday",
             "anchorNav": 2.1167,
             "leadReturn": 0.018442151787489466,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.010310233486944147,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.010310248073184328,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:40.223Z"
+            "createdAt": "2026-03-25T09:59:00.146Z"
           }
         ],
         "errors": [
@@ -125117,7 +125117,7 @@
             "impliedReturn": 0.001263032759009811,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:40:57.353Z"
+            "createdAt": "2026-03-25T10:36:56.723Z"
           }
         ],
         "errors": [
@@ -125366,19 +125366,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.8901831572646142,
+            "estimatedNav": 1.89018319546143,
             "marketPrice": 1.889,
-            "premiumRate": -0.0006259484749225885,
+            "premiumRate": -0.000625968670270205,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:18",
             "marketPriceType": "intraday",
             "anchorNav": 1.9045,
             "leadReturn": -0.009515945293261958,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.007517376075287945,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.007517356019201857,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:40.701Z"
+            "createdAt": "2026-03-25T09:59:00.709Z"
           }
         ],
         "errors": [
@@ -125635,7 +125635,7 @@
             "impliedReturn": 0.006117799981271557,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:41.978Z"
+            "createdAt": "2026-03-25T09:59:02.206Z"
           }
         ],
         "errors": [
@@ -125856,7 +125856,7 @@
             "impliedReturn": 0.013022037353902016,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:43.736Z"
+            "createdAt": "2026-03-25T09:59:04.262Z"
           }
         ],
         "errors": [
@@ -126065,19 +126065,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.6573691151411505,
+            "estimatedNav": 1.6573691151411964,
             "marketPrice": 1.734,
-            "premiumRate": 0.0462364624505045,
+            "premiumRate": 0.04623646245047541,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:32",
             "marketPriceType": "intraday",
             "anchorNav": 1.6688,
             "leadReturn": -0.014164827853677477,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.006849763218390303,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.006849763218362615,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.687Z"
+            "createdAt": "2026-03-25T09:59:05.384Z"
           }
         ],
         "errors": [
@@ -126286,19 +126286,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.4088515697288488,
+            "estimatedNav": 1.4088515697288877,
             "marketPrice": 1.406,
-            "premiumRate": -0.002024038436779896,
+            "premiumRate": -0.0020240384368074293,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:45",
             "marketPriceType": "intraday",
             "anchorNav": 1.411,
             "leadReturn": -0.00016070036278523724,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.0015226295330625327,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.0015226295330349475,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:45.164Z"
+            "createdAt": "2026-03-25T09:59:05.946Z"
           }
         ],
         "errors": [
@@ -126507,19 +126507,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.0684032110325217,
+            "estimatedNav": 2.068403211038886,
             "marketPrice": 2.131,
-            "premiumRate": 0.03026333967845196,
+            "premiumRate": 0.030263339675282053,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:15:00",
             "marketPriceType": "intraday",
             "anchorNav": 2.0827,
             "leadReturn": -0.014226740793171964,
-            "closeGapReturn": -0.0001448960370934449,
-            "impliedReturn": -0.006864545526229516,
+            "closeGapReturn": -0.00013043667299517114,
+            "impliedReturn": -0.006864545523173809,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:40:57.672Z"
+            "createdAt": "2026-03-25T10:36:57.052Z"
           }
         ],
         "errors": [
@@ -126780,7 +126780,7 @@
             "impliedReturn": 0.007998949646653236,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:41.342Z"
+            "createdAt": "2026-03-25T09:59:01.460Z"
           }
         ],
         "errors": [
@@ -127037,19 +127037,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.1595663165587824,
+            "estimatedNav": 1.1595663165583552,
             "marketPrice": 1.175,
-            "premiumRate": 0.01330987561541086,
+            "premiumRate": 0.013309875615784339,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:59",
             "marketPriceType": "intraday",
             "anchorNav": 1.1576,
             "leadReturn": 0.0018328700304988473,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": 0.0016986148572757504,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": 0.0016986148569068083,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.211Z"
+            "createdAt": "2026-03-25T09:59:04.823Z"
           }
         ],
         "errors": [
@@ -127258,19 +127258,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 2.133626992431998,
+            "estimatedNav": 2.1336269924320495,
             "marketPrice": 2.213,
-            "premiumRate": 0.037200976482552495,
+            "premiumRate": 0.037200976482527626,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:42",
             "marketPriceType": "intraday",
             "anchorNav": 2.1469,
             "leadReturn": -0.012910017021522753,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.006182406058969771,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.006182406058945678,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.530Z"
+            "createdAt": "2026-03-25T09:59:05.196Z"
           }
         ],
         "errors": [
@@ -127487,11 +127487,11 @@
             "marketPriceType": "intraday",
             "anchorNav": 1.7666,
             "leadReturn": 0.0018338364821421929,
-            "closeGapReturn": -0.00031879437762649676,
+            "closeGapReturn": -0.00028980047237470163,
             "impliedReturn": 0.0006968578632140333,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:30:25.909Z"
+            "createdAt": "2026-03-25T09:59:02.580Z"
           }
         ],
         "errors": [
@@ -127712,19 +127712,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.1776236789379817,
+            "estimatedNav": 1.1776236789408068,
             "marketPrice": 1.189,
-            "premiumRate": 0.009660404478515572,
+            "premiumRate": 0.009660404476093287,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:45",
             "marketPriceType": "intraday",
             "anchorNav": 1.185,
             "leadReturn": -0.01741446424912929,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.0062247435122518,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.006224743509867781,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:44.050Z"
+            "createdAt": "2026-03-25T09:59:04.634Z"
           }
         ],
         "errors": [
@@ -127945,7 +127945,7 @@
             "impliedReturn": 0.007037037037037068,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:30:25.908Z"
+            "createdAt": "2026-03-25T09:59:02.579Z"
           }
         ],
         "errors": [
@@ -128166,19 +128166,19 @@
           },
           {
             "estimateDate": "2026-03-25",
-            "estimatedNav": 1.4750161481829747,
+            "estimatedNav": 1.475016148183013,
             "marketPrice": 1.512,
-            "premiumRate": 0.02507352333910684,
+            "premiumRate": 0.025073523339080195,
             "marketPriceDate": "2026-03-25",
             "marketPriceTime": "16:14:43",
             "marketPriceType": "intraday",
             "anchorNav": 1.4841,
             "leadReturn": -0.012483438236522697,
-            "closeGapReturn": -0.00028993070656113673,
-            "impliedReturn": -0.006120781495199344,
+            "closeGapReturn": -0.00028980047237470163,
+            "impliedReturn": -0.006120781495173355,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:42.137Z"
+            "createdAt": "2026-03-25T09:59:02.392Z"
           }
         ],
         "errors": [
@@ -128395,11 +128395,11 @@
             "marketPriceType": "intraday",
             "anchorNav": 1.645,
             "leadReturn": 0.0018338364821421929,
-            "closeGapReturn": -0.00031879437762649676,
+            "closeGapReturn": -0.00028980047237470163,
             "impliedReturn": 0.0006968578632140333,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:30:25.909Z"
+            "createdAt": "2026-03-25T09:59:02.580Z"
           }
         ],
         "errors": [
@@ -128632,7 +128632,7 @@
             "impliedReturn": 0.005774446792996799,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T08:27:43.097Z"
+            "createdAt": "2026-03-25T09:59:03.512Z"
           }
         ],
         "errors": [
@@ -128853,7 +128853,7 @@
             "impliedReturn": 0.0021905405878507042,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:40:57.512Z"
+            "createdAt": "2026-03-25T10:36:56.887Z"
           }
         ],
         "errors": [
@@ -129074,7 +129074,7 @@
             "impliedReturn": 0.008447375181478083,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-25T09:30:25.907Z"
+            "createdAt": "2026-03-25T09:59:02.579Z"
           }
         ],
         "errors": [

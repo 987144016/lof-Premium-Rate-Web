@@ -10,7 +10,18 @@ const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
 const REMOTE_GENERATED_BASE = 'https://raw.githubusercontent.com/987144016/lof-Premium-Rate-Web/main/public/generated';
 const GENERATED_FETCH_TIMEOUT_MS = 4500;
+const API_FETCH_TIMEOUT_MS = 2500;
+const LOCAL_RUNTIME_API_BASE = 'http://127.0.0.1:8787';
 type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 'favorites';
+
+function isLocalDevHost(): boolean {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const host = window.location.hostname.toLowerCase();
+  return host === 'localhost' || host === '127.0.0.1';
+}
 
 async function fetchGeneratedJson<T>(fileName: string): Promise<T> {
   const ts = Date.now();
@@ -39,6 +50,50 @@ async function fetchGeneratedJson<T>(fileName: string): Promise<T> {
   }
 
   throw lastError ?? new Error(`failed to load generated/${fileName}`);
+}
+
+async function fetchRuntimePayload(): Promise<RuntimePayload> {
+  const ts = Date.now();
+  const sameOriginApi = `/api/runtime/all?ts=${ts}`;
+  const candidates = isLocalDevHost()
+    ? [`${LOCAL_RUNTIME_API_BASE}/api/runtime/all?ts=${ts}`, sameOriginApi]
+    : [sameOriginApi];
+
+  let lastError: Error | null = null;
+  for (const url of candidates) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), API_FETCH_TIMEOUT_MS);
+    try {
+      const response = await fetch(url, { cache: 'no-store', signal: controller.signal });
+      if (!response.ok) {
+        throw new Error(`http-${response.status}`);
+      }
+
+      const payload = (await response.json()) as RuntimePayload & { ok?: boolean };
+      if (!Array.isArray(payload?.funds)) {
+        throw new Error('api-invalid-payload');
+      }
+
+      return {
+        syncedAt: String(payload.syncedAt || ''),
+        funds: payload.funds,
+        stateByCode: payload.stateByCode ?? {},
+      };
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  try {
+    return await fetchGeneratedJson<RuntimePayload>('funds-runtime.json');
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw lastError ?? new Error(String(error));
+  }
 }
 
 const PAGE_OPTIONS: Array<{ key: ViewCategory; path: string; label: string; lead: string; tableTitle: string; tableDescription: string }> = [
@@ -171,6 +226,7 @@ function normalizeWatchlistModel(input: Partial<WatchlistModel> | undefined): Wa
     alpha: pickNumber(source.alpha, fallback.alpha),
     betaLead: pickNumber(source.betaLead, fallback.betaLead),
     betaGap: pickNumber(source.betaGap, fallback.betaGap),
+    betaIntraday: pickNumber(source.betaIntraday, fallback.betaIntraday),
     learningRate: pickNumber(source.learningRate, fallback.learningRate),
     sampleCount: pickNumber(source.sampleCount, fallback.sampleCount),
     meanAbsError: pickNumber(source.meanAbsError, fallback.meanAbsError),
@@ -2585,7 +2641,7 @@ export default function App() {
       setError('');
 
       try {
-        const payload = await fetchGeneratedJson<RuntimePayload>('funds-runtime.json');
+        const payload = await fetchRuntimePayload();
         const nextFunds = payload.funds.map((runtime: FundRuntimeData) => {
           const persistedState = payload.stateByCode?.[runtime.code];
           const initialModel = normalizeWatchlistModel(persistedState?.model ?? readWatchlistModel(runtime.code));

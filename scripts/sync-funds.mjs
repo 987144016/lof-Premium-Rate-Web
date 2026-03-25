@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { DatabaseSync } from 'node:sqlite';
 import { load } from 'cheerio';
 import { PDFParse } from 'pdf-parse';
 import catalog from '../src/data/fundCatalog.json' with { type: 'json' };
@@ -15,6 +16,7 @@ const watchlistStatePath = path.join(projectRoot, '.cache', 'fund-sync', 'watchl
 const holdingsDisclosurePath = path.join(projectRoot, '.cache', 'fund-sync', 'holdings-disclosures.json');
 const syncSchedulePath = path.join(projectRoot, '.cache', 'fund-sync', 'sync-schedule.json');
 const quoteHistoryDbPath = path.join(projectRoot, '.cache', 'fund-sync', 'quote-history-db.json');
+const runtimeDbPath = path.join(projectRoot, '.cache', 'fund-sync', 'runtime.db');
 const PUBLISHED_RUNTIME_URLS = [
   'https://987144016.github.io/lof-Premium-Rate-Web/generated/funds-runtime.json',
   'https://987144016.github.io/lof-Premium-Rate-Web/?state-probe=1',
@@ -1127,6 +1129,7 @@ const PROXY_BASKETS = {
   },
 };
 const GOLD_REALTIME_PROXY_CODES = new Set(['160719', '161116', '164701', '161226']);
+const OIL_REALTIME_PROXY_CODES = new Set(['160723', '501018', '161129']);
 const GOLD_US_PROXY_TICKERS = new Set(['GLD', 'IAU', 'UGL']);
 const GOLD_DOMESTIC_PROXY_TICKERS = new Set(['518880']);
 const GOLD_REALTIME_CARRY_MAX_MOVE = 0.03;
@@ -2194,6 +2197,99 @@ async function readJson(filePath, fallback) {
 async function writeJson(filePath, payload) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
   await fs.writeFile(filePath, JSON.stringify(payload, null, 2), 'utf8');
+}
+
+async function persistRuntimeToSqlite(payload) {
+  await fs.mkdir(path.dirname(runtimeDbPath), { recursive: true });
+  const db = new DatabaseSync(runtimeDbPath);
+
+  try {
+    db.exec(`
+      PRAGMA journal_mode = WAL;
+      PRAGMA synchronous = NORMAL;
+
+      CREATE TABLE IF NOT EXISTS runtime_runs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        synced_at TEXT NOT NULL UNIQUE,
+        fund_count INTEGER NOT NULL,
+        created_at TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS runtime_archive (
+        run_id INTEGER PRIMARY KEY,
+        payload_json TEXT NOT NULL,
+        FOREIGN KEY(run_id) REFERENCES runtime_runs(id)
+      );
+
+      CREATE TABLE IF NOT EXISTS latest_fund_runtime (
+        code TEXT PRIMARY KEY,
+        synced_at TEXT NOT NULL,
+        page_category TEXT,
+        estimate_mode TEXT,
+        market_price REAL,
+        previous_close REAL,
+        market_date TEXT,
+        market_time TEXT,
+        official_nav_t1 REAL,
+        nav_date TEXT,
+        cache_mode TEXT,
+        runtime_json TEXT NOT NULL,
+        updated_at TEXT NOT NULL
+      );
+    `);
+
+    const nowIso = new Date().toISOString();
+    const insertRun = db.prepare('INSERT OR IGNORE INTO runtime_runs (synced_at, fund_count, created_at) VALUES (?, ?, ?)');
+    insertRun.run(payload.syncedAt, Array.isArray(payload.funds) ? payload.funds.length : 0, nowIso);
+
+    const runRow = db.prepare('SELECT id FROM runtime_runs WHERE synced_at = ?').get(payload.syncedAt);
+    const runId = Number(runRow?.id || 0);
+
+    if (runId > 0) {
+      db.prepare('INSERT OR REPLACE INTO runtime_archive (run_id, payload_json) VALUES (?, ?)').run(runId, JSON.stringify(payload));
+    }
+
+    const upsertFund = db.prepare(`
+      INSERT INTO latest_fund_runtime (
+        code, synced_at, page_category, estimate_mode,
+        market_price, previous_close, market_date, market_time,
+        official_nav_t1, nav_date, cache_mode, runtime_json, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(code) DO UPDATE SET
+        synced_at = excluded.synced_at,
+        page_category = excluded.page_category,
+        estimate_mode = excluded.estimate_mode,
+        market_price = excluded.market_price,
+        previous_close = excluded.previous_close,
+        market_date = excluded.market_date,
+        market_time = excluded.market_time,
+        official_nav_t1 = excluded.official_nav_t1,
+        nav_date = excluded.nav_date,
+        cache_mode = excluded.cache_mode,
+        runtime_json = excluded.runtime_json,
+        updated_at = excluded.updated_at
+    `);
+
+    for (const fund of payload.funds ?? []) {
+      upsertFund.run(
+        String(fund.code || ''),
+        payload.syncedAt,
+        String(fund.pageCategory || ''),
+        String(fund.estimateMode || ''),
+        Number(fund.marketPrice) || 0,
+        Number(fund.previousClose) || 0,
+        String(fund.marketDate || ''),
+        String(fund.marketTime || ''),
+        Number(fund.officialNavT1) || 0,
+        String(fund.navDate || ''),
+        String(fund.cacheMode || ''),
+        JSON.stringify(fund),
+        nowIso,
+      );
+    }
+  } finally {
+    db.close();
+  }
 }
 
 let quoteHistoryDbPromise = null;
@@ -4539,6 +4635,7 @@ async function syncFund(entry, holdingsHistoryByCode = {}) {
     holdingQuotes: holdingQuotePayload.holdingQuotes,
   };
   const isGoldRealtimeProxyReady = GOLD_REALTIME_PROXY_CODES.has(entry.code) && proxyQuotes.length > 0;
+  const isOilRealtimeProxy = OIL_REALTIME_PROXY_CODES.has(entry.code);
   const fallbackEstimateMode = isGoldRealtimeProxyReady ? 'proxy' : entry.estimateMode;
   const effectiveEstimateMode = isGoldRealtimeProxyReady
     ? 'proxy'
@@ -4579,6 +4676,9 @@ async function syncFund(entry, holdingsHistoryByCode = {}) {
     goldContinuousReturn: Number.isFinite(carryReturnRaw) ? carryReturnRaw : null,
     goldContinuousSymbol: String(carryQuote?.symbol || ''),
     goldContinuousSource: String(carryQuote?.source || ''),
+    oilContinuousReturn: isOilRealtimeProxy && Number.isFinite(carryReturnRaw) ? carryReturnRaw : null,
+    oilContinuousSymbol: isOilRealtimeProxy ? String(carryQuote?.symbol || '') : '',
+    oilContinuousSource: isOilRealtimeProxy ? String(carryQuote?.source || '') : '',
     cacheMode: intradayData.cacheMode === 'intraday-cache' ? 'intraday-cache' : dailyData.cacheMode,
   };
 }
@@ -4676,21 +4776,17 @@ async function main() {
   await writeJson(holdingsDisclosurePath, holdingsHistoryByCode);
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(
-    outputPath,
-    JSON.stringify(
-      {
-        syncedAt: new Date().toISOString(),
-        funds: normalizedFunds,
-        stateByCode,
-      },
-      null,
-      2,
-    ),
-    'utf8',
-  );
+  const runtimePayload = {
+    syncedAt: new Date().toISOString(),
+    funds: normalizedFunds,
+    stateByCode,
+  };
+
+  await fs.writeFile(outputPath, JSON.stringify(runtimePayload, null, 2), 'utf8');
+  await persistRuntimeToSqlite(runtimePayload);
 
   console.log(`Synced ${normalizedFunds.length} funds to ${path.relative(projectRoot, outputPath)}`);
+  console.log(`Mirrored runtime payload to ${path.relative(projectRoot, runtimeDbPath)}`);
 }
 
 main().catch((error) => {

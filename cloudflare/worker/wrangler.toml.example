@@ -1,0 +1,12 @@
+name = "premium-runtime-api"
+main = "src/index.js"
+compatibility_date = "2026-03-25"
+workers_dev = true
+
+# 复制为 wrangler.toml 后填写你的 Cloudflare account_id
+account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
+
+[[d1_databases]]
+binding = "RUNTIME_DB"
+database_name = "premium-runtime-db"
+database_id = "YOUR_D1_DATABASE_ID"

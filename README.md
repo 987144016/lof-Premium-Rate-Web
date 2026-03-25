@@ -118,6 +118,21 @@ npm run manual:premium-entry
 npm run sync:data
 ```
 
+如需本地启一个轻量 API（读取 `.cache/fund-sync/runtime.db`），可运行：
+
+```powershell
+npm run api:runtime
+```
+
+默认地址 `http://127.0.0.1:8787`，常用接口：
+
+- `GET /health`：检查数据库是否可读、查看最新同步时间
+- `GET /api/runtime/all`：读取全量基金运行时数据（API 优先模式建议使用）
+- `GET /api/runtime/latest?code=161128`：读取单只基金最新运行时数据
+- `GET /api/runtime/oil`：读取油气相关基金运行时数据
+
+该接口适用于“前端直连 API”试验（例如本地对比静态 JSON 与 API 拉取时延），不影响现有静态站点流程。
+
 该命令仅同步基金运行时数据（用于每日更新，速度更快）。
 
 若需要在研究阶段更新离线训练图和摘要，请手动运行：
@@ -205,6 +220,13 @@ npm run sync:data:full
 ## 部署
 
 推荐使用 GitHub Pages。
+
+如需迁移到“前端 + API + 数据库”模式：
+
+- 可保留当前同步脚本，继续把数据写入 SQLite（本地）或 PostgreSQL（云端）
+- 前端改为请求 API，不再直接读取静态 JSON
+- 若算法需要保密，不要把估值逻辑放前端；仅把结果通过 API 返回
+- 使用 Netlify/Vercel/Cloudflare Pages 托管前端都可行，但可达性要按目标用户网络环境实测
 
 - 网站本体按静态站点发布，不需要访问时保持本地电脑在线
 - 数据同步和构建由 GitHub Actions 定时执行，交易时段 5 分钟一次，其他工作时段 15 分钟一次

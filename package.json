@@ -6,6 +6,9 @@
   "type": "module",
   "scripts": {
     "sync:data": "node scripts/sync-funds.mjs && node scripts/sync-premium-compare.mjs",
+    "db:runtime:report": "node scripts/runtime-db-report.mjs",
+    "api:runtime": "node scripts/runtime-api.mjs",
+    "cloudflare:runtime:sql": "node scripts/export-runtime-sql.mjs",
     "sync:github-traffic": "node scripts/sync-github-traffic.mjs",
     "import:github-traffic": "node scripts/import-github-traffic-history.mjs",
     "sync:research": "node scripts/generate-160723-research.mjs 160723 && node scripts/generate-161725-research.mjs",

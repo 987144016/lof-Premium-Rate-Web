@@ -67,29 +67,6 @@ jobs:
       - name: Build Site
         run: npm run build:static
 
-      - name: Export Cloudflare Runtime SQL
-        run: npm run cloudflare:runtime:sql
-
-      - name: Sync Cloudflare D1 Runtime
-        run: |
-          if [ -z "${CLOUDFLARE_API_TOKEN}" ]; then
-            echo "CLOUDFLARE_API_TOKEN not configured; skip Cloudflare D1 sync."
-            exit 0
-          fi
-          npx wrangler d1 execute premium-runtime-db --remote --config cloudflare/worker/wrangler.toml --file .cache/cloudflare/runtime-upsert.sql
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
-      - name: Deploy Cloudflare Worker
-        run: |
-          if [ -z "${CLOUDFLARE_API_TOKEN}" ]; then
-            echo "CLOUDFLARE_API_TOKEN not configured; skip Cloudflare Worker deploy."
-            exit 0
-          fi
-          npx wrangler deploy --config cloudflare/worker/wrangler.toml
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
       - name: Save Fund Sync Cache
         if: always()
         uses: actions/cache/save@v4

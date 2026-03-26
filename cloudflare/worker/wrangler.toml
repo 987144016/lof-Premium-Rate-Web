@@ -3,11 +3,18 @@ main = "src/index.js"
 compatibility_date = "2026-03-25"
 workers_dev = true
 
-# 请替换为你的 Cloudflare 账号ID
 account_id = "d7c991c802a060808a087df47823f3fa"
+
+[vars]
+# Set this to the server that runs `npm run cloudflare:server`.
+# Leave it empty to keep the previous GitHub-based fallback.
+GENERATED_SOURCE_BASE_URL = "https://premium.leo2026.cloud/"
+RUNTIME_SYNC_MIN_INTERVAL_MINUTES = "5"
+
+[triggers]
+crons = ["*/5 * * * *"]
 
 [[d1_databases]]
 binding = "RUNTIME_DB"
 database_name = "premium-runtime-db"
-# 请替换为你的 D1 数据库ID
 database_id = "e402561c-0aa2-4618-90f6-6bf007220683"

@@ -8,10 +8,28 @@ import { estimateWatchlistFund, getDefaultWatchlistModel, reconcileJournal, reco
 import type { FundJournal, FundRuntimeData, FundViewModel, GithubTrafficPayload, RuntimePayload, WatchlistModel } from './types';
 const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
-// Cloudflare Worker API 基础地址（请替换为你的实际 workers.dev 域名）
-const REMOTE_API_BASE = 'https://still-tooth-c5a4.987144016.workers.dev/api/runtime';
+const DEFAULT_REMOTE_API_BASE = 'https://still-tooth-c5a4.987144016.workers.dev/api/runtime';
+const REMOTE_API_BASE = String(import.meta.env.VITE_RUNTIME_API_BASE || DEFAULT_REMOTE_API_BASE).replace(/\/+$/, '');
 const GENERATED_FETCH_TIMEOUT_MS = 4500;
+const TOAST_AUTO_CLOSE_MS = 3000;
 type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 'favorites';
+
+function isAbortLikeError(error: unknown): boolean {
+  if (!error) {
+    return false;
+  }
+
+  if (typeof error === 'object') {
+    const name = String((error as { name?: unknown }).name || '');
+    if (name === 'AbortError' || name === 'TimeoutError') {
+      return true;
+    }
+  }
+
+  const message = error instanceof Error ? error.message : String(error);
+  const normalized = message.toLowerCase();
+  return normalized.includes('aborted') || normalized.includes('aborterror') || normalized.includes('signal is aborted');
+}
 
 // 本地开发优先本地静态，线上优先 Worker API，兜底静态
 async function fetchGeneratedJson<T>(fileName: string): Promise<T> {
@@ -2584,26 +2602,34 @@ export default function App() {
   const [trainingMetricsByCode, setTrainingMetricsByCode] = useState<Record<string, TrainingMetricSummary>>({});
   const [premiumCompareCodes, setPremiumCompareCodes] = useState<Record<string, PremiumCompareCodePayload>>({});
 
-  // Toast helper function
   const showToast = (message: string, type: 'error' | 'success' | 'warning' = 'error') => {
     const id = `${type}-${Date.now()}`;
-    setToasts((prev) => [...prev, { id, message, type }]);
-    // Auto-remove after 5 seconds
+    setToasts((prev) => {
+      if (prev.some((item) => item.message === message && item.type === type)) {
+        return prev;
+      }
+      return [...prev.slice(-2), { id, message, type }];
+    });
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 5000);
+    }, TOAST_AUTO_CLOSE_MS);
   };
 
   useEffect(() => {
     let active = true;
     let timer = 0;
+    let loadingRuntime = false;
 
     async function loadRuntime(options?: { silent?: boolean }) {
       const silent = Boolean(options?.silent);
+      if (loadingRuntime) {
+        return;
+      }
+      loadingRuntime = true;
       if (!silent) {
         setLoading(true);
+        setError('');
       }
-      setError('');
 
       try {
         const payload = await fetchGeneratedJson<RuntimePayload>('funds-runtime.json');
@@ -2640,9 +2666,16 @@ export default function App() {
         }
 
         const errorMsg = loadError instanceof Error ? loadError.message : '同步失败';
-        setError(errorMsg);
-        showToast(errorMsg, 'error');
+        if (isAbortLikeError(loadError)) {
+          return;
+        }
+
+        if (!silent) {
+          setError(errorMsg);
+          showToast(errorMsg, 'error');
+        }
       } finally {
+        loadingRuntime = false;
         if (active && !silent) {
           setLoading(false);
         }

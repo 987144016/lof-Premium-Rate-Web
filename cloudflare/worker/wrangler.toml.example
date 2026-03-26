@@ -5,6 +5,14 @@ workers_dev = true
 
 account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
 
+[vars]
+# Point this to the reusable server that runs `npm run cloudflare:server`.
+GENERATED_SOURCE_BASE_URL = "https://your-server.example.com"
+RUNTIME_SYNC_MIN_INTERVAL_MINUTES = "5"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
 [[d1_databases]]
 binding = "RUNTIME_DB"
 database_name = "premium-runtime-db"

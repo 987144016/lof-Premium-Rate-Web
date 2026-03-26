@@ -7,6 +7,8 @@
   "scripts": {
     "sync:data": "node scripts/sync-funds.mjs && node scripts/sync-premium-compare.mjs",
     "cloudflare:runtime:sql": "node scripts/export-runtime-sql.mjs",
+    "cloudflare:server": "node scripts/cloudflare-server.mjs",
+    "cloudflare:server:once": "node scripts/cloudflare-server.mjs --sync-once",
     "sync:github-traffic": "node scripts/sync-github-traffic.mjs",
     "import:github-traffic": "node scripts/import-github-traffic-history.mjs",
     "sync:research": "node scripts/generate-160723-research.mjs 160723 && node scripts/generate-161725-research.mjs",

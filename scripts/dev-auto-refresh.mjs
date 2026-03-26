@@ -1,57 +1,38 @@
-const projectRoot = process.cwd();
-// 自动同步到 Cloudflare D1/Worker 的计数器文件
-const CF_SYNC_COUNTER_FILE = path.join(projectRoot, '.cache', 'cloudflare', 'cf_sync_counter.txt');
-const CF_SYNC_TRIGGER_COUNT = 1; // 每次同步后自动导入D1并部署
-
-function readCfSyncCounter() {
-  try {
-    return Number(fs.readFileSync(CF_SYNC_COUNTER_FILE, 'utf8')) || 0;
-  } catch {
-    return 0;
-  }
-}
-
-function writeCfSyncCounter(val) {
-  try {
-    fs.mkdirSync(path.dirname(CF_SYNC_COUNTER_FILE), { recursive: true });
-    fs.writeFileSync(CF_SYNC_COUNTER_FILE, String(val), 'utf8');
-  } catch {}
-}
-
-async function syncCloudflareD1AndWorker() {
-  try {
-    await runCommand('npm', ['run', 'cloudflare:runtime:sql']);
-    await runCommand('wrangler', ['d1', 'execute', 'premium-runtime-db', '--file', '.cache/cloudflare/runtime-upsert.sql', '--remote']);
-    await runCommand('wrangler', ['deploy']);
-    console.log('[auto-refresh] Cloudflare D1/Worker 已自动同步');
-  } catch (err) {
-    console.error('[auto-refresh] Cloudflare D1/Worker 同步失败:', err instanceof Error ? err.message : err);
-  }
-}
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-
+const projectRoot = process.cwd();
 const nodeExecutable = process.execPath;
-const nodeDir = path.dirname(nodeExecutable);
 const viteBin = path.join(projectRoot, 'node_modules', 'vite', 'bin', 'vite.js');
-let syncing = false;
+
 const FAST_SYNC_INTERVAL = 60_000;
 const SLOW_SYNC_INTERVAL = 15 * 60_000;
 const DEFAULT_GIT_PUSH_INTERVAL = 5 * 60_000;
+const DEFAULT_BOOTSTRAP_PUSH_RETRY_INTERVAL_MS = 3 * 60 * 1000;
+
 const DEV_HOST = '127.0.0.1';
 const DEV_PORT = '4173';
 const GIT_REMOTE = process.env.AUTO_PUSH_REMOTE || 'origin';
 const GIT_BRANCH = process.env.AUTO_PUSH_BRANCH || 'main';
 const ENABLE_GITHUB_PUSH = process.env.AUTO_PUSH_GITHUB !== '0';
-const GIT_PUSH_INTERVAL = Number.parseInt(process.env.AUTO_PUSH_INTERVAL_MS ?? '', 10) || DEFAULT_GIT_PUSH_INTERVAL;
-const BOOTSTRAP_PUSH_RETRY_INTERVAL_MS = Number.parseInt(process.env.AUTO_PUSH_BOOTSTRAP_RETRY_MS ?? '', 10) || (3 * 60 * 1000);
+const ENABLE_CLOUDFLARE_SYNC = process.env.AUTO_SYNC_CLOUDFLARE === '1';
+const GIT_PUSH_INTERVAL =
+  Number.parseInt(process.env.AUTO_PUSH_INTERVAL_MS ?? '', 10) || DEFAULT_GIT_PUSH_INTERVAL;
+const BOOTSTRAP_PUSH_RETRY_INTERVAL_MS =
+  Number.parseInt(process.env.AUTO_PUSH_BOOTSTRAP_RETRY_MS ?? '', 10) || DEFAULT_BOOTSTRAP_PUSH_RETRY_INTERVAL_MS;
 const GIT_SYNC_PATHS = ['public/generated/funds-runtime.json', 'public/generated/premium-compare.json'];
 const ENABLE_STARTUP_FULL_SYNC = process.env.SYNC_STARTUP_FULL_FIRST !== '0';
 const REGULAR_SYNC_BATCH_SIZE = process.env.SYNC_BATCH_SIZE;
 const STARTUP_SYNC_BATCH_SIZE = process.env.SYNC_BOOTSTRAP_BATCH_SIZE || '9999';
+const CF_SYNC_COUNTER_FILE = path.join(projectRoot, '.cache', 'cloudflare', 'cf_sync_counter.txt');
+const CF_SYNC_TRIGGER_COUNT = Math.max(
+  1,
+  Number.parseInt(process.env.AUTO_SYNC_CLOUDFLARE_EVERY_N ?? '1', 10) || 1,
+);
+
+let syncing = false;
 let pushing = false;
 let gitPushReady = false;
 
@@ -84,7 +65,10 @@ function isCnTradingSession(date) {
     return false;
   }
 
-  return (clock.minutes >= 9 * 60 + 30 && clock.minutes < 11 * 60 + 30) || (clock.minutes >= 13 * 60 && clock.minutes < 15 * 60);
+  return (
+    (clock.minutes >= 9 * 60 + 30 && clock.minutes < 11 * 60 + 30)
+    || (clock.minutes >= 13 * 60 && clock.minutes < 15 * 60)
+  );
 }
 
 function isUsTradingSession(date) {
@@ -114,9 +98,9 @@ function runCommand(command, args, options = {}) {
         resolve();
         return;
       }
-
       reject(new Error(`${command} ${args.join(' ')} exited with code ${code ?? -1}`));
     });
+
     child.on('error', reject);
   });
 }
@@ -148,6 +132,39 @@ function runCommandCapture(command, args, options = {}) {
   });
 }
 
+function readCfSyncCounter() {
+  try {
+    return Number(fs.readFileSync(CF_SYNC_COUNTER_FILE, 'utf8')) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+function writeCfSyncCounter(value) {
+  try {
+    fs.mkdirSync(path.dirname(CF_SYNC_COUNTER_FILE), { recursive: true });
+    fs.writeFileSync(CF_SYNC_COUNTER_FILE, String(value), 'utf8');
+  } catch {
+    // Best-effort local counter persistence only.
+  }
+}
+
+async function syncCloudflareD1AndWorker() {
+  await runCommand('npm', ['run', 'cloudflare:runtime:sql']);
+  await runCommand('wrangler', [
+    'd1',
+    'execute',
+    'premium-runtime-db',
+    '--file',
+    '.cache/cloudflare/runtime-upsert.sql',
+    '--remote',
+    '--config',
+    'cloudflare/worker/wrangler.toml',
+  ]);
+  await runCommand('wrangler', ['deploy', '--config', 'cloudflare/worker/wrangler.toml']);
+  console.log('[auto-refresh] Cloudflare D1 and Worker synced.');
+}
+
 async function prepareGitPush() {
   if (!ENABLE_GITHUB_PUSH) {
     return false;
@@ -177,7 +194,6 @@ async function pushRuntimeUpdate() {
   try {
     const status = await runCommandCapture('git', ['status', '--porcelain', '--', ...GIT_SYNC_PATHS]);
     if (status.code !== 0 || status.stdout.trim() === '') {
-      // No runtime delta means online is already up-to-date for this path.
       return true;
     }
 
@@ -201,10 +217,6 @@ async function pushRuntimeUpdate() {
   }
 }
 
-async function shouldRunStartupFullSync() {
-  return ENABLE_STARTUP_FULL_SYNC;
-}
-
 async function syncOnce(options = {}) {
   if (syncing) {
     return false;
@@ -220,17 +232,17 @@ async function syncOnce(options = {}) {
 
   syncing = true;
   try {
-    // 先后运行完整的数据生成脚本：funds + premium-compare（等同于 npm run sync:data）
     await runCommand(nodeExecutable, ['scripts/sync-funds.mjs'], { env });
     await runCommand(nodeExecutable, ['scripts/sync-premium-compare.mjs'], { env });
 
-    // Cloudflare D1/Worker 自动同步计数逻辑
-    let cfSyncCounter = readCfSyncCounter() + 1;
-    if (cfSyncCounter >= CF_SYNC_TRIGGER_COUNT) {
-      await syncCloudflareD1AndWorker();
-      cfSyncCounter = 0;
+    if (ENABLE_CLOUDFLARE_SYNC) {
+      let cfSyncCounter = readCfSyncCounter() + 1;
+      if (cfSyncCounter >= CF_SYNC_TRIGGER_COUNT) {
+        await syncCloudflareD1AndWorker();
+        cfSyncCounter = 0;
+      }
+      writeCfSyncCounter(cfSyncCounter);
     }
-    writeCfSyncCounter(cfSyncCounter);
 
     return true;
   } catch (error) {
@@ -245,17 +257,25 @@ async function main() {
   if (REGULAR_SYNC_BATCH_SIZE) {
     process.stdout.write(`[auto-refresh] sync:data uses batched mode, SYNC_BATCH_SIZE=${REGULAR_SYNC_BATCH_SIZE}\n`);
   }
+  if (ENABLE_CLOUDFLARE_SYNC) {
+    process.stdout.write(
+      `[auto-refresh] Cloudflare auto sync enabled, deploy every ${CF_SYNC_TRIGGER_COUNT} local sync cycle(s).\n`,
+    );
+  } else {
+    process.stdout.write('[auto-refresh] Cloudflare auto sync disabled; GitHub/local mode stays independent.\n');
+  }
 
   gitPushReady = await prepareGitPush();
+
   let synced = false;
-  if (await shouldRunStartupFullSync()) {
+  if (ENABLE_STARTUP_FULL_SYNC) {
     process.stdout.write(`[auto-refresh] startup full sync enabled, SYNC_BATCH_SIZE=${STARTUP_SYNC_BATCH_SIZE}\n`);
     synced = await syncOnce({ batchSizeOverride: STARTUP_SYNC_BATCH_SIZE });
   }
-
   if (!synced) {
     await syncOnce();
   }
+
   let initialPushCompleted = !gitPushReady;
 
   const tryBootstrapPush = async () => {
@@ -268,7 +288,9 @@ async function main() {
       initialPushCompleted = true;
       process.stdout.write('[auto-refresh] bootstrap push completed; switching to regular push schedule.\n');
     } else {
-      process.stdout.write(`[auto-refresh] bootstrap push failed; retry in ${Math.round(BOOTSTRAP_PUSH_RETRY_INTERVAL_MS / 1000)}s.\n`);
+      process.stdout.write(
+        `[auto-refresh] bootstrap push failed; retry in ${Math.round(BOOTSTRAP_PUSH_RETRY_INTERVAL_MS / 1000)}s.\n`,
+      );
     }
 
     return ok;
@@ -277,7 +299,7 @@ async function main() {
   await tryBootstrapPush();
 
   if (!fs.existsSync(viteBin)) {
-    throw new Error(`Vite 未安装，缺少文件: ${viteBin}`);
+    throw new Error(`Vite not installed, missing file: ${viteBin}`);
   }
 
   const vite = spawn(nodeExecutable, [viteBin, '--host', DEV_HOST, '--port', DEV_PORT, '--open'], {
@@ -289,8 +311,7 @@ async function main() {
   process.stdout.write(`[auto-refresh] local url: http://${DEV_HOST}:${DEV_PORT}/#/qdii-lof\n`);
 
   const handleOutput = (chunk, writer) => {
-    const text = chunk.toString();
-    writer.write(text);
+    writer.write(chunk.toString());
   };
 
   vite.stdout?.on('data', (chunk) => handleOutput(chunk, process.stdout));

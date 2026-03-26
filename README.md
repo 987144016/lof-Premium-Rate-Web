@@ -188,6 +188,51 @@ npm run sync:data:full
 
 默认开发地址为 http://localhost:5173。
 
+## SSH 配置（解决 HTTPS 连接问题）
+
+如果遇到 `git push` 或 `git pull` 超时失败（如 "Failed to connect to github.com port 443"），可能是因为网络环境限制了 HTTPS 连接。此时可切换到 SSH 方式：
+
+### 1. 生成 SSH 密钥
+
+```powershell
+# 创建 .ssh 目录（如果不存在）
+New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
+
+# 生成 4096 位 RSA 密钥
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f $env:USERPROFILE\.ssh\id_rsa -N '""'
+```
+
+### 2. 添加公钥到 GitHub
+
+```powershell
+# 查看公钥内容
+Get-Content $env:USERPROFILE\.ssh\id_rsa.pub
+```
+
+复制输出的公钥内容，然后：
+1. 打开 GitHub → Settings → SSH and GPG keys → New SSH key
+2. Title 填：`溢价率网站`
+3. Key 粘贴公钥内容
+4. 点击 Add SSH key
+
+### 3. 切换远程仓库为 SSH
+
+```powershell
+git remote set-url origin git@github.com:987144016/lof-Premium-Rate-Web.git
+```
+
+### 4. 验证配置
+
+```powershell
+# 查看远程配置
+git remote -v
+
+# 测试推送
+git push origin main
+```
+
+首次连接时会提示确认 GitHub 主机指纹，输入 `yes` 即可。
+
 ## 数据来源与抓取约束
 
 - 仅使用公开可访问的基金净值、场内行情、公告和公开报价接口

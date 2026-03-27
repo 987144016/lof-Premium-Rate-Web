@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-27T11:02:11.024Z",
-  "syncedAt": "2026-03-27T11:01:44.122Z",
+  "generatedAt": "2026-03-27T11:17:49.955Z",
+  "syncedAt": "2026-03-27T11:17:12.329Z",
   "codes": {
     "159100": {
       "code": "159100",
@@ -3449,6 +3449,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.821,
+            "providerPremiumRate": 0.2645,
+            "ourReportedPremiumRate": 0.2813990461049287,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -3523,6 +3535,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.821,
+            "providerPremiumRate": 0.2814,
+            "ourReportedPremiumRate": 0.2813990461049287,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -3592,6 +3616,18 @@
             "marketPrice": 2.718,
             "providerPremiumRate": 0.2346,
             "ourReportedPremiumRate": 0.23388414744870167,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.821,
+            "providerPremiumRate": 0.2645,
+            "ourReportedPremiumRate": 0.2813990461049287,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -3798,8 +3834,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.2339,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.2814,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.016661425488386318,
           "avgAbsOurError30": 0.051391173923678576,
           "avgAbsDelta30": -0.03472974843529226,
@@ -3824,8 +3860,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.2346,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.2645,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.011625012169481664,
           "avgAbsOurError30": 0.051391173923678576,
           "avgAbsDelta30": -0.039766161754196915,
@@ -3850,8 +3886,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.2346,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.2645,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.014582486618720797,
           "avgAbsOurError30": 0.051391173923678576,
           "avgAbsDelta30": -0.03680868730495778,
@@ -4811,6 +4847,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.026,
+            "providerPremiumRate": 0.014,
+            "ourReportedPremiumRate": -0.019835510401548295,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -4885,6 +4933,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.026,
+            "providerPremiumRate": -0.0198,
+            "ourReportedPremiumRate": -0.019835510401548295,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -4954,6 +5014,18 @@
             "marketPrice": 2.016,
             "providerPremiumRate": -0.0247,
             "ourReportedPremiumRate": 0.0034843205574912606,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.026,
+            "providerPremiumRate": 0.014,
+            "ourReportedPremiumRate": -0.019835510401548295,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -5187,8 +5259,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0035,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0198,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.048265831647699375,
           "avgAbsOurError30": 0.03127277707673903,
           "avgAbsDelta30": 0.016993054570960342,
@@ -5200,8 +5272,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0247,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.014,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03429060018926231,
           "avgAbsOurError30": 0.03127277707673903,
           "avgAbsDelta30": 0.0030178231125232782,
@@ -5226,8 +5298,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0247,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.014,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03499060018926231,
           "avgAbsOurError30": 0.03127277707673903,
           "avgAbsDelta30": 0.0037178231125232775,
@@ -5439,6 +5511,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.66,
+            "providerPremiumRate": 0.3612,
+            "ourReportedPremiumRate": 0.3611708115853036,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -5513,6 +5597,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.66,
+            "providerPremiumRate": 0.3612,
+            "ourReportedPremiumRate": 0.3611708115853036,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -5582,6 +5678,18 @@
             "marketPrice": 2.841,
             "providerPremiumRate": 0.4538,
             "ourReportedPremiumRate": 0.42541769103406746,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.66,
+            "providerPremiumRate": 0.3136,
+            "ourReportedPremiumRate": 0.3611708115853036,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -5827,8 +5935,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4254,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3612,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03999225525234264,
           "avgAbsOurError30": 0.07019328924565253,
           "avgAbsDelta30": -0.030201033993309895,
@@ -5840,8 +5948,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4254,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3612,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.031718313152096875,
           "avgAbsOurError30": 0.07019328924565253,
           "avgAbsDelta30": -0.03847497609355566,
@@ -5866,8 +5974,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4538,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3136,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03593831315209688,
           "avgAbsOurError30": 0.07019328924565253,
           "avgAbsDelta30": -0.03425497609355565,
@@ -6845,6 +6953,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.734,
+            "providerPremiumRate": 0.0481,
+            "ourReportedPremiumRate": 0.013620155491903763,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -6914,6 +7034,18 @@
             "marketPrice": 1.708,
             "providerPremiumRate": 0.0261,
             "ourReportedPremiumRate": 0.026072329688814122,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.734,
+            "providerPremiumRate": 0.0136,
+            "ourReportedPremiumRate": 0.013620155491903763,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -7067,6 +7199,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.734,
+            "providerPremiumRate": 0.0481,
+            "ourReportedPremiumRate": 0.013620155491903763,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-haoetf": [
@@ -7209,8 +7353,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0261,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0136,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.04591166330226267,
           "avgAbsOurError30": 0.030407876435149927,
           "avgAbsDelta30": 0.015503786867112745,
@@ -7235,8 +7379,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0016,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0481,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.0369346502060234,
           "avgAbsOurError30": 0.030407876435149927,
           "avgAbsDelta30": 0.006526773770873472,
@@ -7261,8 +7405,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0016,
-          "hitCount60": 5,
+          "premiumRateCurrent": 0.0481,
+          "hitCount60": 6,
           "avgAbsProviderError30": 0.020579904135653533,
           "avgAbsOurError30": 0.02069923222712558,
           "avgAbsDelta30": -0.00011932809147204709,
@@ -8112,6 +8256,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.781,
+            "providerPremiumRate": 0.0191,
+            "ourReportedPremiumRate": 0.0040436132572749806,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -8186,6 +8342,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.781,
+            "providerPremiumRate": 0.004,
+            "ourReportedPremiumRate": 0.0040436132572749806,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -8255,6 +8423,18 @@
             "marketPrice": 2.79,
             "providerPremiumRate": 0.0073,
             "ourReportedPremiumRate": 0.012079660463597763,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.781,
+            "providerPremiumRate": 0.0191,
+            "ourReportedPremiumRate": 0.0040436132572749806,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -8488,8 +8668,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0121,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.004,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.008714881384708167,
           "avgAbsOurError30": 0.009149997481749116,
           "avgAbsDelta30": -0.0004351160970409492,
@@ -8514,8 +8694,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0073,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0191,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.010404245268555773,
           "avgAbsOurError30": 0.009149997481749116,
           "avgAbsDelta30": 0.0012542477868066563,
@@ -8540,8 +8720,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0073,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0191,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.007748179682891765,
           "avgAbsOurError30": 0.009149997481749116,
           "avgAbsDelta30": -0.0014018177988573514,
@@ -8955,6 +9135,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.816,
+            "providerPremiumRate": 0.0038,
+            "ourReportedPremiumRate": 0.004702627939142445,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -9029,6 +9221,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.816,
+            "providerPremiumRate": 0.0047,
+            "ourReportedPremiumRate": 0.004702627939142445,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -9098,6 +9302,18 @@
             "marketPrice": 1.805,
             "providerPremiumRate": -0.0014,
             "ourReportedPremiumRate": 0.005627054432001843,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.816,
+            "providerPremiumRate": 0.0038,
+            "ourReportedPremiumRate": 0.004702627939142445,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -9318,8 +9534,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0056,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0047,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.00922253907051737,
           "avgAbsOurError30": 0.010257483350802787,
           "avgAbsDelta30": -0.0010349442802854176,
@@ -9344,8 +9560,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0014,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0038,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.008460581619156962,
           "avgAbsOurError30": 0.010257483350802787,
           "avgAbsDelta30": -0.0017969017316458256,
@@ -9370,8 +9586,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0014,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0038,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.004160581619156964,
           "avgAbsOurError30": 0.010257483350802787,
           "avgAbsDelta30": -0.006096901731645823,
@@ -10319,6 +10535,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 5.34,
+            "providerPremiumRate": 0.0058,
+            "ourReportedPremiumRate": 0.005820195513363879,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -10388,6 +10616,18 @@
             "marketPrice": 5.385,
             "providerPremiumRate": 0.0143,
             "ourReportedPremiumRate": 0.019307211811470548,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 5.34,
+            "providerPremiumRate": 0.0304,
+            "ourReportedPremiumRate": 0.005820195513363879,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -10621,8 +10861,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0193,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0058,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.010188460557508904,
           "avgAbsOurError30": 0.011925028669086245,
           "avgAbsDelta30": -0.001736568111577342,
@@ -10673,8 +10913,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0143,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0304,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.010533922692238329,
           "avgAbsOurError30": 0.011925028669086245,
           "avgAbsDelta30": -0.001391105976847917,
@@ -10898,6 +11138,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.26,
+            "providerPremiumRate": 0.3518,
+            "ourReportedPremiumRate": 0.4066098213730005,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -10972,6 +11224,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.26,
+            "providerPremiumRate": 0.4066,
+            "ourReportedPremiumRate": 0.4066098213730005,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -11041,6 +11305,18 @@
             "marketPrice": 2.389,
             "providerPremiumRate": 0.4869,
             "ourReportedPremiumRate": 0.45955522971651996,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.26,
+            "providerPremiumRate": 0.3518,
+            "ourReportedPremiumRate": 0.4066098213730005,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -11286,8 +11562,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4596,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.4066,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03885944658111423,
           "avgAbsOurError30": 0.07439770223439357,
           "avgAbsDelta30": -0.03553825565327934,
@@ -11299,8 +11575,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4869,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3518,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03043098128297155,
           "avgAbsOurError30": 0.07439770223439357,
           "avgAbsDelta30": -0.043966720951422025,
@@ -11325,8 +11601,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4869,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3518,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.019450981282971548,
           "avgAbsOurError30": 0.07439770223439357,
           "avgAbsDelta30": -0.05494672095142202,
@@ -11728,6 +12004,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.72,
+            "providerPremiumRate": 0.0198,
+            "ourReportedPremiumRate": -0.0013690907626640048,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -11802,6 +12090,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.72,
+            "providerPremiumRate": -0.0014,
+            "ourReportedPremiumRate": -0.0013690907626640048,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -11871,6 +12171,18 @@
             "marketPrice": 3.74,
             "providerPremiumRate": 0.004,
             "ourReportedPremiumRate": 0.009910080198741733,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.72,
+            "providerPremiumRate": 0.0198,
+            "ourReportedPremiumRate": -0.0013690907626640048,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -12118,8 +12430,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0099,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0014,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.010108489609004437,
           "avgAbsOurError30": 0.01068603135710533,
           "avgAbsDelta30": -0.0005775417481008929,
@@ -12144,8 +12456,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.004,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0198,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.013060009036018328,
           "avgAbsOurError30": 0.01068603135710533,
           "avgAbsDelta30": 0.002373977678912998,
@@ -12170,8 +12482,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.004,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0198,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.00962000903601833,
           "avgAbsOurError30": 0.01068603135710533,
           "avgAbsDelta30": -0.0010660223210870005,
@@ -12843,6 +13155,18 @@
             "providerPremiumError": 0.018675179482101067,
             "ourPremiumError": 0.01864226630980159,
             "premiumErrorDelta": 0.00003291317229947577
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.691,
+            "providerPremiumRate": 0.3324,
+            "ourReportedPremiumRate": 0.3323760954597217,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -12917,6 +13241,18 @@
             "providerPremiumError": 0.018675179482101067,
             "ourPremiumError": 0.01864226630980159,
             "premiumErrorDelta": 0.00003291317229947577
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.691,
+            "providerPremiumRate": 0.3324,
+            "ourReportedPremiumRate": 0.3323760954597217,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -12991,6 +13327,18 @@
             "providerPremiumError": -0.00002482051789892692,
             "ourPremiumError": 0.01864226630980159,
             "premiumErrorDelta": -0.01866708682770052
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.691,
+            "providerPremiumRate": 0.3808,
+            "ourReportedPremiumRate": 0.3323760954597217,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xueqiu": [
@@ -13192,8 +13540,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.3258,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3324,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.06039680605185468,
           "avgAbsOurError30": 0.0407876971912939,
           "avgAbsDelta30": 0.019609108860560776,
@@ -13218,8 +13566,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.3258,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3324,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.04706984485106164,
           "avgAbsOurError30": 0.0407876971912939,
           "avgAbsDelta30": 0.006282147659767735,
@@ -13244,8 +13592,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.3071,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3808,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.00512046590218268,
           "avgAbsOurError30": 0.0407876971912939,
           "avgAbsDelta30": -0.03566723128911122,
@@ -14370,6 +14718,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.038,
+            "providerPremiumRate": 0.0461,
+            "ourReportedPremiumRate": 0.06856084002470664,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -14444,6 +14804,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.038,
+            "providerPremiumRate": 0.069,
+            "ourReportedPremiumRate": 0.06856084002470664,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -14513,6 +14885,18 @@
             "marketPrice": 0.999,
             "providerPremiumRate": 0.0284,
             "ourReportedPremiumRate": 0.03523316062176174,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.038,
+            "providerPremiumRate": 0.0461,
+            "ourReportedPremiumRate": 0.06856084002470664,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -14719,8 +15103,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0352,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.069,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.020970277776522623,
           "avgAbsOurError30": 0.024115883551154994,
           "avgAbsDelta30": -0.0031456057746323714,
@@ -14745,8 +15129,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0284,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0461,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.011915319292383758,
           "avgAbsOurError30": 0.024115883551154994,
           "avgAbsDelta30": -0.012200564258771236,
@@ -14771,8 +15155,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0284,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0461,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.011915319292383758,
           "avgAbsOurError30": 0.024115883551154994,
           "avgAbsDelta30": -0.012200564258771236,
@@ -15186,6 +15570,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.742,
+            "providerPremiumRate": 0.0022,
+            "ourReportedPremiumRate": -0.012247838616714635,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -15260,6 +15656,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.742,
+            "providerPremiumRate": -0.0122,
+            "ourReportedPremiumRate": -0.012247838616714635,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -15329,6 +15737,18 @@
             "marketPrice": 2.751,
             "providerPremiumRate": -0.009,
             "ourReportedPremiumRate": -0.0007264802034145923,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.742,
+            "providerPremiumRate": 0.0022,
+            "ourReportedPremiumRate": -0.012247838616714635,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -15549,8 +15969,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0007,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0122,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.016391361916397562,
           "avgAbsOurError30": 0.017671383564485964,
           "avgAbsDelta30": -0.0012800216480884016,
@@ -15575,8 +15995,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.009,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0022,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.012307809428202851,
           "avgAbsOurError30": 0.017671383564485964,
           "avgAbsDelta30": -0.005363574136283113,
@@ -15601,8 +16021,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.009,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0022,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.012307809428202851,
           "avgAbsOurError30": 0.017671383564485964,
           "avgAbsDelta30": -0.005363574136283113,
@@ -16016,6 +16436,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.484,
+            "providerPremiumRate": 0.1977,
+            "ourReportedPremiumRate": 0.19774477447744787,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -16090,6 +16522,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.484,
+            "providerPremiumRate": 0.1977,
+            "ourReportedPremiumRate": 0.19774477447744787,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -16159,6 +16603,18 @@
             "marketPrice": 3.234,
             "providerPremiumRate": 0.1118,
             "ourReportedPremiumRate": 0.112869924294563,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.484,
+            "providerPremiumRate": 0.1775,
+            "ourReportedPremiumRate": 0.19774477447744787,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -16379,8 +16835,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.1129,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.1977,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.018545094394650612,
           "avgAbsOurError30": 0.02868167209984618,
           "avgAbsDelta30": -0.010136577705195566,
@@ -16405,8 +16861,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.1118,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.1977,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.013425094394650616,
           "avgAbsOurError30": 0.02868167209984618,
           "avgAbsDelta30": -0.015256577705195562,
@@ -16431,8 +16887,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.1118,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.1775,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.01553937809260405,
           "avgAbsOurError30": 0.02868167209984618,
           "avgAbsDelta30": -0.013142294007242128,
@@ -16632,6 +17088,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.399,
+            "providerPremiumRate": 0.0212,
+            "ourReportedPremiumRate": 0.02116788321167884,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -16706,6 +17174,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.399,
+            "providerPremiumRate": 0.0212,
+            "ourReportedPremiumRate": 0.02116788321167884,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -16775,6 +17255,18 @@
             "marketPrice": 1.376,
             "providerPremiumRate": 0.0044,
             "ourReportedPremiumRate": 0.0007272727272726875,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.399,
+            "providerPremiumRate": -0.0013,
+            "ourReportedPremiumRate": 0.02116788321167884,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -16981,8 +17473,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0007,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0212,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.011737300251518918,
           "avgAbsOurError30": 0.01645315755114025,
           "avgAbsDelta30": -0.004715857299621333,
@@ -16994,8 +17486,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0044,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0212,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.012065913390205026,
           "avgAbsOurError30": 0.01645315755114025,
           "avgAbsDelta30": -0.004387244160935225,
@@ -17020,8 +17512,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0044,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0013,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.00721748766958419,
           "avgAbsOurError30": 0.01645315755114025,
           "avgAbsDelta30": -0.009235669881556061,
@@ -17233,6 +17725,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.787,
+            "providerPremiumRate": -0.0143,
+            "ourReportedPremiumRate": -0.014340871483728646,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -17307,6 +17811,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.787,
+            "providerPremiumRate": -0.0143,
+            "ourReportedPremiumRate": -0.014340871483728646,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -17376,6 +17892,18 @@
             "marketPrice": 1.781,
             "providerPremiumRate": -0.0177,
             "ourReportedPremiumRate": 0.010783200908059065,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.787,
+            "providerPremiumRate": -0.0183,
+            "ourReportedPremiumRate": -0.014340871483728646,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -17609,8 +18137,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0108,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0143,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.04837331689369984,
           "avgAbsOurError30": 0.028201842644128727,
           "avgAbsDelta30": 0.020171474249571116,
@@ -17622,8 +18150,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0177,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0143,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03883331689369983,
           "avgAbsOurError30": 0.028201842644128727,
           "avgAbsDelta30": 0.010631474249571102,
@@ -17648,8 +18176,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0177,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0183,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.033273316893699834,
           "avgAbsOurError30": 0.028201842644128727,
           "avgAbsDelta30": 0.005071474249571106,
@@ -19394,6 +19922,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.371,
+            "providerPremiumRate": 0.4083,
+            "ourReportedPremiumRate": 0.4082917557614636,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -19468,6 +20008,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.371,
+            "providerPremiumRate": 0.408,
+            "ourReportedPremiumRate": 0.4082917557614636,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -19537,6 +20089,18 @@
             "marketPrice": 2.421,
             "providerPremiumRate": 0.425,
             "ourReportedPremiumRate": 0.4100174723354686,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.371,
+            "providerPremiumRate": 0.3591,
+            "ourReportedPremiumRate": 0.4082917557614636,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -19782,8 +20346,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.41,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.408,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.02867290241539101,
           "avgAbsOurError30": 0.06580560395748777,
           "avgAbsDelta30": -0.03713270154209676,
@@ -19795,8 +20359,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.41,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.4083,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.03179290241539101,
           "avgAbsOurError30": 0.06580560395748777,
           "avgAbsDelta30": -0.03401270154209676,
@@ -19821,8 +20385,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.425,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.3591,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.04719290241539102,
           "avgAbsOurError30": 0.06580560395748777,
           "avgAbsDelta30": -0.018612701542096752,
@@ -20910,6 +21474,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.294,
+            "providerPremiumRate": 0.055,
+            "ourReportedPremiumRate": 0.05495516210623119,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -20984,6 +21560,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.294,
+            "providerPremiumRate": 0.0552,
+            "ourReportedPremiumRate": 0.05495516210623119,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -21053,6 +21641,18 @@
             "marketPrice": 2.314,
             "providerPremiumRate": 0.0642,
             "ourReportedPremiumRate": 0.07743167109000337,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.294,
+            "providerPremiumRate": 0.1051,
+            "ourReportedPremiumRate": 0.05495516210623119,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -21259,8 +21859,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0774,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0552,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.018045510759903956,
           "avgAbsOurError30": 0.010836900610059041,
           "avgAbsDelta30": 0.007208610149844915,
@@ -21272,8 +21872,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0774,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.055,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.0111155849319642,
           "avgAbsOurError30": 0.010836900610059041,
           "avgAbsDelta30": 0.0002786843219051583,
@@ -21298,8 +21898,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0642,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.1051,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.013875584931964202,
           "avgAbsOurError30": 0.010836900610059041,
           "avgAbsDelta30": 0.0030386843219051603,
@@ -22033,6 +22633,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.861,
+            "providerPremiumRate": 0.0032,
+            "ourReportedPremiumRate": -0.023763311126265618,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-huabao": [
@@ -22107,6 +22719,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.861,
+            "providerPremiumRate": -0.0236,
+            "ourReportedPremiumRate": -0.023763311126265618,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-xiaobeiyangji": [
@@ -22176,6 +22800,18 @@
             "marketPrice": 1.883,
             "providerPremiumRate": -0.0122,
             "ourReportedPremiumRate": -0.0020668821877153354,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.861,
+            "providerPremiumRate": 0.0032,
+            "ourReportedPremiumRate": -0.023763311126265618,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -22296,8 +22932,8 @@
           "provider": "manual-huabao",
           "sourceUrl": "https://www.cnhbstock.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0122,
-          "hitCount60": 6,
+          "premiumRateCurrent": -0.0236,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.012436885284181567,
           "avgAbsOurError30": 0.012355537844858478,
           "avgAbsDelta30": 0.00008134743932308904,
@@ -22322,8 +22958,8 @@
           "provider": "manual-sina-finance",
           "sourceUrl": "https://finance.sina.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0122,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0032,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.013186196591527494,
           "avgAbsOurError30": 0.012355537844858478,
           "avgAbsDelta30": 0.0008306587466690163,
@@ -22348,8 +22984,8 @@
           "provider": "manual-xiaobeiyangji",
           "sourceUrl": "https://www.xiaobeiyangji.com/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0122,
-          "hitCount60": 6,
+          "premiumRateCurrent": 0.0032,
+          "hitCount60": 7,
           "avgAbsProviderError30": 0.013186196591527494,
           "avgAbsOurError30": 0.012355537844858478,
           "avgAbsDelta30": 0.0008306587466690163,

@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-03-27T20:42:22.263Z",
+  "syncedAt": "2026-03-27T21:21:23.664Z",
   "funds": [
     {
       "code": "160221",
@@ -22319,64 +22319,64 @@
           "name": "SPDR Gold Shares ETF",
           "marketValue": 71673069.32,
           "weight": 15.78,
-          "currentPrice": 400.64,
-          "changeRate": -0.03759398496240607
+          "currentPrice": 414.7,
+          "changeRate": 0.03509384984025554
         },
         {
           "ticker": "SGOL",
           "name": "Physical Gold Shares ETF",
           "marketValue": 71580570.45,
           "weight": 15.76,
-          "currentPrice": 41.57,
-          "changeRate": -0.03683966635773861
+          "currentPrice": 43,
+          "changeRate": 0.03439980755352412
         },
         {
           "ticker": "IAU",
           "name": "iShares Gold Trust",
           "marketValue": 70535480.11,
           "weight": 15.53,
-          "currentPrice": 82.09,
-          "changeRate": -0.03729330362378325
+          "currentPrice": 84.95,
+          "changeRate": 0.03483980996467295
         },
         {
           "ticker": "SWISSCANTO_GOLD",
           "name": "Swisscanto CH Gold ETF",
           "marketValue": 62920411.84,
           "weight": 13.85,
-          "currentPrice": 400.64,
-          "changeRate": -0.03759398496240607
+          "currentPrice": 414.7,
+          "changeRate": 0.03509384984025554
         },
         {
           "ticker": "ETF_SECURITIES_GOLD",
           "name": "ETF Securities Gold ETF",
           "marketValue": 61542937.42,
           "weight": 13.55,
-          "currentPrice": 400.64,
-          "changeRate": -0.03759398496240607
+          "currentPrice": 414.7,
+          "changeRate": 0.03509384984025554
         },
         {
           "ticker": "ISHARES_GOLD_CH",
           "name": "iShares Gold ETF CH",
           "marketValue": 38639826.4,
           "weight": 8.51,
-          "currentPrice": 400.64,
-          "changeRate": -0.03759398496240607
+          "currentPrice": 414.7,
+          "changeRate": 0.03509384984025554
         }
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9082,
-        "previousCloseRate": 6.9102,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "18:35:10",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "GLD",
           "name": "SPDR Gold Shares ETF",
-          "currentPrice": 400.64,
-          "previousClose": 416.29,
+          "currentPrice": 414.7,
+          "previousClose": 400.64,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:15",
           "currency": "USD"
@@ -22384,8 +22384,8 @@
         {
           "ticker": "SGOL",
           "name": "Physical Gold Shares ETF",
-          "currentPrice": 41.57,
-          "previousClose": 43.16,
+          "currentPrice": 43,
+          "previousClose": 41.57,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:15",
           "currency": "USD"
@@ -22393,8 +22393,8 @@
         {
           "ticker": "IAU",
           "name": "iShares Gold Trust",
-          "currentPrice": 82.09,
-          "previousClose": 85.27,
+          "currentPrice": 84.95,
+          "previousClose": 82.09,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:15",
           "currency": "USD"
@@ -22402,8 +22402,8 @@
         {
           "ticker": "SWISSCANTO_GOLD",
           "name": "Swisscanto CH Gold ETF",
-          "currentPrice": 400.64,
-          "previousClose": 416.29,
+          "currentPrice": 414.7,
+          "previousClose": 400.64,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:15",
           "currency": "CNY"
@@ -22411,8 +22411,8 @@
         {
           "ticker": "ETF_SECURITIES_GOLD",
           "name": "ETF Securities Gold ETF",
-          "currentPrice": 400.64,
-          "previousClose": 416.29,
+          "currentPrice": 414.7,
+          "previousClose": 400.64,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:15",
           "currency": "CNY"
@@ -22420,8 +22420,8 @@
         {
           "ticker": "ISHARES_GOLD_CH",
           "name": "iShares Gold ETF CH",
-          "currentPrice": 400.64,
-          "previousClose": 416.29,
+          "currentPrice": 414.7,
+          "previousClose": 400.64,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:15",
           "currency": "CNY"
@@ -22434,8 +22434,8 @@
         {
           "ticker": "GLD",
           "name": "SPDR Gold Shares",
-          "currentPrice": 412.6592,
-          "previousClose": 416.29,
+          "currentPrice": 427.141,
+          "previousClose": 400.64,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:15",
           "currency": "USD",
@@ -22454,7 +22454,7 @@
       ],
       "proxyQuoteDate": "2026-03-27",
       "proxyQuoteTime": "16:14:15",
-      "goldContinuousReturn": 0.010710737005607651,
+      "goldContinuousReturn": 0.026798542663636127,
       "goldContinuousSymbol": "hf_XAU",
       "goldContinuousSource": "sina-futures",
       "cacheMode": "intraday-cache-ttl"
@@ -24167,72 +24167,72 @@
           "name": "WisdomTree Brent Crude Oil ETF",
           "marketValue": 350741374.11,
           "weight": 19.68,
-          "currentPrice": 50.55,
-          "changeRate": 0.036497847037112896
+          "currentPrice": 52.7,
+          "changeRate": 0.042532146389713255
         },
         {
           "ticker": "WTI_ETC",
           "name": "WisdomTree WTI Crude Oil ETF",
           "marketValue": 349909359.24,
           "weight": 19.63,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "USO",
           "name": "United States Oil Fund LP",
           "marketValue": 346829594.44,
           "weight": 19.46,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "1699",
           "name": "NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF",
           "marketValue": 209044341.88,
           "weight": 11.73,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "SIMPLEX_WTI",
           "name": "Simplex WTI ETF",
           "marketValue": 188533540.55,
           "weight": 10.58,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "BNO",
           "name": "United States Brent Oil Fund LP",
           "marketValue": 138370525.63,
           "weight": 7.76,
-          "currentPrice": 50.55,
-          "changeRate": 0.036497847037112896
+          "currentPrice": 52.7,
+          "changeRate": 0.042532146389713255
         },
         {
           "ticker": "UBS_CMCI_OIL",
           "name": "UBS CMCI Oil SF ETF",
           "marketValue": 90181915.23,
           "weight": 5.06,
-          "currentPrice": 20.57,
-          "changeRate": 0.023383084577114355
+          "currentPrice": 20.72,
+          "changeRate": 0.007292173067574126
         }
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9082,
-        "previousCloseRate": 6.9102,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "18:35:10",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "BRENT_ETC",
           "name": "WisdomTree Brent Crude Oil ETF",
-          "currentPrice": 50.55,
-          "previousClose": 48.77,
+          "currentPrice": 52.7,
+          "previousClose": 50.55,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "CNY"
@@ -24240,8 +24240,8 @@
         {
           "ticker": "WTI_ETC",
           "name": "WisdomTree WTI Crude Oil ETF",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "CNY"
@@ -24249,8 +24249,8 @@
         {
           "ticker": "USO",
           "name": "United States Oil Fund LP",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "USD"
@@ -24258,8 +24258,8 @@
         {
           "ticker": "1699",
           "name": "NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "CNY"
@@ -24267,8 +24267,8 @@
         {
           "ticker": "SIMPLEX_WTI",
           "name": "Simplex WTI ETF",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "CNY"
@@ -24276,8 +24276,8 @@
         {
           "ticker": "BNO",
           "name": "United States Brent Oil Fund LP",
-          "currentPrice": 50.55,
-          "previousClose": 48.77,
+          "currentPrice": 52.7,
+          "previousClose": 50.55,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "USD"
@@ -24285,8 +24285,8 @@
         {
           "ticker": "UBS_CMCI_OIL",
           "name": "UBS CMCI Oil SF ETF",
-          "currentPrice": 20.57,
-          "previousClose": 20.1,
+          "currentPrice": 20.72,
+          "previousClose": 20.57,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "CNY"
@@ -24299,8 +24299,8 @@
         {
           "ticker": "USO",
           "name": "United States Oil Fund",
-          "currentPrice": 124.29560000000001,
-          "previousClose": 113.39,
+          "currentPrice": 131.65200000000002,
+          "previousClose": 117.26,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "USD",
@@ -24309,8 +24309,8 @@
         {
           "ticker": "XLE",
           "name": "Energy Select Sector SPDR",
-          "currentPrice": 65.2112,
-          "previousClose": 60.57,
+          "currentPrice": 66.31360000000001,
+          "previousClose": 61.52,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:27",
           "currency": "USD",
@@ -24319,7 +24319,7 @@
       ],
       "proxyQuoteDate": "2026-03-27",
       "proxyQuoteTime": "16:14:27",
-      "goldContinuousReturn": 0.020787468247247975,
+      "goldContinuousReturn": 0.07068162574089754,
       "goldContinuousSymbol": "hf_CL",
       "goldContinuousSource": "sina-futures",
       "cacheMode": "intraday-cache-ttl"
@@ -26032,40 +26032,40 @@
           "name": "WisdomTree WTI Crude Oil ETC",
           "marketValue": 89697930.48,
           "weight": 18.52,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "BRENT_ETC",
           "name": "WisdomTree Brent Crude Oil ETC",
           "marketValue": 88896974.05,
           "weight": 18.35,
-          "currentPrice": 50.55,
-          "changeRate": 0.036497847037112896
+          "currentPrice": 52.7,
+          "changeRate": 0.042532146389713255
         },
         {
           "ticker": "DBO",
           "name": "Invesco DB Oil Fund ETF",
           "marketValue": 85079755.35,
           "weight": 17.57,
-          "currentPrice": 20.57,
-          "changeRate": 0.023383084577114355
+          "currentPrice": 20.72,
+          "changeRate": 0.007292173067574126
         },
         {
           "ticker": "SIMPLEX_WTI",
           "name": "Simplex WTI ETF",
           "marketValue": 79972974.92,
           "weight": 16.51,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "1699",
           "name": "NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF",
           "marketValue": 78052939.21,
           "weight": 16.11,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "03175",
@@ -26078,18 +26078,18 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9082,
-        "previousCloseRate": 6.9102,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "18:35:10",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "WTI_ETC",
           "name": "WisdomTree WTI Crude Oil ETC",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:06",
           "currency": "CNY"
@@ -26097,8 +26097,8 @@
         {
           "ticker": "BRENT_ETC",
           "name": "WisdomTree Brent Crude Oil ETC",
-          "currentPrice": 50.55,
-          "previousClose": 48.77,
+          "currentPrice": 52.7,
+          "previousClose": 50.55,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:06",
           "currency": "CNY"
@@ -26106,8 +26106,8 @@
         {
           "ticker": "DBO",
           "name": "Invesco DB Oil Fund ETF",
-          "currentPrice": 20.57,
-          "previousClose": 20.1,
+          "currentPrice": 20.72,
+          "previousClose": 20.57,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:06",
           "currency": "USD"
@@ -26115,8 +26115,8 @@
         {
           "ticker": "SIMPLEX_WTI",
           "name": "Simplex WTI ETF",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:06",
           "currency": "CNY"
@@ -26124,8 +26124,8 @@
         {
           "ticker": "1699",
           "name": "NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:06",
           "currency": "CNY"
@@ -26147,8 +26147,8 @@
         {
           "ticker": "USO",
           "name": "United States Oil Fund",
-          "currentPrice": 124.29560000000001,
-          "previousClose": 113.39,
+          "currentPrice": 131.65200000000002,
+          "previousClose": 117.26,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:06",
           "currency": "USD",
@@ -26157,8 +26157,8 @@
         {
           "ticker": "XLE",
           "name": "Energy Select Sector SPDR",
-          "currentPrice": 65.2112,
-          "previousClose": 60.57,
+          "currentPrice": 66.31360000000001,
+          "previousClose": 61.52,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:06",
           "currency": "USD",
@@ -26167,7 +26167,7 @@
       ],
       "proxyQuoteDate": "2026-03-27",
       "proxyQuoteTime": "16:14:06",
-      "goldContinuousReturn": 0.020787468247247975,
+      "goldContinuousReturn": 0.07068162574089754,
       "goldContinuousSymbol": "hf_CL",
       "goldContinuousSource": "sina-futures",
       "cacheMode": "intraday-cache-ttl"
@@ -27878,8 +27878,8 @@
         {
           "ticker": "COP",
           "name": "康菲石油",
-          "currentPrice": 133.25,
-          "changeRate": 0.03350655394400048,
+          "currentPrice": 133.8,
+          "changeRate": 0.004127579737335907,
           "weight": 17.42,
           "shares": 29.44,
           "marketValue": 19372.76
@@ -27887,8 +27887,8 @@
         {
           "ticker": "EOG",
           "name": "EOG能源",
-          "currentPrice": 147.49,
-          "changeRate": 0.02988618113260255,
+          "currentPrice": 149.56,
+          "changeRate": 0.014034849820326656,
           "weight": 8.53,
           "shares": 12.85,
           "marketValue": 9484.88
@@ -27896,8 +27896,8 @@
         {
           "ticker": "PSX",
           "name": "Phillips 66",
-          "currentPrice": 184.01,
-          "changeRate": 0.015003585415632514,
+          "currentPrice": 188.28,
+          "changeRate": 0.0232052605836639,
           "weight": 7.77,
           "shares": 9.52,
           "marketValue": 8636.15
@@ -27905,8 +27905,8 @@
         {
           "ticker": "MPC",
           "name": "马拉松原油",
-          "currentPrice": 248.31,
-          "changeRate": 0.029264248704663265,
+          "currentPrice": 251.91,
+          "changeRate": 0.014498006524102935,
           "weight": 5.86,
           "shares": 5.7,
           "marketValue": 6521.01
@@ -27914,8 +27914,8 @@
         {
           "ticker": "DVN",
           "name": "戴文能源",
-          "currentPrice": 51.35,
-          "changeRate": 0.018647093830589156,
+          "currentPrice": 52.07,
+          "changeRate": 0.014021421616358332,
           "weight": 4.09,
           "shares": 17.68,
           "marketValue": 4551.83
@@ -27923,8 +27923,8 @@
         {
           "ticker": "FANG",
           "name": "Diamondback Energy Inc",
-          "currentPrice": 202.19,
-          "changeRate": 0.03147637996122832,
+          "currentPrice": 201.84,
+          "changeRate": -0.0017310450566299096,
           "weight": 4.03,
           "shares": 4.24,
           "marketValue": 4478.25
@@ -27932,8 +27932,8 @@
         {
           "ticker": "EXE",
           "name": "Expand Energy Corp",
-          "currentPrice": 111.05,
-          "changeRate": -0.0251931179775281,
+          "currentPrice": 113.5,
+          "changeRate": 0.022062134173795656,
           "weight": 4,
           "shares": 5.73,
           "marketValue": 4445.14
@@ -27941,8 +27941,8 @@
         {
           "ticker": "EQT",
           "name": "EQT能源",
-          "currentPrice": 66.86,
-          "changeRate": -0.01575150890622712,
+          "currentPrice": 67.55,
+          "changeRate": 0.01032007179180372,
           "weight": 3.95,
           "shares": 11.67,
           "marketValue": 4398.29
@@ -27950,8 +27950,8 @@
         {
           "ticker": "VLO",
           "name": "瓦莱罗能源",
-          "currentPrice": 248.14,
-          "changeRate": 0.05798584463204559,
+          "currentPrice": 254.32,
+          "changeRate": 0.02490529539775932,
           "weight": 3.88,
           "shares": 3.77,
           "marketValue": 4317.14
@@ -27959,8 +27959,8 @@
         {
           "ticker": "CTRA",
           "name": "Coterra Energy Inc",
-          "currentPrice": 35.79,
-          "changeRate": 0.017339397384877664,
+          "currentPrice": 36.31,
+          "changeRate": 0.014529198100027951,
           "weight": 3.74,
           "shares": 22.47,
           "marketValue": 4157.22
@@ -27968,18 +27968,18 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9102,
-        "previousCloseRate": 6.9118,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "19:32:16",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "COP",
           "name": "康菲石油",
-          "currentPrice": 133.25,
-          "previousClose": 128.93,
+          "currentPrice": 133.8,
+          "previousClose": 133.25,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -27987,8 +27987,8 @@
         {
           "ticker": "EOG",
           "name": "EOG能源",
-          "currentPrice": 147.49,
-          "previousClose": 143.21,
+          "currentPrice": 149.56,
+          "previousClose": 147.49000000000004,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -27996,8 +27996,8 @@
         {
           "ticker": "PSX",
           "name": "Phillips 66",
-          "currentPrice": 184.01,
-          "previousClose": 181.28999999999996,
+          "currentPrice": 188.28,
+          "previousClose": 184.01000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28005,8 +28005,8 @@
         {
           "ticker": "MPC",
           "name": "马拉松原油",
-          "currentPrice": 248.31,
-          "previousClose": 241.25,
+          "currentPrice": 251.91,
+          "previousClose": 248.31,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28014,8 +28014,8 @@
         {
           "ticker": "DVN",
           "name": "戴文能源",
-          "currentPrice": 51.35,
-          "previousClose": 50.410000000000004,
+          "currentPrice": 52.07,
+          "previousClose": 51.35,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28023,8 +28023,8 @@
         {
           "ticker": "FANG",
           "name": "Diamondback Energy Inc",
-          "currentPrice": 202.19,
-          "previousClose": 196.02,
+          "currentPrice": 201.84,
+          "previousClose": 202.19,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28032,8 +28032,8 @@
         {
           "ticker": "EXE",
           "name": "Expand Energy Corp",
-          "currentPrice": 111.05,
-          "previousClose": 113.92,
+          "currentPrice": 113.5,
+          "previousClose": 111.05,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28041,8 +28041,8 @@
         {
           "ticker": "EQT",
           "name": "EQT能源",
-          "currentPrice": 66.86,
-          "previousClose": 67.93,
+          "currentPrice": 67.55,
+          "previousClose": 66.86,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28050,8 +28050,8 @@
         {
           "ticker": "VLO",
           "name": "瓦莱罗能源",
-          "currentPrice": 248.14,
-          "previousClose": 234.54000000000002,
+          "currentPrice": 254.32,
+          "previousClose": 248.14,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28059,8 +28059,8 @@
         {
           "ticker": "CTRA",
           "name": "Coterra Energy Inc",
-          "currentPrice": 35.79,
-          "previousClose": 35.18,
+          "currentPrice": 36.31,
+          "previousClose": 35.79,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD"
@@ -28073,8 +28073,8 @@
         {
           "ticker": "XOP",
           "name": "SPDR S&P Oil & Gas E&P ETF",
-          "currentPrice": 196.4392,
-          "previousClose": 181.62,
+          "currentPrice": 199.47080000000003,
+          "previousClose": 185.32,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD",
@@ -28083,8 +28083,8 @@
         {
           "ticker": "XLE",
           "name": "Energy Select Sector SPDR",
-          "currentPrice": 65.2112,
-          "previousClose": 60.57,
+          "currentPrice": 66.31360000000001,
+          "previousClose": 61.52,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:00",
           "currency": "USD",
@@ -29806,72 +29806,72 @@
           "name": "United States Oil Fund LP",
           "marketValue": 78416154.08,
           "weight": 17.22,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "WTI_ETC",
           "name": "WisdomTree WTI Crude Oil",
           "marketValue": 77051291.3,
           "weight": 16.92,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "SIMPLEX_WTI",
           "name": "Simplex WTI ETF",
           "marketValue": 68455147.2,
           "weight": 15.03,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "BRENT_ETC",
           "name": "WisdomTree Brent Crude Oil",
           "marketValue": 67801814.05,
           "weight": 14.89,
-          "currentPrice": 50.55,
-          "changeRate": 0.036497847037112896
+          "currentPrice": 52.7,
+          "changeRate": 0.042532146389713255
         },
         {
           "ticker": "BNO",
           "name": "Brent Oil Fund LP",
           "marketValue": 67119961.27,
           "weight": 14.74,
-          "currentPrice": 50.55,
-          "changeRate": 0.036497847037112896
+          "currentPrice": 52.7,
+          "changeRate": 0.042532146389713255
         },
         {
           "ticker": "1699",
           "name": "NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF",
           "marketValue": 65062509.79,
           "weight": 14.29,
-          "currentPrice": 117.26,
-          "changeRate": 0.03412999382661619
+          "currentPrice": 124.2,
+          "changeRate": 0.05918471772130296
         },
         {
           "ticker": "BRENT_BBG_ETC",
           "name": "WisdomTree Bloomberg Brent Crude Oil",
           "marketValue": 1122831.47,
           "weight": 0.25,
-          "currentPrice": 50.55,
-          "changeRate": 0.036497847037112896
+          "currentPrice": 52.7,
+          "changeRate": 0.042532146389713255
         }
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9102,
-        "previousCloseRate": 6.9118,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "19:32:16",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "USO",
           "name": "United States Oil Fund LP",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "USD"
@@ -29879,8 +29879,8 @@
         {
           "ticker": "WTI_ETC",
           "name": "WisdomTree WTI Crude Oil",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "CNY"
@@ -29888,8 +29888,8 @@
         {
           "ticker": "SIMPLEX_WTI",
           "name": "Simplex WTI ETF",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "CNY"
@@ -29897,8 +29897,8 @@
         {
           "ticker": "BRENT_ETC",
           "name": "WisdomTree Brent Crude Oil",
-          "currentPrice": 50.55,
-          "previousClose": 48.77,
+          "currentPrice": 52.7,
+          "previousClose": 50.55,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "CNY"
@@ -29906,8 +29906,8 @@
         {
           "ticker": "BNO",
           "name": "Brent Oil Fund LP",
-          "currentPrice": 50.55,
-          "previousClose": 48.77,
+          "currentPrice": 52.7,
+          "previousClose": 50.55,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "USD"
@@ -29915,8 +29915,8 @@
         {
           "ticker": "1699",
           "name": "NEXT FUNDS NOMURA Crude Oil Long Index Linked ETF",
-          "currentPrice": 117.26,
-          "previousClose": 113.39,
+          "currentPrice": 124.2,
+          "previousClose": 117.26000000000002,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "CNY"
@@ -29924,8 +29924,8 @@
         {
           "ticker": "BRENT_BBG_ETC",
           "name": "WisdomTree Bloomberg Brent Crude Oil",
-          "currentPrice": 50.55,
-          "previousClose": 48.77,
+          "currentPrice": 52.7,
+          "previousClose": 50.55,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "CNY"
@@ -29938,8 +29938,8 @@
         {
           "ticker": "USO",
           "name": "United States Oil Fund",
-          "currentPrice": 124.29560000000001,
-          "previousClose": 113.39,
+          "currentPrice": 131.65200000000002,
+          "previousClose": 117.26,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "USD",
@@ -29948,8 +29948,8 @@
         {
           "ticker": "XLE",
           "name": "Energy Select Sector SPDR",
-          "currentPrice": 65.2112,
-          "previousClose": 60.57,
+          "currentPrice": 66.31360000000001,
+          "previousClose": 61.52,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:24",
           "currency": "USD",
@@ -29958,7 +29958,7 @@
       ],
       "proxyQuoteDate": "2026-03-27",
       "proxyQuoteTime": "16:14:24",
-      "goldContinuousReturn": 0.02179297205757824,
+      "goldContinuousReturn": 0.07068162574089754,
       "goldContinuousSymbol": "hf_CL",
       "goldContinuousSource": "sina-futures",
       "cacheMode": "intraday-cache-ttl"
@@ -31669,8 +31669,8 @@
         {
           "ticker": "VG",
           "name": "Venture Global Inc-A",
-          "currentPrice": 16.82,
-          "changeRate": 0.006582884500299091,
+          "currentPrice": 17.53,
+          "changeRate": 0.04221165279429262,
           "weight": 2.91,
           "shares": 130.18,
           "marketValue": 6240.25
@@ -31678,8 +31678,8 @@
         {
           "ticker": "XOM",
           "name": "埃克森美孚",
-          "currentPrice": 165.43,
-          "changeRate": 0.01329168197966446,
+          "currentPrice": 170.99,
+          "changeRate": 0.03360938161155769,
           "weight": 2.61,
           "shares": 6.61,
           "marketValue": 5591.21
@@ -31687,8 +31687,8 @@
         {
           "ticker": "CVX",
           "name": "雪佛龙",
-          "currentPrice": 207.79,
-          "changeRate": 0.012868632707774719,
+          "currentPrice": 211.15,
+          "changeRate": 0.016170171808075562,
           "weight": 2.61,
           "shares": 5.22,
           "marketValue": 5590.69
@@ -31696,8 +31696,8 @@
         {
           "ticker": "GPOR",
           "name": "格尔夫波特能源",
-          "currentPrice": 214.75,
-          "changeRate": 0.008405334335086279,
+          "currentPrice": 216.42,
+          "changeRate": 0.007776484284051088,
           "weight": 2.6,
           "shares": 3.82,
           "marketValue": 5580.88
@@ -31705,8 +31705,8 @@
         {
           "ticker": "OXY",
           "name": "西方石油",
-          "currentPrice": 64.36,
-          "changeRate": 0.040582053354890846,
+          "currentPrice": 65.32,
+          "changeRate": 0.014916096954630031,
           "weight": 2.55,
           "shares": 18.93,
           "marketValue": 5470.19
@@ -31714,8 +31714,8 @@
         {
           "ticker": "CTRA",
           "name": "Coterra Energy Inc",
-          "currentPrice": 35.79,
-          "changeRate": 0.017339397384877664,
+          "currentPrice": 36.31,
+          "changeRate": 0.014529198100027951,
           "weight": 2.52,
           "shares": 29.24,
           "marketValue": 5410.12
@@ -31723,8 +31723,8 @@
         {
           "ticker": "COP",
           "name": "康菲石油",
-          "currentPrice": 133.25,
-          "changeRate": 0.03350655394400048,
+          "currentPrice": 133.8,
+          "changeRate": 0.004127579737335907,
           "weight": 2.51,
           "shares": 8.16,
           "marketValue": 5370.98
@@ -31732,8 +31732,8 @@
         {
           "ticker": "TPL",
           "name": "Texas Pacific Land Corp",
-          "currentPrice": 522.28,
-          "changeRate": -0.015234934761294339,
+          "currentPrice": 511.75,
+          "changeRate": -0.020161599142222486,
           "weight": 2.5,
           "shares": 2.66,
           "marketValue": 5362.17
@@ -31741,8 +31741,8 @@
         {
           "ticker": "DVN",
           "name": "戴文能源",
-          "currentPrice": 51.35,
-          "changeRate": 0.018647093830589156,
+          "currentPrice": 52.07,
+          "changeRate": 0.014021421616358332,
           "weight": 2.47,
           "shares": 20.57,
           "marketValue": 5296.62
@@ -31750,8 +31750,8 @@
         {
           "ticker": "MGY",
           "name": "Magnolia Oil & Gas Corp-A",
-          "currentPrice": 31.86,
-          "changeRate": 0.013358778625954137,
+          "currentPrice": 32.36,
+          "changeRate": 0.015693659761456313,
           "weight": 2.47,
           "shares": 34.37,
           "marketValue": 5288.26
@@ -31759,18 +31759,18 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9102,
-        "previousCloseRate": 6.9118,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "19:32:16",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
         {
           "ticker": "VG",
           "name": "Venture Global Inc-A",
-          "currentPrice": 16.82,
-          "previousClose": 16.71,
+          "currentPrice": 17.53,
+          "previousClose": 16.82,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31778,8 +31778,8 @@
         {
           "ticker": "XOM",
           "name": "埃克森美孚",
-          "currentPrice": 165.43,
-          "previousClose": 163.26,
+          "currentPrice": 170.99,
+          "previousClose": 165.43,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31787,8 +31787,8 @@
         {
           "ticker": "CVX",
           "name": "雪佛龙",
-          "currentPrice": 207.79,
-          "previousClose": 205.15,
+          "currentPrice": 211.15,
+          "previousClose": 207.79,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31796,8 +31796,8 @@
         {
           "ticker": "GPOR",
           "name": "格尔夫波特能源",
-          "currentPrice": 214.75,
-          "previousClose": 212.96000000000004,
+          "currentPrice": 216.42,
+          "previousClose": 214.75000000000003,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31805,8 +31805,8 @@
         {
           "ticker": "OXY",
           "name": "西方石油",
-          "currentPrice": 64.36,
-          "previousClose": 61.85,
+          "currentPrice": 65.32,
+          "previousClose": 64.36,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31814,8 +31814,8 @@
         {
           "ticker": "CTRA",
           "name": "Coterra Energy Inc",
-          "currentPrice": 35.79,
-          "previousClose": 35.18,
+          "currentPrice": 36.31,
+          "previousClose": 35.79,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31823,8 +31823,8 @@
         {
           "ticker": "COP",
           "name": "康菲石油",
-          "currentPrice": 133.25,
-          "previousClose": 128.93,
+          "currentPrice": 133.8,
+          "previousClose": 133.25,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31832,8 +31832,8 @@
         {
           "ticker": "TPL",
           "name": "Texas Pacific Land Corp",
-          "currentPrice": 522.28,
-          "previousClose": 530.36,
+          "currentPrice": 511.75,
+          "previousClose": 522.28,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31841,8 +31841,8 @@
         {
           "ticker": "DVN",
           "name": "戴文能源",
-          "currentPrice": 51.35,
-          "previousClose": 50.410000000000004,
+          "currentPrice": 52.07,
+          "previousClose": 51.35,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31850,8 +31850,8 @@
         {
           "ticker": "MGY",
           "name": "Magnolia Oil & Gas Corp-A",
-          "currentPrice": 31.86,
-          "previousClose": 31.44,
+          "currentPrice": 32.36,
+          "previousClose": 31.860000000000003,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD"
@@ -31864,8 +31864,8 @@
         {
           "ticker": "XOP",
           "name": "SPDR S&P Oil & Gas E&P ETF",
-          "currentPrice": 196.4392,
-          "previousClose": 181.62,
+          "currentPrice": 199.47080000000003,
+          "previousClose": 185.32,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD",
@@ -31874,8 +31874,8 @@
         {
           "ticker": "XLE",
           "name": "Energy Select Sector SPDR",
-          "currentPrice": 65.2112,
-          "previousClose": 60.57,
+          "currentPrice": 66.31360000000001,
+          "previousClose": 61.52,
           "quoteDate": "2026-03-27",
           "quoteTime": "16:14:48",
           "currency": "USD",
@@ -118497,19 +118497,19 @@
           },
           {
             "estimateDate": "2026-03-27",
-            "estimatedNav": 1.997650508647445,
+            "estimatedNav": 2.140476161699634,
             "marketPrice": 2.026,
-            "premiumRate": 0.014191416982017202,
+            "premiumRate": -0.05348163354864699,
             "marketPriceDate": "2026-03-27",
             "marketPriceTime": "16:14:15",
             "marketPriceType": "intraday",
             "anchorNav": 2.067,
-            "leadReturn": -0.030692830036612242,
-            "closeGapReturn": -0.000289427223524652,
-            "impliedReturn": -0.033550794074772655,
+            "leadReturn": 0.03185764811516888,
+            "closeGapReturn": -0.000144673832843778,
+            "impliedReturn": 0.03554724804046152,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-27T10:36:17.304Z"
+            "createdAt": "2026-03-27T21:21:21.561Z"
           }
         ],
         "errors": [
@@ -118850,19 +118850,19 @@
           },
           {
             "estimateDate": "2026-03-27",
-            "estimatedNav": 1.9790199818145509,
+            "estimatedNav": 2.0596388368969,
             "marketPrice": 2.66,
-            "premiumRate": 0.3440996172060189,
+            "premiumRate": 0.29148856214403995,
             "marketPriceDate": "2026-03-27",
             "marketPriceTime": "16:14:24",
             "marketPriceType": "intraday",
             "anchorNav": 1.9542,
-            "leadReturn": 0.02,
-            "closeGapReturn": -0.00023148817963491997,
-            "impliedReturn": 0.012700840146633283,
+            "leadReturn": 0.05385389672936059,
+            "closeGapReturn": -0.000144673832843778,
+            "impliedReturn": 0.05395498766600146,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-27T11:33:33.624Z"
+            "createdAt": "2026-03-27T21:21:23.448Z"
           }
         ],
         "errors": [
@@ -121403,19 +121403,19 @@
           },
           {
             "estimateDate": "2026-03-27",
-            "estimatedNav": 1.63972384112993,
+            "estimatedNav": 1.669123314375454,
             "marketPrice": 2.26,
-            "premiumRate": 0.37828086858982246,
+            "premiumRate": 0.35400421319118514,
             "marketPriceDate": "2026-03-27",
             "marketPriceTime": "16:14:06",
             "marketPriceType": "intraday",
             "anchorNav": 1.6067,
-            "leadReturn": 0.0315230112699592,
-            "closeGapReturn": -0.000289427223524652,
-            "impliedReturn": 0.02055383153664657,
+            "leadReturn": 0.04347936671156166,
+            "closeGapReturn": -0.000144673832843778,
+            "impliedReturn": 0.03885187924033989,
             "adaptiveUsed": true,
-            "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T10:36:18.248Z"
+            "adaptiveShockTriggered": true,
+            "createdAt": "2026-03-27T21:21:22.820Z"
           }
         ],
         "errors": [
@@ -123258,19 +123258,19 @@
           },
           {
             "estimateDate": "2026-03-27",
-            "estimatedNav": 0.9863574182932833,
+            "estimatedNav": 0.9863319121925461,
             "marketPrice": 1.038,
-            "premiumRate": 0.05235686450868404,
+            "premiumRate": 0.05238407798506639,
             "marketPriceDate": "2026-03-27",
             "marketPriceTime": "16:14:48",
             "marketPriceType": "intraday",
             "anchorNav": 0.9714,
-            "leadReturn": 0.014816956133205503,
-            "closeGapReturn": -0.00023148817963491997,
-            "impliedReturn": 0.015397795237063298,
+            "leadReturn": 0.014795398366209842,
+            "closeGapReturn": -0.000144673832843778,
+            "impliedReturn": 0.015371538184626436,
             "adaptiveUsed": true,
             "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-27T11:33:33.811Z"
+            "createdAt": "2026-03-27T21:21:23.657Z"
           }
         ],
         "errors": [
@@ -123888,19 +123888,19 @@
           },
           {
             "estimateDate": "2026-03-27",
-            "estimatedNav": 2.96469084672,
+            "estimatedNav": 2.934863763979731,
             "marketPrice": 3.484,
-            "premiumRate": 0.17516469005682,
+            "premiumRate": 0.18710791375052782,
             "marketPriceDate": "2026-03-27",
             "marketPriceTime": "16:14:00",
             "marketPriceType": "intraday",
             "anchorNav": 2.9088,
-            "leadReturn": 0.02,
-            "closeGapReturn": -0.00023148817963491997,
-            "impliedReturn": 0.019214400000000003,
+            "leadReturn": 0.012442531548933057,
+            "closeGapReturn": -0.000144673832843778,
+            "impliedReturn": 0.008960314899522457,
             "adaptiveUsed": true,
-            "adaptiveShockTriggered": true,
-            "createdAt": "2026-03-27T11:33:33.254Z"
+            "adaptiveShockTriggered": false,
+            "createdAt": "2026-03-27T21:21:23.030Z"
           }
         ],
         "errors": [
@@ -126351,19 +126351,19 @@
           },
           {
             "estimateDate": "2026-03-27",
-            "estimatedNav": 1.6888990761415266,
+            "estimatedNav": 1.7699440180792292,
             "marketPrice": 2.371,
-            "premiumRate": 0.40387311088878497,
+            "premiumRate": 0.3395903914368128,
             "marketPriceDate": "2026-03-27",
             "marketPriceTime": "16:14:27",
             "marketPriceType": "intraday",
             "anchorNav": 1.6836,
-            "leadReturn": 0.02,
-            "closeGapReturn": -0.000289427223524652,
-            "impliedReturn": 0.003147467415969744,
+            "leadReturn": 0.05152206773954907,
+            "closeGapReturn": -0.000144673832843778,
+            "impliedReturn": 0.05128535167452449,
             "adaptiveUsed": true,
-            "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T10:36:17.620Z"
+            "adaptiveShockTriggered": true,
+            "createdAt": "2026-03-27T21:21:21.983Z"
           }
         ],
         "errors": [

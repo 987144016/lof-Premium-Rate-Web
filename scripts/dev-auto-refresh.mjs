@@ -223,6 +223,7 @@ async function syncOnce(options = {}) {
   }
 
   const batchSizeOverride = options.batchSizeOverride;
+  const skipPush = options.skipPush || false;
   const env = { ...process.env };
   if (batchSizeOverride) {
     env.SYNC_BATCH_SIZE = String(batchSizeOverride);
@@ -242,6 +243,11 @@ async function syncOnce(options = {}) {
         cfSyncCounter = 0;
       }
       writeCfSyncCounter(cfSyncCounter);
+    }
+
+    // 同步完立即 push，不等定时器
+    if (!skipPush) {
+      void pushRuntimeUpdate();
     }
 
     return true;
@@ -303,10 +309,11 @@ async function main() {
   };
 
   const scheduleRegularPush = () => {
+    // push 现在由每次 syncOnce 完成后立即触发，这里只作为兜底保留
     if (!gitPushReady) return;
     gitTimer = setTimeout(function runRegularPush() {
       void pushRuntimeUpdate().finally(() => scheduleRegularPush());
-    }, GIT_PUSH_INTERVAL);
+    }, GIT_PUSH_INTERVAL * 3); // 兜底：15分钟检查一次，防止漏推
   };
 
   const scheduleBootstrapPush = () => {
@@ -333,11 +340,10 @@ async function main() {
   const runBackgroundFullSync = async () => {
     if (ENABLE_STARTUP_FULL_SYNC) {
       process.stdout.write(`[auto-refresh] background full sync started, SYNC_BATCH_SIZE=${STARTUP_SYNC_BATCH_SIZE}\n`);
-      await syncOnce({ batchSizeOverride: STARTUP_SYNC_BATCH_SIZE });
+      await syncOnce({ batchSizeOverride: STARTUP_SYNC_BATCH_SIZE, skipPush: true });
       process.stdout.write('[auto-refresh] background full sync done.\n');
     } else {
-      // 不做全量，直接跑一次普通同步
-      await syncOnce();
+      await syncOnce({ skipPush: true });
     }
     await tryBootstrapPush();
     startRegularSyncLoop();

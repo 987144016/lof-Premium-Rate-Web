@@ -384,15 +384,16 @@ async function handleSyncRequest(request, env, db) {
     const url = new URL(request.url);
     const force = url.searchParams.get('force') === 'true';
     const mode = String(url.searchParams.get('mode') || '').trim();
-    const useEngineSync = mode === 'engine';
+    const useSourceSync = mode === 'source';
+    const batchSize = Number.parseInt(String(url.searchParams.get('batchSize') || ''), 10);
 
     let result;
-    if (useEngineSync) {
-      // 使用 Worker 自主抓取引擎（适合小规模补抓）
-      result = await syncAllFunds(db, { force });
-    } else {
+    if (useSourceSync) {
       // 默认使用全量 runtime 源同步（覆盖所有基金与详情字段）
       result = await syncRuntimeFromSource(db, env, { force });
+    } else {
+      // 默认使用 Worker 自主抓取引擎（完全独立自主）
+      result = await syncAllFunds(db, { force, batchSize: Number.isFinite(batchSize) ? batchSize : undefined });
     }
 
     return json(result);
@@ -449,8 +450,6 @@ export default {
     if (request.method !== 'GET') return json({ ok: false, error: 'Method Not Allowed' }, 405);
 
     if (url.pathname === '/api/runtime/all') {
-      // 读接口前尝试按最小间隔自动对齐全量 runtime（不会高频重复抓）
-      await syncRuntimeFromSource(db, env, { force: false });
       const latest = await getLatestSyncedAt(db);
       const result = await db.prepare('SELECT code, runtime_json FROM latest_fund_runtime ORDER BY code').all();
       const funds = (result?.results || []).map(parseRuntimeRow).filter((item) => item && item.code);
@@ -495,12 +494,12 @@ export default {
     ctx.waitUntil(
       (async () => {
         try {
-          // Cron 触发时优先全量源同步，保证基金覆盖与详情字段完整
-          const result = await syncRuntimeFromSource(env.RUNTIME_DB, env, { force: false });
+          // Cron 触发分批轮巡同步，保持完全独立自主更新
+          const result = await syncAllFunds(env.RUNTIME_DB, { force: false, batchSize: 12 });
           if (result.ok) {
-            console.log('[Scheduled] Runtime source sync completed:', result);
+            console.log('[Scheduled] Sync engine batch completed:', result);
           } else {
-            console.error('[Scheduled] Runtime source sync failed:', result.error);
+            console.error('[Scheduled] Sync engine batch failed:', result.error);
           }
         } catch (error) {
           console.error('[Scheduled] Sync error:', error);

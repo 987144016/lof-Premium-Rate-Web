@@ -66,3 +66,9 @@ CREATE TABLE IF NOT EXISTS premium_compare_cache (
   payload_json TEXT NOT NULL,
   updated_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS sync_engine_cursor (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  next_index INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL
+);

@@ -60,6 +60,13 @@ CREATE TABLE IF NOT EXISTS premium_compare_cache (
   updated_at TEXT NOT NULL
 );
 
+-- 自主同步引擎游标（分批轮巡全基金）
+CREATE TABLE IF NOT EXISTS sync_engine_cursor (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  next_index INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL
+);
+
 -- 创建索引以优化查询
 CREATE INDEX IF NOT EXISTS idx_runtime_runs_synced_at ON runtime_runs(synced_at DESC);
 CREATE INDEX IF NOT EXISTS idx_latest_fund_runtime_code ON latest_fund_runtime(code);

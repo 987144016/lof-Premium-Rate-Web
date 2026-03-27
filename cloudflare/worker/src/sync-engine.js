@@ -3,20 +3,54 @@
  * 腾讯行情(qt.gtimg.cn) + 新浪汇率 + 天天基金净值
  */
 
-const FUND_CATALOG = {
-  '160723': { name: '嘉实原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sh' },
-  '501018': { name: '南方原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sh' },
-  '161129': { name: '易方达原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sz' },
-  '160416': { name: '华安石油', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'], sinaPrefix: 'sh' },
-  '162719': { name: '广发道琼斯石油', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'], sinaPrefix: 'sz' },
-  '162411': { name: '华宝油气', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'], sinaPrefix: 'sz' },
-  '163208': { name: '诺安油气', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XLE', 'SLB'], sinaPrefix: 'sz' },
-  '160216': { name: '国泰黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'], sinaPrefix: 'sh' },
-  '160719': { name: '嘉实黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'], sinaPrefix: 'sh' },
-  '161116': { name: '易方达黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'UGL'], sinaPrefix: 'sz' },
-  '164701': { name: '汇添富黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'], sinaPrefix: 'sz' },
-  '159518': { name: '华夏原油', benchmark: '原油', type: 'qdii-etf', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sz' },
+import rawFundCatalog from '../../../src/data/fundCatalog.json';
+import shortNames from '../../../src/data/fund-short-names.json';
+
+const PROXY_BASKET_META = {
+  'us-oil': { benchmark: '原油', tickers: ['USO', 'BNO'] },
+  'us-oil-upstream': { benchmark: '油气', tickers: ['XOP', 'XLE'] },
+  'us-gold': { benchmark: '黄金', tickers: ['GLD', 'IAU'] },
+  'us-precious-metals': { benchmark: '黄金', tickers: ['GLD', 'IAU'] },
+  'us-commodities': { benchmark: '商品', tickers: ['DBC', 'GSG'] },
+  'us-semiconductor': { benchmark: '半导体', tickers: ['SOXX', 'SMH'] },
+  'us-sp-info-tech': { benchmark: '美股科技', tickers: ['XLK', 'QQQ'] },
+  'us-sandp500': { benchmark: '标普500', tickers: ['SPY', 'IVV'] },
+  'us-nasdaq100': { benchmark: '纳斯达克100', tickers: ['QQQ', 'TQQQ'] },
+  'us-overseas-tech': { benchmark: '海外科技', tickers: ['QQQ', 'XLK'] },
+  'us-silver': { benchmark: '白银', tickers: ['SLV', 'SIVR'] },
+  'us-agriculture': { benchmark: '农业', tickers: ['DBA', 'MOO'] },
+  'japan-nikkei225': { benchmark: '日经225', tickers: ['EWJ', 'DXJ'] },
+  'cn-kr-semiconductor': { benchmark: '半导体', tickers: ['SOXX', 'SMH'] },
+  'cn-coal': { benchmark: '煤炭', tickers: ['KOL', 'XLE'] },
+  'cn-csi500': { benchmark: '中证500', tickers: ['510500', '159922'] },
+  'cn-hs300': { benchmark: '沪深300', tickers: ['510300', '159919'] },
+  'cn-giant100': { benchmark: '巨头100', tickers: ['MCHI', 'FXI'] },
+  'cn-csi1000': { benchmark: '中证1000', tickers: ['159845', '512100'] },
 };
+
+const FUND_CATALOG = Object.fromEntries(
+  (Array.isArray(rawFundCatalog) ? rawFundCatalog : [])
+    .map((item) => {
+      const code = String(item?.code || '').trim();
+      if (!code) return null;
+      const proxyMeta = PROXY_BASKET_META[String(item?.proxyBasketKey || '').trim()] || null;
+      const shortName = shortNames?.[code]?.shortName || shortNames?.[code]?.fullName || '';
+      return [code, {
+        name: shortName || code,
+        benchmark: proxyMeta?.benchmark || shortName || code,
+        type: String(item?.pageCategory || 'qdii-lof'),
+        estimateMode: String(item?.estimateMode || 'proxy'),
+        proxyTickers: Array.isArray(proxyMeta?.tickers) ? proxyMeta.tickers : [],
+        priority: Number(item?.priority || 999),
+      }];
+    })
+    .filter(Boolean),
+);
+
+// 5/6开头 -> sh，其他 -> sz（与本地sync-funds.mjs一致）
+function getMarketPrefix(code) {
+  return (code.startsWith('5') || code.startsWith('6')) ? 'sh' : 'sz';
+}
 
 const PROXY_BASKET_WEIGHTS = {
   '原油': { USO: 0.6, BNO: 0.4 },
@@ -44,10 +78,7 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 8000) {
 async function fetchFundQuotesBatch(codes) {
   const result = new Map();
   try {
-    const symbols = codes.map(code => {
-      const cfg = FUND_CATALOG[code];
-      return `${cfg?.sinaPrefix || 'sh'}${code}`;
-    }).join(',');
+    const symbols = codes.map(code => `${getMarketPrefix(code)}${code}`).join(',');
     const url = `https://qt.gtimg.cn/q=${symbols}`;
     const res = await fetchWithTimeout(url, {
       headers: { Referer: 'https://gu.qq.com/', 'User-Agent': UA },
@@ -217,8 +248,13 @@ async function fetchPurchaseStatus(code) {
 }
 
 
-function calcProxyReturn(benchmark, quotesMap) {
-  const weights = PROXY_BASKET_WEIGHTS[benchmark];
+function calcProxyReturn(config, quotesMap) {
+  const fallbackWeights = PROXY_BASKET_WEIGHTS[config.benchmark];
+  const tickers = Array.isArray(config.proxyTickers) ? config.proxyTickers.filter(Boolean) : [];
+  const derivedWeights = tickers.length
+    ? Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]))
+    : null;
+  const weights = fallbackWeights || derivedWeights;
   if (!weights) return { proxyReturn: 0, proxyQuotes: [] };
   let totalReturn = 0, totalWeight = 0;
   const proxyQuotes = [];
@@ -254,8 +290,10 @@ async function syncSingleFund(code, config, fundQuotesMap, usQuotesMap, fxRate) 
   const previousClose = quote?.previousClose || officialNavT1 || 0;
   const name = quote?.name || config.name;
 
-  const { proxyReturn, proxyQuotes } = calcProxyReturn(config.benchmark, usQuotesMap);
-  const effectiveEstimatedNav = estimatedNav || (officialNavT1 > 0 ? officialNavT1 * (1 + proxyReturn) : 0);
+  const { proxyReturn, proxyQuotes } = calcProxyReturn(config, usQuotesMap);
+  const marketReturn = previousClose > 0 && marketPrice > 0 ? marketPrice / previousClose - 1 : 0;
+  const signalReturn = config.estimateMode === 'market' ? marketReturn : proxyReturn;
+  const effectiveEstimatedNav = estimatedNav || (officialNavT1 > 0 ? officialNavT1 * (1 + signalReturn) : 0);
   const premiumRate = effectiveEstimatedNav > 0 && marketPrice > 0 ? marketPrice / effectiveEstimatedNav - 1 : null;
 
   return {
@@ -264,12 +302,12 @@ async function syncSingleFund(code, config, fundQuotesMap, usQuotesMap, fxRate) 
     benchmark: config.benchmark,
     pageCategory: config.type,
     fundType: config.type.includes('etf') ? 'ETF' : 'LOF',
-    estimateMode: 'proxy',
+    estimateMode: config.estimateMode || 'proxy',
 
     officialNavT1,
     navDate,
     estimatedNav: effectiveEstimatedNav,
-    estimatedNavChangeRate: estimatedNavChangeRate || proxyReturn,
+    estimatedNavChangeRate: estimatedNavChangeRate || signalReturn,
     navHistory: [],
     disclosedHoldings: [],
     holdingQuotes: [],
@@ -295,6 +333,7 @@ async function syncSingleFund(code, config, fundQuotesMap, usQuotesMap, fxRate) 
 
 export async function syncAllFunds(db, options = {}) {
   const force = options.force || false;
+  const batchSize = Math.max(1, Number(options.batchSize || 12));
   const startTime = Date.now();
 
   if (!force) {
@@ -306,21 +345,34 @@ export async function syncAllFunds(db, options = {}) {
   }
 
   try {
-    const codes = Object.keys(FUND_CATALOG);
-    const allUsTickers = [...new Set(Object.values(FUND_CATALOG).flatMap(c => c.proxyTickers || []))];
+    const allCodes = Object.keys(FUND_CATALOG).sort((left, right) => {
+      const leftPriority = Number(FUND_CATALOG[left]?.priority || 999);
+      const rightPriority = Number(FUND_CATALOG[right]?.priority || 999);
+      if (leftPriority !== rightPriority) return leftPriority - rightPriority;
+      return left.localeCompare(right);
+    });
+    if (!allCodes.length) throw new Error('Fund catalog is empty');
+    const cursorRow = await db.prepare('SELECT next_index FROM sync_engine_cursor WHERE id = 1').first();
+    const cursorStart = force ? 0 : Math.max(0, Number(cursorRow?.next_index || 0));
+    const selectedCodes = [];
+    for (let i = 0; i < Math.min(batchSize, allCodes.length); i += 1) {
+      selectedCodes.push(allCodes[(cursorStart + i) % allCodes.length]);
+    }
+    const allUsTickers = [...new Set(selectedCodes.flatMap((code) => FUND_CATALOG[code]?.proxyTickers || []))];
 
     // 并发抓取：场内行情 + 美股行情 + 汇率
     const [fundQuotesMap, usQuotesMap, fxRate] = await Promise.all([
-      fetchFundQuotesBatch(codes),
+      fetchFundQuotesBatch(selectedCodes),
       fetchUSQuotesBatch(allUsTickers),
       fetchUsdCny(),
     ]);
 
-    console.log(`[SyncEngine] fund quotes: ${fundQuotesMap.size}, US quotes: ${usQuotesMap.size}, USD/CNY: ${fxRate}`);
+    console.log(`[SyncEngine] selected: ${selectedCodes.length}/${allCodes.length}, fund quotes: ${fundQuotesMap.size}, US quotes: ${usQuotesMap.size}, USD/CNY: ${fxRate}`);
 
     // 逐个同步（净值接口串行，避免限流）
     const funds = [];
-    for (const [code, config] of Object.entries(FUND_CATALOG)) {
+    for (const code of selectedCodes) {
+      const config = FUND_CATALOG[code];
       const fundData = await syncSingleFund(code, config, fundQuotesMap, usQuotesMap, fxRate);
       if (fundData) funds.push(fundData);
       await new Promise(r => setTimeout(r, 100));
@@ -329,9 +381,20 @@ export async function syncAllFunds(db, options = {}) {
     if (!funds.length) throw new Error('No funds synced');
 
     const syncedAt = new Date().toISOString();
+    const nextIndex = (cursorStart + selectedCodes.length) % allCodes.length;
+    const totalRow = await db.prepare('SELECT COUNT(*) as total FROM latest_fund_runtime').first();
+    const currentTotal = Number(totalRow?.total || 0);
+    const finalCount = Math.max(currentTotal, funds.length);
     const stmts = [
       db.prepare('INSERT INTO runtime_runs (synced_at, fund_count, source_url) VALUES (?, ?, ?)')
-        .bind(syncedAt, funds.length, 'sync-engine-auto'),
+        .bind(syncedAt, finalCount, `sync-engine-auto-batch(${selectedCodes.length}/${allCodes.length})`),
+      db.prepare(
+        `INSERT INTO sync_engine_cursor (id, next_index, updated_at)
+         VALUES (1, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET
+           next_index = excluded.next_index,
+           updated_at = excluded.updated_at`,
+      ).bind(nextIndex, syncedAt),
     ];
     for (const fund of funds) {
       stmts.push(
@@ -345,8 +408,19 @@ export async function syncAllFunds(db, options = {}) {
     await db.batch(stmts);
 
     const duration = Date.now() - startTime;
-    console.log(`[SyncEngine] Done: ${funds.length} funds in ${duration}ms`);
-    return { ok: true, skipped: false, syncedAt, fundCount: funds.length, duration, funds: funds.map(f => f.code) };
+    console.log(`[SyncEngine] Done: ${funds.length} funds in ${duration}ms, cursor=${nextIndex}`);
+    return {
+      ok: true,
+      skipped: false,
+      syncedAt,
+      fundCount: finalCount,
+      syncedBatchCount: funds.length,
+      selectedBatchCount: selectedCodes.length,
+      catalogCount: allCodes.length,
+      nextCursor: nextIndex,
+      duration,
+      funds: funds.map(f => f.code),
+    };
   } catch (error) {
     console.error('[SyncEngine] Failed:', error);
     return { ok: false, error: error.message, duration: Date.now() - startTime };

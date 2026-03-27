@@ -60,10 +60,12 @@ jobs:
           GH_TRAFFIC_SNAPSHOT_WINDOW_MINUTES: '20'
 
       - name: Sync Funds Runtime Data
+        # 由 sync-generated-data workflow 触发时数据已是最新，直接跳过重复同步
+        # 由 push 触发时需要同步一次
+        if: github.event_name == 'push'
         run: npm run sync:data
 
-      - name: Build Site
-        run: npm run build:static
+      - name: Build Site        run: npm run build:static
 
       - name: Save Fund Sync Cache
         if: always()

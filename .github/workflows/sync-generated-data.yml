@@ -104,5 +104,5 @@ jobs:
 
       - name: Rebase and Push
         run: |
-          git pull --rebase origin main
+          git pull --rebase -X ours origin main
           git push origin HEAD:main

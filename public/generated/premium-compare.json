@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-27T12:20:17.152Z",
-  "syncedAt": "2026-03-27T12:19:42.756Z",
+  "generatedAt": "2026-03-27T12:36:00.169Z",
+  "syncedAt": "2026-03-27T12:35:18.418Z",
   "codes": {
     "159100": {
       "code": "159100",
@@ -3733,6 +3733,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.821,
+            "providerPremiumRate": 0.2814,
+            "ourReportedPremiumRate": 0.2813990461049287,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -3742,6 +3754,18 @@
             "marketPrice": 2.718,
             "providerPremiumRate": 0.2346,
             "ourReportedPremiumRate": 0.23388414744870167,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.821,
+            "providerPremiumRate": 0.2645,
+            "ourReportedPremiumRate": 0.2813990461049287,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -3818,10 +3842,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.2346,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.2645,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -3831,10 +3855,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.23388,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.2814,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -5169,6 +5193,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.026,
+            "providerPremiumRate": -0.01984,
+            "ourReportedPremiumRate": -0.019835510401548295,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -5178,6 +5214,18 @@
             "marketPrice": 2.016,
             "providerPremiumRate": -0.0247,
             "ourReportedPremiumRate": 0.0034843205574912606,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.026,
+            "providerPremiumRate": 0.014,
+            "ourReportedPremiumRate": -0.019835510401548295,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -5267,10 +5315,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0247,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.014,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -5280,10 +5328,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.00348,
-          "hitCount60": 1,
+          "premiumRateCurrent": -0.01984,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -5857,6 +5905,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.66,
+            "providerPremiumRate": 0.36117,
+            "ourReportedPremiumRate": 0.3611708115853036,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -5866,6 +5926,18 @@
             "marketPrice": 2.841,
             "providerPremiumRate": 0.4538,
             "ourReportedPremiumRate": 0.42541769103406746,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.66,
+            "providerPremiumRate": 0.3121,
+            "ourReportedPremiumRate": 0.3611708115853036,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -5955,10 +6027,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4538,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.3121,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -5968,10 +6040,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.42542,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.36117,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -7299,6 +7371,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.734,
+            "providerPremiumRate": 0.01362,
+            "ourReportedPremiumRate": 0.013620155491903763,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -7308,6 +7392,18 @@
             "marketPrice": 1.708,
             "providerPremiumRate": -0.0016,
             "ourReportedPremiumRate": 0.026072329688814122,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.734,
+            "providerPremiumRate": 0.0481,
+            "ourReportedPremiumRate": 0.013620155491903763,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -7397,10 +7493,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0016,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0481,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -7410,10 +7506,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.02607,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.01362,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -8638,6 +8734,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.781,
+            "providerPremiumRate": 0.00404,
+            "ourReportedPremiumRate": 0.0040436132572749806,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -8647,6 +8755,18 @@
             "marketPrice": 2.79,
             "providerPremiumRate": 0.0073,
             "ourReportedPremiumRate": 0.012079660463597763,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.781,
+            "providerPremiumRate": 0.0191,
+            "ourReportedPremiumRate": 0.0040436132572749806,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -8736,10 +8856,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0073,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0191,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -8749,10 +8869,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.01208,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.00404,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -9515,6 +9635,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.816,
+            "providerPremiumRate": 0.0047,
+            "ourReportedPremiumRate": 0.004702627939142445,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -9524,6 +9656,18 @@
             "marketPrice": 1.805,
             "providerPremiumRate": -0.0014,
             "ourReportedPremiumRate": 0.005627054432001843,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.816,
+            "providerPremiumRate": 0.0038,
+            "ourReportedPremiumRate": 0.004702627939142445,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -9614,10 +9758,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0014,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0038,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -9627,10 +9771,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.00563,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0047,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -10867,6 +11011,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 5.34,
+            "providerPremiumRate": 0.00582,
+            "ourReportedPremiumRate": 0.005820195513363879,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -10876,6 +11032,18 @@
             "marketPrice": 5.385,
             "providerPremiumRate": 0.0143,
             "ourReportedPremiumRate": 0.019307211811470548,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 5.34,
+            "providerPremiumRate": 0.0304,
+            "ourReportedPremiumRate": 0.005820195513363879,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -10965,10 +11133,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0143,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0304,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -10978,10 +11146,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.01931,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.00582,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -11580,6 +11748,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.26,
+            "providerPremiumRate": 0.40661,
+            "ourReportedPremiumRate": 0.4066098213730005,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -11589,6 +11769,18 @@
             "marketPrice": 2.389,
             "providerPremiumRate": 0.4869,
             "ourReportedPremiumRate": 0.45955522971651996,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.26,
+            "providerPremiumRate": 0.3518,
+            "ourReportedPremiumRate": 0.4066098213730005,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -11678,10 +11870,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.4869,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.3518,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -11691,10 +11883,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.45956,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.40661,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -12458,6 +12650,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.72,
+            "providerPremiumRate": -0.00137,
+            "ourReportedPremiumRate": -0.0013690907626640048,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -12467,6 +12671,18 @@
             "marketPrice": 3.74,
             "providerPremiumRate": 0.004,
             "ourReportedPremiumRate": 0.009910080198741733,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.72,
+            "providerPremiumRate": 0.0198,
+            "ourReportedPremiumRate": -0.0013690907626640048,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -12570,10 +12786,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.004,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0198,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -12583,10 +12799,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.00991,
-          "hitCount60": 1,
+          "premiumRateCurrent": -0.00137,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -13607,6 +13823,18 @@
             "providerPremiumError": 0.018645179482101093,
             "ourPremiumError": 0.01864226630980159,
             "premiumErrorDelta": 0.0000029131722995012765
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.691,
+            "providerPremiumRate": 0.33238,
+            "ourReportedPremiumRate": 0.3323760954597217,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -13621,6 +13849,18 @@
             "providerPremiumError": -0.00002482051789892692,
             "ourPremiumError": 0.01864226630980159,
             "premiumErrorDelta": -0.01866708682770052
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.691,
+            "providerPremiumRate": 0.3799,
+            "ourReportedPremiumRate": 0.3323760954597217,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-wind": [
@@ -13692,10 +13932,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.3071,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.3799,
+          "hitCount60": 2,
           "avgAbsProviderError30": 0.00002482051789892692,
           "avgAbsOurError30": 0.01864226630980159,
           "avgAbsDelta30": -0.018617445791902665,
@@ -13705,10 +13945,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.32577,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.33238,
+          "hitCount60": 2,
           "avgAbsProviderError30": 0.018645179482101093,
           "avgAbsOurError30": 0.01864226630980159,
           "avgAbsDelta30": 0.0000029131722995012765,
@@ -15182,6 +15422,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.038,
+            "providerPremiumRate": 0.06856,
+            "ourReportedPremiumRate": 0.06856084002470664,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -15191,6 +15443,18 @@
             "marketPrice": 0.999,
             "providerPremiumRate": 0.0284,
             "ourReportedPremiumRate": 0.03523316062176174,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.038,
+            "providerPremiumRate": 0.0461,
+            "ourReportedPremiumRate": 0.06856084002470664,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -15267,10 +15531,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0284,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0461,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -15280,10 +15544,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.03523,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.06856,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -16046,6 +16310,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.742,
+            "providerPremiumRate": -0.01225,
+            "ourReportedPremiumRate": -0.012247838616714635,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -16055,6 +16331,18 @@
             "marketPrice": 2.751,
             "providerPremiumRate": -0.009,
             "ourReportedPremiumRate": -0.0007264802034145923,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.742,
+            "providerPremiumRate": 0.0022,
+            "ourReportedPremiumRate": -0.012247838616714635,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -16145,10 +16433,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.009,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0022,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -16158,10 +16446,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.00073,
-          "hitCount60": 1,
+          "premiumRateCurrent": -0.01225,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -16924,6 +17212,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.484,
+            "providerPremiumRate": 0.19775,
+            "ourReportedPremiumRate": 0.19774477447744787,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -16933,6 +17233,18 @@
             "marketPrice": 3.234,
             "providerPremiumRate": 0.1118,
             "ourReportedPremiumRate": 0.112869924294563,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 3.484,
+            "providerPremiumRate": 0.1716,
+            "ourReportedPremiumRate": 0.19774477447744787,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -17023,10 +17335,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.1118,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.1716,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -17036,10 +17348,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.11287,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.19775,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -17588,6 +17900,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.399,
+            "providerPremiumRate": 0.02117,
+            "ourReportedPremiumRate": 0.02116788321167884,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -17597,6 +17921,18 @@
             "marketPrice": 1.376,
             "providerPremiumRate": 0.0044,
             "ourReportedPremiumRate": 0.0007272727272726875,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.399,
+            "providerPremiumRate": 0.0021,
+            "ourReportedPremiumRate": 0.02116788321167884,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -17673,10 +18009,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0044,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0021,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -17686,10 +18022,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.00073,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.02117,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -18263,6 +18599,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.787,
+            "providerPremiumRate": -0.01434,
+            "ourReportedPremiumRate": -0.014340871483728646,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -18272,6 +18620,18 @@
             "marketPrice": 1.781,
             "providerPremiumRate": -0.0177,
             "ourReportedPremiumRate": 0.010783200908059065,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.787,
+            "providerPremiumRate": 0.0217,
+            "ourReportedPremiumRate": -0.014340871483728646,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -18361,10 +18721,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0177,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0217,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -18374,10 +18734,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.01078,
-          "hitCount60": 1,
+          "premiumRateCurrent": -0.01434,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -20484,6 +20844,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.371,
+            "providerPremiumRate": 0.40829,
+            "ourReportedPremiumRate": 0.4082917557614636,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -20493,6 +20865,18 @@
             "marketPrice": 2.421,
             "providerPremiumRate": 0.438,
             "ourReportedPremiumRate": 0.4100174723354686,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.371,
+            "providerPremiumRate": 0.3545,
+            "ourReportedPremiumRate": 0.4082917557614636,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -20582,10 +20966,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.438,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.3545,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -20595,10 +20979,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.41002,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.40829,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -22022,6 +22406,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.294,
+            "providerPremiumRate": 0.05496,
+            "ourReportedPremiumRate": 0.05495516210623119,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -22031,6 +22427,18 @@
             "marketPrice": 2.314,
             "providerPremiumRate": 0.0642,
             "ourReportedPremiumRate": 0.07743167109000337,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 2.294,
+            "providerPremiumRate": 0.0983,
+            "ourReportedPremiumRate": 0.05495516210623119,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -22107,10 +22515,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.0642,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0983,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -22120,10 +22528,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": 0.07743,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.05496,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -23107,6 +23515,18 @@
             "providerPremiumError": null,
             "ourPremiumError": null,
             "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.861,
+            "providerPremiumRate": -0.02376,
+            "ourReportedPremiumRate": -0.023763311126265618,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
           }
         ],
         "manual-hs": [
@@ -23116,6 +23536,18 @@
             "marketPrice": 1.883,
             "providerPremiumRate": -0.0122,
             "ourReportedPremiumRate": -0.0020668821877153354,
+            "status": "pending",
+            "actualPremiumRate": null,
+            "providerPremiumError": null,
+            "ourPremiumError": null,
+            "premiumErrorDelta": null
+          },
+          {
+            "date": "2026-03-27",
+            "time": "15:00:00",
+            "marketPrice": 1.861,
+            "providerPremiumRate": 0.0032,
+            "ourReportedPremiumRate": -0.023763311126265618,
             "status": "pending",
             "actualPremiumRate": null,
             "providerPremiumError": null,
@@ -23192,10 +23624,10 @@
         },
         {
           "provider": "manual-hs",
-          "sourceUrl": "https://www.huashen.com/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.0122,
-          "hitCount60": 1,
+          "premiumRateCurrent": 0.0032,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,
@@ -23205,10 +23637,10 @@
         },
         {
           "provider": "manual-hslof",
-          "sourceUrl": "https://www.huashen.com/lof/",
+          "sourceUrl": "https://www.10jqka.com.cn/",
           "status": "manual-input-local",
-          "premiumRateCurrent": -0.00207,
-          "hitCount60": 1,
+          "premiumRateCurrent": -0.02376,
+          "hitCount60": 2,
           "avgAbsProviderError30": null,
           "avgAbsOurError30": null,
           "avgAbsDelta30": null,

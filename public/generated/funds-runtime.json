@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-03-27T18:06:12.700Z",
+  "syncedAt": "2026-03-27T19:11:31.936Z",
   "funds": [
     {
       "code": "160221",
@@ -102555,10 +102555,10 @@
       "disclosedHoldings": [],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9119,
-        "previousCloseRate": 6.9129,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "16:37:55",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [],
@@ -102569,36 +102569,36 @@
         {
           "ticker": "SOYB",
           "name": "Teucrium Soybean Fund",
-          "currentPrice": 24.36,
-          "previousClose": 24.35,
-          "quoteDate": "2026-03-26",
-          "quoteTime": "16:00:03",
+          "currentPrice": 24.21,
+          "previousClose": 24.36,
+          "quoteDate": "2026-03-27",
+          "quoteTime": "15:11:00",
           "currency": "USD",
           "weight": 0.55
         },
         {
           "ticker": "DBA",
           "name": "Invesco DB Agriculture Fund",
-          "currentPrice": 27.11,
-          "previousClose": 26.96,
-          "quoteDate": "2026-03-26",
-          "quoteTime": "16:00:03",
+          "currentPrice": 27.17,
+          "previousClose": 27.11,
+          "quoteDate": "2026-03-27",
+          "quoteTime": "15:11:07",
           "currency": "USD",
           "weight": 0.3
         },
         {
           "ticker": "CORN",
           "name": "Teucrium Corn Fund",
-          "currentPrice": 18.71,
-          "previousClose": 18.75,
-          "quoteDate": "2026-03-26",
-          "quoteTime": "16:00:03",
+          "currentPrice": 18.57,
+          "previousClose": 18.71,
+          "quoteDate": "2026-03-27",
+          "quoteTime": "15:11:19",
           "currency": "USD",
           "weight": 0.15
         }
       ],
-      "proxyQuoteDate": "2026-03-26",
-      "proxyQuoteTime": "16:00:03",
+      "proxyQuoteDate": "2026-03-27",
+      "proxyQuoteTime": "15:11:00",
       "goldContinuousReturn": null,
       "goldContinuousSymbol": "",
       "goldContinuousSource": "",
@@ -104400,10 +104400,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9119,
-        "previousCloseRate": 6.9129,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "16:37:55",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -106316,10 +106316,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9119,
-        "previousCloseRate": 6.9129,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "16:37:55",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -108232,10 +108232,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9078,
-        "previousCloseRate": 6.9088,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "17:38:10",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -110148,10 +110148,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9078,
-        "previousCloseRate": 6.9088,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "17:38:10",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -112064,10 +112064,10 @@
       ],
       "fx": {
         "pair": "USD/CNY",
-        "currentRate": 6.9078,
-        "previousCloseRate": 6.9088,
-        "quoteDate": "2026-03-27",
-        "quoteTime": "17:38:10",
+        "currentRate": 6.9111,
+        "previousCloseRate": 6.9121,
+        "quoteDate": "2026-03-28",
+        "quoteTime": "02:57:57",
         "source": "新浪外汇"
       },
       "holdingQuotes": [
@@ -116263,19 +116263,19 @@
           },
           {
             "estimateDate": "2026-03-27",
-            "estimatedNav": 2.037791314270747,
+            "estimatedNav": 2.0335950689222857,
             "marketPrice": 2.122,
-            "premiumRate": 0.041323508025348454,
+            "premiumRate": 0.043472239104398014,
             "marketPriceDate": "2026-03-27",
             "marketPriceTime": "16:14:54",
             "marketPriceType": "intraday",
             "anchorNav": 2.0373,
-            "leadReturn": 0.0015750121558136489,
-            "closeGapReturn": -0.0001446570903671507,
-            "impliedReturn": 0.0002411595105025062,
+            "leadReturn": -0.0038451323110921757,
+            "closeGapReturn": -0.000144673832843778,
+            "impliedReturn": -0.0018185495890220345,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T08:38:18.849Z"
+            "createdAt": "2026-03-27T19:11:30.786Z"
           }
         ],
         "errors": [
@@ -119095,7 +119095,7 @@
             "impliedReturn": 0.0023745235669721987,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T09:38:28.536Z"
+            "createdAt": "2026-03-27T19:11:31.637Z"
           }
         ],
         "errors": [
@@ -122658,7 +122658,7 @@
             "impliedReturn": 0.0016760333304536967,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T09:38:28.694Z"
+            "createdAt": "2026-03-27T19:11:31.850Z"
           }
         ],
         "errors": [
@@ -125751,7 +125751,7 @@
             "impliedReturn": -0.001171156689482506,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T08:38:19.056Z"
+            "createdAt": "2026-03-27T19:11:31.001Z"
           }
         ],
         "errors": [
@@ -126596,7 +126596,7 @@
             "impliedReturn": -0.014852004078753209,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T08:38:19.261Z"
+            "createdAt": "2026-03-27T19:11:31.215Z"
           }
         ],
         "errors": [
@@ -126745,7 +126745,7 @@
             "impliedReturn": 0.0013403351889522156,
             "adaptiveUsed": false,
             "adaptiveShockTriggered": false,
-            "createdAt": "2026-03-27T09:38:28.380Z"
+            "createdAt": "2026-03-27T19:11:31.426Z"
           }
         ],
         "errors": [

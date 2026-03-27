@@ -1,21 +1,21 @@
 /**
- * 数据同步引擎 - 直接从数据源抓取基金数据
- * 支持：天天基金网、新浪财经、Yahoo Finance
+ * 数据同步引擎 - 使用与本地 sync-funds.mjs 相同的数据源
+ * 腾讯行情(qt.gtimg.cn) + 新浪汇率 + 天天基金净值
  */
 
 const FUND_CATALOG = {
-  '160723': { name: '嘉实原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'] },
-  '501018': { name: '南方原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'] },
-  '161129': { name: '易方达原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'] },
-  '160416': { name: '华安石油', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'] },
-  '162719': { name: '广发道琼斯石油', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'] },
-  '162411': { name: '华宝油气', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'] },
-  '163208': { name: '诺安油气', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XLE', 'SLB'] },
-  '160216': { name: '国泰黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'] },
-  '160719': { name: '嘉实黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'] },
-  '161116': { name: '易方达黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'UGL'] },
-  '164701': { name: '汇添富黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'] },
-  '159518': { name: '华夏原油', benchmark: '原油', type: 'qdii-etf', proxyTickers: ['USO', 'BNO'] },
+  '160723': { name: '嘉实原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sh' },
+  '501018': { name: '南方原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sh' },
+  '161129': { name: '易方达原油', benchmark: '原油', type: 'qdii-lof', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sz' },
+  '160416': { name: '华安石油', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'], sinaPrefix: 'sh' },
+  '162719': { name: '广发道琼斯石油', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'], sinaPrefix: 'sz' },
+  '162411': { name: '华宝油气', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XOP', 'XLE'], sinaPrefix: 'sz' },
+  '163208': { name: '诺安油气', benchmark: '油气', type: 'qdii-lof', proxyTickers: ['XLE', 'SLB'], sinaPrefix: 'sz' },
+  '160216': { name: '国泰黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'], sinaPrefix: 'sh' },
+  '160719': { name: '嘉实黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'], sinaPrefix: 'sh' },
+  '161116': { name: '易方达黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'UGL'], sinaPrefix: 'sz' },
+  '164701': { name: '汇添富黄金', benchmark: '黄金', type: 'qdii-lof', proxyTickers: ['GLD', 'IAU'], sinaPrefix: 'sz' },
+  '159518': { name: '华夏原油', benchmark: '原油', type: 'qdii-etf', proxyTickers: ['USO', 'BNO'], sinaPrefix: 'sz' },
 };
 
 const PROXY_BASKET_WEIGHTS = {
@@ -24,9 +24,8 @@ const PROXY_BASKET_WEIGHTS = {
   '油气': { XOP: 0.5, XLE: 0.5 },
 };
 
-const UA = 'Mozilla/5.0 (compatible; lof-premium-rate-web-worker/1.0)';
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36';
 
-/** 带超时的 fetch */
 async function fetchWithTimeout(url, options = {}, timeoutMs = 8000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -37,8 +36,135 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 8000) {
   }
 }
 
-/** 天天基金网 - 估算净值 */
-async function fetchFundFromEastmoney(code) {
+/**
+ * 腾讯行情 - 批量获取场内基金价格
+ * 格式: qt.gtimg.cn/q=sh160723,sh501018,...
+ * 返回: Map<code, { marketPrice, previousClose, name }>
+ */
+async function fetchFundQuotesBatch(codes) {
+  const result = new Map();
+  try {
+    const symbols = codes.map(code => {
+      const cfg = FUND_CATALOG[code];
+      return `${cfg?.sinaPrefix || 'sh'}${code}`;
+    }).join(',');
+    const url = `https://qt.gtimg.cn/q=${symbols}`;
+    const res = await fetchWithTimeout(url, {
+      headers: { Referer: 'https://gu.qq.com/', 'User-Agent': UA },
+    });
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    // 腾讯行情返回 GBK，Worker 环境用 TextDecoder 解码
+    const buf = await res.arrayBuffer();
+    const text = new TextDecoder('gbk').decode(buf);
+    // 格式: v_sh160723="1~嘉实原油~160723~99.31~99.31~..."
+    for (const line of text.split(';')) {
+      const m = line.match(/v_[a-z]{2}(\d{6})="([^"]+)"/);
+      if (!m) continue;
+      const code = m[1];
+      const parts = m[2].split('~');
+      const marketPrice = parseFloat(parts[3]) || 0;
+      const previousClose = parseFloat(parts[4]) || 0;
+      const name = parts[1] || '';
+      result.set(code, { marketPrice, previousClose, name });
+    }
+  } catch (e) {
+    console.warn(`[tencent-quote] batch failed: ${e.message}`);
+  }
+  return result;
+}
+
+/**
+ * 腾讯行情 - 批量获取美股代理 ETF
+ * 格式: qt.gtimg.cn/q=usUSO,usBNO,...
+ */
+async function fetchUSQuotesBatch(tickers) {
+  const result = new Map();
+  try {
+    const unique = [...new Set(tickers)];
+    const symbols = unique.map(t => `us${t}`).join(',');
+    const url = `https://qt.gtimg.cn/q=${symbols}`;
+    const res = await fetchWithTimeout(url, {
+      headers: { Referer: 'https://gu.qq.com/', 'User-Agent': UA },
+    });
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const buf = await res.arrayBuffer();
+    const text = new TextDecoder('gbk').decode(buf);
+    // 格式: v_usUSO="1~USO~...~currentPrice~...~previousClose~..."
+    for (const line of text.split(';')) {
+      const m = line.match(/v_us([A-Z]+)="([^"]+)"/);
+      if (!m) continue;
+      const ticker = m[1];
+      const parts = m[2].split('~');
+      // 腾讯美股字段: [0]类型 [1]名称 [2]代码 [3]当前价 [4]涨跌额 [5]涨跌% [6]成交量 [7]成交额 [8]昨收 ...
+      const currentPrice = parseFloat(parts[3]) || 0;
+      const previousClose = parseFloat(parts[8]) || parseFloat(parts[3]) || 0;
+      result.set(ticker, { ticker, currentPrice, previousClose });
+    }
+  } catch (e) {
+    console.warn(`[tencent-us] batch failed: ${e.message}`);
+  }
+  return result;
+}
+
+/**
+ * 新浪财经 - 获取 USD/CNY 汇率
+ */
+async function fetchUsdCny() {
+  try {
+    const res = await fetchWithTimeout(
+      'https://hq.sinajs.cn/list=USDCNY,fx_susdcny',
+      { headers: { Referer: 'https://finance.sina.com.cn/', 'User-Agent': UA } }
+    );
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const buf = await res.arrayBuffer();
+    const text = new TextDecoder('gbk').decode(buf);
+    // 取第一个有效汇率
+    const m = text.match(/"([67]\.\d+)/);
+    if (m) return parseFloat(m[1]);
+  } catch (e) {
+    console.warn(`[sina-fx] ${e.message}`);
+  }
+  // 兜底: frankfurter.app
+  try {
+    const res = await fetchWithTimeout('https://api.frankfurter.app/latest?from=USD&to=CNY');
+    if (res.ok) {
+      const d = await res.json();
+      if (d?.rates?.CNY > 5) return d.rates.CNY;
+    }
+  } catch { /* ignore */ }
+  return 7.25;
+}
+
+/**
+ * 天天基金 - 获取最新官方净值（历史净值接口，非交易时段也有数据）
+ */
+async function fetchOfficialNav(code) {
+  try {
+    const url = `https://api.fund.eastmoney.com/f10/lsjz?callback=x&fundCode=${code}&pageIndex=1&pageSize=1&startDate=&endDate=`;
+    const res = await fetchWithTimeout(url, {
+      headers: { Referer: 'https://fundf10.eastmoney.com/', 'User-Agent': UA },
+    });
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const text = await res.text();
+    const m = text.match(/x\((\{.*\})\)/s);
+    if (!m) throw new Error('no callback');
+    const data = JSON.parse(m[1]);
+    const row = data?.Data?.LSJZList?.[0];
+    if (!row) throw new Error('no data');
+    return {
+      officialNavT1: parseFloat(row.DWJZ) || 0,
+      navDate: (row.FSRQ || '').slice(0, 10),
+    };
+  } catch (e) {
+    console.warn(`[eastmoney-nav] ${code}: ${e.message}`);
+    return null;
+  }
+}
+
+/**
+ * 天天基金 - 实时估值（交易时段）
+ */
+async function fetchEstimatedNav(code) {
   try {
     const url = `http://fundgz.1234567.com.cn/js/${code}.js?rt=${Date.now()}`;
     const res = await fetchWithTimeout(url, {
@@ -46,157 +172,77 @@ async function fetchFundFromEastmoney(code) {
     });
     if (!res.ok) throw new Error(`status ${res.status}`);
     const text = await res.text();
-    const match = text.match(/jsonpgz\((\{.*?\})\)/);
-    if (!match) throw new Error('no jsonpgz');
-    const d = JSON.parse(match[1]);
+    const m = text.match(/jsonpgz\((\{.*?\})\)/);
+    if (!m) return null;
+    const d = JSON.parse(m[1]);
+    const estimatedNav = parseFloat(d.gsz) || 0;
+    if (estimatedNav <= 0) return null;
     return {
-      name: d.name || '',
-      estimatedNav: parseFloat(d.gsz) || 0,
+      estimatedNav,
       estimatedNavChangeRate: parseFloat(d.gszzl) / 100 || 0,
-      officialNavT1: parseFloat(d.dwjz) || 0,
-      navDate: (d.jzrq || '').slice(0, 10),
       estimateTime: d.gztime || '',
+      // fundgz 也带昨日净值，可作为补充
+      officialNavT1FromGz: parseFloat(d.dwjz) || 0,
+      navDateFromGz: (d.jzrq || '').slice(0, 10),
     };
   } catch (e) {
-    console.warn(`[eastmoney] ${code}: ${e.message}`);
+    console.warn(`[eastmoney-gz] ${code}: ${e.message}`);
     return null;
   }
 }
 
-/** 新浪财经 - 场内行情 */
-async function fetchFundFromSina(code) {
-  try {
-    const sinaCode = (code.startsWith('5') || code.startsWith('1')) ? `sh${code}` : `sz${code}`;
-    const url = `https://hq.sinajs.cn/list=${sinaCode}`;
-    const res = await fetchWithTimeout(url, {
-      headers: { Referer: 'https://finance.sina.com.cn/', 'User-Agent': UA },
-    });
-    if (!res.ok) throw new Error(`status ${res.status}`);
-    const text = await res.text();
-    const match = text.match(/="([^"]+)"/);
-    if (!match || !match[1]) throw new Error('empty response');
-    const parts = match[1].split(',');
-    if (parts.length < 4) throw new Error('too few fields');
-    return {
-      name: parts[0] || '',
-      marketPrice: parseFloat(parts[3]) || 0,   // 当前价（盘中用 parts[3]=当前价）
-      open: parseFloat(parts[1]) || 0,
-      previousClose: parseFloat(parts[2]) || 0,
-      high: parseFloat(parts[4]) || 0,
-      low: parseFloat(parts[5]) || 0,
-    };
-  } catch (e) {
-    console.warn(`[sina] ${code}: ${e.message}`);
-    return null;
-  }
-}
-
-/** Yahoo Finance - 美股/ETF 行情，返回 { currentPrice, previousClose } */
-async function fetchUSQuote(ticker) {
-  try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=2d`;
-    const res = await fetchWithTimeout(url, { headers: { 'User-Agent': UA } });
-    if (!res.ok) throw new Error(`status ${res.status}`);
-    const data = await res.json();
-    const result = data?.chart?.result?.[0];
-    if (!result) throw new Error('no result');
-    const meta = result.meta;
-    const currentPrice = meta.regularMarketPrice || meta.previousClose || 0;
-    const previousClose = meta.previousClose || meta.chartPreviousClose || 0;
-    return { ticker, currentPrice, previousClose };
-  } catch (e) {
-    console.warn(`[yahoo] ${ticker}: ${e.message}`);
-    return null;
-  }
-}
-
-/** 汇率 USD/CNY - 多源兜底 */
-async function fetchUsdCny() {
-  // 源1: frankfurter.app（免费，无需 key）
-  try {
-    const res = await fetchWithTimeout('https://api.frankfurter.app/latest?from=USD&to=CNY');
-    if (res.ok) {
-      const d = await res.json();
-      const rate = d?.rates?.CNY;
-      if (rate && rate > 5) return rate;
-    }
-  } catch { /* fallthrough */ }
-
-  // 源2: open.er-api.com（免费，无需 key）
-  try {
-    const res = await fetchWithTimeout('https://open.er-api.com/v6/latest/USD');
-    if (res.ok) {
-      const d = await res.json();
-      const rate = d?.rates?.CNY;
-      if (rate && rate > 5) return rate;
-    }
-  } catch { /* fallthrough */ }
-
-  return 7.25; // 最终兜底
-}
-
-/** 批量抓取美股行情，去重后并发 */
-async function fetchUSQuotesBatch(tickers) {
-  const unique = [...new Set(tickers)];
-  const results = await Promise.all(unique.map(fetchUSQuote));
-  const map = {};
-  for (const r of results) {
-    if (r) map[r.ticker] = r;
-  }
-  return map;
-}
-
-/** 计算代理篮子加权涨跌幅 */
 function calcProxyReturn(benchmark, quotesMap) {
   const weights = PROXY_BASKET_WEIGHTS[benchmark];
   if (!weights) return { proxyReturn: 0, proxyQuotes: [] };
-
-  let totalReturn = 0;
-  let totalWeight = 0;
+  let totalReturn = 0, totalWeight = 0;
   const proxyQuotes = [];
-
   for (const [ticker, weight] of Object.entries(weights)) {
-    const q = quotesMap[ticker];
+    const q = quotesMap.get(ticker);
     const currentPrice = q?.currentPrice || 0;
     const previousClose = q?.previousClose || 0;
-    const changeRate = previousClose > 0 ? (currentPrice / previousClose - 1) : 0;
+    const changeRate = previousClose > 0 ? currentPrice / previousClose - 1 : 0;
     proxyQuotes.push({ ticker, weight, currentPrice, previousClose, changeRate });
-    if (previousClose > 0) {
-      totalReturn += changeRate * weight;
-      totalWeight += weight;
-    }
+    if (previousClose > 0) { totalReturn += changeRate * weight; totalWeight += weight; }
   }
-
   return {
     proxyReturn: totalWeight > 0 ? totalReturn / totalWeight : 0,
     proxyQuotes,
   };
 }
 
-/** 同步单个基金 */
-async function syncSingleFund(code, config, quotesMap, fxRate) {
-  const fundInfo = await fetchFundFromEastmoney(code);
-  const marketData = await fetchFundFromSina(code);
-  const { proxyReturn, proxyQuotes } = calcProxyReturn(config.benchmark, quotesMap);
+async function syncSingleFund(code, config, fundQuotesMap, usQuotesMap, fxRate) {
+  // 并发获取净值数据
+  const [navData, gzData] = await Promise.all([
+    fetchOfficialNav(code),
+    fetchEstimatedNav(code),
+  ]);
 
-  const officialNavT1 = fundInfo?.officialNavT1 || 0;
-  const estimatedNav = fundInfo?.estimatedNav || (officialNavT1 > 0 ? officialNavT1 * (1 + proxyReturn) : 0);
-  const marketPrice = marketData?.marketPrice || 0;
-  const previousClose = marketData?.previousClose || fundInfo?.officialNavT1 || 0;
-  const premiumRate = estimatedNav > 0 && marketPrice > 0 ? marketPrice / estimatedNav - 1 : null;
+  const officialNavT1 = navData?.officialNavT1 || gzData?.officialNavT1FromGz || 0;
+  const navDate = navData?.navDate || gzData?.navDateFromGz || '';
+  const estimatedNav = gzData?.estimatedNav || 0;
+  const estimatedNavChangeRate = gzData?.estimatedNavChangeRate || 0;
+
+  const quote = fundQuotesMap.get(code);
+  const marketPrice = quote?.marketPrice || 0;
+  const previousClose = quote?.previousClose || officialNavT1 || 0;
+  const name = quote?.name || config.name;
+
+  const { proxyReturn, proxyQuotes } = calcProxyReturn(config.benchmark, usQuotesMap);
+  const effectiveEstimatedNav = estimatedNav || (officialNavT1 > 0 ? officialNavT1 * (1 + proxyReturn) : 0);
+  const premiumRate = effectiveEstimatedNav > 0 && marketPrice > 0 ? marketPrice / effectiveEstimatedNav - 1 : null;
 
   return {
     code,
-    name: config.name,
+    name,
     benchmark: config.benchmark,
     pageCategory: config.type,
     fundType: config.type.includes('etf') ? 'ETF' : 'LOF',
     estimateMode: 'proxy',
 
     officialNavT1,
-    navDate: fundInfo?.navDate || '',
-    estimatedNav,
-    estimatedNavChangeRate: fundInfo?.estimatedNavChangeRate || proxyReturn,
+    navDate,
+    estimatedNav: effectiveEstimatedNav,
+    estimatedNavChangeRate: estimatedNavChangeRate || proxyReturn,
     navHistory: [],
     disclosedHoldings: [],
     holdingQuotes: [],
@@ -213,60 +259,46 @@ async function syncSingleFund(code, config, quotesMap, fxRate) {
     proxyQuoteDate: new Date().toISOString().slice(0, 10),
     proxyQuoteTime: new Date().toISOString().slice(11, 19),
 
-    fx: {
-      pair: 'USD/CNY',
-      currentRate: fxRate,
-      previousCloseRate: fxRate,
-    },
-
+    fx: { pair: 'USD/CNY', currentRate: fxRate, previousCloseRate: fxRate },
     updatedAt: new Date().toISOString(),
   };
 }
 
-/** 批量同步所有基金 */
 export async function syncAllFunds(db, options = {}) {
   const force = options.force || false;
   const startTime = Date.now();
 
-  // 检查同步间隔
   if (!force) {
-    const lastSync = await db.prepare(
-      'SELECT synced_at FROM runtime_runs ORDER BY id DESC LIMIT 1'
-    ).first();
+    const lastSync = await db.prepare('SELECT synced_at FROM runtime_runs ORDER BY id DESC LIMIT 1').first();
     if (lastSync?.synced_at) {
       const elapsed = (startTime - new Date(lastSync.synced_at).getTime()) / 60000;
-      if (elapsed < 5) {
-        return { ok: true, skipped: true, reason: 'Too soon since last sync', lastSyncAt: lastSync.synced_at };
-      }
+      if (elapsed < 5) return { ok: true, skipped: true, reason: 'Too soon', lastSyncAt: lastSync.synced_at };
     }
   }
 
   try {
-    // 1. 收集所有需要的美股代理 ticker
-    const allTickers = [];
-    for (const config of Object.values(FUND_CATALOG)) {
-      allTickers.push(...(config.proxyTickers || []));
-    }
+    const codes = Object.keys(FUND_CATALOG);
+    const allUsTickers = [...new Set(Object.values(FUND_CATALOG).flatMap(c => c.proxyTickers || []))];
 
-    // 2. 并发抓取：美股行情 + 汇率
-    const [quotesMap, fxRate] = await Promise.all([
-      fetchUSQuotesBatch(allTickers),
+    // 并发抓取：场内行情 + 美股行情 + 汇率
+    const [fundQuotesMap, usQuotesMap, fxRate] = await Promise.all([
+      fetchFundQuotesBatch(codes),
+      fetchUSQuotesBatch(allUsTickers),
       fetchUsdCny(),
     ]);
 
-    console.log(`[SyncEngine] US quotes: ${Object.keys(quotesMap).length} tickers, USD/CNY: ${fxRate}`);
+    console.log(`[SyncEngine] fund quotes: ${fundQuotesMap.size}, US quotes: ${usQuotesMap.size}, USD/CNY: ${fxRate}`);
 
-    // 3. 逐个同步基金（天天基金+新浪串行，避免触发限流）
+    // 逐个同步（净值接口串行，避免限流）
     const funds = [];
     for (const [code, config] of Object.entries(FUND_CATALOG)) {
-      const fundData = await syncSingleFund(code, config, quotesMap, fxRate);
+      const fundData = await syncSingleFund(code, config, fundQuotesMap, usQuotesMap, fxRate);
       if (fundData) funds.push(fundData);
-      await new Promise(r => setTimeout(r, 150));
+      await new Promise(r => setTimeout(r, 100));
     }
 
     if (!funds.length) throw new Error('No funds synced');
 
-    // 4. 写入 D1
     const syncedAt = new Date().toISOString();
     const stmts = [
       db.prepare('INSERT INTO runtime_runs (synced_at, fund_count, source_url) VALUES (?, ?, ?)')
@@ -300,9 +332,7 @@ export async function getAllFunds(db) {
 }
 
 export async function getFundByCode(db, code) {
-  const row = await db.prepare(
-    'SELECT code, synced_at, runtime_json FROM latest_fund_runtime WHERE code = ?'
-  ).bind(code).first();
+  const row = await db.prepare('SELECT code, synced_at, runtime_json FROM latest_fund_runtime WHERE code = ?').bind(code).first();
   if (!row) return null;
   try {
     const fund = JSON.parse(row.runtime_json);

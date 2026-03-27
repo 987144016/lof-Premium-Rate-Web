@@ -12,6 +12,16 @@ const DEFAULT_REMOTE_API_BASE = 'https://api.leo2026.cloud/api/runtime';
 const REMOTE_API_BASE = String(import.meta.env.VITE_RUNTIME_API_BASE || DEFAULT_REMOTE_API_BASE).replace(/\/+$/, '');
 const GENERATED_FETCH_TIMEOUT_MS = 4500;
 const TOAST_AUTO_CLOSE_MS = 3000;
+
+// 获取 Worker API 基础 URL（用于训练指标等 API）
+function getRuntimeApiBase(): string {
+  const envBase = import.meta.env.VITE_RUNTIME_API_BASE;
+  if (envBase) {
+    return String(envBase).replace(/\/+$/, '');
+  }
+  // 默认使用 Cloudflare Worker URL
+  return 'https://lof-premium-rate-web-api.987144016.workers.dev';
+}
 type ViewCategory = 'qdii-lof' | 'domestic-lof' | 'qdii-etf' | 'domestic-etf' | 'favorites';
 
 function isAbortLikeError(error: unknown): boolean {
@@ -2260,6 +2270,16 @@ function DetailPage({ funds, syncedAt, loading }: { funds: FundViewModel[]; sync
             <span>自动同步时间</span>
             <strong>{syncedAt ? formatDateTime(syncedAt) : '--'}</strong>
           </div>
+          <div>
+            <span>申购状态</span>
+            <strong>{fund.runtime.purchaseStatus || '--'}</strong>
+          </div>
+          {fund.runtime.purchaseLimit ? (
+            <div>
+              <span>申购限额</span>
+              <strong>{fund.runtime.purchaseLimit}</strong>
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -2742,6 +2762,38 @@ export default function App() {
     }
 
     async function loadTrainingMetrics() {
+      // 优先从 Worker API 加载训练指标
+      try {
+        const apiBase = getRuntimeApiBase();
+        const response = await fetch(`${apiBase}/api/training/metrics`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.ok && data.metrics) {
+            const next: Record<string, TrainingMetricSummary> = {};
+            for (const metric of data.metrics) {
+              if (metric && Number.isFinite(metric.maeValidation30)) {
+                next[metric.code] = {
+                  maeTrain: metric.maeTrain,
+                  maeValidation: metric.maeValidation,
+                  maeValidation30: metric.maeValidation30Robust ?? metric.maeValidation30,
+                  maeValidation30Robust: metric.maeValidation30Robust,
+                  generatedAt: metric.generatedAt,
+                };
+              }
+            }
+            if (Object.keys(next).length > 0) {
+              if (!active) return;
+              setTrainingMetricsByCode(next);
+              console.log(`[TrainingMetrics] Loaded ${Object.keys(next).length} metrics from Worker API`);
+              return;
+            }
+          }
+        }
+      } catch (error) {
+        console.warn('[TrainingMetrics] Failed to load from Worker API, falling back to local files:', error);
+      }
+
+      // 回退到本地 JSON 文件
       const entries = await Promise.all(
         [...OFFLINE_RESEARCH_CODES].map(async (code) => {
           try {

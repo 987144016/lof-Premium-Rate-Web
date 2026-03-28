@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-28T10:59:00.557Z",
-  "syncedAt": "2026-03-28T10:56:20.406Z",
+  "generatedAt": "2026-03-28T11:22:07.935Z",
+  "syncedAt": "2026-03-28T11:14:46.871Z",
   "codes": {
     "159100": {
       "code": "159100",
@@ -270,7 +270,7 @@
         {
           "provider": "eastmoney-fundgz",
           "sourceUrl": "https://fundgz.1234567.com.cn/js/159329.js",
-          "status": "gsz-unavailable",
+          "status": "fetch failed",
           "premiumRateCurrent": null,
           "hitCount60": 0,
           "avgAbsProviderError30": null,
@@ -2922,7 +2922,7 @@
         {
           "provider": "eastmoney-fundgz",
           "sourceUrl": "https://fundgz.1234567.com.cn/js/160221.js",
-          "status": "ok",
+          "status": "fetch failed",
           "premiumRateCurrent": -0.00734201926749567,
           "hitCount60": 8,
           "avgAbsProviderError30": 0.0018223531010859578,
@@ -2961,7 +2961,7 @@
         {
           "provider": "sina",
           "sourceUrl": "https://hq.sinajs.cn/list=sz160221",
-          "status": "no-premium-field",
+          "status": "unavailable-or-blocked",
           "premiumRateCurrent": null,
           "hitCount60": 0,
           "avgAbsProviderError30": null,
@@ -18946,7 +18946,7 @@
         {
           "provider": "eastmoney-fundgz",
           "sourceUrl": "https://fundgz.1234567.com.cn/js/164824.js",
-          "status": "gsz-unavailable",
+          "status": "fetch failed",
           "premiumRateCurrent": null,
           "hitCount60": 0,
           "avgAbsProviderError30": null,
@@ -24384,7 +24384,7 @@
         {
           "provider": "eastmoney-fundgz",
           "sourceUrl": "https://fundgz.1234567.com.cn/js/513100.js",
-          "status": "ok",
+          "status": "fetch failed",
           "premiumRateCurrent": 0.06896983352109132,
           "hitCount60": 8,
           "avgAbsProviderError30": 0.020439687639468827,
@@ -24423,7 +24423,7 @@
         {
           "provider": "sina",
           "sourceUrl": "https://hq.sinajs.cn/list=sh513100",
-          "status": "no-premium-field",
+          "status": "unavailable-or-blocked",
           "premiumRateCurrent": null,
           "hitCount60": 0,
           "avgAbsProviderError30": null,
